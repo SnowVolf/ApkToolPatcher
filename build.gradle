@@ -1,0 +1,71 @@
+import java.nio.file.Files
+import java.security.SecureRandom
+import java.util.stream.Collectors
+import java.util.stream.IntStream
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+        maven {
+            url 'https://dl.bintray.com/kishanvaghela/maven/'
+        }
+    }
+}
+
+task generateDictionary {
+    doLast {
+        int total = 20000
+//        Random random = new SecureRandom()
+//        List<String> javaKeywords = Arrays.asList("do", "if", "for", "int", "new",  "long", "this",
+//                "void", "break", "catch", "class", "const", "final", "double", "import", "native",
+//                "public", "return", "static", "switch", "finally", "package", "private", "abstract",
+//                "continue", "strictfp", "transient", "implements", "instanceof", "synchronized")
+//
+//        Collections.shuffle(javaKeywords, random)
+
+        List<String> emojis = IntStream.rangeClosed(0x30a1, 0x30fb)
+                .mapToObj {
+            b -> Character.toString((char) b)
+        }
+        .collect(Collectors.toList())
+
+        int size = emojis.size()
+        List<String> dictionary = new ArrayList<>(total)
+        for (int i = 0; i <= total; i++) {
+            int value = i
+            StringBuilder builder = new StringBuilder()
+            while ({
+                int remainer = value % size
+                builder.append(emojis.get(remainer))
+                value = value / size
+                value > 0
+            }())
+                continue
+            dictionary.add(builder.reverse().toString())
+        }
+        Collections.shuffle(dictionary)
+
+        StringBuilder builder = new StringBuilder()
+//        javaKeywords.forEach { s -> builder.append(s).append('\n')}
+        dictionary.forEach { s -> builder.append(s).append('\n')}
+
+        Files.write(new File("$projectDir/app/proguard-dictionary.txt").toPath(), builder.toString().getBytes("UTF-8"))
+
+    }
+}

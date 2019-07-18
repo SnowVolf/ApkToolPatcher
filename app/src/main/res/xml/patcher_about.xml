@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/settings_tab_main">
+        <Preference
+            android:key="app_ver"
+            android:summary="Copyright (c) 2018 Alexei Samsonov">
+            <intent android:action="apk.tool.patcher.action.SHOW_UPDATE" />
+        </Preference>
+        <Preference
+            android:key="4pda_disc"
+            android:summary="@string/pref_4pda_disc_sub"
+            android:title="@string/pref_4pda_disc">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://4pda.ru/forum/index.php?showtopic=882654" />
+        </Preference>
+        <Preference
+            android:key="app_manual"
+            android:title="@string/pref_userguide">
+            <intent android:action="apk.tool.patcher.action.SHOW_HELP" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/pref_contact">
+        <Preference
+            android:key="send_email_lead"
+            android:summary="Lead Developer (russian only)"
+            android:title="@string/pref_contact_mail">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:buntar888@mail.ru?subject=ApkToolPatcher" />
+        </Preference>
+        <Preference
+            android:key="send_email_second"
+            android:summary="Secondary Developer (english and russian)"
+            android:title="@string/pref_contact_mail">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:dev.dog@yandex.ru?subject=ApkToolPatcher" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

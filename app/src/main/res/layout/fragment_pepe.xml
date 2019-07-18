@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:src="@drawable/pepe_top" />
+
+    <apk.tool.patcher.ui.widget.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:gravity="center_horizontal"
+        android:text="Немного о MIUI/EMUI/OneUI/Flyme и прошивках основанных на них"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:textSize="18sp" />
+
+    <apk.tool.patcher.ui.widget.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="ApkToolPatcher распостраняется по принципу 'КАК ЕСТЬ' (AS IS).\nРазработчики ApkToolPatcher не дают никаких гарантий, явных или подразумеваемых, что приложение будет работать на прошивках отличных от AOSP. Приложение разрабатывается с учетом изменений последней стабильной ветки Android Open Source Project, и не оптимизируется под кастомные имплементации вендоров.\n\nПри возникновении ошибок, убедитесь в том, что используйте последнюю версию прошивки доступную для вашего устройства. По возможности, проверьте возниковение бага на других устройствах с чистым Android от Google" />
+
+</LinearLayout>

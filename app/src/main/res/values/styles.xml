@@ -1,0 +1,150 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/light_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/light_colorAccent</item>
+        <item name="colorAccent">@color/light_colorAccent</item>
+        <item name="android:windowBackground">@color/light_colorBackground</item>
+        <item name="icon_color">@color/light_iconColor</item>
+        <item name="text_color">@color/light_textColor</item>
+        <item name="cardStyle">@style/CardStyle.Light</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="dialog_style">@color/light_dialog</item>
+        <item name="editBackground">@color/light_editBackground</item>
+        <item name="chromeCard">@color/light_editForeground</item>
+        <item name="cardBorderColor">@color/light_cardBorderColor</item>
+        <item name="prefCardsBackground">@color/light_cardView</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/dark_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/dark_colorPrimaryDark</item>
+        <item name="colorAccent">@color/dark_colorAccent</item>
+        <item name="android:windowBackground">@color/dark_colorBackground</item>
+        <item name="icon_color">@color/dark_iconColor</item>
+        <item name="text_color">@color/dark_textColor</item>
+        <item name="cardStyle">@style/CardStyle.Dark</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme.Dark</item>
+        <item name="dialog_style">@color/dark_dialog</item>
+        <item name="editBackground">@color/dark_editBackground</item>
+        <item name="chromeCard">@color/dark_editForeground</item>
+        <item name="cardBorderColor">@color/dark_cardBorderColor</item>
+        <item name="alertDialogTheme">@style/DarkAppTheme.Dialog</item>
+        <item name="prefCardsBackground">@color/dark_cardView</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.Blue" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/blue_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/blue_colorPrimaryDark</item>
+        <item name="colorAccent">@color/blue_colorAccent</item>
+        <item name="android:windowBackground">@color/blue_colorBackground</item>
+        <item name="icon_color">@color/blue_iconColor</item>
+        <item name="text_color">@color/blue_textColor</item>
+        <item name="cardStyle">@style/CardStyle.Blue</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme.Dark</item>
+        <item name="dialog_style">@color/blue_dialog</item>
+        <item name="editBackground">@color/blue_editBackground</item>
+        <item name="chromeCard">@color/blue_editForeground</item>
+        <item name="cardBorderColor">@color/blue_cardBorderColor</item>
+        <item name="alertDialogTheme">@style/BlueAppTheme.Dialog</item>
+        <item name="prefCardsBackground">@color/blue_cardView</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="CardStyle.Light" parent="CardView.Light">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/light_cardView</item>
+    </style>
+
+    <style name="CardStyle.Dark" parent="CardView.Dark">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/dark_cardView</item>
+    </style>
+
+    <style name="CardStyle.Blue" parent="CardView.Dark">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/blue_cardView</item>
+    </style>
+
+    <style name="DarkAppTheme.Dialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:colorBackground">@color/dark_dialog</item>
+        <item name="colorAccent">@color/dark_colorAccent</item>
+    </style>
+
+    <style name="BlueAppTheme.Dialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:colorBackground">@color/blue_dialog</item>
+        <item name="colorAccent">@color/blue_colorAccent</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme.Dark" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_skipCollapsed">true</item>
+    </style>
+
+    <style name="FileLineStyle">
+        <item name="android:background">@drawable/bg_file_line</item>
+    </style>
+
+    <!--<style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>-->
+    <style name="SettingsTheme" parent="Theme.AppCompat">
+        <item name="windowNoTitle">false</item>
+        <item name="windowActionBar">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="button" parent="@android:style/Widget.Button">
+        <item name="android:textSize">14.0dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/lightblue</item>
+        <item name="android:gravity">center</item>
+        <!-- Change background
+        <item name="android:background">@drawable/applistutil_btn_custom</item>
+        -->
+        <item name="android:background">@drawable/bg_button_style</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:shadowColor">#ff000000</item>
+        <item name="android:shadowRadius">0.2</item>
+    </style>
+
+    <style name="Dialog_No_Border_2">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sdcard"
+            android:icon="@drawable/ic_sdcard"
+            android:title="SdCard" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_tools"
+            android:title="@string/tools" />
+    </group>
+
+    <item
+        android:id="@+id/nav_tasks"
+        android:title="@string/tasks">
+        <menu>
+            <item
+                android:id="@+id/nav_task_1"
+                android:icon="@drawable/ic_task"
+                android:title="Task 1"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_task_2"
+                android:icon="@drawable/ic_task"
+                android:title="Task 2"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_task_3"
+                android:icon="@drawable/ic_task"
+                android:title="Task 3"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_task_4"
+                android:icon="@drawable/ic_task"
+                android:title="Task 4"
+                android:visible="false" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_smali"
+        android:title="Smali">
+        <menu>
+            <item
+                android:id="@+id/nav_smali_1"
+                android:icon="@drawable/ic_smali"
+                android:title="Task 1"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_smali_2"
+                android:icon="@drawable/ic_smali"
+                android:title="Task 2"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_smali_3"
+                android:icon="@drawable/ic_smali"
+                android:title="Task 3"
+                android:visible="false" />
+            <item
+                android:id="@+id/nav_smali_4"
+                android:icon="@drawable/ic_smali"
+                android:title="Task 4"
+                android:visible="false" />
+        </menu>
+    </item>
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/nav_prefs"
+                android:icon="@drawable/settings_outline"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info"
+                android:title="@string/about" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit"
+                android:title="@string/exit" />
+        </menu>
+    </item>
+
+</menu>

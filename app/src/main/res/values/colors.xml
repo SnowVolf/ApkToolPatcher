@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_tvpath_blue">#00ffffff</color>
+    <color name="background_tvpath_grey">#88626262</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_tvpath_black">#00000000</color>
+    <color name="design_textinput_error_color_dark">#ffff6e6e</color>
+    <color name="design_textinput_error_color_light">#ffd50000</color>
+
+    <color name="littleblue">#ffe9f2fc</color>
+    <color name="lightblue">#ff5997c4</color>
+    <color name="lightblack">#ff303030</color>
+    <color name="statusBarColor">#20000000</color>
+    <color name="roundedimagepaint">#BAB399</color>
+    <color name="colorBackgroundTransparent">#000d0d0d</color>
+    <color name="colorBackgroundSlightlyTransparent">#e00d0d0d</color>
+    <color name="colorBackgroundLight">#ff202020</color>
+
+
+    <color name="light_colorPrimary">#f5f5f5</color>
+    <color name="light_colorPrimaryDark">#f5f5f5</color>
+    <color name="light_colorAccent">#448aff</color>
+    <color name="light_colorBackground">#f5f5f5</color>
+    <color name="light_cardView">#ffffff</color>
+    <color name="light_dialog">#ffffff</color>
+    <color name="light_iconColor">#757575</color>
+    <color name="light_textColor">#212121</color>
+    <color name="light_editBackground">#e7e7e7</color>
+    <color name="light_editForeground">#ffffff</color>
+    <color name="light_cardBorderColor">#cfcfcf</color>
+
+    <color name="dark_colorPrimary">#202020</color>
+    <color name="dark_colorPrimaryDark">#202020</color>
+    <color name="dark_colorAccent">#448aff</color>
+    <color name="dark_colorBackground">#202020</color>
+    <color name="dark_cardView">#181818</color>
+    <color name="dark_dialog">#363636</color>
+    <color name="dark_iconColor">#f5f5f5</color>
+    <color name="dark_textColor">#f5f5f5</color>
+    <color name="dark_editBackground">#434343</color>
+    <color name="dark_editForeground">#292929</color>
+    <color name="dark_cardBorderColor">#505050</color>
+
+    <color name="blue_colorPrimary">#222e3c</color>
+    <color name="blue_colorPrimaryDark">#222e3c</color>
+    <color name="blue_colorAccent">#64cefd</color>
+    <color name="blue_colorBackground">#151d26</color>
+    <color name="blue_cardView">#1c2733</color>
+    <color name="blue_dialog">#1c2733</color>
+    <color name="blue_iconColor">#acbec9</color>
+    <color name="blue_textColor">#ccdee7</color>
+    <color name="blue_editBackground">#222e3c</color>
+    <color name="blue_editForeground">#456a93</color>
+    <color name="blue_cardBorderColor">#364e54</color>
+
+
+</resources>

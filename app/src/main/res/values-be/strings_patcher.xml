@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_appslist">Список приложений</string>
+    <string name="menu_donate">Пожертвовать</string>
+    <string name="menu_buy_premium">Купить Premium</string>
+    <string name="menu_about">О программе</string>
+    <string name="menu_components">Плагины и компоненты</string>
+
+    <!-- Patches list -->
+    <string name="patch_del_ads">Удалить рекламу</string>
+    <string name="patch_del_ads_activities">Удалить рекламные Activity</string>
+    <string name="patch_signature">Убрать проверку подписи</string>
+    <string name="patch_root">Убрать проверку на root</string>
+    <string name="patch_analytics">Удалить аналитику</string>
+    <string name="patch_update">Убрать запрос на обновление</string>
+    <string name="patch_xml2mtd">Конвертaция словарей XML в MTD</string>
+    <string name="patch_decode_resid">Декодер ID ресурсов</string>
+    <string name="patch_delete_locales">Удаление локализаций</string>
+    <string name="patch_google_play">Удаление зависимости от Google Play Services</string>
+    <string name="patch_interest_smali">Инспектор SMALI</string>
+    <string name="patch_mod_guard">Скрыть изменения мода</string>
+    <string name="patch_toast">Добавить Toast при запуске</string>
+    <string name="patch_unicode2utf">Unicode в UTF</string>
+    <string name="patch_services_jar">Пропатчить \'services.jar\'</string>
+    <string name="patch_open_apktool">Открыть ApkTool</string>
+
+    <!-- Premium patches -->
+    <string name="patch_signature_fallback">Убрать проверку подписи (прямое чтение)</string>
+    <string name="patch_native_libs">Патч нативных библиотек</string>
+    <string name="patch_maps_fix">Исправить Google Maps</string>
+    <string name="patch_odex">Патч ODEX</string>
+    <string name="patch_decompiler">Декомпилятор</string>
+
+    <!-- Captions -->
+    <string name="caption_search">Поиск</string>
+    <string name="caption_settings">@string/menu_settings</string>
+    <string name="caption_interest_smali">@string/patch_interest_smali</string>
+    <string name="caption_search_settings">Параметры поиска</string>
+    <string name="caption_search_result">Результаты поиска</string>
+    <string name="caption_ext_list">Список расширений</string>
+    <string name="caption_paid">Условия покупки</string>
+    <string name="caption_donate">Помощь проекту</string>
+    <string name="caption_features">Базовые функции</string>
+    <string name="caption_premium_features">Premium функции</string>
+
+
+    <!-- Short messages -->
+    <string name="message_patched_over">Процесс окончен, %d совпадений заменено</string>
+    <string name="message_patched">%d совпадений заменено</string>
+    <string name="message_app_not_found">Приложение не найдено!</string>
+    <string name="message_done">Готово!</string>
+    <string name="message_incorrect_dir">Путь к папке указан неверно!</string>
+    <string name="message_specify_project_dir">Укажите путь к папке проекта</string>
+    <string name="message_processing_next">Проверка следующего тома&#8230;</string>
+    <string name="message_incorrect_code">Неправильный формат кода!</string>
+    <string name="message_processing">Удаляю, жди&#8230;</string>
+    <string name="crash_toast_text">Произошла ошибка. Отправка отчёта</string>
+
+    <!-- Misc -->
+    <string name="specify_toast">Настроить Toast</string>
+    <string name="btn_add">Добавить</string>
+    <string name="btn_send_secret">Отправить данные по E-Mail</string>
+    <string name="btn_check_code">Проверить код</string>
+    <string name="btn_check">Проверить</string>
+    <string name="btn_toast">Вставить Toast</string>
+    <string name="btn_patch">Пропатчить</string>
+    <string name="idi_nahui">Да пошел ты&#8230;</string>
+
+    <string name="donate_trust">QIWI +79042585040 \nYandex Деньги 410013858440166 \nPayPal buntar888@mail.ru</string>
+    <string name="explain_services_jar">
+		"Нажимая кнопку \"Пропатчить\" - Вы соглашаетесь, с тем что:\n\n"
+		"- Декомпилировали services.jar до smali\n"
+		"- Сделали бэкап системы и всех личных данных\n"
+		"- Разработчик \"ApkToolPatcher\" не несёт никакой ответственности за Ваши действия.\n\n"
+		"Патч модифицирует services.jar, убрав проверку подписи и проверку целостности APK\n"
+		"Патч настроен на модификацию Android 4.4 ➡️ 7.0.X а так же CM 11 ➡️ 13"
+	</string>
+    <string name="explain_donate">
+		"После нажатия кнопки \"Отправить данные\", Вам будет предложено отправить письмо с платежными данными. \n"
+		"В теле письма укажите:\n"
+		"* дату и время платежа\n"
+		"* номер транзакции\n"
+		"* дополнительно можно скриншот\n\n"
+		"Стоимость Premium версии - 70 руб (на одно устройство)\n"
+		"В ответ, Вам будет выслан код активации.\n"
+		"В Premium версии будут доступны дополнительные патчи.\n"
+		"Реквизиты для оплаты можно посмотреть в пункте меню - \"Пожертвовать\"."</string>
+    <string name="message_specify_dict_dir">Укажи путь к папке с файлом dic.xml</string>
+    <string name="message_no_accounts">У Вас нет сохраненных аккаунтов!</string>
+    <string name="account_name">Аккаунт:\n</string>
+    <string name="app_provider_name">Приложение:\n</string>
+    <string name="input_patch">Путь к папке проекта</string>
+    <string name="search_q">Поисковый запрос</string>
+    <string name="caption_search_options">Опции поиска</string>
+    <string name="settings_tab_main">Общее</string>
+    <string name="settings_tab_decompiler">Декомпилятор</string>
+    <string name="settings_tab_other">Поддержка</string>
+    <string name="pref_4pda_disc">Обсуждение на 4PDA</string>
+    <string name="pref_4pda_disc_sub">Предложите новую возможность и получите обратную связь</string>
+    <string name="pref_contact">Контакты</string>
+    <string name="pref_contact_mail">Отправить письмо на E-Mail</string>
+    <string name="pref_dev_team">Наша команда</string>
+    <string name="pref_app_theme">Цветовая схема</string>
+    <string name="pref_sys_lang">Язык приложения</string>
+    <string name="lang_changed">Язык приложения был изменён. Требуется перезапуск</string>
+    <string name="caption_nothing_found">Ничего не найдено</string>
+    <string name="text_nothing_found">Попробуйте задать другой поисковый запрос</string>
+    <string name="pref_saved_langs">Сохраняемые языки</string>
+    <string name="pref_saved_langs_sub">Папки из этого списка не будут затронуты при удалении языков</string>
+    <string name="pref_saved_pkgs">Исключённые пакеты</string>
+    <string name="pref_saved_pkgs_sub">Пакеты из этого списка не будут обрабатываться при выполнении патчей</string>
+    <string name="pref_cat_patches_setting">Настройки патчей</string>
+    <string name="pref_grid_size">Размер сетки</string>
+    <string name="pref_cat_look">Внешний вид</string>
+    <string name="pref_cat_fm">Файловый менеджер</string>
+    <string name="pref_experimental">Экспериментальные функции</string>
+    <string name="pref_experimental_sub">Эти функции являются экспериментальными. Они могут перестать работать или исчезнут со временем</string>
+    <string name="show_hidden">Показать скрытые</string>
+    <string name="history">История</string>
+    <string name="donate_addr_copied">Реквизиты счёта скопированы в буфер обмена</string>
+    <string name="patcher_help_1"><![CDATA[<b>ApkToolPatcher</b> является второстепенным инструментом для редактирования приложений под Android OS.]]></string>
+    <string name="patcher_help_2"><![CDATA[ApkToolPatcher - работает <b>ТОЛЬКО</b> с готовым проектом, полученным после декомпиляции приложения с помощью ApkTool.]]></string>
+    <string name="patcher_help_3"><![CDATA[Разработчик ApkToolPatcher пытается полностью автоматизировать вашу работу, по принципу \"выбрал проект -> нажал на кнопку патча\"!]]></string>
+    <string name="patcher_help_5"><![CDATA[— Декомпилируем apk с помощью ApkTool. Например у Вас имеется <b>test.apk</b> после декомпиляции появится папка <b>test_src</b> - это и будет папка проекта. <br>— Укажите путь до папки с проектом. <br>— Нажмите кнопку нужного патча. <br>— Дождитесь сообщения об окончании или сообщение об ошибке. <br>— Откройте ApkTool. <br>— Соберите проект. <br>Патчи с отметкой \"***\" - актуальны под проекты для ApkEditor.<br> <a href=\"http://4pda.ru/forum/index.php?showtopic=882654&view=findpost&p=69690051\">Видеоинструкция</a> от пользователя <a href=\"http://4pda.ru/forum/index.php?showuser=3257189\">InternetMC</a>]]></string>
+    <string name="patcher_help_4">Инструкция по работе с программой</string>
+    <string name="patcher_help_6"><![CDATA[Инструкция по конвертации словарей TranslatorApk -> MT Manager]]></string>
+    <string name="patcher_help_7"><![CDATA[Берём словарь, делаем бэкап, например этот <a title=\"Ссылка\" rel=\"nofollow\" href=\"http://4pda.ru/forum/index.php?showtopic=456798&view=findpost&p=23633632\" target=\"_blank\">TranslatorApk</a> и переименовываем его в <b>dic.xml</b>. Выбираем папку с этим файлом и применяем патч/конвертер. После окончания патча, меняем формат файла на .<b>mtd</b>. С dic.xml на dic.mtd. Имя файла тоже можно поменять. Всё, теперь этот словарь можно использовать в <i>MT Manager</i>]]></string>
+    <string name="pref_userguide">Руководство</string>
+    <string name="caption_main_menu">Главное меню</string>
+    <string name="message_wait">Пожалуйста, подождите</string>
+    <string name="caption_set_folder">Вы уверены?</string>
+    <string name="message_set_folder">Установить \"%s\" как папку проекта?</string>
+    <string name="caption_changelog">История изменений</string>
+    <string name="great">Круто!</string>
+    <string name="details">Детали</string>
+    <string name="pref_parallel">Параллельное выполнение [ALPHA]</string>
+    <string name="pref_parallel_sub"><![CDATA[Принудительно выполнять патчи в параллельном режиме, вместо последовательного. Намного быстрее, но требует больше мощности ЦП & свободной ОЗУ]]></string>
+    <string name="patching">Патчинг…</string>
+    <string name="cancel_all">Отменить всё</string>
+    <string name="background">Фоновый режим</string>
+    <string name="pref_parallel_not_supported">Параллельное выполнение не поддерживается на %d-ядерных устройствах</string>
+    <string name="pref_paranoia">Посылать ошибки разработчику</string>
+    <string name="pref_paranoia_on_sub">Разрешить отправлять анонимную статистику использования и отчёты о сбоях</string>
+    <string name="pref_paranoia_off_sub">Ну ты и пидор… ну пидор же, ПИДОР!</string>
+    <string name="elapsed_time">Прошло времени:</string>
+    <string name="pref_custom_apktool">Кастомный ApkTool</string>
+    <string name="pref_custom_apktool_sub">Если вы используете кастомную сборку ApkTool GUI с другим именем пакета</string>
+    <string name="pref_low_mem">Режим нехватки памяти</string>
+    <string name="pref_low_mem_sub">Может вызывать фризы при переключении между операциями, но помогает на устройствах с малым кол-вом ОЗУ</string>
+
+    <string name="tab_visible">Видимые (%d)</string>
+    <string name="tab_hidden">Скрытые (%d)</string>
+    <string name="caption_search_results">Результаты поиска</string>
+    <string name="tab_extract_analytics">Анализ</string>
+    <string name="inspector_src_path">Путь до папки проекта</string>
+    <string name="inspector_src_name">Имя проекта</string>
+    <string name="inspector_src_dex_count">Количество томов DEX</string>
+    <string name="inspector_multidexed">Проект содержит %d томов DEX</string>
+    <string name="inspector_one_dex">Проект не имеет поддержки MultiDex</string>
+    <string name="tab_apps_user">Пользовательские (%d)</string>
+    <string name="tab_apps_system">Системные (%d)</string>
+    <string name="no_data">Нет данных</string>
+    <string name="no_data_desc">НЛО прилетело и оставило эту надпись здесь</string>
+    <string name="message_apktool_not_found"><![CDATA[ApkTool не найден, вот возможные причины:<br><br>- apktool не установлен на устройстве<br>- apktool GUI установлен, но имя пакета отличается от стандартного <b>per.pqy.apktool</b><br>- Вы ограничили доступ к списку установленных приложений <i>(XPrivacy для Xposed/AppOpsXposed/etc.)</i><br><br>Вы можете выбрать несколько вариантов]]></string>
+    <string name="change_apktool_pkg">Изменить пакет ApkTool</string>
+    <string name="apktool_pda">Тема ApkTool на 4PDA</string>
+    <string name="appinfo_pkg_name">Имя пакета</string>
+    <string name="appinfo_ver">Версия</string>
+    <string name="appinfo_ver_code">Код версии</string>
+    <string name="appinfo_msdk">Минимальный SDK</string>
+    <string name="appinfo_tsdk">Целевой SDK</string>
+    <string name="appinfo_apk_dir">Путь к APK</string>
+    <string name="appinfo_pkg_data">Папка данных</string>
+    <string name="appinfo_ctg_permissions">Разрешения</string>
+    <string name="appinfo_ctg_services">Сервисы</string>
+    <string name="appinfo_ctg_providers">Провайдеры</string>
+    <string name="appinfo_ctg_activities">Активити</string>
+    <string name="appinfo_ctg_receivers">Ресиверы</string>
+    <string name="inspector_src_type">Тип проекта</string>
+    <string name="appinfo_ctg_common">Общая информация</string>
+    <string name="action_launch">Запуск</string>
+    <string name="action_export">Экспорт</string>
+    <string name="action_gp">GPlay</string>
+
+</resources>

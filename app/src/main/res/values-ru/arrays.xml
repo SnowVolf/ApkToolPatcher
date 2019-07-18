@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string-array name="theme_names">
+        <item>Белая</item>
+        <item>Игра теней</item>
+        <item>Лунный свет</item>
+    </string-array>
+    <string-array name="comp_array">
+        <item>Скомпилировать</item>
+        <item>Открыть</item>
+    </string-array>
+    <string-array name="dec_array">
+        <item>Разобрать всё</item>
+        <item>Только dex</item>
+        <item>Только arsc</item>
+        <item>Подписать apk</item>
+        <item>Создать odex</item>
+        <item>Оптимизировать</item>
+        <item>Установить</item>
+        <item>Извлечь classes.dex</item>
+        <item>Удалить classes.dex из apk</item>
+        <item>Упаковать classes.dex в apk</item>
+        <item>Извлечь META-INF</item>
+        <item>Удалить META-INF из apk</item>
+        <item>Упаковать META-INF в apk</item>
+        <item>Импортировать как фреймворк</item>
+    </string-array>
+
+    <string-array name="decdex_array">
+        <item>Декомпилировать</item>
+        <item>Добавить в apk c таким именем</item>
+    </string-array>
+    <string-array name="decodex_array">
+        <item>Декомпилировать</item>
+    </string-array>
+
+    <string-array name="config_arr">
+        <item>Подписать</item>
+        <item>Оптимизировать</item>
+        <item>Создать odex</item>
+        <item>Импортировать как фреймворк</item>
+    </string-array>
+    <string-array name="config_jar_arr">
+        <item>Подписать</item>
+        <item>Оптимизировать</item>
+    </string-array>
+    <string-array name="mode_arr">
+        <item>Всё</item>
+        <item>Smali</item>
+        <item>Ресурсы</item>
+    </string-array>
+    <string-array name="arch_arr">
+        <item>Извлечь classes.dex</item>
+        <item>Удалить classes.dex из apk</item>
+        <item>Добавить classes.dex в apk</item>
+        <item>Извлечь META-INF</item>
+        <item>Удалить META-INF из apk</item>
+        <item>Добавить META-INF в apk</item>
+    </string-array>
+
+    <string-array name="keystore_arr">
+        <item>Список записей</item>
+        <item>Экспортировать (pk8)</item>
+        <item>Сгенерировать (x509)</item>
+        <item>Импортировать (pk8)</item>
+        <item>Импортировать (x509)</item>
+        <item>Удалить запись</item>
+    </string-array>
+
+    <string-array name="list_anim_arr">
+        <item>Выкл</item>
+        <item>Справа</item>
+        <item>Сверху</item>
+        <item>Снизу</item>
+    </string-array>
+    <string-array name="list_anim_val_arr">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
+    <string-array name="alias_actions">
+        <item>Импорт (x509)</item>
+        <item>Удалить запись</item>
+        <item>Сменить имя</item>
+        <item>Сменить пароль</item>
+        <item>Добавить сертификат</item>
+    </string-array>
+    <string-array name="cert_actions">
+        <item>Export (pk8 + x509)</item>
+        <item>Удалить сертификат</item>
+    </string-array>
+
+    <string-array name="api_level_arr">
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+    </string-array>
+    <string-array name="libs_arr">
+        <item>arm</item>
+        <item>arm64</item>
+        <item>x86</item>
+    </string-array>
+    <string-array name="libs_val">
+        <item>libld.so</item>
+        <item>libld64.so</item>
+        <item>libld86.so</item>
+    </string-array>
+    <string-array name="themes_value">
+        <item>Серая</item>
+        <item>Синяя</item>
+        <item>black</item>
+    </string-array>
+
+    <string-array name="themes">
+        <item>gray background</item>
+        <item>blue background</item>
+        <item>black background</item>
+    </string-array>
+
+
+    <string-array name="deodex_array">
+        <item>Декомпилировать</item>
+        <item>Подписать</item>
+        <item>Отмена</item>
+    </string-array>
+
+    <string-array name="longpress_array">
+        <item>Переименовать</item>
+        <item>Удалить</item>
+        <item>Получить доступ(нужен root)</item>
+        <item>Установить как папку инструментария</item>
+        <item>Отмена</item>
+    </string-array>
+
+    <string-array name="unpackimg">
+        <item>expack-mt65xx(need root)</item>
+        <item>expack-common(need root)</item>
+        <item>cancel</item>
+    </string-array>
+
+    <string-array name="repackimg">
+        <item>repack-mt65xx(need root)</item>
+        <item>repack-common(need root)</item>
+        <item>browse</item>
+        <item>cancel</item>
+    </string-array>
+
+    <string-array name="interest_items">
+        <item>Копировать путь до файла</item>
+        <item>Копировать кусок кода</item>
+        <item>Открыть во внешнем редакторе</item>
+    </string-array>
+
+    <string-array name="apps_options">
+        <item>Запуск</item>
+        <item>Экспорт APK</item>
+        <item>Play Маркет</item>
+    </string-array>
+</resources>

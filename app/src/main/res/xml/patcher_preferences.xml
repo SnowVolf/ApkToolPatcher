@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/pref_cat_look">
+        <ListPreference
+
+            android:defaultValue="0"
+            android:entries="@array/theme_names"
+            android:entryValues="@array/theme_values"
+            android:key="ui.theme"
+            android:title="@string/pref_app_theme" />
+        <ListPreference
+
+            android:entries="@array/entries_lang"
+            android:entryValues="@array/values_lang"
+            android:key="sys.language"
+            android:title="@string/pref_sys_lang" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/pref_cat_fm">
+        <ListPreference
+
+            android:defaultValue="2"
+            android:entries="@array/list_grid"
+            android:entryValues="@array/list_grid"
+            android:key="list_grid_size"
+            android:title="@string/pref_grid_size" />
+        <SwitchPreference
+
+            android:defaultValue="true"
+            android:key="list_item_effect"
+            android:title="@string/list_item_effect" />
+        <ListPreference
+
+            android:defaultValue="1"
+            android:dependency="list_item_effect"
+            android:entries="@array/list_anim_arr"
+            android:entryValues="@array/list_anim_val_arr"
+            android:key="list_anim"
+            android:title="@string/list_anim" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/pref_cat_patches_setting">
+        <SwitchPreference
+
+            android:defaultValue="false"
+            android:key="exec.low_mem"
+            android:summary="@string/pref_low_mem_sub"
+            android:title="@string/pref_low_mem" />
+        <EditTextPreference
+
+            android:defaultValue="apache|androidx|android/support/(v\\d+)/|io/reactivex|kotlin|butterknife|afollestad|mikepenz|okhttp3|okio|retrofit2|squareup/picasso|fasterxml/jackson|gson"
+            android:key="patch.exc_interest"
+            android:summary="@string/pref_saved_pkgs_sub"
+            android:title="@string/pref_saved_pkgs" />
+        <SwitchPreference
+
+            android:defaultValue="false"
+            android:key="experimental"
+            android:summary="@string/pref_experimental_sub"
+            android:title="@string/pref_experimental" />
+        <EditTextPreference
+
+            android:defaultValue="values|values-ru|values-uk"
+            android:dependency="experimental"
+            android:key="patch.exc_langs"
+            android:summary="@string/pref_saved_langs_sub"
+            android:title="@string/pref_saved_langs" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

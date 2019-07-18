@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_appslist">Installed apps</string>
+    <string name="menu_donate">Donate</string>
+    <string name="menu_buy_premium">Get Premium</string>
+    <string name="menu_about">Help &amp; Support</string>
+    <string name="menu_components">Plugins &amp; Components</string>
+
+    <!-- Patches list -->
+    <string name="patch_del_ads">Remove ads</string>
+    <string name="patch_del_ads_activities">Remove ads Activities</string>
+    <string name="patch_signature">Remove signature check</string>
+    <string name="patch_root">Remove root check</string>
+    <string name="patch_analytics">Remove analytics calls</string>
+    <string name="patch_update">Disable force app updates</string>
+    <string name="patch_xml2mtd">Migrate from XML to MTD</string>
+    <string name="patch_decode_resid">Decode resources ID</string>
+    <string name="patch_delete_locales">Delete locales</string>
+    <string name="patch_google_play">Remove dependency on Google Play Services</string>
+    <string name="patch_interest_smali">SMALI inspector</string>
+    <string name="patch_mod_guard">Mod obfuscation</string>
+    <string name="patch_toast">Add startup toast message</string>
+    <string name="patch_unicode2utf">Unicode to UTF</string>
+    <string name="patch_services_jar">\'services.jar\' patcher</string>
+    <string name="patch_open_apktool">Launch ApkTool</string>
+
+    <!-- Premium patches -->
+    <string name="patch_signature_fallback">Remove signature check (fallback strategy)</string>
+    <string name="patch_native_libs">Patch native libraries</string>
+    <string name="patch_maps_fix">Google Maps Fix</string>
+    <string name="patch_odex">ODEX patch</string>
+    <string name="patch_decompiler">Inbuilt decompiler</string>
+
+    <!-- Captions -->
+    <string name="caption_search">Search</string>
+    <string name="caption_settings">@string/menu_settings</string>
+    <string name="caption_interest_smali">@string/patch_interest_smali</string>
+    <string name="caption_search_settings">Search settings</string>
+    <string name="caption_search_result">Search results</string>
+    <string name="caption_ext_list">Extensions list</string>
+    <string name="caption_paid">Condition of purchase</string>
+    <string name="caption_donate">Assistance to the project</string>
+    <string name="caption_features">Base features</string>
+    <string name="caption_premium_features">Premium features</string>
+
+
+    <!-- Short messages -->
+    <string name="message_patched_over">Process finished, %d matches replaced</string>
+    <string name="message_patched">%d matches replaced</string>
+    <string name="message_app_not_found">App not found!</string>
+    <string name="message_done">Done!</string>
+    <string name="message_incorrect_dir">Incorrect project directory. Please enter another one</string>
+    <string name="message_specify_project_dir">Please specify project dir.</string>
+    <string name="message_processing">Processing next DEX volume&#8230;</string>
+    <string name="message_incorrect_code">Incorrect code!</string>
+    <string name="crash_toast_text">An unexpected error occurred. Please send a bug report</string>
+
+
+    <!-- Misc -->
+    <string name="specify_toast">Configure Toast</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_send_secret">Send secret via E-Mail</string>
+    <string name="btn_check_code">Checkout</string>
+    <string name="btn_check">Check an activation code</string>
+    <string name="btn_toast">Insert Toast</string>
+    <string name="btn_patch">Patch</string>
+    <string name="idi_nahui">Fuck you</string>
+    <string name="explain_services_jar">By clicking \"Patch\" - you agree that:\n - Decompiled services.jar to smali\n - You made full Nandroid backup\n - Developer of \"ApkToolPatcher\" is not responsible for Your actions.\n\nPatch modifies services.jar library by removing APK signature verification and integrity check. Patch is configured to modify Android 4.4 ➡ 7.0.X and CM 11 ➡ 13</string>
+
+    <string name="input_patch">Path to the project directory</string>
+    <string name="explain_donate">After clicking the \"Send secret\" button, you will be asked to send an email with billing information. \nIn the message body, indicate:\n* the date and time of payment\n * transaction number\n* in additional, you can attach screenshot. \nCost of the Premium version - $1 (per device) \nIn response, you will receive an activation code. \nThe Premium version contains additional patches and built-in decompiler. \nAccount details can be viewed in the menu item - \"Donate\".</string>
+    <string name="message_specify_dict_dir">Please specify directory with dic.xml file</string>
+    <string name="message_no_accounts">You don\'t have saved accounts yet</string>
+    <string name="account_name">Account:\n</string>
+    <string name="app_provider_name">Owner:\n</string>
+    <string name="search_q">Search query</string>
+    <string name="caption_search_options">Search options</string>
+    <string name="settings_tab_main">General</string>
+    <string name="settings_tab_decompiler">Decompiler</string>
+    <string name="settings_tab_other">Support</string>
+    <string name="pref_4pda_disc">4PDA discussion</string>
+    <string name="pref_4pda_disc_sub">Suggest for new features and get feedback</string>
+    <string name="pref_contact">Contact</string>
+    <string name="pref_contact_mail">Send e-mail</string>
+    <string name="pref_dev_team">Our team</string>
+    <string name="pref_app_theme">Color scheme</string>
+    <string name="pref_sys_lang">App language</string>
+    <string name="lang_changed">App language has been changed. Please restart the application</string>
+    <string name="caption_nothing_found">Not found</string>
+    <string name="text_nothing_found">Try to search by another query</string>
+    <string name="pref_saved_langs">Excluded languages</string>
+    <string name="pref_saved_langs_sub">Languages from this list are not affected by deleting locales</string>
+    <string name="pref_saved_pkgs">Excluded packages</string>
+    <string name="pref_saved_pkgs_sub">Packages from this list are not processed while patching</string>
+    <string name="pref_cat_patches_setting">Extra tweaks</string>
+    <string name="pref_grid_size">Grid size</string>
+    <string name="pref_cat_look">Look and Feel</string>
+    <string name="pref_cat_fm">File manager</string>
+    <string name="pref_experimental">Experimental features</string>
+    <string name="pref_experimental_sub">This features are experimental. They are unstable or can be broken/removed in the future</string>
+    <string name="show_hidden">Show hidden</string>
+    <string name="history">History</string>
+    <string name="donate_addr_copied">Account details are copied to the clipboard</string>
+
+    <!-- Help -->
+    <string name="patcher_help_1"><![CDATA[<b>ApkToolPatcher</b> Is a secondary tool for editing applications under Android OS.]]></string>
+    <string name="patcher_help_2"><![CDATA[ApkToolPatcher works <b>ONLY</b> with the finished project obtained after decompiling the application using ApkTool.]]></string>
+    <string name="patcher_help_3"><![CDATA[The developer of ApkToolPatcher tries to fully automate your work, according to the principle \"chose the project -> pressed the patch button\"!]]></string>
+    <string name="patcher_help_5"><![CDATA[- Decompile the apk using ApkTool. For example, you have <b>test.apk</b> after decompiling, <b>test_src</b> folder will appear, - this will be the project folder. <br>- Specify the path to the project folder. <br>- Press the desired patch button. <br>- Wait for the end message or error message. <br>- Open ApkTool. <br>- Build the project. Patches marked with the Android head icon are relevant for ApkEditor projects.<br> <a href=\"http://4pda.ru/forum/index.php?showtopic=882654&view=findpost&p=69690051\">Video tutorial</a> by <a href=\"http://4pda.ru/forum/index.php?showuser=3257189\">InternetMC</a>]]></string>
+    <string name="patcher_help_4">Instructions for working with the program</string>
+    <string name="patcher_help_6"><![CDATA[Instructions for converting dictionaries TranslatorApk -> MT Manager]]></string>
+    <string name="patcher_help_7"><![CDATA[Take folder which contains a dictionary, make a backup, for example this <a title=\"Link\" rel=\"nofollow\" href=\"http://4pda.ru/forum/index.php?showtopic=456798&view=findpost&p=23633632\" target=\"_blank\">TranslatorApk</a> and rename it to <b>dic.xml</b>. Select the folder with this file and apply the patch/converter. After the patch, change the file format to .<b>mtd</b>. With dic.xml to dic.mtd. The file name can also be changed. All, now this dictionary can be used in <i>MT Manager</i>]]></string>
+    <string name="pref_userguide">User guide</string>
+    <string name="caption_main_menu">Main menu</string>
+    <string name="message_wait">Please wait</string>
+    <string name="caption_set_folder">Are you sure?</string>
+    <string name="message_set_folder">Set \"%s\" as project folder?</string>
+    <string name="caption_changelog">Changelog</string>
+    <string name="great">Great</string>
+    <string name="details">Details</string>
+    <string name="pref_parallel">Parallel execution [ALPHA]</string>
+    <string name="pref_parallel_sub"><![CDATA[Try to execute all worker tasks in parallel mode, instead of series. Much faster, but needs more CPU & free RAM]]></string>
+    <string name="patching">Patching…</string>
+    <string name="cancel_all">Cancel all</string>
+    <string name="background">Background</string>
+    <string name="pref_parallel_not_supported">Parallel execution is not supported by your device, because it has only %d-core processor</string>
+    <string name="pref_paranoia">Collect stats and crashes</string>
+    <string name="pref_paranoia_on_sub">Allow to collect and send anonymous usage statistics and crash reports</string>
+    <string name="pref_paranoia_off_sub">App statistics service has been disabled. The only way to report crashes are using ACRA</string>
+    <string name="elapsed_time">Time spent:</string>
+    <string name="pref_custom_apktool">Custom ApkTool package</string>
+    <string name="pref_custom_apktool_sub">If you are using a modified version of ApkTool GUI with different package name</string>
+    <string name="pref_low_mem_sub">Runs GC before each operation has been executed. May cause freezes, but can help on low-RAM devices</string>
+    <string name="pref_low_mem">Low Memory Mode</string>
+    <string name="tab_visible">Visible (%d)</string>
+    <string name="tab_hidden">Hidden (%d)</string>
+    <string name="caption_search_results">Search results</string>
+    <string name="tab_extract_analytics">Analyse</string>
+    <string name="inspector_src_path">Project source folder</string>
+    <string name="inspector_src_name">Project name</string>
+    <string name="inspector_src_dex_count">DEX volumes count</string>
+    <string name="inspector_multidexed">Project includes %d DEX volumes</string>
+    <string name="inspector_one_dex">Project is not supported by MultiDex</string>
+    <string name="tab_apps_user">User apps (%d)</string>
+    <string name="tab_apps_system">System apps (%d)</string>
+    <string name="no_data">No data</string>
+    <string name="no_data_desc">NO..U)))</string>
+    <string name="message_apktool_not_found"><![CDATA[ApkTool not found, here is some cases:<br><br>- apktool is not installed on the device<br>- apktool GUI has been installed, but package name does not equal: <b>per.pqy.apktool</b><br>- App failed to get applications data by your system restrictions. For example: <i>(XPrivacy for Xposed/AppOpsXposed/etc.)</i><br><br>You can choose a different ways]]></string>
+    <string name="change_apktool_pkg">Change ApkTool package</string>
+    <string name="apktool_pda">ApkTool topic on 4PDA</string>
+    <string name="appinfo_pkg_name">Package name</string>
+    <string name="appinfo_ver">Version</string>
+    <string name="appinfo_ver_code">Version code</string>
+    <string name="appinfo_msdk">Min SDK</string>
+    <string name="appinfo_tsdk">Target SDK</string>
+    <string name="appinfo_apk_dir">APK directory</string>
+    <string name="appinfo_pkg_data">Data directory</string>
+    <string name="appinfo_ctg_permissions">Permissions</string>
+    <string name="appinfo_ctg_services">Services</string>
+    <string name="appinfo_ctg_providers">Providers</string>
+    <string name="appinfo_ctg_activities">Activities</string>
+    <string name="appinfo_ctg_receivers">Receivers</string>
+    <string name="inspector_src_type">Project type</string>
+    <string name="appinfo_ctg_common">Common information</string>
+    <string name="action_launch">Запуск</string>
+    <string name="action_export">Экспорт</string>
+    <string name="action_gp">GPlay</string>
+</resources>

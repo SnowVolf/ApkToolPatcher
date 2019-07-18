@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_selector">Виберіть папку</string>
+    <string name="grep_spinner">Шукаю, зачекай...</string>
+    <string name="grep_finished">Готово</string>
+    <string name="grep_canceled">Відмінено</string>
+    <string name="label_dir">Цільові каталоги</string>
+    <string name="label_ext">Цільові розширення</string>
+    <string name="label_re">Регулярні вирази</string>
+    <string name="label_ignore_case">Ігнорувати регістр</string>
+    <string name="label_adddir">Додати директорію</string>
+    <string name="label_addext">Додати розширення</string>
+    <string name="label_hint">Пошук…</string>
+    <string name="label_OK">OK</string>
+    <string name="label_CANCEL">ВІДМІНА</string>
+    <string name="label_YES">Так</string>
+    <string name="label_NO">Ні</string>
+    <string name="label_remove_item_title">Видалити елемент</string>
+    <string name="label_remove_item">Ти впевнений у видалені %s?</string>
+    <string name="label_no_target_dir">Там немає цільового каталогу. Будь ласка, встановіть цільовий каталог.</string>
+    <string name="menu_viewer">вид</string>
+    <string name="progress">%1$s збігів (в %2$d файлах)</string>
+    <string name="label_unable_access">Неможливо отримати доступ…</string>
+    <string name="label_long_press">Тривале натиснення для вибору директорії</string>
+    <string name="label_option">Налаштування</string>
+    <string name="label_font_size">Розмір шрифту</string>
+    <string name="label_highlight_fg">Виділення фону кольором</string>
+    <string name="label_highlight_bg">Виділення символів в фоні</string>
+    <string name="label_no_extension">без розширень</string>
+    <string name="label_add_linenumber">Відкрити файл з номером рядка</string>
+    <string name="summary_add_linenumber">Коли ви відкриваєте файл в Jota +/Jota Text редакторі, ви будете автоматично переміщені на вказаний номер рядка.</string>
+    <string name="label_copied">Скопійовано в буфер обміну</string>
+    <string name="color_picker_input">Введіть код кольору</string>
+    <string name="color_picker_hint">Введіть 6-значний шістнадцятковий код</string>
+</resources>

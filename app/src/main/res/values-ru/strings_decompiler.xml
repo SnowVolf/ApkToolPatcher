@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="select_apk_file">Select Apk File</string>
+    <string name="patch_err_odex_not_found1">Cannot find target odex file. Please make sure ROOT access is granted. Try again?</string>
+    <string name="patch_err_odex_not_found2" formatted="false">Cannot find target odex file: neither %s nor %s</string>
+    <string name="patch">Patch</string>
+    <string name="in_progress">Working &#8230;</string>
+    <string name="select_file_replace">Select a file to replace it</string>
+    <string name="confirm_dir_replace">Confirm Directory Replace</string>
+    <string name="edit_before_replace">View/Edit the file before replacing %s</string>
+
+    <string name="hour">h</string>
+    <string name="minute">m</string>
+    <string name="second">s</string>
+
+    <string name="align_finish">align finish!</string>
+
+    <string name="unpacking">unpacking</string>
+
+    <string name="jar_not_exist">The jar file with same name does not exist!</string>
+
+    <string name="repacking">repacking</string>
+    <string name="never_remind">Не напоминать.</string>
+    <string name="put_background">put the job into background</string>
+    <string name="declaration">Declaration</string>
+
+    <string name="vibration_on">Вибрация вкл</string>
+    <string name="setting">Настройки</string>
+
+    <string name="screen_on">Не выключать экран</string>
+    <string name="nofreetask">Tasks be max!</string>
+    <string name="cur_task_not_run">current task not running</string>
+    <string name="agreement">Это личное программное обеспечение без каких-либо гарантий. Используйте его на свой страх и риск!</string>
+
+    <string name="data_not_in_sdcard">Отсутствует папка данных(папка инструментария) apktool по умолчанию! Выберите папку долгим нажатием и установите ее как папку инструментария apktool.</string>
+
+    <string name="running">running</string>
+    <string name="make_rom">Test function only.After operation,a new folder named rom will be created in apktool data folder.You may need to custom META-INF/com/google/android/updater-script.And you need to create zip by yourself.</string>
+    <string name="making_rom">ROM creating, will take some time.</string>
+    <string name="vibration_off">Вибрация выкл</string>
+    <string name="vibration">Вибрация</string>
+    <string name="notify_on">Уведомления вкл</string>
+    <string name="notify_off">Уведомления выкл</string>
+    <string name="screen">keep screen on</string>
+    <string name="screen_off">screen not keeping on</string>
+    <string name="wrap_msg_on">wrap output message</string>
+    <string name="wrap_msg_off">not wrap output message</string>
+    <string name="themes">Темы (вступают в силу после перезагрузки)</string>
+    <string name="apktool_version">Версия apktool</string>
+    <string name="aapt_version">Версия aapt(чем выше тем лучше)</string>
+    <string name="visit">Посетить</string>
+
+    <string name="makerom">create ROM</string>
+    <string name="donate">Donate</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="storage_err">Ошибка доступа к карте памяти</string>
+    <string name="no_perm">Нет доступа</string>
+
+    <string name="patch_template">[BEGIN]\n%1$s\n\n[PACKAGE]\n[CLASSES]\n{\"original\":\"%2$s\"}\n{\"replaced\":\"%3$s\"}\n\n[END]\n%4$s\n</string>
+    <string name="about_text">Автор: Ярослав Нестеров (atomofiron)\nВерсия: %1$s\nCPU: %2$s\nАрхитектура: %3$s\n\nЭто персональное программное обеспечение не имеет никаких гарантий. Используйте его на свой страх и риск.</string>
+
+    <string name="adding">Добавление…</string>
+    <string name="making">Создание…</string>
+    <string name="signing">Подпись…</string>
+    <string name="aligning">Оптимизация…</string>
+    <string name="deleting">Удаление…</string>
+    <string name="extracting">Извлечение…</string>
+    <string name="decompiling">Декомпиляция…</string>
+    <string name="recompiling">Рекомпиляция…</string>
+    <string name="importing_framework">Импортирование…</string>
+
+    <string name="add_finish">Добавлено!</string>
+    <string name="op_done">Операция завершена!</string>
+    <string name="sign_finish">Подписано!</string>
+    <string name="delete_finish">Удалено!</string>
+    <string name="extract_finish">Извлечено!</string>
+    <string name="zip_finish">Оптимизировано!</string>
+    <string name="odex_created">odex создан!</string>
+    <string name="import_finish">Импортировано!</string>
+    <string name="recompile_finish">Скомпилировано!</string>
+    <string name="decompile_all_finish">Декомпилировано!</string>
+    <string name="decompile_dex_finish">dex декомпилирован!</string>
+    <string name="decompile_odex_finish">odex декомпилирован!</string>
+    <string name="decompile_res_finish">Ресурсы декомпилированы!</string>
+
+    <string name="apk_not_exist">Apk с нужным именем не найден</string>
+    <string name="cancel">Отмена</string>
+    <string name="copy">Скопировать</string>
+    <string name="cost_time">Время: </string>
+    <string name="dir_exist">META-INF уже существует!</string>
+    <string name="dir_not_exist">META-INF не найдена!</string>
+    <string name="new_name">Новое имя:</string>
+    <string name="ok">OK</string>
+    <string name="want_to_delete">Удалить?</string>
+    <string name="want_to_exit">Выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="no_free_task">Нет свободных задач!</string>
+    <string name="directory_no_permission">Нет доступа к директории!</string>
+    <string name="warning">Внимание!</string>
+    <string name="tools_not_found">Некоторые инструменты не найдены! Поместите .jar-инструменты в </string>
+    <string name="no_home_dir">Домашняя директория не выбрана</string>
+    <string name="hide">Скрыть</string>
+    <string name="you_chosen">Используется:</string>
+    <string name="need_restart">Нужно перезапустить приложение</string>
+    <string name="error">Ошибка</string>
+    <string name="no_tool">Ни одного %s не найдено</string>
+
+    <!-- Preferences -->
+    <string name="libs">Интерпретатор</string>
+    <string name="vibrate">Вибрировать после операции</string>
+    <string name="notify">Уведомлять после операции</string>
+    <string name="keep_screen_on">Держать экран включённым</string>
+    <string name="wrap_msg">Обрезать сообщение результата</string>
+    <string name="use_root">Использовать root</string>
+    <string name="work">Операции</string>
+    <string name="paths">Пути</string>
+    <string name="system">Система</string>
+    <string name="remember_path">Открывать последний путь</string>
+    <string name="autosign">Подписывать автоматически</string>
+    <string name="autosign_sum">После рекомпиляции</string>
+    <string name="autominimize">Сворачивать задачи автоматически</string>
+    <string name="sdcard_path">Путь к SdCard</string>
+    <string name="clear_frameworks">Очистить framework-и</string>
+    <string name="del_fr_err">Некоторые файлы не были удалены!</string>
+    <string name="fr_cleared">Framework-и очищены</string>
+    <string name="api_level">Уровень SDK API</string>
+
+    <string name="no_free_smali">Нет свободных ячеек smali</string>
+    <string name="dex_not_exist">dex не найден</string>
+    <string name="dex_exist">dex уже существует</string>
+    <string name="dostop">Остановить</string>
+    <string name="close">Закрыть</string>
+    <string name="delete">Удалить</string>
+    <string name="refresh">Обновить</string>
+    <string name="settings">Настройки</string>
+    <string name="need_dex_name">Нужно имя в виде [apk_имя]_classes.dex</string>
+    <string name="add_all_bytes">Использовать все байты метода</string>
+    <string name="save">Сохранить</string>
+    <string name="search">Поиск</string>
+    <string name="find">Искать</string>
+    <string name="not_found">Ничего не найдено</string>
+    <string name="no_more_found">Больше не найдено</string>
+    <string name="search_top">Просмотр с начала</string>
+    <string name="found">Найдено %s совпадений</string>
+    <string name="search_bottom">Просмотр с конца</string>
+    <string name="prev">Назад</string>
+    <string name="next">Вперёд</string>
+    <string name="save_patch">Сохранить патч</string>
+    <string name="cant_delete_file">Не могу удалить файл</string>
+    <string name="cant_make_a_file">Не могу создать файл</string>
+    <string name="name">Имя</string>
+    <string name="package_name">Имя пакета</string>
+    <string name="description">Описание</string>
+    <string name="final_info">Финальная инфа</string>
+    <string name="need_package_name">Вы не указали имя пакета</string>
+    <string name="save_success">Сохранено</string>
+    <string name="clear">Очистить</string>
+    <string name="save_before">Закрыть без сохранения?</string>
+    <string name="replace_spaces">Уберите пробелы из пути к файлу! Или используйте root</string>
+    <string name="hidden">Задача запущена</string>
+    <string name="save_path">Путь для сохранения патчей</string>
+    <string name="error_dir">Ошибка доступа к директории</string>
+    <string name="home">Домой</string>
+    <string name="tools">Иструменты</string>
+    <string name="tasks">Задачи</string>
+    <string name="other">Прочее</string>
+    <string name="about">О программе</string>
+    <string name="info">Информация</string>
+    <string name="exit">Выйти</string>
+    <string name="del_error">Не могу удалить файл</string>
+    <string name="init">Инициализация…</string>
+    <string name="patch_need">Строки патча должны иметь равную длину</string>
+    <string name="smali_save_patch">Сохранить патч</string>
+    <string name="back">Назад</string>
+    <string name="go">Поехали!</string>
+    <string name="no_root">Нет root доступа</string>
+    <string name="cant_delete_tools_dir">Не могу удалить старую папку инструментария</string>
+    <string name="tools_dir_unseted">Папка инструментария не указана</string>
+    <string name="cant_config_tools">Не могу настроить папки инструментария</string>
+    <string name="list_anim">Анимация списка файлов</string>
+    <string name="no_activity">У вас нет приложения, способного открыть файл этого типа</string>
+    <string name="decompile">Декомпилировать</string>
+    <string name="exec">Выполнить</string>
+    <string name="forget">Забыть</string>
+    <string name="need_reinstall">Нужно переустановить приложение!</string>
+    <string name="rename">Переименовать</string>
+    <string name="bin_not_found">Директория jre/bin не найдена</string>
+    <string name="lib_not_found">Директория jre/lib не найдена</string>
+    <string name="i_am_lazy">Мне было лень…</string>
+    <string name="use_decdex">Извлеките dex и декопилируйте его</string>
+    <string name="absolute_path">Абсолютный путь</string>
+    <string name="list_item_effect">Включить анимацию списка файлов</string>
+    <string name="password">Password</string>
+    <string name="add">Добавить</string>
+    <string name="changepass">Change a password</string>
+    <string name="new_password">New password</string>
+    <string name="not_all_fields_are_filled">not all fields are filled</string>
+    <string name="certs">СЕРТИФИКАТЫ:</string>
+    <string name="new_alias">New alias</string>
+    <string name="cur_password">Current password</string>
+    <string name="fields_are_empty">Field(s) is(are) empty</string>
+    <string name="import_entry">Import</string>
+    <string name="alias">Alias</string>
+    <string name="missing">" отсутствует"</string>
+    <string name="parsing">Парсинг…</string>
+    <string name="field_is_empty">Field is empty</string>
+    <string name="project_folder">Папка проекта</string>
+
+</resources>

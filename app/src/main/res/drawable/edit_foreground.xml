@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="8dp" />
+    <solid android:color="?attr/chromeCard" />
+    <stroke
+        android:width="1px"
+        android:color="#a5a5a5" />
+</shape>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="main">
+        <attr name="icon_color" format="color" />
+        <attr name="settings_icon_color" format="color" />
+        <attr name="cardStyle" format="reference" />
+        <attr name="backgroundPrefs" format="color" />
+        <attr name="dialog_style" format="color" />
+        <attr name="text_color" format="color" />
+        <attr name="editBackground" format="color" />
+        <attr name="chromeCard" format="color" />
+        <attr name="cardBorderColor" format="color" />
+        <attr name="prefCardsBackground" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ThreeButtonPreference">
+        <attr name="forumLink" format="string" />
+        <attr name="tgLink" format="string" />
+        <attr name="gitLink" format="string" />
+    </declare-styleable>
+</resources>

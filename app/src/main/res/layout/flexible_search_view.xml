@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/edit_foreground">
+
+    <ImageButton
+        android:id="@+id/search_find"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignTop="@+id/search_menu"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/magnify" />
+
+    <apk.tool.patcher.ui.widget.FontTextView
+        android:id="@+id/field_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_toStartOf="@+id/search_menu"
+        android:layout_toEndOf="@+id/search_find"
+        android:background="@null"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/input_patch"
+        android:singleLine="true"
+        android:textColor="?text_color"
+        android:textSize="16sp"
+        tools:text="/storage/emulated/0/pizda-rulyi_src/" />
+
+    <ImageButton
+        android:id="@+id/search_menu"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/exp_menu" />
+</RelativeLayout>

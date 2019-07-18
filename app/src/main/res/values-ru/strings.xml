@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ApkToolPatcher</string>
+    <string name="menu_root">Корень устройства</string>
+    <string name="menu_system">Системная папка</string>
+    <string name="menu_storage">Внутренная память</string>
+    <string name="open_apktool">Открыть ApkTool</string>
+
+    <string name="troetochi">&#8230;</string>
+</resources>

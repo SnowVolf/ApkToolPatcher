@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <apk.tool.patcher.ui.widget.FontTextView
+        android:id="@+id/ListIndex"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+id/TextView01"></apk.tool.patcher.ui.widget.FontTextView>
+
+    <apk.tool.patcher.ui.widget.FontTextView
+        android:id="@+id/ListPhone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+id/TextView02"></apk.tool.patcher.ui.widget.FontTextView>
+</LinearLayout>

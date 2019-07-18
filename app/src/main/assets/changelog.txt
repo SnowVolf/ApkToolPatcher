@@ -1,0 +1,4 @@
+--- 5.0 alpha 4 [08-07-19] ---
+- Revamped UI
+- Removed Analytics switcher from settings
+- Added MIUI detection with showing a warning dialog

@@ -1,0 +1,45 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_option"
+        android:icon="@drawable/settings_outline"
+        android:orderInCategory="1"
+        android:title="@string/menu_settings" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/giftcard"
+        android:orderInCategory="4"
+        android:title="@string/menu_donate"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/PatchLib"
+        android:icon="@drawable/ic_apkeditor"
+        android:orderInCategory="2"
+        android:title="@string/menu_components"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/about2"
+        android:icon="@drawable/ic_info"
+        android:orderInCategory="6"
+        android:title="@string/menu_about"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/acc"
+        android:icon="@drawable/apps_list"
+        android:orderInCategory="3"
+        android:title="@string/menu_appslist"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/premium"
+        android:icon="@drawable/verified"
+        android:orderInCategory="5"
+        android:title="@string/menu_buy_premium"
+        app:showAsAction="never" />
+
+</menu>
