@@ -32,6 +32,7 @@ import apk.tool.patcher.util.SysUtils;
 import ru.svolf.melissa.fragment.dialog.SweetWaitDialog;
 import ru.svolf.melissa.model.InterestSmaliItem;
 import ru.svolf.melissa.swipeback.SwipeBackFragment;
+import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 public class InspectorFragment extends SwipeBackFragment {
     public static final String FRAGMENT_TAG = "smali_parent_fragment";
@@ -71,7 +72,6 @@ public class InspectorFragment extends SwipeBackFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setEdgeLevel(App.dpToPx(150));
         BigTabsLayout tabLayout = view.findViewById(R.id.tab_layout);
         mPager = view.findViewById(R.id.tab_pager);
         mNotFound = view.findViewById(R.id.not_found);
@@ -108,7 +108,27 @@ public class InspectorFragment extends SwipeBackFragment {
         adapter.addFragment(VisibleFragment.newInstance(mNormalItems), App.bindString(R.string.tab_visible, mNormalItems.size()));
         adapter.addFragment(HiddenFragment.newInstance(mSortedItems), App.bindString(R.string.tab_hidden, mSortedItems.size()));
         adapter.addFragment(AnalyticsFragment.newInstance(mProject), getString(R.string.tab_extract_analytics));
+
         pager.setAdapter(adapter);
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+                if (i == 0){
+                    setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
+                } else {
+                    setEdgeLevel(App.dpToPx(1));
+                }
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+            }
+        });
     }
 
     @SuppressWarnings("JavadocReference")

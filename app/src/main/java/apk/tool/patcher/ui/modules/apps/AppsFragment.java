@@ -30,8 +30,10 @@ import apk.tool.patcher.R;
 import apk.tool.patcher.entity.ParallelTask;
 import apk.tool.patcher.ui.modules.base.DataFragment;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
+import apk.tool.patcher.ui.modules.misc.OnTabSwipeListener;
 import apk.tool.patcher.ui.widget.BigTabsLayout;
 import ru.svolf.melissa.model.AppItem;
+import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 public class AppsFragment extends DataFragment {
     public static final String FRAGMENT_TAG = "apps_parent_fragment";
@@ -61,9 +63,6 @@ public class AppsFragment extends DataFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        setEdgeLevel(App.dpToPx(150));
-
         BigTabsLayout tabLayout = findViewById(R.id.tab_layout);
         mPager = findViewById(R.id.tab_pager);
         tabLayout.setupWithPager(mPager);
@@ -93,7 +92,27 @@ public class AppsFragment extends DataFragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(UserAppsFragment.newInstance(user), String.format(Locale.ENGLISH, getString(R.string.tab_apps_user), user.size()));
         adapter.addFragment(SystemAppsFragment.newInstance(sys), String.format(Locale.ENGLISH, getString(R.string.tab_apps_system), sys.size()));
+
         pager.setAdapter(adapter);
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+                if (i == 0){
+                    setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
+                } else {
+                    setEdgeLevel(App.dpToPx(1));
+                }
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+            }
+        });
     }
 
     /**

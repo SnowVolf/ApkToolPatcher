@@ -2,6 +2,7 @@ package apk.tool.patcher.ui.modules.settings;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -15,15 +16,19 @@ import android.view.ViewGroup;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.about.AboutFragment;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
+import apk.tool.patcher.ui.modules.misc.OnTabSwipeListener;
 import apk.tool.patcher.ui.widget.BigTabsLayout;
 import apk.tool.patcher.util.Cs;
 
 public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCurrentTabClickedListener {
     public static final String FRAGMENT_TAG = "settings_parent_fragment";
+    private OnTabSwipeListener tabSwipeListener;
     private int mTabIndex;
 
     private View rootView;
     private BigTabsLayout mTabs;
+
+
 
     public static SettingsHostFragment newInstance(int startupTab) {
         SettingsHostFragment fragment = new SettingsHostFragment();
@@ -31,6 +36,12 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
         args.putInt(Cs.ARG_PREF_TAB, startupTab);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        tabSwipeListener = (OnTabSwipeListener) context;
     }
 
     @Override
@@ -78,12 +89,26 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
 
     private void setViewPager(ViewPager pager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-
         adapter.addFragment(new SettingsFragment(), getString(R.string.settings_tab_main));
         adapter.addFragment(new DecompilerSettingsFragment(), getString(R.string.settings_tab_decompiler));
         adapter.addFragment(new AboutFragment(), getString(R.string.settings_tab_other));
 
         pager.setAdapter(adapter);
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+                tabSwipeListener.onTabSwipe(i);
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+            }
+        });
 
     }
 

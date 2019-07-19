@@ -6,20 +6,21 @@ import android.support.v4.app.FragmentTransaction;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.modules.misc.OnTabSwipeListener;
 import apk.tool.patcher.util.Cs;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
+import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 /**
  * Created by Snow Volf on 02.09.2017, 12:20
  */
 
-public class SettingsActivity extends SwipeBackActivity {
+public class SettingsActivity extends SwipeBackActivity implements OnTabSwipeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patcher_settings);
-        setEdgeLevel(App.dpToPx(150));
 
         if (savedInstanceState == null) {
             int anInt = Integer.parseInt(Cs.TAB_MAIN);
@@ -39,6 +40,15 @@ public class SettingsActivity extends SwipeBackActivity {
                     .replace(R.id.content_frame, fragment, SettingsHostFragment.FRAGMENT_TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
+        }
+    }
+
+    @Override
+    public void onTabSwipe(int tabNumber) {
+        if (tabNumber == 0){
+            setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
+        } else {
+            setEdgeLevel(App.dpToPx(1));
         }
     }
 }
