@@ -3,9 +3,11 @@ package apk.tool.patcher.ui.modules.apps;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.afinal.simplecache.ACache;
 
@@ -30,7 +31,6 @@ import apk.tool.patcher.R;
 import apk.tool.patcher.entity.ParallelTask;
 import apk.tool.patcher.ui.modules.base.DataFragment;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
-import apk.tool.patcher.ui.modules.misc.OnTabSwipeListener;
 import apk.tool.patcher.ui.widget.BigTabsLayout;
 import ru.svolf.melissa.model.AppItem;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
@@ -121,35 +121,29 @@ public class AppsFragment extends DataFragment {
      * @param task выполняемый асинк-таск
      * @return лист с данными (объекты AppItem)
      */
-    private ArrayList<AppItem> getInstalledApps(ApplicationLoader task) {
+    private ArrayList<AppItem> getInstalledApps(ApplicationLoader task) throws PackageManager.NameNotFoundException {
         ArrayList<AppItem> res = new ArrayList<>();
-        List<PackageInfo> packages = mContext.getPackageManager().getInstalledPackages(0);
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> pkgAppsList = AppsFragment.this.getContext().getPackageManager().queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
 
-        int totalPackages = packages.size();
+        int totalPackages = pkgAppsList.size();
 
         for (int i = 0; i < totalPackages; i++) {
-            PackageInfo p = packages.get(i);
-            ApplicationInfo appInfo = null;
-            try {
-                appInfo = mContext.getPackageManager().getApplicationInfo(p.packageName, 0);
-            } catch (PackageManager.NameNotFoundException e) {
-                Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            ResolveInfo resolved = pkgAppsList.get(i);
 
             int count = i + 1;
 
             final AppItem newInfo = new AppItem();
-            newInfo.setPackageLabel(p.applicationInfo.loadLabel(mContext.getPackageManager()).toString());
+            newInfo.setPackageLabel(resolved.loadLabel(mContext.getPackageManager()).toString());
 
             task.doProgress(String.format(Locale.ENGLISH, "%d / %d", count, totalPackages));
-            newInfo.setSystem(isSystemPackage(p));
-            newInfo.setPackageName(p.packageName);
-            newInfo.setPackageVersion(p.versionName);
+            newInfo.setSystem(isSystemPackage(resolved));
+            newInfo.setPackageName(resolved.resolvePackageName);
+            newInfo.setPackageVersion(fromResolve(resolved).versionName);
 
-            if (appInfo != null) {
-                newInfo.setPackageFilePath(appInfo.publicSourceDir);
-            }
-            newInfo.setPackageIcon(p.applicationInfo.loadIcon(mContext.getPackageManager()));
+            newInfo.setPackageFilePath(fromResolve(resolved).applicationInfo.publicSourceDir);
+            newInfo.setPackageIcon(fromResolve(resolved).applicationInfo.loadIcon(mContext.getPackageManager()));
             res.add(newInfo);
         }
         Comparator<AppItem> AppNameComparator = new Comparator<AppItem>() {
@@ -167,8 +161,12 @@ public class AppsFragment extends DataFragment {
      * @param pkgInfo системная информация о приожении
      * @return true, сли приложение является системным
      */
-    private boolean isSystemPackage(PackageInfo pkgInfo) {
-        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+    private boolean isSystemPackage(ResolveInfo pkgInfo) throws PackageManager.NameNotFoundException {
+        return (fromResolve(pkgInfo).applicationInfo.flags  & ApplicationInfo.FLAG_SYSTEM) != 0;
+    }
+
+    public PackageInfo fromResolve(ResolveInfo resolveInfo) throws PackageManager.NameNotFoundException {
+        return getContext().getPackageManager().getPackageInfo(resolveInfo.resolvePackageName, 0);
     }
 
     /**
@@ -179,11 +177,12 @@ public class AppsFragment extends DataFragment {
         @Override
         protected ArrayList<AppItem> doInBackground(String... params) {
             publishProgress("Retrieving installed application");
-            if (mCache.getAsObjectList("apps", AppItem.class) == null) {
+            try {
                 return getInstalledApps(this);
-            } else {
-                return (ArrayList<AppItem>) mCache.getAsObjectList("apps", AppItem.class);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            return null;
         }
 
         @Override

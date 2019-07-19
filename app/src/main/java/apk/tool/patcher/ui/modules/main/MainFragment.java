@@ -60,7 +60,6 @@ import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.AdsPatcher;
 import apk.tool.patcher.entity.LogicalCore;
-import apk.tool.patcher.ui.modules.apps.AppsFragment;
 import apk.tool.patcher.ui.modules.base.adapters.AdvancedAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.ExtendedMenuAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.MenuAdapter;
@@ -75,6 +74,7 @@ import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.RegexpRepository;
 import apk.tool.patcher.util.StreamUtil;
 import apk.tool.patcher.util.TextUtil;
+import ru.svolf.appmanager.AppManagerFragment;
 import ru.svolf.melissa.AdvancedItems;
 import ru.svolf.melissa.ExtendedItems;
 import ru.svolf.melissa.MenuItems;
@@ -312,18 +312,7 @@ public class MainFragment extends Fragment {
                             }
                             case ExtendedItems.APPS_LIST: {
                                 YandexMetrica.reportEvent("Apps List screen clicked");
-
-                                // Create the fragment only when the activity is created for the first time.
-                                // ie. not after orientation changes
-                                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(AppsFragment.FRAGMENT_TAG);
-                                if (fragment == null) {
-                                    fragment = new AppsFragment();
-                                }
-                                getActivity().getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.content_frame, fragment, AppsFragment.FRAGMENT_TAG)
-                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                        .addToBackStack(null)
-                                        .commit();
+                                startActivity(new Intent(getActivity(), AppManagerFragment.class));
                                 break;
                             }
                             case ExtendedItems.PREMIUM:

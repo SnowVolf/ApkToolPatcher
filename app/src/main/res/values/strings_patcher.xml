@@ -163,7 +163,9 @@
     <string name="appinfo_ctg_receivers">Receivers</string>
     <string name="inspector_src_type">Project type</string>
     <string name="appinfo_ctg_common">Common information</string>
-    <string name="action_launch">Запуск</string>
-    <string name="action_export">Экспорт</string>
+    <string name="action_launch">Launch</string>
+    <string name="action_export">Export</string>
     <string name="action_gp">GPlay</string>
+    <string name="vendor_warn">ApkToolPatcher is distributed on the principle \'AS IS\'. The developers of ApkToolPatcher make no warranty, Express or implied, that the application will run on firmware other than AOSP. The application is developed taking into account the changes of the last stable branch of the Android Open Source Project, and is not optimized for custom implementation of vendors.  If errors occur, make sure to use the latest firmware available for your device. If possible, check the bug on other devices with clean Android from Google</string>
+    <string name="caption_vendor_warn">A little bit about MIUI/EMUI/OneUI/Flyme and firmware based on them</string>
 </resources>

@@ -446,7 +446,7 @@ public class FilesFragment extends Fragment implements TaskManager.TaskListener,
                                 int RESULT_OK = 0;
                                 mActivity.setResult(RESULT_OK, intent1);
                                 mActivity.finish();
-                                // MainActivity.mContext.inputPatch.setText(path);
+                                // AppListActivity.mContext.inputPatch.setText(path);
                                 // finish();
                                 // TODO: Implement this method
                             }
