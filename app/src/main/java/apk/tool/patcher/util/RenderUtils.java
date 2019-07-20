@@ -9,7 +9,8 @@ import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by Snow Volf on 03.10.2017, 18:13

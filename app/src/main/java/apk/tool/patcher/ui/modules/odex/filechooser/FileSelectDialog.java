@@ -130,9 +130,9 @@ public class FileSelectDialog extends Dialog implements OnItemClickListener,
         pathTv = view.findViewById(R.id.tv_subtitle);
         if (strTitle == null) {
             if (fileSuffix != null) {
-                strTitle = ctx.getString(R.string.select_file_replace) + " (" + fileSuffix + ")";
+                strTitle = "Select file to replace" + " (" + fileSuffix + ")";
             } else {
-                strTitle = ctx.getString(R.string.select_file_replace);
+                strTitle = "Select file to replace";
             }
         }
         titleTv.setText(strTitle);
@@ -155,7 +155,7 @@ public class FileSelectDialog extends Dialog implements OnItemClickListener,
         this.editCheckBox = view.findViewById(R.id.cb_edit_before_replace);
         if (showEditOption) {
             editCheckBox.setText(
-                    String.format(ctx.getString(R.string.edit_before_replace),
+                    String.format("edit %s before replace",
                             PathUtil.getNameFromPath(extraString)));
             editCheckBox.setChecked(getHistoryEditOption());
             editCheckBox.setVisibility(View.VISIBLE);
@@ -259,7 +259,7 @@ public class FileSelectDialog extends Dialog implements OnItemClickListener,
 
             if (showConfirmDlg) {
                 new AlertDialog.Builder(this.ctx)
-                        .setTitle(R.string.confirm_dir_replace)
+                        .setTitle("Confirm replace")
                         .setMessage(callback.getConfirmMessage(curDir, extraStr))
                         .setPositiveButton(android.R.string.yes,
                                 new OnClickListener() {

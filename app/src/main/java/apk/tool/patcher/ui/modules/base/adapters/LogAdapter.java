@@ -2,14 +2,15 @@ package apk.tool.patcher.ui.modules.base.adapters;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 

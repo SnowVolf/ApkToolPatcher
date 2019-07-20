@@ -1,10 +1,11 @@
 package com.afollestad.async;
 
 import android.os.Handler;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.UiThread;
-import android.support.annotation.WorkerThread;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
+import androidx.annotation.WorkerThread;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

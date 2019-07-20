@@ -8,20 +8,15 @@
     <string name="iconlink" translatable="false">http://sites.google.com/site/nonsillustgallery/</string>
     <string name="app_selector">Select a directory</string>
     <string name="grep_finished">Finished</string>
-    <string name="label_dir">Directories</string>
     <string name="label_ext">Extensions</string>
     <string name="label_re">Regexp</string>
     <string name="label_ignore_case">Ignore case</string>
-    <string name="label_adddir">Add dir</string>
     <string name="label_addext">Add ext</string>
-    <string name="label_hint">Searching…</string>
     <string name="label_OK">OK</string>
     <string name="label_CANCEL">Cancel</string>
-    <string name="label_YES">Yes</string>
     <string name="label_remove_item_title">Remove item</string>
     <string name="label_remove_item">Remove %s?</string>
     <string name="label_no_target_dir">Please specify target dir</string>
-    <string name="menu_viewer">Look and Feel</string>
     <string name="progress">%1$s (in %2$d files)</string>
     <string name="label_long_press">Use long press to select a directory</string>
     <string name="label_font_size">Font size</string>
@@ -32,16 +27,11 @@
     <string name="summary_add_linenumber">If you open file in Jota/Jota+, you can be redirected directly to the line number</string>
     <string name="label_copied">Copied to clipboard</string>
     <string name="color_picker_input">Insert color code</string>
-    <string name="extracting">Extracting</string>
-    <string name="directory_no_permission">Can\'t access to this directory</string>
     <string name="autominimize">Automatically minimize worker tasks</string>
     <string name="fr_cleared">Frameworks cleared</string>
-    <string name="search_bottom">View from bottom</string>
-    <string name="final_info">Success message</string>
     <string name="grep_spinner">Ищу, ждите…</string>
     <string name="label_option">Settings</string>
     <string name="color_picker_hint">Input 6-digit HEX code</string>
     <string name="grep_canceled">Operation cancelled</string>
-    <string name="label_NO">No</string>
     <string name="label_unable_access">Unable to access</string>
 </resources>

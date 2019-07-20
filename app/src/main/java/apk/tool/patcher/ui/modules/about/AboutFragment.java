@@ -2,7 +2,8 @@ package apk.tool.patcher.ui.modules.about;
 
 
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
+
+import androidx.preference.Preference;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.base.BaseSettingsFragment;

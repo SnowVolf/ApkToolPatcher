@@ -9,9 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.main.MainActivity;
@@ -88,7 +89,7 @@ public class BaseActivity extends AppCompatActivity {
             SweetContentDialog dialog = new SweetContentDialog(this);
             dialog.setTitle(newContext.getString(R.string.pref_sys_lang));
             dialog.setMessage(newContext.getString(R.string.lang_changed));
-            dialog.setPositive(R.drawable.ic_check, newContext.getString(R.string.ok), new View.OnClickListener() {
+            dialog.setPositive(R.drawable.ic_check, newContext.getString(android.R.string.ok), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     BaseActivity.restartApplication(BaseActivity.this);

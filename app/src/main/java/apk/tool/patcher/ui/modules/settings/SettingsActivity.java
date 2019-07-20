@@ -1,8 +1,9 @@
 package apk.tool.patcher.ui.modules.settings;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;

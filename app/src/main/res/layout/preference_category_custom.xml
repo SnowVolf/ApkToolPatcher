@@ -20,7 +20,7 @@
     Там ебаный баг в 28-х, поэтому приходится извращаться
      -->
     <TextView
-        android:id="@+android:id/title"
+        android:id="@android:id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"

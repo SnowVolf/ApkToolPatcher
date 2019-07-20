@@ -1,13 +1,15 @@
 package ru.svolf.melissa.fragment.dialog;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import apk.tool.patcher.R;
 

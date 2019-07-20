@@ -90,7 +90,8 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_viewer) {
+        //menu_viewer
+        if (id == R.id.menu_option) {
             // ビュワー呼び出し
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);

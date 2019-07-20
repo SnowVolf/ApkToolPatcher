@@ -5,7 +5,7 @@
     android:fitsSystemWindows="false"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,9 +15,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="8dp" />
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/tab_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

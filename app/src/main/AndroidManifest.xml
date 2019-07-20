@@ -45,13 +45,9 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.modules.decompiler.ApkToolActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="locked" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="apk.tool.patcher.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -95,7 +91,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="ru.svolf.appmanager.AppManagerFragment"/>
     </application>
 
 </manifest>

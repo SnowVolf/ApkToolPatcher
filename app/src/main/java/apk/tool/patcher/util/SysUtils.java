@@ -7,13 +7,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -23,7 +24,6 @@ import java.util.Comparator;
 
 import apk.tool.patcher.BuildConfig;
 import apk.tool.patcher.R;
-import ru.atomofiron.apknator.Utils.Cmd;
 
 public class SysUtils {
 
@@ -47,7 +47,6 @@ public class SysUtils {
     public static final String PERM = "android.permission.WRITE_EXTERNAL_STORAGE";
     public static final String PREFS_VIBRATE = "vibrate";
     public static final String PREFS_NOTIFY = "notify";
-    public static final String PREFS_KEEP_SCREEN = "keep_screen_on";
     public static final String PREFS_USE_ROOT = "use_root";
     public static final String PREFS_USE_SDCARD_TOOLS = "use_sdcard_tools";
 
@@ -268,18 +267,6 @@ public class SysUtils {
 
     public static int getApiLavel(SharedPreferences sp) {
         return Integer.parseInt(sp.getString(SysUtils.PREFS_API_LEVEL, "25"));
-    }
-
-    public static void killPid(boolean su, int pid) {
-        String ppid = Cmd.Exec(su, "pgrep -P " + pid).getResult();
-        int index = ppid.indexOf("\n");
-        if (index != -1)
-            ppid = ppid.substring(0, index);
-        if (!ppid.isEmpty())
-            killPid(su, Integer.parseInt(ppid));
-
-        SysUtils.Log("kill = " + pid);
-        Cmd.Exec(su, "kill -9 " + pid);
     }
 
     public static void openFile(Context context, String path) {

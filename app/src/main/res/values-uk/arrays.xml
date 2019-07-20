@@ -5,67 +5,6 @@
         <item>BlackOut</item>
         <item>Moonlight</item>
     </string-array>
-    <string-array name="comp_array">
-        <item>Скомпілювати</item>
-        <item>Відкрити</item>
-    </string-array>
-    <string-array name="dec_array">
-        <item>Разібрати все</item>
-        <item>Тільки dex</item>
-        <item>Тільки arsc</item>
-        <item>Підписати apk</item>
-        <item>Створити odex</item>
-        <item>Оптимізувати</item>
-        <item>Встановити</item>
-        <item>Витягти classes.dex</item>
-        <item>Видалити classes.dex из apk</item>
-        <item>Запакувати classes.dex в apk</item>
-        <item>Витягти META-INF</item>
-        <item>Видалити META-INF из apk</item>
-        <item>Запакувати META-INF в apk</item>
-        <item>Імпортувати як фреймворк</item>
-    </string-array>
-
-    <string-array name="decdex_array">
-        <item>Декомпілювати</item>
-        <item>Добавити в apk з таким ім\'ям</item>
-    </string-array>
-    <string-array name="decodex_array">
-        <item>Декомпілювати</item>
-    </string-array>
-
-    <string-array name="config_arr">
-        <item>Підписати</item>
-        <item>Оптимізувати</item>
-        <item>Створити odex</item>
-        <item>Імпортувати як фреймворк</item>
-    </string-array>
-    <string-array name="config_jar_arr">
-        <item>Підписати</item>
-        <item>Оптимізувати</item>
-    </string-array>
-    <string-array name="mode_arr">
-        <item>Все</item>
-        <item>Smali</item>
-        <item>Ресурси</item>
-    </string-array>
-    <string-array name="arch_arr">
-        <item>Витягти classes.dex</item>
-        <item>Видалити classes.dex з apk</item>
-        <item>Добавити classes.dex в apk</item>
-        <item>Витягти META-INF</item>
-        <item>Видалити META-INF з apk</item>
-        <item>Добавити META-INF в apk</item>
-    </string-array>
-
-    <string-array name="keystore_arr">
-        <item>Список записів</item>
-        <item>Експортувати (pk8)</item>
-        <item>Сгенерувати (x509)</item>
-        <item>Імпортувати (pk8)</item>
-        <item>Імпортувати (x509)</item>
-        <item>Видалити запис</item>
-    </string-array>
 
     <string-array name="list_anim_arr">
         <item>Викл</item>
@@ -81,67 +20,10 @@
     </string-array>
 
 
-    <string-array name="alias_actions">
-        <item>Імпорт (x509)</item>
-        <item>Видалити запис</item>
-        <item>Змінити ім\'я</item>
-        <item>Змінити пароль</item>
-        <item>Добавити сертифікат</item>
-    </string-array>
-    <string-array name="cert_actions">
-        <item>Eкспорт (pk8 + x509)</item>
-        <item>Видалити сертифікат</item>
-    </string-array>
-
-    <string-array name="themes_value">
-        <item>Сіра</item>
-        <item>Синя</item>
-        <item>Чорна</item>
-    </string-array>
-
-    <string-array name="themes">
-        <item>gray background</item>
-        <item>blue background</item>
-        <item>black background</item>
-    </string-array>
-
-
-    <string-array name="deodex_array">
-        <item>Декомпілювати</item>
-        <item>Підписати</item>
-        <item>Відміна</item>
-    </string-array>
-
-    <string-array name="longpress_array">
-        <item>Перейминувати</item>
-        <item>Видалити</item>
-        <item>Отримати доступ (потрібен root)</item>
-        <item>Встановити як папку інструментарію</item>
-        <item>Відміна</item>
-    </string-array>
-
-    <string-array name="unpackimg">
-        <item>expack-mt65xx(need root)</item>
-        <item>expack-common(need root)</item>
-        <item>Відміна</item>
-    </string-array>
-
-    <string-array name="repackimg">
-        <item>repack-mt65xx(need root)</item>
-        <item>repack-common(need root)</item>
-        <item>browse</item>
-        <item>cancel</item>
-    </string-array>
-
     <string-array name="interest_items">
         <item>Копіювати шлях до файлу</item>
         <item>Копіювати частину кода</item>
         <item>Відкрити в зовнішньому редакторі</item>
     </string-array>
 
-    <string-array name="apps_options">
-        <item>Запуск</item>
-        <item>Експорт APK</item>
-        <item>Play Маркет</item>
-    </string-array>
 </resources>

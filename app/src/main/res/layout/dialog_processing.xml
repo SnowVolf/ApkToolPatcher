@@ -20,6 +20,6 @@
         android:layout_margin="12dip"
         android:gravity="center"
         android:minWidth="160dip"
-        android:text="@string/in_progress" />
+        android:text="@string/progress" />
 
 </LinearLayout>

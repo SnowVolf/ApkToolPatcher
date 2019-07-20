@@ -34,11 +34,6 @@
 
     <!-- Captions -->
     <string name="caption_search">Search</string>
-    <string name="caption_settings">@string/menu_settings</string>
-    <string name="caption_interest_smali">@string/patch_interest_smali</string>
-    <string name="caption_search_settings">Search settings</string>
-    <string name="caption_search_result">Search results</string>
-    <string name="caption_ext_list">Extensions list</string>
     <string name="caption_paid">Condition of purchase</string>
     <string name="caption_donate">Assistance to the project</string>
     <string name="caption_features">Base features</string>
@@ -59,21 +54,15 @@
 
     <!-- Misc -->
     <string name="specify_toast">Configure Toast</string>
-    <string name="btn_add">Add</string>
     <string name="btn_send_secret">Send secret via E-Mail</string>
     <string name="btn_check_code">Checkout</string>
     <string name="btn_check">Check an activation code</string>
     <string name="btn_toast">Insert Toast</string>
     <string name="btn_patch">Patch</string>
-    <string name="idi_nahui">Fuck you</string>
     <string name="explain_services_jar">By clicking \"Patch\" - you agree that:\n - Decompiled services.jar to smali\n - You made full Nandroid backup\n - Developer of \"ApkToolPatcher\" is not responsible for Your actions.\n\nPatch modifies services.jar library by removing APK signature verification and integrity check. Patch is configured to modify Android 4.4 ➡ 7.0.X and CM 11 ➡ 13</string>
 
     <string name="input_patch">Path to the project directory</string>
     <string name="explain_donate">After clicking the \"Send secret\" button, you will be asked to send an email with billing information. \nIn the message body, indicate:\n* the date and time of payment\n * transaction number\n* in additional, you can attach screenshot. \nCost of the Premium version - $1 (per device) \nIn response, you will receive an activation code. \nThe Premium version contains additional patches and built-in decompiler. \nAccount details can be viewed in the menu item - \"Donate\".</string>
-    <string name="message_specify_dict_dir">Please specify directory with dic.xml file</string>
-    <string name="message_no_accounts">You don\'t have saved accounts yet</string>
-    <string name="account_name">Account:\n</string>
-    <string name="app_provider_name">Owner:\n</string>
     <string name="search_q">Search query</string>
     <string name="caption_search_options">Search options</string>
     <string name="settings_tab_main">General</string>
@@ -83,7 +72,6 @@
     <string name="pref_4pda_disc_sub">Suggest for new features and get feedback</string>
     <string name="pref_contact">Contact</string>
     <string name="pref_contact_mail">Send e-mail</string>
-    <string name="pref_dev_team">Our team</string>
     <string name="pref_app_theme">Color scheme</string>
     <string name="pref_sys_lang">App language</string>
     <string name="lang_changed">App language has been changed. Please restart the application</string>
@@ -99,7 +87,6 @@
     <string name="pref_cat_fm">File manager</string>
     <string name="pref_experimental">Experimental features</string>
     <string name="pref_experimental_sub">This features are experimental. They are unstable or can be broken/removed in the future</string>
-    <string name="show_hidden">Show hidden</string>
     <string name="history">History</string>
     <string name="donate_addr_copied">Account details are copied to the clipboard</string>
 
@@ -119,16 +106,7 @@
     <string name="caption_changelog">Changelog</string>
     <string name="great">Great</string>
     <string name="details">Details</string>
-    <string name="pref_parallel">Parallel execution [ALPHA]</string>
-    <string name="pref_parallel_sub"><![CDATA[Try to execute all worker tasks in parallel mode, instead of series. Much faster, but needs more CPU & free RAM]]></string>
-    <string name="patching">Patching…</string>
     <string name="cancel_all">Cancel all</string>
-    <string name="background">Background</string>
-    <string name="pref_parallel_not_supported">Parallel execution is not supported by your device, because it has only %d-core processor</string>
-    <string name="pref_paranoia">Collect stats and crashes</string>
-    <string name="pref_paranoia_on_sub">Allow to collect and send anonymous usage statistics and crash reports</string>
-    <string name="pref_paranoia_off_sub">App statistics service has been disabled. The only way to report crashes are using ACRA</string>
-    <string name="elapsed_time">Time spent:</string>
     <string name="pref_custom_apktool">Custom ApkTool package</string>
     <string name="pref_custom_apktool_sub">If you are using a modified version of ApkTool GUI with different package name</string>
     <string name="pref_low_mem_sub">Runs GC before each operation has been executed. May cause freezes, but can help on low-RAM devices</string>

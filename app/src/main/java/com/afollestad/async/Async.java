@@ -1,7 +1,7 @@
 package com.afollestad.async;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.UiThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 
 import java.util.ArrayList;
 

@@ -5,7 +5,6 @@
     <string name="menu_donate">Пожертвувати</string>
     <string name="menu_buy_premium">Купити Premium</string>
     <string name="menu_about">Про програму</string>
-    <string name="menu_patch_plugin">Плагін Patch Lib</string>
     <string name="patch_del_ads">Видалити рекламу</string>
     <string name="patch_del_ads_activities">Видалити рекламні Activity</string>
     <string name="patch_signature">Видалити перевірку підпису</string>
@@ -28,11 +27,6 @@
     <string name="patch_odex">Патч ODEX</string>
     <string name="patch_decompiler">Декомпілятор</string>
     <string name="caption_search">Пошук</string>
-    <string name="caption_settings">Налаштування</string>
-    <string name="caption_interest_smali">@string/patch_interest_smali</string>
-    <string name="caption_search_settings">Параметри пошуку</string>
-    <string name="caption_search_result">Результати пошуку</string>
-    <string name="caption_ext_list">Список розширень</string>
     <string name="caption_paid">Умови покупки</string>
     <string name="caption_donate">Допомога проекту</string>
     <string name="caption_features">Базові функції</string>
@@ -43,21 +37,15 @@
     <string name="message_done">Готово!</string>
     <string name="message_incorrect_dir">Шлях до папки вказано некоректно!</string>
     <string name="message_specify_project_dir">Вкажіть шлях до папки з проектом</string>
-    <string name="message_processing_next">Перевірка наступного тома…</string>
     <string name="message_incorrect_code">Неправильний формат коду!</string>
     <string name="message_processing">Видаляю, жди…</string>
     <string name="crash_toast_text">Виникла помилка. Відправка звіту</string>
     <string name="specify_toast">Налаштувати Toast</string>
-    <string name="btn_add">Добавити</string>
     <string name="btn_send_secret">Відправити дані (E-Mail)</string>
     <string name="btn_check_code">Перевірити код</string>
     <string name="btn_check">Перевірити</string>
     <string name="btn_toast">Вставити Toast</string>
     <string name="btn_patch">Пропатчити</string>
-    <string name="idi_nahui">Да пішов ти…</string>
-    <string name="donate_trust">"QIWI +79042585040
-Yandex Гроші 410013858440166 
-PayPal buntar888@mail.ru"</string>
     <string name="explain_services_jar">"Натискаючи кнопку \"Пропатчити\" - Ви погоджуєтеся, з тим що:
 
   - Декомпілювали services.jar до smali
@@ -76,12 +64,6 @@ PayPal buntar888@mail.ru"</string>
 У відповідь, Вам буде висланий код активації.
 В Premium версії будуть доступні додаткові патчі.
 Реквізити для оплати можна подивитися в пункті меню - \"Пожертвувати\"."</string>
-    <string name="message_specify_dict_dir">Вкажи шлях до папки з файлом dic.xml</string>
-    <string name="message_no_accounts">У Вас немає збережених аккаунтів!</string>
-    <string name="account_name">"Аккаунт:
-"</string>
-    <string name="app_provider_name">"Додаток:
-"</string>
     <string name="input_patch">Шлях до папки з проектом</string>
     <string name="search_q">Пошуковий запит</string>
     <string name="caption_search_options">Опції пошуку</string>
@@ -92,7 +74,6 @@ PayPal buntar888@mail.ru"</string>
     <string name="pref_4pda_disc_sub">"Запропонуйте нову опцію через зворотний зв'язок"</string>
     <string name="pref_contact">Контакти</string>
     <string name="pref_contact_mail">Відправити лист на E-Mail</string>
-    <string name="pref_dev_team">Наша команда</string>
     <string name="pref_app_theme">Кольорова схема</string>
     <string name="pref_sys_lang">Мова додатку</string>
     <string name="lang_changed">Мова додатка була змінена. Потрібен перезапуск</string>
@@ -108,7 +89,6 @@ PayPal buntar888@mail.ru"</string>
     <string name="pref_cat_fm">Файловий менеджер</string>
     <string name="pref_experimental">Експерементальні функції</string>
     <string name="pref_experimental_sub">Ці функції є експериментальними. Вони можуть бути нестабільними чи зникнуть з часом</string>
-    <string name="show_hidden">Показати приховані</string>
     <string name="history">Історія</string>
     <string name="donate_addr_copied">Реквізити рахунку скопійовані в буфер обміну</string>
     <string name="patcher_help_1">&lt;b>ApkToolPatcher&lt;/b> є другорядним інструментом для редагування додатків під Android OS.</string>
@@ -126,16 +106,7 @@ PayPal buntar888@mail.ru"</string>
     <string name="caption_changelog">Історія змін</string>
     <string name="great">Круто!</string>
     <string name="details">Деталі</string>
-    <string name="pref_parallel">Паралельне виконання</string>
-    <string name="pref_parallel_sub">Примусово виконувати патчі в паралельному режимі, замість послідовного. Це набагато швидше, але вимагає більше потужності ЦП &amp; вільної ОЗУ</string>
-    <string name="patching">Патчинг…</string>
     <string name="cancel_all">Відмінити все</string>
-    <string name="background">Фоновый режим</string>
-    <string name="pref_parallel_not_supported">Паралельне виконання не підтримується на %d-х ядерних пристроях</string>
-    <string name="pref_paranoia">Відсилати помилки розробнику</string>
-    <string name="pref_paranoia_on_sub">Дозволити відправляти анонімну статистику використання та звіти про збої</string>
-    <string name="pref_paranoia_off_sub">Ну ты и пидор… ну пидор же, ПИДОР!</string>
-    <string name="elapsed_time">Пройшло часу:</string>
     <string name="pref_custom_apktool">Кастомний ApkTool</string>
     <string name="pref_custom_apktool_sub">"Якщо ви використовуєте кастомну збірку ApkTool GUI з іншим ім'ям пакета"</string>
     <string name="pref_low_mem">"Режим нестачі пам'яті"</string>

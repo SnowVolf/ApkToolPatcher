@@ -10,15 +10,16 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.StrictMode;
-import android.support.annotation.AttrRes;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
-import android.support.v7.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
@@ -27,12 +28,8 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
-import java.util.Observer;
-
 import apk.tool.patcher.api.Project;
-import apk.tool.patcher.entity.SimpleObservable;
 import apk.tool.patcher.util.LocaleHelper;
-import apk.tool.patcher.util.Preferences;
 
 
 @ReportsCrashes

@@ -5,11 +5,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.Arrays;
@@ -164,7 +165,7 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
             adapter = new SelectAdapter(files, this);
             recyclerView.setAdapter(adapter);
         } else {
-            SysUtils.Toast(this, getString(R.string.no_perm));
+            SysUtils.Toast(this, "no permission");
             finish();
         }
     }
@@ -178,8 +179,7 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
             SysUtils.Log("requestPermissions...");
             requestPermissions(new String[]{SysUtils.PERM}, 1);
         } else {
-            SysUtils.Log(getString(R.string.storage_err));
-            SysUtils.Toast(this, getString(R.string.storage_err));
+            SysUtils.Toast(this, "Storage error");
             SysUtils.Log("checkPerm false");
             finish();
         }

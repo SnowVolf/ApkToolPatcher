@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="apk.tool.patcher.ui.modules.inspector.VisibleFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_places"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

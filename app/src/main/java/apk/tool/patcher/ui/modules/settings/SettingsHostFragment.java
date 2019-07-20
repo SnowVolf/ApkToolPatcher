@@ -5,13 +5,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.about.AboutFragment;
@@ -90,7 +91,7 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
     private void setViewPager(ViewPager pager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new SettingsFragment(), getString(R.string.settings_tab_main));
-        adapter.addFragment(new DecompilerSettingsFragment(), getString(R.string.settings_tab_decompiler));
+        //adapter.addFragment(new DecompilerSettingsFragment(), getString(R.string.settings_tab_decompiler));
         adapter.addFragment(new AboutFragment(), getString(R.string.settings_tab_other));
 
         pager.setAdapter(adapter);

@@ -34,11 +34,6 @@
 
     <!-- Captions -->
     <string name="caption_search">Поиск</string>
-    <string name="caption_settings">@string/menu_settings</string>
-    <string name="caption_interest_smali">@string/patch_interest_smali</string>
-    <string name="caption_search_settings">Параметры поиска</string>
-    <string name="caption_search_result">Результаты поиска</string>
-    <string name="caption_ext_list">Список расширений</string>
     <string name="caption_paid">Условия покупки</string>
     <string name="caption_donate">Помощь проекту</string>
     <string name="caption_features">Базовые функции</string>
@@ -52,22 +47,18 @@
     <string name="message_done">Готово!</string>
     <string name="message_incorrect_dir">Путь к папке указан неверно!</string>
     <string name="message_specify_project_dir">Укажите путь к папке проекта</string>
-    <string name="message_processing_next">Проверка следующего тома&#8230;</string>
     <string name="message_incorrect_code">Неправильный формат кода!</string>
     <string name="message_processing">Удаляю, жди&#8230;</string>
     <string name="crash_toast_text">Произошла ошибка. Отправка отчёта</string>
 
     <!-- Misc -->
     <string name="specify_toast">Настроить Toast</string>
-    <string name="btn_add">Добавить</string>
     <string name="btn_send_secret">Отправить данные по E-Mail</string>
     <string name="btn_check_code">Проверить код</string>
     <string name="btn_check">Проверить</string>
     <string name="btn_toast">Вставить Toast</string>
     <string name="btn_patch">Пропатчить</string>
-    <string name="idi_nahui">Да пошел ты&#8230;</string>
 
-    <string name="donate_trust">QIWI +79042585040 \nYandex Деньги 410013858440166 \nPayPal buntar888@mail.ru</string>
     <string name="explain_services_jar">
 		"Нажимая кнопку \"Пропатчить\" - Вы соглашаетесь, с тем что:\n\n"
 		"- Декомпилировали services.jar до smali\n"
@@ -86,10 +77,6 @@
 		"В ответ, Вам будет выслан код активации.\n"
 		"В Premium версии будут доступны дополнительные патчи.\n"
 		"Реквизиты для оплаты можно посмотреть в пункте меню - \"Пожертвовать\"."</string>
-    <string name="message_specify_dict_dir">Укажи путь к папке с файлом dic.xml</string>
-    <string name="message_no_accounts">У Вас нет сохраненных аккаунтов!</string>
-    <string name="account_name">Аккаунт:\n</string>
-    <string name="app_provider_name">Приложение:\n</string>
     <string name="input_patch">Путь к папке проекта</string>
     <string name="search_q">Поисковый запрос</string>
     <string name="caption_search_options">Опции поиска</string>
@@ -100,7 +87,6 @@
     <string name="pref_4pda_disc_sub">Предложите новую возможность и получите обратную связь</string>
     <string name="pref_contact">Контакты</string>
     <string name="pref_contact_mail">Отправить письмо на E-Mail</string>
-    <string name="pref_dev_team">Наша команда</string>
     <string name="pref_app_theme">Цветовая схема</string>
     <string name="pref_sys_lang">Язык приложения</string>
     <string name="lang_changed">Язык приложения был изменён. Требуется перезапуск</string>
@@ -116,7 +102,6 @@
     <string name="pref_cat_fm">Файловый менеджер</string>
     <string name="pref_experimental">Экспериментальные функции</string>
     <string name="pref_experimental_sub">Эти функции являются экспериментальными. Они могут перестать работать или исчезнут со временем</string>
-    <string name="show_hidden">Показать скрытые</string>
     <string name="history">История</string>
     <string name="donate_addr_copied">Реквизиты счёта скопированы в буфер обмена</string>
     <string name="patcher_help_1"><![CDATA[<b>ApkToolPatcher</b> является второстепенным инструментом для редактирования приложений под Android OS.]]></string>
@@ -134,16 +119,7 @@
     <string name="caption_changelog">История изменений</string>
     <string name="great">Круто!</string>
     <string name="details">Детали</string>
-    <string name="pref_parallel">Параллельное выполнение [ALPHA]</string>
-    <string name="pref_parallel_sub"><![CDATA[Принудительно выполнять патчи в параллельном режиме, вместо последовательного. Намного быстрее, но требует больше мощности ЦП & свободной ОЗУ]]></string>
-    <string name="patching">Патчинг…</string>
     <string name="cancel_all">Отменить всё</string>
-    <string name="background">Фоновый режим</string>
-    <string name="pref_parallel_not_supported">Параллельное выполнение не поддерживается на %d-ядерных устройствах</string>
-    <string name="pref_paranoia">Посылать ошибки разработчику</string>
-    <string name="pref_paranoia_on_sub">Разрешить отправлять анонимную статистику использования и отчёты о сбоях</string>
-    <string name="pref_paranoia_off_sub">Ну ты и пидор… ну пидор же, ПИДОР!</string>
-    <string name="elapsed_time">Прошло времени:</string>
     <string name="pref_custom_apktool">Кастомный ApkTool</string>
     <string name="pref_custom_apktool_sub">Если вы используете кастомную сборку ApkTool GUI с другим именем пакета</string>
     <string name="pref_low_mem">Режим нехватки памяти</string>

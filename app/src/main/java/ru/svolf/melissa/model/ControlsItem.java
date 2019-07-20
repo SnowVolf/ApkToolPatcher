@@ -1,7 +1,8 @@
 package ru.svolf.melissa.model;
 
-import android.support.annotation.DrawableRes;
 import android.view.View;
+
+import androidx.annotation.DrawableRes;
 
 public class ControlsItem {
     private @DrawableRes int icon;

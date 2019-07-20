@@ -9,16 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.util.ArrayMap;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +19,17 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.collection.ArrayMap;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.yandex.metrica.YandexMetrica;
 
 import java.io.BufferedInputStream;
@@ -63,7 +64,6 @@ import apk.tool.patcher.entity.LogicalCore;
 import apk.tool.patcher.ui.modules.base.adapters.AdvancedAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.ExtendedMenuAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.MenuAdapter;
-import apk.tool.patcher.ui.modules.decompiler.ApkToolActivity;
 import apk.tool.patcher.ui.modules.inspector.InspectorFragment;
 import apk.tool.patcher.ui.modules.misc.SelectActivity;
 import apk.tool.patcher.ui.modules.odex.OdexPatchFragment;
@@ -312,7 +312,18 @@ public class MainFragment extends Fragment {
                             }
                             case ExtendedItems.APPS_LIST: {
                                 YandexMetrica.reportEvent("Apps List screen clicked");
-                                startActivity(new Intent(getActivity(), AppManagerFragment.class));
+                                // Create the fragment only when the activity is created for the first time.
+                                // ie. not after orientation changes
+                                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(AppManagerFragment.FRAGMENT_TAG);
+                                if (fragment == null) {
+                                    fragment = new AppManagerFragment();
+                                }
+                                // Запускаем транзакцию
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.content_frame, fragment, AppManagerFragment.FRAGMENT_TAG)
+                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                        .addToBackStack(null)
+                                        .commit();
                                 break;
                             }
                             case ExtendedItems.PREMIUM:
@@ -647,7 +658,7 @@ public class MainFragment extends Fragment {
                     switch (menuItem.getAction()) {
                         case AdvancedItems.INBUILT_DECOMPILER: {
                             Intent intent = new Intent(getActivity(),
-                                    ApkToolActivity.class);
+                                    SettingsActivity.class);
                             startActivity(intent);
                             break;
                         }

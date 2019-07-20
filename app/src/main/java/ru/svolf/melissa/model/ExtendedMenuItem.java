@@ -1,7 +1,8 @@
 package ru.svolf.melissa.model;
 
 import android.graphics.Color;
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 public class ExtendedMenuItem {
     private @DrawableRes int icon;

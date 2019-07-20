@@ -1,8 +1,9 @@
 package apk.tool.patcher.entity;
 
 import android.os.Handler;
-import android.support.v4.util.ArrayMap;
 import android.util.Log;
+
+import androidx.collection.ArrayMap;
 
 import java.io.BufferedInputStream;
 import java.io.File;

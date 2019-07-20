@@ -10,126 +10,7 @@
         <item>BlackOut</item>
         <item>Moonlight</item>
     </string-array>
-    <string-array name="apktool_versions" translatable="false">
-        <item>2.0</item>
-        <item>1.5.2</item>
-    </string-array>
 
-    <string-array name="aapt_versions" translatable="false">
-        <item>7.1</item>
-        <item>6.0</item>
-        <item>5.1</item>
-        <item>5.0</item>
-        <item>4.4</item>
-        <item>4.3</item>
-        <item>4.2</item>
-        <item>4.1</item>
-        <item>4.0</item>
-        <item>2.3</item>
-        <item>cm10.2</item>
-        <item>cm11.0</item>
-    </string-array>
-    <string-array name="themes_value">
-        <item>gray</item>
-        <item>blue</item>
-        <item>black</item>
-    </string-array>
-
-    <string-array name="themes">
-        <item>gray background</item>
-        <item>blue background</item>
-        <item>black background</item>
-    </string-array>
-
-
-    <string-array name="deodex_array">
-        <item>decompile</item>
-        <item>sign</item>
-        <item>cancel</item>
-    </string-array>
-
-    <string-array name="longpress_array">
-        <item>rename</item>
-        <item>delete</item>
-        <item>get access permission (need root)</item>
-        <item>set as apktool data folder</item>
-        <item>cancel</item>
-    </string-array>
-
-    <string-array name="unpackimg">
-        <item>expack-mt65xx(need root)</item>
-        <item>expack-common(need root)</item>
-        <item>cancel</item>
-    </string-array>
-
-    <string-array name="repackimg">
-        <item>repack-mt65xx(need root)</item>
-        <item>repack-common(need root)</item>
-        <item>browse</item>
-        <item>cancel</item>
-    </string-array>
-
-    <string-array name="comp_array">
-        <item>Recompile</item>
-        <item>Open</item>
-    </string-array>
-    <string-array name="dec_array">
-        <item>Decompile all</item>
-        <item>Decompile dex</item>
-        <item>Decompile resources</item>
-        <item>Sign apk</item>
-        <item>Create odex</item>
-        <item>ZipAlign</item>
-        <item>Install</item>
-        <item>Extract classes.dex</item>
-        <item>Delete classes.dex from apk</item>
-        <item>Inject classes.dex to apk</item>
-        <item>Extract META-INF</item>
-        <item>Delete META-INF from apk</item>
-        <item>Inject META-INF to apk</item>
-        <item>Import as framework</item>
-    </string-array>
-
-    <string-array name="decdex_array">
-        <item>Decompile</item>
-        <item>Inject to apk with the same name</item>
-    </string-array>
-    <string-array name="decodex_array">
-        <item>Decompile</item>
-    </string-array>
-
-    <string-array name="config_arr">
-        <item>Sign</item>
-        <item>Optimize</item>
-        <item>Create odex</item>
-        <item>Import as framework</item>
-    </string-array>
-    <string-array name="config_jar_arr">
-        <item>Sign</item>
-        <item>Optimize</item>
-    </string-array>
-    <string-array name="mode_arr">
-        <item>All</item>
-        <item>Smali</item>
-        <item>Resources</item>
-    </string-array>
-    <string-array name="arch_arr">
-        <item>Extract classes.dex</item>
-        <item>Delete classes.dex from apk</item>
-        <item>Inject classes.dex to apk</item>
-        <item>Extract META-INF</item>
-        <item>Delete META-INF from apk</item>
-        <item>Inject META-INF to apk</item>
-    </string-array>
-
-    <string-array name="keystore_arr">
-        <item>Records list</item>
-        <item>Export (pk8)</item>
-        <item>Generate (x509)</item>
-        <item>Import (pk8)</item>
-        <item>Import (x509)</item>
-        <item>Delete record</item>
-    </string-array>
 
     <string-array name="list_anim_arr">
         <item>Disabled</item>
@@ -144,18 +25,6 @@
         <item>3</item>
     </string-array>
 
-
-    <string-array name="alias_actions">
-        <item>Import (x509)</item>
-        <item>Remove record</item>
-        <item>Change name</item>
-        <item>Change password</item>
-        <item>Add certificate</item>
-    </string-array>
-    <string-array name="cert_actions">
-        <item>Export (pk8 + x509)</item>
-        <item>Delete certificate</item>
-    </string-array>
 
     <string-array name="api_level_arr">
         <item>14</item>
@@ -239,10 +108,5 @@
         <item>Yandex Money</item>
         <item>PayPal</item>
         <item>Subscribe to Telegram channel</item>
-    </string-array>
-    <string-array name="apps_options">
-        <item>Launch</item>
-        <item>Extract to SD-Card</item>
-        <item>View on Play Store</item>
     </string-array>
 </resources>

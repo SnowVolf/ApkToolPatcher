@@ -28,26 +28,12 @@
             android:entryValues="@array/list_grid"
             android:key="list_grid_size"
             android:title="@string/pref_grid_size" />
-        <SwitchPreference
-
-            android:defaultValue="true"
-            android:key="list_item_effect"
-            android:title="@string/list_item_effect" />
-        <ListPreference
-
-            android:defaultValue="1"
-            android:dependency="list_item_effect"
-            android:entries="@array/list_anim_arr"
-            android:entryValues="@array/list_anim_val_arr"
-            android:key="list_anim"
-            android:title="@string/list_anim" />
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout="@layout/preference_category_custom"
         android:title="@string/pref_cat_patches_setting">
         <SwitchPreference
-
             android:defaultValue="false"
             android:key="exec.low_mem"
             android:summary="@string/pref_low_mem_sub"

@@ -1,10 +1,11 @@
 package apk.tool.patcher.ui.widget;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.LayoutRes;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.HashMap;
 

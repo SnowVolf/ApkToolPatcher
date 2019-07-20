@@ -4,9 +4,11 @@ package ru.svolf.melissa.swipeback;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
 
 import apk.tool.patcher.ui.modules.base.BaseActivity;
 
@@ -33,12 +35,12 @@ public class SwipeBackActivity extends BaseActivity {
     }
 
     @Override
-    public View findViewById(int id) {
+    public <T extends View> T findViewById(@IdRes int id) {
         View view = super.findViewById(id);
         if (view == null && mSwipeBackLayout != null) {
             return mSwipeBackLayout.findViewById(id);
         }
-        return view;
+        return super.findViewById(id);
     }
 
     void onActivityCreate() {

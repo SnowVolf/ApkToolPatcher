@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
@@ -21,7 +21,7 @@
             android:text="@string/caption_search_results"
             android:textColor="?icon_color"
             android:textSize="20sp" />
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <jp.sblo.pandora.aGrep.GrepView

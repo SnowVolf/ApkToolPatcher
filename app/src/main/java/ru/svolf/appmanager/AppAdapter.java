@@ -7,15 +7,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
 
     private void setButtonEvents(AppViewHolder appViewHolder, final AppInfo appInfo) {
         final ImageView appIcon = appViewHolder.vIcon;
-        final RelativeLayout card = appViewHolder.vCard;
+        final ConstraintLayout card = appViewHolder.vCard;
 
         card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +134,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
         protected TextView vName;
         protected TextView vApk;
         protected ImageView vIcon;
-        protected RelativeLayout vCard;
+        protected ConstraintLayout vCard;
 
         public AppViewHolder(View v) {
             super(v);

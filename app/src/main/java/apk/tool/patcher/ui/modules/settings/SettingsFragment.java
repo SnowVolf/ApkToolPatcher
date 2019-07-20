@@ -4,8 +4,9 @@ package apk.tool.patcher.ui.modules.settings;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.preference.ListPreference;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.ListPreference;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.base.BaseSettingsFragment;

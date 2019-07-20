@@ -9,15 +9,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.afinal.simplecache.ACache;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,13 +40,11 @@ public class AppsFragment extends DataFragment {
 
     private Context mContext;
     private ViewPager mPager;
-    private ACache mCache;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        mCache = ACache.get(mContext);
         setRetainInstance(true);
     }
 
@@ -197,8 +194,6 @@ public class AppsFragment extends DataFragment {
                     sys.add(item);
                 }
             }
-
-            mCache.put("apps", AllPackages);
 
             AllPackages.clear();
 

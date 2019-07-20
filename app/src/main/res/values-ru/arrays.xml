@@ -5,67 +5,6 @@
         <item>Игра теней</item>
         <item>Лунный свет</item>
     </string-array>
-    <string-array name="comp_array">
-        <item>Скомпилировать</item>
-        <item>Открыть</item>
-    </string-array>
-    <string-array name="dec_array">
-        <item>Разобрать всё</item>
-        <item>Только dex</item>
-        <item>Только arsc</item>
-        <item>Подписать apk</item>
-        <item>Создать odex</item>
-        <item>Оптимизировать</item>
-        <item>Установить</item>
-        <item>Извлечь classes.dex</item>
-        <item>Удалить classes.dex из apk</item>
-        <item>Упаковать classes.dex в apk</item>
-        <item>Извлечь META-INF</item>
-        <item>Удалить META-INF из apk</item>
-        <item>Упаковать META-INF в apk</item>
-        <item>Импортировать как фреймворк</item>
-    </string-array>
-
-    <string-array name="decdex_array">
-        <item>Декомпилировать</item>
-        <item>Добавить в apk c таким именем</item>
-    </string-array>
-    <string-array name="decodex_array">
-        <item>Декомпилировать</item>
-    </string-array>
-
-    <string-array name="config_arr">
-        <item>Подписать</item>
-        <item>Оптимизировать</item>
-        <item>Создать odex</item>
-        <item>Импортировать как фреймворк</item>
-    </string-array>
-    <string-array name="config_jar_arr">
-        <item>Подписать</item>
-        <item>Оптимизировать</item>
-    </string-array>
-    <string-array name="mode_arr">
-        <item>Всё</item>
-        <item>Smali</item>
-        <item>Ресурсы</item>
-    </string-array>
-    <string-array name="arch_arr">
-        <item>Извлечь classes.dex</item>
-        <item>Удалить classes.dex из apk</item>
-        <item>Добавить classes.dex в apk</item>
-        <item>Извлечь META-INF</item>
-        <item>Удалить META-INF из apk</item>
-        <item>Добавить META-INF в apk</item>
-    </string-array>
-
-    <string-array name="keystore_arr">
-        <item>Список записей</item>
-        <item>Экспортировать (pk8)</item>
-        <item>Сгенерировать (x509)</item>
-        <item>Импортировать (pk8)</item>
-        <item>Импортировать (x509)</item>
-        <item>Удалить запись</item>
-    </string-array>
 
     <string-array name="list_anim_arr">
         <item>Выкл</item>
@@ -80,18 +19,6 @@
         <item>3</item>
     </string-array>
 
-
-    <string-array name="alias_actions">
-        <item>Импорт (x509)</item>
-        <item>Удалить запись</item>
-        <item>Сменить имя</item>
-        <item>Сменить пароль</item>
-        <item>Добавить сертификат</item>
-    </string-array>
-    <string-array name="cert_actions">
-        <item>Export (pk8 + x509)</item>
-        <item>Удалить сертификат</item>
-    </string-array>
 
     <string-array name="api_level_arr">
         <item>14</item>
@@ -143,45 +70,7 @@
         <item>libld64.so</item>
         <item>libld86.so</item>
     </string-array>
-    <string-array name="themes_value">
-        <item>Серая</item>
-        <item>Синяя</item>
-        <item>black</item>
-    </string-array>
 
-    <string-array name="themes">
-        <item>gray background</item>
-        <item>blue background</item>
-        <item>black background</item>
-    </string-array>
-
-
-    <string-array name="deodex_array">
-        <item>Декомпилировать</item>
-        <item>Подписать</item>
-        <item>Отмена</item>
-    </string-array>
-
-    <string-array name="longpress_array">
-        <item>Переименовать</item>
-        <item>Удалить</item>
-        <item>Получить доступ(нужен root)</item>
-        <item>Установить как папку инструментария</item>
-        <item>Отмена</item>
-    </string-array>
-
-    <string-array name="unpackimg">
-        <item>expack-mt65xx(need root)</item>
-        <item>expack-common(need root)</item>
-        <item>cancel</item>
-    </string-array>
-
-    <string-array name="repackimg">
-        <item>repack-mt65xx(need root)</item>
-        <item>repack-common(need root)</item>
-        <item>browse</item>
-        <item>cancel</item>
-    </string-array>
 
     <string-array name="interest_items">
         <item>Копировать путь до файла</item>
@@ -189,9 +78,4 @@
         <item>Открыть во внешнем редакторе</item>
     </string-array>
 
-    <string-array name="apps_options">
-        <item>Запуск</item>
-        <item>Экспорт APK</item>
-        <item>Play Маркет</item>
-    </string-array>
 </resources>

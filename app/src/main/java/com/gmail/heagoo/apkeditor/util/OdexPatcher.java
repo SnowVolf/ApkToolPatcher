@@ -43,7 +43,7 @@ public class OdexPatcher {
     public void applyPatch(Activity ctx, String apkPath) {
         targetOdex = getTargetOdex(ctx);
         if (targetOdex == null) {
-            errMessage = ctx.getString(R.string.patch_err_odex_not_found1);
+            errMessage = "Dex not found";
             return;
         }
 
@@ -62,7 +62,7 @@ public class OdexPatcher {
             strError = rc.getStdError();
             if (strError != null && !strError.equals("")) {
                 errMessage = String.format(
-                        ctx.getString(R.string.patch_err_odex_not_found2),
+                        "dex not found %s %s",
                         targetOdex, newTryPath);
                 return;
             }

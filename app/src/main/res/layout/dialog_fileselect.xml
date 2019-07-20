@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:padding="8dip"
-        android:text="@string/select_file_replace"
+        android:text="Select file to replace"
         android:textSize="16sp" />
 
     <apk.tool.patcher.ui.widget.FontTextView
