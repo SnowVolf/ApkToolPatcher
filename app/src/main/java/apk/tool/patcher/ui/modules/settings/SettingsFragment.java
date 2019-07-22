@@ -25,8 +25,6 @@ public class SettingsFragment extends BaseSettingsFragment implements SharedPref
 
         setCurrentValue((ListPreference) findPreference("sys.language"));
         setCurrentValue((ListPreference) findPreference("ui.theme"));
-        setCurrentValue((ListPreference) findPreference("list_grid_size"));
-        setCurrentValue((ListPreference) findPreference("list_anim"));
     }
 
     @Override
@@ -43,14 +41,6 @@ public class SettingsFragment extends BaseSettingsFragment implements SharedPref
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
             case "sys.language": {
-                setCurrentValue((ListPreference) findPreference(key));
-                break;
-            }
-            case "list_grid_size": {
-                setCurrentValue((ListPreference) findPreference(key));
-                break;
-            }
-            case "list_anim": {
                 setCurrentValue((ListPreference) findPreference(key));
                 break;
             }

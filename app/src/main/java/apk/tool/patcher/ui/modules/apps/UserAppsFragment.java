@@ -24,7 +24,7 @@ import apk.tool.patcher.R;
 import ru.svolf.melissa.model.AppItem;
 
 public class UserAppsFragment extends Fragment {
-    public static final String FRAGMENT_TAG = "usr_pps_fragment";
+    public static final String FRAGMENT_TAG = "user_apps_fragment";
     private View rootView;
     private Context mContext;
     private ListView listView = null;

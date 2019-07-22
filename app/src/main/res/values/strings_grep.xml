@@ -27,8 +27,6 @@
     <string name="summary_add_linenumber">If you open file in Jota/Jota+, you can be redirected directly to the line number</string>
     <string name="label_copied">Copied to clipboard</string>
     <string name="color_picker_input">Insert color code</string>
-    <string name="autominimize">Automatically minimize worker tasks</string>
-    <string name="fr_cleared">Frameworks cleared</string>
     <string name="grep_spinner">Ищу, ждите…</string>
     <string name="label_option">Settings</string>
     <string name="color_picker_hint">Input 6-digit HEX code</string>

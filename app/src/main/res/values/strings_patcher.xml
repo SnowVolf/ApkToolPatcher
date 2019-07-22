@@ -66,7 +66,6 @@
     <string name="search_q">Search query</string>
     <string name="caption_search_options">Search options</string>
     <string name="settings_tab_main">General</string>
-    <string name="settings_tab_decompiler">Decompiler</string>
     <string name="settings_tab_other">Support</string>
     <string name="pref_4pda_disc">4PDA discussion</string>
     <string name="pref_4pda_disc_sub">Suggest for new features and get feedback</string>
@@ -107,8 +106,6 @@
     <string name="great">Great</string>
     <string name="details">Details</string>
     <string name="cancel_all">Cancel all</string>
-    <string name="pref_custom_apktool">Custom ApkTool package</string>
-    <string name="pref_custom_apktool_sub">If you are using a modified version of ApkTool GUI with different package name</string>
     <string name="pref_low_mem_sub">Runs GC before each operation has been executed. May cause freezes, but can help on low-RAM devices</string>
     <string name="pref_low_mem">Low Memory Mode</string>
     <string name="tab_visible">Visible (%d)</string>

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ApkToolPatcher.iml" filepath="$PROJECT_DIR$/ApkToolPatcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apktool/apktool.iml" filepath="$PROJECT_DIR$/apktool/apktool.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

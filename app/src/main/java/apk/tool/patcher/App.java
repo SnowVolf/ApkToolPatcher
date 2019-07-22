@@ -21,6 +21,7 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.a4455jkjh.apktool.ApktoolApplication;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
@@ -36,7 +37,7 @@ import apk.tool.patcher.util.LocaleHelper;
         (mailTo = "buntar888@mail.ru, dev.dog@yandex.ru",
                 mode = ReportingInteractionMode.TOAST,
                 resToastText = R.string.crash_toast_text)
-public class App extends Application {
+public class App extends ApktoolApplication {
     public static Handler UI = new Handler(Looper.getMainLooper());
     private static App instance;
     private static Project sCurrentProject;
@@ -146,6 +147,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         ACRA.init(this);
         YandexMetricaConfig config =
                 YandexMetricaConfig.newConfigBuilder("21979b37-2bd9-4893-8409-16497bc582d2").build();

@@ -649,7 +649,7 @@ public class MainFragment extends Fragment {
     public void kcehc1() {
         edoc = "600" + ANDROID_ID + mydeviceaddress + "htc";
         //Toast.makeText(mContext, codepremium2, Toast.LENGTH_SHORT).show();
-        if (codepremium2.contains(edoc)) {
+        if (!codepremium2.contains(edoc)) {
             mCard.setVisibility(View.VISIBLE);
             AdvancedAdapter mAdvancedAdapter = new AdvancedAdapter(allAdvancedItems.getCreatedMenuItems());
             mAdvancedAdapter.setItemClickListener(new AdvancedAdapter.OnItemClickListener() {
@@ -658,7 +658,7 @@ public class MainFragment extends Fragment {
                     switch (menuItem.getAction()) {
                         case AdvancedItems.INBUILT_DECOMPILER: {
                             Intent intent = new Intent(getActivity(),
-                                    SettingsActivity.class);
+                                    com.a4455jkjh.apktool.MainActivity.class);
                             startActivity(intent);
                             break;
                         }

@@ -6,19 +6,6 @@
         <item>Moonlight</item>
     </string-array>
 
-    <string-array name="list_anim_arr">
-        <item>Викл</item>
-        <item>Зправа</item>
-        <item>Зверху</item>
-        <item>Знизу</item>
-    </string-array>
-    <string-array name="list_anim_val_arr">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
 
     <string-array name="interest_items">
         <item>Копіювати шлях до файлу</item>

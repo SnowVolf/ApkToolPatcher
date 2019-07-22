@@ -68,7 +68,6 @@
     <string name="search_q">Пошуковий запит</string>
     <string name="caption_search_options">Опції пошуку</string>
     <string name="settings_tab_main">Загальні</string>
-    <string name="settings_tab_decompiler">Декомпілятор</string>
     <string name="settings_tab_other">Підтримка</string>
     <string name="pref_4pda_disc">Обговорення на 4PDA</string>
     <string name="pref_4pda_disc_sub">"Запропонуйте нову опцію через зворотний зв'язок"</string>
@@ -107,8 +106,6 @@
     <string name="great">Круто!</string>
     <string name="details">Деталі</string>
     <string name="cancel_all">Відмінити все</string>
-    <string name="pref_custom_apktool">Кастомний ApkTool</string>
-    <string name="pref_custom_apktool_sub">"Якщо ви використовуєте кастомну збірку ApkTool GUI з іншим ім'ям пакета"</string>
     <string name="pref_low_mem">"Режим нестачі пам'яті"</string>
     <string name="pref_low_mem_sub">Може викликати фрізи при перемиканні між операціями, але допомагає на пристроях з малою кількістю ОЗУ</string>
     <string name="no_data">Нет данных</string>
