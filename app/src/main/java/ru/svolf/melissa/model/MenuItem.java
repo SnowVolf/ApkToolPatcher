@@ -1,12 +1,10 @@
 package ru.svolf.melissa.model;
 
-import com.afollestad.async.Action;
-
 public class MenuItem {
     private String title;
     private boolean forApkeditor;
     private int action;
-    private Action executableAction;
+    private String executableAction;
 
     public MenuItem(String title, boolean forApkeditor, int action) {
         this.title = title;
@@ -14,7 +12,7 @@ public class MenuItem {
         this.action = action;
     }
 
-    public MenuItem(String title, boolean forApkeditor, Action action) {
+    public MenuItem(String title, boolean forApkeditor, String action) {
         this.title = title;
         this.forApkeditor = forApkeditor;
         this.executableAction = action;
@@ -32,7 +30,7 @@ public class MenuItem {
         return action;
     }
 
-    public Action getExecutableAction() {
+    public String getExecutableAction() {
         return executableAction;
     }
 }

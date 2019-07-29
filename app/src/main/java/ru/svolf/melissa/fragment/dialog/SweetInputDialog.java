@@ -5,26 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.appcompat.app.AppCompatDialog;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.modules.base.ThemeWrapper;
 
 /**
  * Created by Snow Volf on 20.08.2017, 12:54
  */
 
-public class SweetInputDialog extends BottomSheetDialog {
+public class SweetInputDialog extends AppCompatDialog {
     private Context mContext;
-    private TextView mContentView;
     private EditText mEditText;
     private Button mPositive;
 
     public SweetInputDialog(@NonNull Context context) {
-        super(context);
+        super(context, ThemeWrapper.getDialogTheme());
         mContext = context;
         initContentView();
     }
@@ -32,14 +30,13 @@ public class SweetInputDialog extends BottomSheetDialog {
     private void initContentView() {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.dialog_pref_input, null);
-        mContentView = view.findViewById(R.id.title);
         mEditText = view.findViewById(R.id.field_edit);
         mPositive = view.findViewById(R.id.positive);
         setContentView(view);
     }
 
     public SweetInputDialog setPrefTitle(CharSequence title) {
-        mContentView.setText(title);
+        setTitle(title);
         return this;
     }
 

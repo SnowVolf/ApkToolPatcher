@@ -117,7 +117,7 @@ public class MainFragment extends Fragment {
     private CardView mCard;
     private Project mProject;
 
-    static void addMapsKey(String filePath) {
+    private static void addMapsKey(String filePath) {
         File fileToBeModified = new File(filePath);
         StringBuilder url = new StringBuilder(nol);
         BufferedReader reader = null;
@@ -396,7 +396,7 @@ public class MainFragment extends Fragment {
         }
 
         mProgressHandler = new Handler() {
-            public void handleMessage(android.os.Message msg) {
+            public void handleMessage(@NonNull android.os.Message msg) {
                 if (msg.what == -1) {
                     Toast.makeText(getActivity(), App.bindString(R.string.message_patched_over, i), Toast.LENGTH_LONG).show();
                     i = 0;
@@ -547,7 +547,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    public void restoreMaps() {
+    private void restoreMaps() {
         try {
             addMapsKey(getProject().matifest());
         } catch (Exception err) {
@@ -560,7 +560,7 @@ public class MainFragment extends Fragment {
     }
 
 
-    public void prepareToast() {
+    private void prepareToast() {
         String savedText = App.get().getPreferences().getString(saveToast, "");
 
         final SweetInputDialog dialog = new SweetInputDialog(mContext);
@@ -599,7 +599,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 mWaitDialog = new SweetWaitDialog(getActivity());
 
-                Thread t = new Thread(new Runnable() {
+                App.runInBackground(new Runnable() {
                     public void run() {
                         try {
                             ArrayMap<Pattern, String> pat = new ArrayMap<Pattern, String>();
@@ -621,7 +621,6 @@ public class MainFragment extends Fragment {
                         }
                     }
                 });
-                t.start();
             }
         });
         content.show();
@@ -649,7 +648,7 @@ public class MainFragment extends Fragment {
     public void kcehc1() {
         edoc = "600" + ANDROID_ID + mydeviceaddress + "htc";
         //Toast.makeText(mContext, codepremium2, Toast.LENGTH_SHORT).show();
-        if (!codepremium2.contains(edoc)) {
+        if (codepremium2.contains(edoc)) {
             mCard.setVisibility(View.VISIBLE);
             AdvancedAdapter mAdvancedAdapter = new AdvancedAdapter(allAdvancedItems.getCreatedMenuItems());
             mAdvancedAdapter.setItemClickListener(new AdvancedAdapter.OnItemClickListener() {
@@ -658,7 +657,7 @@ public class MainFragment extends Fragment {
                     switch (menuItem.getAction()) {
                         case AdvancedItems.INBUILT_DECOMPILER: {
                             Intent intent = new Intent(getActivity(),
-                                    com.a4455jkjh.apktool.MainActivity.class);
+                                    MainActivity.class);
                             startActivity(intent);
                             break;
                         }

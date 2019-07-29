@@ -28,13 +28,28 @@ public class PathF {
     }
 
 
-    static String getExt(String path) {
+    public static String getExt(String path) {
         String pointToName = pointToName(path);
         int lastIndexOf = pointToName.lastIndexOf('.');
         if (lastIndexOf == -1) {
             return "";
         }
         return pointToName.substring(lastIndexOf + 1);
+    }
+
+    public static String addEndSlash(String path) {
+        if (path.length() == 0 || path.endsWith(SPATHSEPARATOR)) {
+            return path;
+        }
+        return path + SPATHSEPARATOR;
+    }
+
+    public static String removeNameFromPath(String path) {
+        int lastIndexOf = path.lastIndexOf(CPATHSEPARATOR);
+        if (lastIndexOf < 0) {
+            return "";
+        }
+        return path.substring(0, lastIndexOf);
     }
 
 }

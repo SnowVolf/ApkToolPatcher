@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,17 +28,20 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.util.SystemsDetector;
 import ru.svolf.melissa.swipeback.SwipeBackFragment;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 
 public class AppManagerFragment extends SwipeBackFragment implements SearchView.OnQueryTextListener {
     public static final String FRAGMENT_TAG = "AppManagerFragment";
+    private static final String TAG = FRAGMENT_TAG;
     // General variables
     private List<AppInfo> appList;
     private List<AppInfo> appSystemList;
@@ -70,7 +75,7 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_app_manage, container, false);
-        return rootView;
+        return attachToSwipeBack(rootView);
     }
 
     @Override
@@ -89,7 +94,7 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         progressWheel.setVisibility(View.VISIBLE);
@@ -127,8 +132,14 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
 
         @Override
         protected Void doInBackground(Void... params) {
+            Log.d(TAG, "doInBackground() called with: params = [" + Arrays.toString(params) + "]");
+            long pkgCall = System.currentTimeMillis();
             final PackageManager packageManager = getContext().getPackageManager();
+            long pkgCallEnd = System.currentTimeMillis();
+
+            long pkgGet = System.currentTimeMillis();
             List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
+            long pkgGetEnd = System.currentTimeMillis();
             totalApps = packages.size();
             // Get Sort Mode
             switch ("1") {
@@ -179,23 +190,11 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
                     if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                         try {
                             // Non System Apps
-                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(),
-                                    packageInfo.packageName,
-                                    packageInfo.versionName,
-                                    packageInfo.applicationInfo.sourceDir,
-                                    packageInfo.applicationInfo.dataDir,
-                                    packageManager.getApplicationIcon(packageInfo.applicationInfo),
-                                    false);
+                            AppInfo tempApp = new AppInfo(packageInfo.packageName, false);
                             appList.add(tempApp);
                         } catch (OutOfMemoryError e) {
                             //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(),
-                                    packageInfo.packageName,
-                                    packageInfo.versionName,
-                                    packageInfo.applicationInfo.sourceDir,
-                                    packageInfo.applicationInfo.dataDir,
-                                    getResources().getDrawable(R.mipmap.ic_launcher),
-                                    false);
+                            AppInfo tempApp = new AppInfo(packageInfo.packageName, false);
                             appList.add(tempApp);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -203,11 +202,11 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
                     } else {
                         try {
                             // System Apps
-                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, packageManager.getApplicationIcon(packageInfo.applicationInfo), true);
+                            AppInfo tempApp = new AppInfo(packageInfo.packageName, true);
                             appSystemList.add(tempApp);
                         } catch (OutOfMemoryError e) {
                             //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, getResources().getDrawable(R.mipmap.ic_launcher), false);
+                            AppInfo tempApp = new AppInfo(packageInfo.packageName, true);
                             appSystemList.add(tempApp);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -217,7 +216,9 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
                 actualApps++;
                 publishProgress(Integer.toString((actualApps * 100) / totalApps));
             }
-
+            long pkgStop = System.currentTimeMillis();
+            Log.e("BLYA", "doInBackground ended in " + (pkgStop - pkgCall) + "ms, PackageManager call = "
+                    + (pkgCallEnd - pkgCall) + "ms, getInstalledPackages call = " + (pkgGetEnd - pkgGet) + "ms");
             return null;
         }
 
@@ -241,6 +242,7 @@ public class AppManagerFragment extends SwipeBackFragment implements SearchView.
 
             setSwipeRefresh(swipeRefresh);
         }
+
     }
 
         private void setSwipeRefresh(final SwipeRefreshLayout swipeRefresh) {

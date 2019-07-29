@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import apk.tool.patcher.App;
+import apk.tool.patcher.BuildConfig;
 import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.OnAsyncJobListener;
@@ -263,7 +264,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
      * @see Action
      */
     private void replaceOccurrences() {
-        updateUI("f", "ApkToolPatcher v. 5.0 alpha 4");
+        updateUI("f", "ApkToolPatcher v. " + BuildConfig.VERSION_NAME);
         updateUI("f", "Melissa Framework v. 0.7.0");
         updateUI("f", String.format(Locale.ENGLISH, "Apply %d patches = %s to %s",
                 mActionIds.length, Arrays.toString(mActionIds), mProjectDir.getPath()));

@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 /**
  * Утилитарный класс для работы с файловой системой
@@ -22,12 +21,9 @@ public class FastFs {
      *
      * @param files массив файлов
      * @return ArrayList с файлами
-     * @see ArrayList#addAll(Collection)
      */
     public static ArrayList<File> asList(File[] files) {
-        ArrayList<File> arrayList = new ArrayList<>();
-        arrayList.addAll(Arrays.asList(files));
-        return arrayList;
+        return new ArrayList<>(Arrays.asList(files));
     }
 
     /**
@@ -50,7 +46,7 @@ public class FastFs {
                                     FileUtil.copyFile(test, dest);
                                 } catch (final IOException e) {
                                     e.printStackTrace();
-                                    host.getActivity().runOnUiThread(new Runnable() {
+                                    host.requireActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
                                             Toast.makeText(host.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -68,4 +64,24 @@ public class FastFs {
             }
         }
     }
+
+//    //FIXME replace reflection with direct call when SDK target can be changed.
+//    @SuppressWarnings("JavaReflectionMemberAccess")
+//    @TargetApi(Build.VERSION_CODES.N)
+//    private void openStorageLinkDocumentTreeActivityImplQ() {
+//        final StorageVolume volume = findVolume();
+//        if (volume == null) {
+//            openStorageLinkDocumentTreeActivityImpl();
+//            return;
+//        }
+//
+//        try {
+//            final Method m = StorageVolume.class.getMethod("createOpenDocumentTreeIntent");
+//            final Intent intent = (Intent) m.invoke(volume);
+//            startActivityForResult(intent, FXIntent.REQUEST_ID_STORAGE_LINK_DOCUMENT_TREE);
+//        } catch (final NoSuchMethodException ignored) {
+//        } catch (final IllegalAccessException ignored) {
+//        } catch (final InvocationTargetException ignored) {
+//        }
+//    }
 }

@@ -45,7 +45,8 @@ public class SwipeBackActivity extends BaseActivity {
 
     void onActivityCreate() {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getWindow().getDecorView().setBackground(null);
+
+        //getWindow().getDecorView().setBackground(null);
         mSwipeBackLayout = new SwipeBackLayout(this);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mSwipeBackLayout.setLayoutParams(params);

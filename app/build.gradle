@@ -39,7 +39,6 @@ android {
 
 }
 dependencies {
-    implementation project(':apktool')
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -49,7 +48,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.faendir:acra:4.10.0'
-    implementation 'com.yandex.android:mobmetricalib:3.4.0'
+    implementation 'com.yandex.android:mobmetricalib:3.6.4'
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     testImplementation 'junit:junit:4.12'

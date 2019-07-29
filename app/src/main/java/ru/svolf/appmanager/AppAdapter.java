@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +17,16 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> implements Filterable {
@@ -45,46 +51,29 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
     }
 
     @Override
-    public void onBindViewHolder(AppViewHolder appViewHolder, int i) {
-        AppInfo appInfo = appList.get(i);
-        appViewHolder.vName.setText(appInfo.getName());
-        appViewHolder.vApk.setText(appInfo.getVersion());
-        appViewHolder.vIcon.setImageDrawable(appInfo.getIcon());
+    public void onViewDetachedFromWindow(@NonNull AppViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final AppViewHolder appViewHolder, int i) {
+        final AppInfo appInfo = appList.get(i);
+
+
+        try {
+            appViewHolder.vName.setText(getName(appInfo.getPackageName()));
+            appViewHolder.vApk.setText(getVersion(appInfo.getPackageName()));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        appViewHolder.vIcon.setImageDrawable(getIcon(appInfo));
 
         setButtonEvents(appViewHolder, appInfo);
-
     }
 
     private void setButtonEvents(AppViewHolder appViewHolder, final AppInfo appInfo) {
         final ImageView appIcon = appViewHolder.vIcon;
         final ConstraintLayout card = appViewHolder.vCard;
-
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Activity activity = (Activity) context;
-
-                Intent intent = new Intent(context, this.getClass());
-                intent.putExtra("app_name", appInfo.getName());
-                intent.putExtra("app_apk", appInfo.getAPK());
-                intent.putExtra("app_version", appInfo.getVersion());
-                intent.putExtra("app_source", appInfo.getSource());
-                intent.putExtra("app_data", appInfo.getData());
-                Bitmap bitmap = ((BitmapDrawable) appInfo.getIcon()).getBitmap();
-                intent.putExtra("app_icon", bitmap);
-                intent.putExtra("app_isSystem", appInfo.isSystem());
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    String transitionName = context.getResources().getString(R.string.transition_app_icon);
-
-                    ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(activity, appIcon, transitionName);
-                    context.startActivity(intent, transitionActivityOptions.toBundle());
-                } else {
-                    context.startActivity(intent);
-                    activity.overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
-                }
-            }
-        });
 
     }
 
@@ -100,8 +89,12 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
                 if (charSequence != null) {
                     if (appListSearch != null && appListSearch.size() > 0) {
                         for (final AppInfo appInfo : appListSearch) {
-                            if (appInfo.getName().toLowerCase().contains(charSequence.toString())) {
-                                results.add(appInfo);
+                            try {
+                                if (getName(appInfo.getPackageName()).toLowerCase().contains(charSequence.toString())) {
+                                    results.add(appInfo);
+                                }
+                            } catch (PackageManager.NameNotFoundException e) {
+                                e.printStackTrace();
                             }
                         }
                     }
@@ -143,6 +136,36 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
             vApk = vCard.findViewById(R.id.txtApk);
             vIcon = vCard.findViewById(R.id.imgIcon);
         }
+    }
+
+    private String getName(String pkgName) throws PackageManager.NameNotFoundException {
+        return App.get()
+                .getPackageManager()
+                .getPackageInfo(pkgName, PackageManager.GET_META_DATA)
+                .applicationInfo.loadLabel(App.get().getPackageManager()).toString();
+    }
+
+    private String getVersion(String pkgName) throws PackageManager.NameNotFoundException {
+        return App.get()
+                .getPackageManager()
+                .getPackageInfo(pkgName, PackageManager.GET_META_DATA).versionName;
+    }
+
+    private Drawable getIcon(AppInfo appInfo) {
+        if (UtilsApp.getIconFromCache(context, appInfo) != context.getDrawable(R.mipmap.ic_launcher)) {
+            Toast.makeText(context, "ICON NULL", Toast.LENGTH_SHORT).show();
+            try {
+                if (UtilsApp.saveIconToCache(context, appInfo)) {
+                    Toast.makeText(context, "ICON SAVED", Toast.LENGTH_SHORT).show();
+                    return UtilsApp.getIconFromCache(context, appInfo);
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "SUKAAAAA\n\n"+ e, Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        }
+        Toast.makeText(context, "PIZDA RULYI", Toast.LENGTH_SHORT).show();
+        return context.getDrawable(R.mipmap.ic_launcher);
     }
 
 }

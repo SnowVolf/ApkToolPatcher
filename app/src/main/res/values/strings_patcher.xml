@@ -143,4 +143,5 @@
     <string name="action_gp">GPlay</string>
     <string name="vendor_warn">ApkToolPatcher is distributed on the principle \'AS IS\'. The developers of ApkToolPatcher make no warranty, Express or implied, that the application will run on firmware other than AOSP. The application is developed taking into account the changes of the last stable branch of the Android Open Source Project, and is not optimized for custom implementation of vendors.  If errors occur, make sure to use the latest firmware available for your device. If possible, check the bug on other devices with clean Android from Google</string>
     <string name="caption_vendor_warn">A little bit about MIUI/EMUI/OneUI/Flyme and firmware based on them</string>
+    <string name="no_app_to_open">Нет приложений для открытия %s</string>
 </resources>

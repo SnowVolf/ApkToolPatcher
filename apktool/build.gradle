@@ -21,9 +21,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'androidx.drawerlayout:drawerlayout:1.0.0'
-	compile 'androidx.viewpager:viewpager:1.0.0'
-	compile 'androidx.interpolator:interpolator:1.0.0'
-	compile 'androidx.fragment:fragment:1.0.0'
+	implementation 'androidx.drawerlayout:drawerlayout:1.0.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.interpolator:interpolator:1.0.0'
+    implementation 'androidx.fragment:fragment:1.0.0'
 } 
 

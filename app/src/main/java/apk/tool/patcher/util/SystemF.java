@@ -7,11 +7,20 @@ import android.content.Context;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 import apk.tool.patcher.App;
+import apk.tool.patcher.filesystem.ExternalCard;
+import ru.svolf.melissa.compat.PropertiesCompat;
 
 public class SystemF {
+    private static final String PREFIX_STR = "(s)";
+    private static final int PREFIX_STR_LENGTH = PREFIX_STR.length();
 
     /**
      * Gets the number of cores available in this device, across all processors.
@@ -64,6 +73,56 @@ public class SystemF {
         ((ActivityManager) App.get().getSystemService(Context.ACTIVITY_SERVICE)).getMemoryInfo(memoryInfo);
         totalMem = memoryInfo.totalMem;
         return totalMem;
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public static String getExtCardSettingsName() {
+        String path = ExternalCard.getPath(true);
+        return path == null ? null : PathF.addEndSlash(path) + ".settings";
+    }
+
+    private static HashMap<String, String> getExtCardSettings() {
+        String extCardSettingsName = getExtCardSettingsName();
+        if (extCardSettingsName == null) {
+            return null;
+        }
+        HashMap<String, String> hashMap = new HashMap<>();
+        try {
+            PropertiesCompat properties = new PropertiesCompat();
+            properties.load(new FileInputStream(extCardSettingsName));
+            for (String s : properties.stringPropertyNamesSupport()) {
+                hashMap.put(s, properties.get(s).toString());
+            }
+        } catch (Exception ignored) {
+        }
+        return hashMap;
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public static void addExtCardSettingsString(String key, String uriPath) {
+        Map<String, String> extCardSettings = getExtCardSettings();
+        if (extCardSettings != null) {
+            extCardSettings.put(key, uriPath == null ? "null" : PREFIX_STR + uriPath);
+            String extCardSettingsName = getExtCardSettingsName();
+            if (extCardSettingsName != null) {
+                try {
+                    Properties properties = new Properties();
+                    properties.putAll(extCardSettings);
+                    properties.store(new FileOutputStream(extCardSettingsName), null);
+                } catch (Exception ignored) {
+                }
+            }
+        }
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public static String getExtCardSettingsString(String key) {
+        HashMap<String, String> extCardSettings = getExtCardSettings();
+        if (extCardSettings == null) {
+            return null;
+        }
+        String uriPath = extCardSettings.get(key);
+        return (uriPath == null || !uriPath.startsWith(PREFIX_STR)) ? null : uriPath.substring(PREFIX_STR_LENGTH);
     }
 
     public static long toKBs(long sizeInBytes) {

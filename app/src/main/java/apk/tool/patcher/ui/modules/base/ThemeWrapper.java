@@ -1,6 +1,9 @@
 package apk.tool.patcher.ui.modules.base;
 
 import android.app.Activity;
+import android.content.Context;
+
+import androidx.annotation.StyleRes;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
@@ -42,6 +45,29 @@ public abstract class ThemeWrapper {
 
     public static boolean isLightTheme() {
         return getThemeIndex() == Theme.LIGHT.ordinal();
+    }
+
+    @StyleRes
+    public static int getDialogTheme(){
+        int theme;
+        switch (Theme.values()[getThemeIndex()]){
+            case LIGHT:
+                theme = R.style.Theme_MaterialComponents_Light_Dialog_Alert;
+                break;
+            case DARK:
+                theme = R.style.DarkAppTheme_Dialog;
+                break;
+            case BLUE:
+                theme = R.style.BlueAppTheme_Dialog;
+                break;
+                default:
+                    theme = R.style.Theme_MaterialComponents_Light_Dialog_Alert;
+        }
+        return theme;
+    }
+
+    public static int resolveNavBarColor(Context context) {
+        return App.getColorFromAttr(context, R.attr.colorPrimaryDark);
     }
 
     /**

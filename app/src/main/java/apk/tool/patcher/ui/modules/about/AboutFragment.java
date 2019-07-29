@@ -17,7 +17,7 @@ public class AboutFragment extends BaseSettingsFragment {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.patcher_about);
+        setPreferencesFromResource(R.xml.patcher_about, rootKey);
         Preference version = findPreference("app_ver");
         version.setTitle(TextUtil.getBuildName(getContext()));
     }

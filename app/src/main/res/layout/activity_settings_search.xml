@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
@@ -26,9 +26,9 @@
                 android:textColor="?icon_color"
                 android:textSize="20sp" />
 
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             style="?cardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/ButtonClear"
                     style="@style/Base.Widget.AppCompat.Button.Small"
                     android:layout_width="wrap_content"
@@ -65,10 +65,10 @@
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             style="?cardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,14 +88,14 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/label_re" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkignorecase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,9 +103,9 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             style="?cardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                     android:layout_marginTop="8dp"
                     android:orientation="vertical" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/addext"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
@@ -142,14 +142,14 @@
                     android:textAllCaps="false" />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/adddir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
         android:padding="32dp"
         android:visibility="gone">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/magnify" />

@@ -13,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -20,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Set;
 
 import apk.tool.patcher.R;
@@ -41,24 +43,6 @@ public class UtilsApp {
      */
     public static File getAppFolder() {
         return new File(Environment.DIRECTORY_DOCUMENTS);
-    }
-
-    /**
-     * Retrieve the name of the extracted APK
-     * @param appInfo AppInfo
-     * @return String with the output name
-     */
-    public static String getAPKFilename(AppInfo appInfo) {
-        return appInfo.getName() + " [" + appInfo.getVersion() + "]";
-    }
-
-    /**
-     * Retrieve the name of the extracted APK with the path
-     * @param appInfo AppInfo
-     * @return File with the path and output name
-     */
-    public static File getOutputFilename(AppInfo appInfo) {
-        return new File(getAppFolder().getPath() + "/" + getAPKFilename(appInfo) + ".apk");
     }
 
     /**
@@ -180,23 +164,22 @@ public class UtilsApp {
      * @param appInfo App to save icon
      * @return true if the icon has been saved, false otherwise
      */
-    public static Boolean saveIconToCache(Context context, AppInfo appInfo) {
-        Boolean res = false;
-
-        try {
-            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(appInfo.getAPK(), 0);
-            File fileUri = new File(context.getCacheDir(), appInfo.getAPK());
+    public static Boolean saveIconToCache(Context context, AppInfo appInfo) throws Exception {
+        Boolean res;
+            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(appInfo.getPackageName(), 0);
+            File fileUri = new File(context.getCacheDir(), appInfo.getPackageName());
+            if (!fileUri.exists()){
+                fileUri.createNewFile();
+                Toast.makeText(context, "NULL = " + fileUri.getPath(), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "NON NULL = " + fileUri.getPath(), Toast.LENGTH_SHORT).show();
+            }
             FileOutputStream out = new FileOutputStream(fileUri);
-            Drawable icon = context.getPackageManager().getApplicationIcon(applicationInfo);
+            Drawable icon = applicationInfo.loadIcon(context.getPackageManager());
             BitmapDrawable iconBitmap = (BitmapDrawable) icon;
             iconBitmap.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.close();
             res = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
         return res;
     }
 
@@ -207,7 +190,7 @@ public class UtilsApp {
      * @return true if the icon has been removed, false otherwise
      */
     public static Boolean removeIconFromCache(Context context, AppInfo appInfo) {
-        File file = new File(context.getCacheDir(), appInfo.getAPK());
+        File file = new File(context.getCacheDir(), appInfo.getPackageName());
         return file.delete();
     }
 
@@ -221,14 +204,13 @@ public class UtilsApp {
         Drawable res;
 
         try {
-            File fileUri = new File(context.getCacheDir(), appInfo.getAPK());
+            File fileUri = new File(context.getCacheDir(), appInfo.getPackageName());
             Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath());
             res = new BitmapDrawable(context.getResources(), bitmap);
         } catch (Exception e) {
             e.printStackTrace();
-            res = context.getResources().getDrawable(R.drawable.ic_launch);
+            res = context.getDrawable(R.mipmap.ic_launcher);
         }
-
         return res;
     }
 
@@ -239,7 +221,6 @@ public class UtilsApp {
         } else {
             res = true;
         }
-
         return res;
     }
 

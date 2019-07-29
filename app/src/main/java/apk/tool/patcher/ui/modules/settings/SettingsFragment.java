@@ -20,7 +20,7 @@ public class SettingsFragment extends BaseSettingsFragment implements SharedPref
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.patcher_preferences);
+        setPreferencesFromResource(R.xml.patcher_preferences, rootKey);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
         setCurrentValue((ListPreference) findPreference("sys.language"));
