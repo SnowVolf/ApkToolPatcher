@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <apk.tool.patcher.ui.widget.FontTextView
         android:id="@+id/ListIndex"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@+id/TextView01"></apk.tool.patcher.ui.widget.FontTextView>
+        android:layout_marginStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="4dp"
+        android:text="@+id/TextView01"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/ListPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ListIndexNum"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Test.smali" />
+
+
+    <TextView
+        android:id="@+id/ListIndexNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/code_item"
+        android:fontFamily="monospace"
+        app:layout_constraintBottom_toBottomOf="@+id/ListPhone"
+        app:layout_constraintEnd_toStartOf="@+id/ListPhone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ListPhone"
+        tools:text="9" />
 
     <apk.tool.patcher.ui.widget.FontTextView
         android:id="@+id/ListPhone"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@+id/TextView02"></apk.tool.patcher.ui.widget.FontTextView>
-</LinearLayout>
+        android:layout_marginBottom="4dp"
+        android:text="@+id/TextView02"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ListIndexNum"
+        app:layout_constraintTop_toBottomOf="@+id/ListIndex"
+        tools:text="const/4 v0, 0x0\nonst/4 v0, 0x0\nonst/4 v0, 0x0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

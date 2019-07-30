@@ -2,6 +2,7 @@ package jp.sblo.pandora.aGrep;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,30 +14,32 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
+import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 
 public class GrepView extends ListView {
-
+    private static final String TAG = "GrepView";
     private Callback mCallback;
 
     public GrepView(Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public GrepView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(context);
+        init();
     }
 
     public GrepView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         setSmoothScrollbarEnabled(true);
         setScrollingCacheEnabled(true);
         setFocusable(true);
@@ -81,9 +84,21 @@ public class GrepView extends ListView {
 
     static class Data implements Comparator<Data> {
 
-        public File mFile;
-        public int mLinenumber;
-        public CharSequence mText;
+        public File getFile() {
+            return mFile;
+        }
+
+        public int getLineNumber() {
+            return mLinenumber;
+        }
+
+        public CharSequence getText() {
+            return mText;
+        }
+
+        private File mFile;
+        private int mLinenumber;
+        private CharSequence mText;
 
         public Data() {
             this(null, 0, null);
@@ -130,8 +145,9 @@ public class GrepView extends ListView {
                 view = inflate(getContext(), R.layout.list_row, null);
 
                 holder = new ViewHolder();
-                holder.Index = (TextView) view.findViewById(R.id.ListIndex);
-                holder.kwic = (TextView) view.findViewById(R.id.ListPhone);
+                holder.Num = view.findViewById(R.id.ListIndexNum);
+                holder.Index = view.findViewById(R.id.ListIndex);
+                holder.kwic = view.findViewById(R.id.ListPhone);
 
                 holder.Index.setTextSize(mFontSize);
                 holder.kwic.setTextSize(mFontSize);
@@ -140,9 +156,25 @@ public class GrepView extends ListView {
             }
             Data d = getItem(position);
 
-            String fname = d.mFile.getName() + "(" + d.mLinenumber + ")";
+            String fname = d.getFile().getName();
+            if (position > 0) {
+                String prevName = getItem(position - 1).getFile().getName();
+                Log.e(TAG, "getView: prev=" + prevName + ", cur=" + fname);
+                if (prevName.equals(fname)) {
+                    holder.Index.setVisibility(GONE);
+                } else {
+                    // Типа вьюха же переиспользуется.
+                    // И если ты один раз задал визибилити, то оно сохранится и при
+                    // скролле постепенно у всех айтемов будет скрыта та вьюха
+                    // Поэтому нужно вручную обновить статус визибилити.
+                    holder.Index.setVisibility(VISIBLE);
+                }
+
+                holder.Num.setText(String.format(Locale.ENGLISH, "%04d", d.getLineNumber()));
+            }
             holder.Index.setText(fname);
-            holder.kwic.setText(Search.highlightKeyword(d.mText, mPattern, mFgColor, mBgColor));
+            holder.kwic.setText(Search.highlightKeyword(d.mText,
+                    mPattern, mFgColor, App.getColorFromAttr(getContext(), R.attr.colorAccent)));
 
             return view;
         }
@@ -156,6 +188,7 @@ public class GrepView extends ListView {
         }
 
         static class ViewHolder {
+            TextView Num;
             TextView Index;
             TextView kwic;
         }

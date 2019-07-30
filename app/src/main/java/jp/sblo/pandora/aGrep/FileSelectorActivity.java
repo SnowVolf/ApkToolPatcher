@@ -156,7 +156,7 @@ public class FileSelectorActivity extends ListActivity {
         });
 
         // カレントディレクトリ名をTextViewに設定
-        TextView txtDirName = (TextView) findViewById(R.id.txtDirName);
+        TextView txtDirName = findViewById(R.id.txtDirName);
         txtDirName.setText(m_strDirPath);
 
         ArrayList<String> items = new ArrayList<String>();

@@ -54,7 +54,7 @@ public class Settings1 extends Activity {
         setContentView(R.layout.activity_main_patcher);
 
         //mDirListView = (LinearLayout)findViewById(R.id.listdir);
-        mExtListView = (LinearLayout) findViewById(R.id.listext);
+        mExtListView = findViewById(R.id.listext);
 
         mDirListener = new View.OnLongClickListener() {
             @Override
@@ -113,8 +113,8 @@ public class Settings1 extends Activity {
         refreshDirList();
         refreshExtList();
 
-        Button btnAddDir = (Button) findViewById(R.id.adddir);
-        Button btnAddExt = (Button) findViewById(R.id.addext);
+        Button btnAddDir = findViewById(R.id.adddir);
+        Button btnAddExt = findViewById(R.id.addext);
 
         btnAddDir.setOnClickListener(new View.OnClickListener() {
 
@@ -139,7 +139,7 @@ public class Settings1 extends Activity {
                         .setView(edtInput)
                         .setPositiveButton(R.string.label_OK, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                        /* OKボタンをクリックした時の処理 */
+                                /* OKボタンをクリックした時の処理 */
 
                                 String ext = edtInput.getText().toString();
                                 if (ext.length() > 0) {
@@ -157,7 +157,7 @@ public class Settings1 extends Activity {
                         })
                         .setNeutralButton(R.string.label_no_extension, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                        /* 拡張子無しボタンをクリックした時の処理 */
+                                /* 拡張子無しボタンをクリックした時の処理 */
 
                                 String ext = "*";
                                 // 二重チェック
@@ -178,8 +178,8 @@ public class Settings1 extends Activity {
         });
 
 
-        final CheckBox chkRe = (CheckBox) findViewById(R.id.checkre);
-        final CheckBox chkIc = (CheckBox) findViewById(R.id.checkignorecase);
+        final CheckBox chkRe = findViewById(R.id.checkre);
+        final CheckBox chkIc = findViewById(R.id.checkignorecase);
 
         chkRe.setChecked(mPrefs.mRegularExrpression);
         chkIc.setChecked(mPrefs.mIgnoreCase);
@@ -199,7 +199,7 @@ public class Settings1 extends Activity {
             }
         });
 
-        final AutoCompleteTextView edittext = (AutoCompleteTextView) findViewById(R.id.EditText01);
+        final AutoCompleteTextView edittext = findViewById(R.id.EditText01);
         edittext.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

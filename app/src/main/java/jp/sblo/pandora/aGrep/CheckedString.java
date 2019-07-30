@@ -4,13 +4,13 @@ public class CheckedString {
     public boolean checked;
     public String string;
 
-    public CheckedString(String _s) {
-        this(true, _s);
+    public CheckedString(String str) {
+        this(true, str);
     }
 
-    public CheckedString(boolean _c, String _s) {
-        checked = _c;
-        string = _s;
+    public CheckedString(boolean checked, String str) {
+        this.checked = checked;
+        string = str;
     }
 
     public String toString() {

@@ -108,12 +108,11 @@ public class Search extends BaseActivity implements GrepView.Callback {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mGrepView = (GrepView) findViewById(R.id.DicView01);
-        mData = new ArrayList<GrepView.Data>();
-        mAdapter = new GrepView.GrepAdapter(getApplicationContext(), R.layout.list_row, R.id.DicView01, mData);
+        mToolbar = findViewById(R.id.toolbar);
+        mGrepView = findViewById(R.id.DicView01);
+        mData = new ArrayList<>();
+        mAdapter = new GrepView.GrepAdapter(this, R.layout.list_row, R.id.DicView01, mData);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View p1) {
                 finish();
@@ -140,10 +139,8 @@ public class Search extends BaseActivity implements GrepView.Callback {
                 }
 
                 if (mPrefs.mIgnoreCase) {
-//                        mPatternText = text.toLowerCase();
                     mPattern = Pattern.compile(patternText, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.MULTILINE);
                 } else {
-//                        mPatternText = text;
                     mPattern = Pattern.compile(patternText);
                 }
 
@@ -152,7 +149,6 @@ public class Search extends BaseActivity implements GrepView.Callback {
                     mAdapter.setFormat(mPattern, mPrefs.mHighlightFg, mPrefs.mHighlightBg, mPrefs.mFontSize);
                     mTask = new GrepTask();
                     mTask.execute(mQuery);
-
                 }
             } else {
                 finish();
@@ -166,9 +162,9 @@ public class Search extends BaseActivity implements GrepView.Callback {
 
         Intent it = new Intent(this, TextViewer.class);
 
-        it.putExtra(TextViewer.EXTRA_PATH, data.mFile.getAbsolutePath());
+        it.putExtra(TextViewer.EXTRA_PATH, data.getFile().getAbsolutePath());
         it.putExtra(TextViewer.EXTRA_QUERY, mQuery);
-        it.putExtra(TextViewer.EXTRA_LINE, data.mLinenumber);
+        it.putExtra(TextViewer.EXTRA_LINE, data.getLineNumber());
 
         startActivity(it);
     }

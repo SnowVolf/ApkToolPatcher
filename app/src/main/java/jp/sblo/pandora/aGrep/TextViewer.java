@@ -53,7 +53,7 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
         setContentView(R.layout.activity_text_viewer);
 
         mPrefs = Prefs.loadPrefes(getApplicationContext());
-        mTextPreview = (TextPreview) findViewById(R.id.TextPreview);
+        mTextPreview = findViewById(R.id.TextPreview);
 
         mTextPreview.setOnItemLongClickListener(this);
         mTextPreview.setOnItemClickListener(this);
@@ -96,7 +96,7 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             if (mPrefs.addLineNumber) {
-                TextPreview textPreview = (TextPreview) findViewById(R.id.TextPreview);
+                TextPreview textPreview = findViewById(R.id.TextPreview);
                 intent.setDataAndType(Uri.parse("file://" + mPath + "?line=" + textPreview.getFirstVisiblePosition()), "text/plain");
             } else {
                 intent.setDataAndType(Uri.parse("file://" + mPath), "text/plain");

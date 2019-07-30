@@ -193,7 +193,7 @@ public class ColorPickerActivity extends Activity implements View.OnClickListene
         mColorIconHeight = (int) getResources().getDimension(R.dimen.color_icon_height);
         mColorIconPadding = (int) getResources().getDimension(R.dimen.color_icon_padding);
 
-        final GridView gv = (GridView) findViewById(R.id.colorgrid);
+        final GridView gv = findViewById(R.id.colorgrid);
         gv.setAdapter(new ColorArrayAdapter(this, 0, COLOR_NAMES));
     }
 
