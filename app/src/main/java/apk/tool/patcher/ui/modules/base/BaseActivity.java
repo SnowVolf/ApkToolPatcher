@@ -55,7 +55,7 @@ public class BaseActivity extends AppCompatActivity {
      * Рестарт процесса приложения. Нужно для того, чтобы языковые настройки изменились на новые
      * обычный {@link #finish()} тут не работает
      */
-    public static void restartApplication(Activity activity) {
+    protected static void restartApplication(Activity activity) {
         Intent mStartActivity = new Intent(activity, MainActivity.class);
         int mPendingIntentId = 123456;
         PendingIntent mPendingIntent = PendingIntent.getActivity(activity, mPendingIntentId, mStartActivity,

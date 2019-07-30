@@ -27,6 +27,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -44,7 +46,8 @@ import jp.sblo.pandora.aGrep.Search;
 
 public class SearchSettingsFragment extends Fragment {
     public static final String FRAGMENT_TAG = "search_settings_fragment";
-    public LinearLayout mContainer, mNotFound, mExtListView;
+    public LinearLayout mContainer, mNotFound;
+    private ChipGroup mExtListView;
     private View rootView;
     private String mPath;
     private Prefs mPrefs;
@@ -301,7 +304,7 @@ public class SearchSettingsFragment extends Fragment {
         }
     }
 
-    void setListItem(LinearLayout view,
+    void setListItem(ChipGroup view,
                      ArrayList<CheckedString> list,
                      View.OnLongClickListener listener,
                      CompoundButton.OnCheckedChangeListener checkedChangeListener) {
@@ -313,7 +316,7 @@ public class SearchSettingsFragment extends Fragment {
             }
         });
         for (CheckedString s : list) {
-            CheckBox v = (CheckBox) View.inflate(mContext, R.layout.list_dir, null);
+            Chip v = (Chip) View.inflate(mContext, R.layout.list_dir, null);
             if (s.equals("*")) {
                 v.setText(R.string.label_no_extension);
             } else {

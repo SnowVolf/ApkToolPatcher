@@ -1,5 +1,6 @@
 package apk.tool.patcher;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -21,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-import androidx.multidex.MultiDexApplication;
 import androidx.preference.PreferenceManager;
 
 import com.yandex.metrica.YandexMetrica;
@@ -39,7 +39,7 @@ import apk.tool.patcher.util.LocaleHelper;
         (mailTo = "buntar888@mail.ru, dev.dog@yandex.ru",
                 mode = ReportingInteractionMode.TOAST,
                 resToastText = R.string.crash_toast_text)
-public class App extends MultiDexApplication {
+public class App extends Application {
     private static App instance;
     private static Project sCurrentProject;
     private SharedPreferences preferences;

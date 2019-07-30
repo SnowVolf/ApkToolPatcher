@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -15,14 +16,24 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:text="@string/pref_userguide"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="32sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_issue"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:textAllCaps="false"
+            android:text="@string/create_issue" />
+
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/help_list"
+    <WebView
+        android:id="@+id/help"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

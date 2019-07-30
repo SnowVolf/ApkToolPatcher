@@ -61,12 +61,14 @@ import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.AdsPatcher;
 import apk.tool.patcher.entity.LogicalCore;
+import apk.tool.patcher.ui.modules.about.HelpActivity;
 import apk.tool.patcher.ui.modules.base.adapters.AdvancedAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.ExtendedMenuAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.MenuAdapter;
 import apk.tool.patcher.ui.modules.inspector.InspectorFragment;
 import apk.tool.patcher.ui.modules.misc.SelectActivity;
 import apk.tool.patcher.ui.modules.odex.OdexPatchFragment;
+import apk.tool.patcher.ui.modules.settings.SearchSettingsFragment;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
 import apk.tool.patcher.ui.widget.FontTextView;
 import apk.tool.patcher.util.Cs;
@@ -221,21 +223,21 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 // Create the fragment only when the activity is created for the first time.
                 // ie. not after orientation changes
-                Snackbar.make(mCard, "This feature has been disabled until next alpha :(", Snackbar.LENGTH_LONG).show();
-//                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(SearchSettingsFragment.FRAGMENT_TAG);
-//                if (fragment == null) {
-//                    fragment = new SearchSettingsFragment();
-//                }
-//                Bundle args = new Bundle();
-//                args.putString(Cs.ARG_PATH_NAME, getProjectDir());
-//                fragment.setArguments(args);
-//
-//                // Запускаем транзакцию
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.content_frame, fragment, SearchSettingsFragment.FRAGMENT_TAG)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .addToBackStack(null)
-//                        .commit();
+                //Snackbar.make(mCard, "This feature has been disabled until next alpha :(", Snackbar.LENGTH_LONG).show();
+                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(SearchSettingsFragment.FRAGMENT_TAG);
+                if (fragment == null) {
+                    fragment = new SearchSettingsFragment();
+                }
+                Bundle args = new Bundle();
+                args.putString(Cs.ARG_PATH_NAME, getProjectDir());
+                fragment.setArguments(args);
+
+                // Запускаем транзакцию
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, fragment, SearchSettingsFragment.FRAGMENT_TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         // Добавляем иконку меню
@@ -270,6 +272,12 @@ public class MainFragment extends Fragment {
                         "#00c853",
                         App.bindString(R.string.menu_buy_premium),
                         ExtendedItems.PREMIUM)
+                );
+                extendedMenuItems.add(new ExtendedMenuItem(
+                        R.drawable.ic_help_outline,
+                        "#3949ab",
+                        App.bindString(R.string.pref_userguide),
+                        ExtendedItems.HELP)
                 );
                 extendedMenuItems.add(new ExtendedMenuItem(
                         R.drawable.ic_info,
@@ -329,6 +337,10 @@ public class MainFragment extends Fragment {
                             case ExtendedItems.PREMIUM:
                                 YandexMetrica.reportEvent("Activation dialog showed");
                                 achk();//PREMIUM ACTIVATION DIALOG
+                                break;
+                            case ExtendedItems.HELP:
+                                YandexMetrica.reportEvent("Help showed");
+                                startActivity(new Intent(getActivity(), HelpActivity.class));
                                 break;
                             default:
                                 break;
@@ -924,10 +936,24 @@ public class MainFragment extends Fragment {
      */
     private void startTaskBy(@Nullable CharSequence baseParam, @NonNull String... ids) {
         if (getProject() == null) {
-            Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.pref_userguide, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getContext(), HelpActivity.class));
+                        }
+                    })
+                    .show();
         } else if (!getProject().isValid()) {
             Snackbar.make(mCard, R.string.message_incorrect_dir,
-                    Snackbar.LENGTH_LONG).show();
+                    Snackbar.LENGTH_LONG)
+                    .setAction(R.string.pref_userguide, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getContext(), HelpActivity.class));
+                        }
+                    })
+                    .show();
         } else {
             getActivity().getSupportFragmentManager()
                     .beginTransaction()

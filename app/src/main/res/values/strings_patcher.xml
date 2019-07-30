@@ -97,7 +97,7 @@
     <string name="patcher_help_4">Instructions for working with the program</string>
     <string name="patcher_help_6"><![CDATA[Instructions for converting dictionaries TranslatorApk -> MT Manager]]></string>
     <string name="patcher_help_7"><![CDATA[Take folder which contains a dictionary, make a backup, for example this <a title=\"Link\" rel=\"nofollow\" href=\"http://4pda.ru/forum/index.php?showtopic=456798&view=findpost&p=23633632\" target=\"_blank\">TranslatorApk</a> and rename it to <b>dic.xml</b>. Select the folder with this file and apply the patch/converter. After the patch, change the file format to .<b>mtd</b>. With dic.xml to dic.mtd. The file name can also be changed. All, now this dictionary can be used in <i>MT Manager</i>]]></string>
-    <string name="pref_userguide">User guide</string>
+    <string name="pref_userguide">Help &amp; tips</string>
     <string name="caption_main_menu">Main menu</string>
     <string name="message_wait">Please wait</string>
     <string name="caption_set_folder">Are you sure?</string>
@@ -144,4 +144,9 @@
     <string name="vendor_warn">ApkToolPatcher is distributed on the principle \'AS IS\'. The developers of ApkToolPatcher make no warranty, Express or implied, that the application will run on firmware other than AOSP. The application is developed taking into account the changes of the last stable branch of the Android Open Source Project, and is not optimized for custom implementation of vendors.  If errors occur, make sure to use the latest firmware available for your device. If possible, check the bug on other devices with clean Android from Google</string>
     <string name="caption_vendor_warn">A little bit about MIUI/EMUI/OneUI/Flyme and firmware based on them</string>
     <string name="no_app_to_open">Нет приложений для открытия %s</string>
+    <string name="help_warning">You have chosen to create a new question, we recommend that you first make sure that you have not already asked such a question before you create a ticket.</string>
+    <string name="caption_issues">Creating an issue</string>
+    <string name="check_issue">Check</string>
+    <string name="create_issue">Create an issue</string>
+
 </resources>

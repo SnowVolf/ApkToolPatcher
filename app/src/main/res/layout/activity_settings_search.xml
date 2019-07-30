@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
@@ -26,7 +26,7 @@
                 android:textColor="?icon_color"
                 android:textSize="20sp" />
 
-        </com.google.android.material.appbar.MaterialToolbar>
+        </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.card.MaterialCardView
             style="?cardStyle"
@@ -88,14 +88,14 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.checkbox.MaterialCheckBox
+                <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/checkre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/label_re" />
 
-                <com.google.android.material.checkbox.MaterialCheckBox
+                <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/checkignorecase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,12 +125,12 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <com.google.android.material.chip.ChipGroup
                     android:id="@+id/listext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="vertical" />
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addext"
@@ -171,7 +171,7 @@
         android:padding="32dp"
         android:visibility="gone">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/magnify" />

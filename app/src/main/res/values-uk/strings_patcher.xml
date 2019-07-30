@@ -97,7 +97,7 @@
     <string name="patcher_help_4">Інструкція по користуваню ApkTool Patcher</string>
     <string name="patcher_help_6">Інструкція по конвертації словників TranslatorApk -> MT Manager</string>
     <string name="patcher_help_7">"Беремо словник, робимо бекап, наприклад цей &lt;a title = \"Посилання\" rel = \"nofollow\" href = \"http://4pda.ru/forum/index.php?showtopic=456798&amp;view=findpost&amp;p=23633632\" target = \"_ blank\" > TranslatorApk &lt;/a> і перейменовуємо його в &lt;b>dic.xml&lt;/b>. Вибираємо папку з цим файлом і застосовуємо патч/конвертер. Після закінчення патчингу, змінюємо формат файлу на. &lt;B>mtd&lt;/b>. З dic.xml на dic.mtd. Ім'я файлу теж можна змінити. Все, тепер цей словник можна використовувати в &lt;i>MT Manager&lt;/i>"</string>
-    <string name="pref_userguide">Інструкції</string>
+    <string name="pref_userguide">Помощь и советы</string>
     <string name="caption_main_menu">Головне меню</string>
     <string name="message_wait">Будь ласка, зачекайте</string>
     <string name="caption_set_folder">Ви впевнені?</string>
@@ -133,4 +133,9 @@
     <string name="vendor_warn">ApkToolPatcher поширюється за принципом \'ЯК Є\' (AS IS). Розробники ApkToolPatcher не дають ніяких гарантій, явних чи припущених, що додаток буде працювати на прошивках відмінних від AOSP. Програма розробляється з урахуванням змін останньої стабільної гілки Android Open Source Project, і не оптимізується під кастомні імплементації вендорів.  При виникненні помилок, переконайтеся в тому, що використовуйте останню версію прошивки доступну для вашого пристрою. По можливості, перевірте виникнення бага на інших пристроях з чистим Android від Google</string>
     <string name="caption_vendor_warn">Трохи про MIUI/EMUI/OneUI/Flyme і прошивках заснованих на них</string>
     <string name="no_app_to_open">Нет приложений для открытия %s</string>
+    <string name="help_warning">You have chosen to create a new question, we recommend that you first make sure that you have not already asked such a question before you create a ticket.</string>
+    <string name="caption_issues">Creating an issue</string>
+    <string name="check_issue">Check</string>
+    <string name="create_issue">Create an issue</string>
+
 </resources>

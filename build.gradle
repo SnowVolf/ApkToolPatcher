@@ -1,5 +1,4 @@
 import java.nio.file.Files
-import java.security.SecureRandom
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
@@ -10,6 +9,7 @@ buildscript {
         jcenter()
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
@@ -24,9 +24,8 @@ allprojects {
         jcenter()
         google()
         mavenCentral()
-        maven {
-            url 'https://dl.bintray.com/kishanvaghela/maven/'
-        }
+        maven { url 'https://jitpack.io' }
+
     }
 }
 
