@@ -14,6 +14,8 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.mozilla.universalchardet.UniversalDetector;
 
 import java.io.BufferedInputStream;
@@ -94,10 +96,10 @@ public class Search extends SwipeBackActivity implements GrepView.Callback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mPrefs = Prefs.loadPrefes(this);
-        setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
         setContentView(R.layout.activity_search_result);
+
+        setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
 
         if (mPrefs.mDirList.size() == 0) {
             Toast.makeText(getApplicationContext(), R.string.label_no_target_dir, Toast.LENGTH_LONG).show();
@@ -204,7 +206,7 @@ public class Search extends SwipeBackActivity implements GrepView.Callback {
                 mAdapter.notifyDataSetChanged();
             }
             mGrepView.setSelection(0);
-            Toast.makeText(getApplicationContext(), result ? R.string.grep_finished : R.string.grep_canceled, Toast.LENGTH_LONG).show();
+            Snackbar.make(mGrepView, result ? R.string.grep_finished : R.string.grep_canceled, Snackbar.LENGTH_SHORT).show();
             mData = null;
             mAdapter = null;
             mTask = null;

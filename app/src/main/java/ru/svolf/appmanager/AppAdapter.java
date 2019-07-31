@@ -1,15 +1,8 @@
 package ru.svolf.appmanager;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +10,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,6 +26,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
     private List<AppInfo> appList;
     private List<AppInfo> appListSearch;
     private Context context;
+    Drawable drawable1;
 
     public AppAdapter(List<AppInfo> appList, Context context) {
         this.appList = appList;
@@ -151,21 +144,28 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
                 .getPackageInfo(pkgName, PackageManager.GET_META_DATA).versionName;
     }
 
-    private Drawable getIcon(AppInfo appInfo) {
-        if (UtilsApp.getIconFromCache(context, appInfo) != context.getDrawable(R.mipmap.ic_launcher)) {
-            Toast.makeText(context, "ICON NULL", Toast.LENGTH_SHORT).show();
-            try {
-                if (UtilsApp.saveIconToCache(context, appInfo)) {
-                    Toast.makeText(context, "ICON SAVED", Toast.LENGTH_SHORT).show();
-                    return UtilsApp.getIconFromCache(context, appInfo);
+    private Drawable getIcon(final AppInfo appInfo) {
+        App.runInParallel(new App.CustomAsyncCallbacks<AppInfo, Drawable>(null) {
+            @Override
+            public Drawable doInBackground() {
+                try {
+                    return context.getPackageManager()
+                            .getPackageInfo(appInfo.getPackageName(), PackageManager.GET_META_DATA)
+                            .applicationInfo.loadIcon(context.getPackageManager());
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                Toast.makeText(context, "SUKAAAAA\n\n"+ e, Toast.LENGTH_LONG).show();
-                e.printStackTrace();
+                return null;
             }
-        }
-        Toast.makeText(context, "PIZDA RULYI", Toast.LENGTH_SHORT).show();
-        return context.getDrawable(R.mipmap.ic_launcher);
+
+            @Override
+            public void onPostExecute(Drawable drawable) {
+                super.onPostExecute(drawable);
+                drawable1 = drawable;
+            }
+        });
+
+        return drawable1;
     }
 
 }
