@@ -90,13 +90,6 @@
     <string name="pref_experimental_sub">Ці функції є експериментальними. Вони можуть бути нестабільними чи зникнуть з часом</string>
     <string name="history">Історія</string>
     <string name="donate_addr_copied">Реквізити рахунку скопійовані в буфер обміну</string>
-    <string name="patcher_help_1">&lt;b>ApkToolPatcher&lt;/b> є другорядним інструментом для редагування додатків під Android OS.</string>
-    <string name="patcher_help_2">ApkToolPatcher - працює &lt;b>ТІЛЬКИ&lt;/b> з готовим проектом, отриманим після декомпіляцію додатка за допомогою ApkTool.</string>
-    <string name="patcher_help_3">Розробник ApkToolPatcher намагається повністю автоматизувати вашу роботу, за принципом \"вибрав проект -> натиснув на кнопку патча\" !</string>
-    <string name="patcher_help_5">"- Декомпілюєм apk за допомогою ApkTool. Наприклад у Вас є &lt;b>test.apk&lt;/b> після декомпіляції з'явиться папка &lt;b>test_src&lt;/b> - це і буде папка проекту.&lt;br>- Вкажіть шлях до папки з проектом.&lt;br>- Натисніть кнопку потрібного патча.&lt;br>- Дочекайтеся повідомлення про закінчення або повідомлення про помилку.&lt;br>- Відкрийте ApkTool.&lt;br>- Зберіть проект. &lt;br> Патчі з відміткою \"***\" - актуальні під проекти для ApkEditor. &lt;br> &lt;a href=\"http://4pda.ru/forum/index.php?showtopic=882654&amp;view=findpost&amp;p=69690051\">Відеоінструкція&lt;/a> від користувача &lt;a href=\"http://4pda.ru/forum/index.php?showuser=3257189\">InternetMC&lt;/a>"</string>
-    <string name="patcher_help_4">Інструкція по користуваню ApkTool Patcher</string>
-    <string name="patcher_help_6">Інструкція по конвертації словників TranslatorApk -> MT Manager</string>
-    <string name="patcher_help_7">"Беремо словник, робимо бекап, наприклад цей &lt;a title = \"Посилання\" rel = \"nofollow\" href = \"http://4pda.ru/forum/index.php?showtopic=456798&amp;view=findpost&amp;p=23633632\" target = \"_ blank\" > TranslatorApk &lt;/a> і перейменовуємо його в &lt;b>dic.xml&lt;/b>. Вибираємо папку з цим файлом і застосовуємо патч/конвертер. Після закінчення патчингу, змінюємо формат файлу на. &lt;B>mtd&lt;/b>. З dic.xml на dic.mtd. Ім'я файлу теж можна змінити. Все, тепер цей словник можна використовувати в &lt;i>MT Manager&lt;/i>"</string>
     <string name="pref_userguide">Помощь и советы</string>
     <string name="caption_main_menu">Головне меню</string>
     <string name="message_wait">Будь ласка, зачекайте</string>

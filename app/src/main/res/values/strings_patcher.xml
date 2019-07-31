@@ -90,13 +90,6 @@
     <string name="donate_addr_copied">Account details are copied to the clipboard</string>
 
     <!-- Help -->
-    <string name="patcher_help_1"><![CDATA[<b>ApkToolPatcher</b> Is a secondary tool for editing applications under Android OS.]]></string>
-    <string name="patcher_help_2"><![CDATA[ApkToolPatcher works <b>ONLY</b> with the finished project obtained after decompiling the application using ApkTool.]]></string>
-    <string name="patcher_help_3"><![CDATA[The developer of ApkToolPatcher tries to fully automate your work, according to the principle \"chose the project -> pressed the patch button\"!]]></string>
-    <string name="patcher_help_5"><![CDATA[- Decompile the apk using ApkTool. For example, you have <b>test.apk</b> after decompiling, <b>test_src</b> folder will appear, - this will be the project folder. <br>- Specify the path to the project folder. <br>- Press the desired patch button. <br>- Wait for the end message or error message. <br>- Open ApkTool. <br>- Build the project. Patches marked with the Android head icon are relevant for ApkEditor projects.<br> <a href=\"http://4pda.ru/forum/index.php?showtopic=882654&view=findpost&p=69690051\">Video tutorial</a> by <a href=\"http://4pda.ru/forum/index.php?showuser=3257189\">InternetMC</a>]]></string>
-    <string name="patcher_help_4">Instructions for working with the program</string>
-    <string name="patcher_help_6"><![CDATA[Instructions for converting dictionaries TranslatorApk -> MT Manager]]></string>
-    <string name="patcher_help_7"><![CDATA[Take folder which contains a dictionary, make a backup, for example this <a title=\"Link\" rel=\"nofollow\" href=\"http://4pda.ru/forum/index.php?showtopic=456798&view=findpost&p=23633632\" target=\"_blank\">TranslatorApk</a> and rename it to <b>dic.xml</b>. Select the folder with this file and apply the patch/converter. After the patch, change the file format to .<b>mtd</b>. With dic.xml to dic.mtd. The file name can also be changed. All, now this dictionary can be used in <i>MT Manager</i>]]></string>
     <string name="pref_userguide">Help &amp; tips</string>
     <string name="caption_main_menu">Main menu</string>
     <string name="message_wait">Please wait</string>
@@ -117,8 +110,6 @@
     <string name="inspector_src_dex_count">DEX volumes count</string>
     <string name="inspector_multidexed">Project includes %d DEX volumes</string>
     <string name="inspector_one_dex">Project is not supported by MultiDex</string>
-    <string name="tab_apps_user">User apps (%d)</string>
-    <string name="tab_apps_system">System apps (%d)</string>
     <string name="no_data">No data</string>
     <string name="no_data_desc">NO..U)))</string>
     <string name="message_apktool_not_found"><![CDATA[ApkTool not found, here is some cases:<br><br>- apktool is not installed on the device<br>- apktool GUI has been installed, but package name does not equal: <b>per.pqy.apktool</b><br>- App failed to get applications data by your system restrictions. For example: <i>(XPrivacy for Xposed/AppOpsXposed/etc.)</i><br><br>You can choose a different ways]]></string>

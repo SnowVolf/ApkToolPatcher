@@ -1,4 +1,4 @@
-package apk.tool.patcher.ui.modules.apps;
+package ru.svolf.rxmanager;
 
 
 import android.content.Intent;
@@ -35,6 +35,9 @@ import apk.tool.patcher.filesystem.FastFs;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.swipeback.SwipeBackFragment;
+import ru.svolf.rxmanager.adapter.ExtendedAppAdapter;
+import ru.svolf.rxmanager.adapter.SimpleAppAdapter;
+import ru.svolf.rxmanager.data.AppInfoItem;
 
 public class AppsDetailsFragment extends SwipeBackFragment {
     public static final String FRAGMENT_TAG = "apps-details-fragment";

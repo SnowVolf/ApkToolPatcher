@@ -94,6 +94,5 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <!-- Transitions -->
-    <string name="transition_app_icon" translatable="false">App Icon Transition</string>
 
 </resources>

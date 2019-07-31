@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/magnify"
+        android:orderInCategory="1"
+        android:title="@string/caption_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_analyze_not_installed"
+        android:orderInCategory="1"
+        android:title="Загрузить APK из файла"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_filter_list"
+        android:title="Фильтр"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group
+                android:checkableBehavior="single"
+                android:title="Фмльтр"
+                app:showAsAction="ifRoom|withText">
+                <item
+                    android:id="@+id/menu_show_all_apps"
+                    android:checked="true"
+                    android:title="Все приложения" />
+                <item
+                    android:id="@+id/menu_show_google_play_apps"
+                    android:title="Из Google Play" />
+                <item
+                    android:id="@+id/menu_show_amazon_store_apps"
+                    android:title="Из Amazon Store" />
+                <item
+                    android:id="@+id/menu_show_system_pre_installed_apps"
+                    android:title="Системные" />
+                <item
+                    android:id="@+id/menu_show_unknown_source_apps"
+                    android:title="Неизвестные источники" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

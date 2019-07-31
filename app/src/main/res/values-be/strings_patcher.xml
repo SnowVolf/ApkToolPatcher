@@ -103,13 +103,6 @@
     <string name="pref_experimental_sub">Эти функции являются экспериментальными. Они могут перестать работать или исчезнут со временем</string>
     <string name="history">История</string>
     <string name="donate_addr_copied">Реквизиты счёта скопированы в буфер обмена</string>
-    <string name="patcher_help_1"><![CDATA[<b>ApkToolPatcher</b> является второстепенным инструментом для редактирования приложений под Android OS.]]></string>
-    <string name="patcher_help_2"><![CDATA[ApkToolPatcher - работает <b>ТОЛЬКО</b> с готовым проектом, полученным после декомпиляции приложения с помощью ApkTool.]]></string>
-    <string name="patcher_help_3"><![CDATA[Разработчик ApkToolPatcher пытается полностью автоматизировать вашу работу, по принципу \"выбрал проект -> нажал на кнопку патча\"!]]></string>
-    <string name="patcher_help_5"><![CDATA[— Декомпилируем apk с помощью ApkTool. Например у Вас имеется <b>test.apk</b> после декомпиляции появится папка <b>test_src</b> - это и будет папка проекта. <br>— Укажите путь до папки с проектом. <br>— Нажмите кнопку нужного патча. <br>— Дождитесь сообщения об окончании или сообщение об ошибке. <br>— Откройте ApkTool. <br>— Соберите проект. <br>Патчи с отметкой \"***\" - актуальны под проекты для ApkEditor.<br> <a href=\"http://4pda.ru/forum/index.php?showtopic=882654&view=findpost&p=69690051\">Видеоинструкция</a> от пользователя <a href=\"http://4pda.ru/forum/index.php?showuser=3257189\">InternetMC</a>]]></string>
-    <string name="patcher_help_4">Инструкция по работе с программой</string>
-    <string name="patcher_help_6"><![CDATA[Инструкция по конвертации словарей TranslatorApk -> MT Manager]]></string>
-    <string name="patcher_help_7"><![CDATA[Берём словарь, делаем бэкап, например этот <a title=\"Ссылка\" rel=\"nofollow\" href=\"http://4pda.ru/forum/index.php?showtopic=456798&view=findpost&p=23633632\" target=\"_blank\">TranslatorApk</a> и переименовываем его в <b>dic.xml</b>. Выбираем папку с этим файлом и применяем патч/конвертер. После окончания патча, меняем формат файла на .<b>mtd</b>. С dic.xml на dic.mtd. Имя файла тоже можно поменять. Всё, теперь этот словарь можно использовать в <i>MT Manager</i>]]></string>
     <string name="pref_userguide">Помощь и советы</string>
     <string name="caption_main_menu">Главное меню</string>
     <string name="message_wait">Пожалуйста, подождите</string>
@@ -131,8 +124,6 @@
     <string name="inspector_src_dex_count">Количество томов DEX</string>
     <string name="inspector_multidexed">Проект содержит %d томов DEX</string>
     <string name="inspector_one_dex">Проект не имеет поддержки MultiDex</string>
-    <string name="tab_apps_user">Пользовательские (%d)</string>
-    <string name="tab_apps_system">Системные (%d)</string>
     <string name="no_data">Нет данных</string>
     <string name="no_data_desc">НЛО прилетело и оставило эту надпись здесь</string>
     <string name="message_apktool_not_found"><![CDATA[ApkTool не найден, вот возможные причины:<br><br>- apktool не установлен на устройстве<br>- apktool GUI установлен, но имя пакета отличается от стандартного <b>per.pqy.apktool</b><br>- Вы ограничили доступ к списку установленных приложений <i>(XPrivacy для Xposed/AppOpsXposed/etc.)</i><br><br>Вы можете выбрать несколько вариантов]]></string>

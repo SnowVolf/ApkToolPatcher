@@ -1,6 +1,5 @@
-package apk.tool.patcher.ui.modules.apps;
+package ru.svolf.rxmanager.adapter;
 
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,12 @@ import java.util.List;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.util.TextUtil;
+import ru.svolf.rxmanager.data.AppInfoItem;
 
-public class ExtendedAppAdapter extends RecyclerView.Adapter<ExtendedAppAdapter.ViewHolder> {
+public class SimpleAppAdapter extends RecyclerView.Adapter<SimpleAppAdapter.ViewHolder> {
     private List<AppInfoItem> items;
 
-    public ExtendedAppAdapter(List<AppInfoItem> items) {
+    public SimpleAppAdapter(List<AppInfoItem> items) {
         this.items = items;
     }
 
@@ -28,9 +28,9 @@ public class ExtendedAppAdapter extends RecyclerView.Adapter<ExtendedAppAdapter.
 
     @NonNull
     @Override
-    public ExtendedAppAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SimpleAppAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_app_simple, parent, false);
-        return new ExtendedAppAdapter.ViewHolder(v);
+        return new SimpleAppAdapter.ViewHolder(v);
     }
 
     @Override
@@ -39,20 +39,11 @@ public class ExtendedAppAdapter extends RecyclerView.Adapter<ExtendedAppAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SimpleAppAdapter.ViewHolder holder, int position) {
         final AppInfoItem item = getItem(position);
 
         assert item != null;
-        if (position % 2 != 0) {
-            holder.code.setText(item.getContent());
-        } else {
-            holder.code.setText(item.getContent());
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                holder.code.setTextAppearance(R.style.TextAppearance_AppCompat_Body2);
-            } else {
-                holder.code.setTextAppearance(holder.itemView.getContext(), R.style.TextAppearance_AppCompat_Body2);
-            }
-        }
+        holder.code.setText(item.getContent());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

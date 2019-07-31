@@ -76,7 +76,6 @@ import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.RegexpRepository;
 import apk.tool.patcher.util.StreamUtil;
 import apk.tool.patcher.util.TextUtil;
-import ru.svolf.appmanager.AppManagerFragment;
 import ru.svolf.melissa.AdvancedItems;
 import ru.svolf.melissa.ExtendedItems;
 import ru.svolf.melissa.MenuItems;
@@ -89,6 +88,7 @@ import ru.svolf.melissa.fragment.dialog.SweetWaitDialog;
 import ru.svolf.melissa.model.AdvancedItem;
 import ru.svolf.melissa.model.ExtendedMenuItem;
 import ru.svolf.melissa.model.MenuItem;
+import ru.svolf.rxmanager.AppListFragment;
 import sun.security.pkcs.PKCS7;
 
 /**
@@ -322,13 +322,13 @@ public class MainFragment extends Fragment {
                                 YandexMetrica.reportEvent("Apps List screen clicked");
                                 // Create the fragment only when the activity is created for the first time.
                                 // ie. not after orientation changes
-                                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(AppManagerFragment.FRAGMENT_TAG);
+                                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(AppListFragment.FRAGMENT_TAG);
                                 if (fragment == null) {
-                                    fragment = new AppManagerFragment();
+                                    fragment = new AppListFragment();
                                 }
                                 // Запускаем транзакцию
                                 getActivity().getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.content_frame, fragment, AppManagerFragment.FRAGMENT_TAG)
+                                        .replace(R.id.content_frame, fragment, AppListFragment.FRAGMENT_TAG)
                                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                                         .addToBackStack(null)
                                         .commit();

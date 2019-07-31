@@ -1,4 +1,4 @@
-package apk.tool.patcher.ui.modules.apps;
+package ru.svolf.rxmanager.data;
 
 public class AppInfoItem {
     private String content;
