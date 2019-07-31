@@ -1,7 +1,6 @@
 package jp.sblo.pandora.aGrep;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +32,7 @@ import java.util.regex.Pattern;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.main.MainActivity;
+import ru.svolf.melissa.fragment.dialog.SweetWaitDialog;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
@@ -166,7 +166,7 @@ public class Search extends SwipeBackActivity implements GrepView.Callback {
     }
 
     class GrepTask extends AsyncTask<String, GrepView.Data, Boolean> {
-        private ProgressDialog mProgressDialog;
+        private SweetWaitDialog mProgressDialog;
         private int mFileCount = 0;
         private int mFoundcount = 0;
         private boolean mCancelled;
@@ -174,11 +174,9 @@ public class Search extends SwipeBackActivity implements GrepView.Callback {
         @Override
         protected void onPreExecute() {
             mCancelled = false;
-            mProgressDialog = new ProgressDialog(Search.this);
+            mProgressDialog = new SweetWaitDialog(Search.this);
             mProgressDialog.setTitle(R.string.grep_spinner);
             mProgressDialog.setMessage(mQuery);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             mProgressDialog.setCancelable(true);
             mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 

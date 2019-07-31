@@ -129,11 +129,10 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
     }
 
     @Override
-    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+    public void onItemClick(AdapterView<?> arg0, View convertView, int arg2, long arg3) {
         // テキストのコピー
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        View view = arg1;
-        TextView txt = view.findViewById(R.id.ListIndex);
+        TextView txt = convertView.findViewById(R.id.ListIndex);
         ClipData clip = ClipData.newPlainText("aGrep Text Viewer", txt.getText());
         cm.setPrimaryClip(clip);
 

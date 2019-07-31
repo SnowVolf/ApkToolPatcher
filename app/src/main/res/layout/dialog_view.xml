@@ -33,16 +33,16 @@
         android:layout_marginBottom="8dp"
         android:orientation="horizontal">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/negative"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/positive"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false" />

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:fontFamily="@font/source_code_pro"
-        android:background="#12A5A5A5"
+        android:background="#41AAAAAA"
         tools:text="1299"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
