@@ -6,23 +6,34 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="?colorPrimary"
-        app:navigationIcon="@drawable/back">
+        android:layout_height="100dp"
+        android:background="?colorPrimary">
 
-        <apk.tool.patcher.ui.widget.FontTextView
-            android:id="@+id/toolbar_text"
+        <TextView
+            android:id="@+id/caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:maxLines="1"
             android:text="@string/caption_search_results"
-            android:textColor="?icon_color"
-            android:textSize="20sp" />
-    </androidx.appcompat.widget.Toolbar>
+            android:textSize="28sp" />
 
+        <!--<com.google.android.material.button.MaterialButton-->
+            <!--android:visibility="visible"-->
+            <!--android:id="@+id/button_addition"-->
+            <!--style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_margin="8dp"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:text="@string/history" />-->
+
+    </RelativeLayout>
 
     <jp.sblo.pandora.aGrep.GrepView
         android:id="@+id/DicView01"

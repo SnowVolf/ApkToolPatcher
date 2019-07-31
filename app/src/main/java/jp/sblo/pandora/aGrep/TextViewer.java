@@ -30,9 +30,10 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.BaseActivity;
+import ru.svolf.melissa.swipeback.SwipeBackActivity;
+import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
-public class TextViewer extends BaseActivity implements OnItemLongClickListener, OnItemClickListener {
+public class TextViewer extends SwipeBackActivity implements OnItemLongClickListener, OnItemClickListener {
     public static final String EXTRA_LINE = "line";
     public static final String EXTRA_QUERY = "query";
     public static final String EXTRA_PATH = "path";
@@ -51,7 +52,7 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_viewer);
-
+        setEdgeLevel(SwipeBackLayout.EdgeLevel.MIN);
         mPrefs = Prefs.loadPrefes(getApplicationContext());
         mTextPreview = findViewById(R.id.TextPreview);
 
@@ -71,7 +72,8 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
                     mPatternText = Search.escapeMetaChar(mPatternText);
                 }
 
-                setTitle(mPath);
+                TextView caption = findViewById(R.id.caption);
+                caption.setText(mPath.substring(mPath.lastIndexOf("/") + 1));
                 mTask = new TextLoadTask();
                 mTask.execute(mPath);
             }

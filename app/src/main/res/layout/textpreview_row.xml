@@ -29,6 +29,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@+id/TextView01"
-        android:fontFamily="@font/source_code_pro"
+        android:fontFamily="@font/monaco"
         tools:text="Lorem ipsum dolor sit amet"/>
 </LinearLayout>

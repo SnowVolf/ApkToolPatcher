@@ -12,11 +12,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-
-import androidx.appcompat.widget.Toolbar;
 
 import org.mozilla.universalchardet.UniversalDetector;
 
@@ -34,13 +30,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.BaseActivity;
 import apk.tool.patcher.ui.modules.main.MainActivity;
+import ru.svolf.melissa.swipeback.SwipeBackActivity;
+import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 
 @SuppressLint("DefaultLocale")
-public class Search extends BaseActivity implements GrepView.Callback {
-    private Toolbar mToolbar;
+public class Search extends SwipeBackActivity implements GrepView.Callback {
     private GrepView mGrepView;
     private GrepView.GrepAdapter mAdapter;
     private ArrayList<GrepView.Data> mData;
@@ -100,7 +96,7 @@ public class Search extends BaseActivity implements GrepView.Callback {
         super.onCreate(savedInstanceState);
 
         mPrefs = Prefs.loadPrefes(this);
-
+        setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
         setContentView(R.layout.activity_search_result);
 
         if (mPrefs.mDirList.size() == 0) {
@@ -108,16 +104,9 @@ public class Search extends BaseActivity implements GrepView.Callback {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-        mToolbar = findViewById(R.id.toolbar);
         mGrepView = findViewById(R.id.DicView01);
         mData = new ArrayList<>();
         mAdapter = new GrepView.GrepAdapter(this, R.layout.list_row, R.id.DicView01, mData);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                finish();
-            }
-        });
         mGrepView.setAdapter(mAdapter);
         mGrepView.setCallback(this);
 
@@ -172,16 +161,6 @@ public class Search extends BaseActivity implements GrepView.Callback {
     @Override
     public boolean onGrepItemLongClicked(int position) {
         return false;
-    }
-
-    public boolean onMenuItem(int featureId, MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onMenuItemSelected(featureId, item);
     }
 
     class GrepTask extends AsyncTask<String, GrepView.Data, Boolean> {

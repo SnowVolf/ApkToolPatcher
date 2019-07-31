@@ -43,8 +43,10 @@ import apk.tool.patcher.util.Cs;
 import jp.sblo.pandora.aGrep.CheckedString;
 import jp.sblo.pandora.aGrep.Prefs;
 import jp.sblo.pandora.aGrep.Search;
+import ru.svolf.melissa.swipeback.SwipeBackFragment;
+import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
-public class SearchSettingsFragment extends Fragment {
+public class SearchSettingsFragment extends SwipeBackFragment {
     public static final String FRAGMENT_TAG = "search_settings_fragment";
     public LinearLayout mContainer, mNotFound;
     private ChipGroup mExtListView;
@@ -57,9 +59,8 @@ public class SearchSettingsFragment extends Fragment {
     private FloatingActionButton mFab;
     private View.OnLongClickListener mExtListener;
     private CompoundButton.OnCheckedChangeListener mCheckListener;
-    private Toolbar toolbar;
     private ImageButton clearBtn;
-    private Button btnAddExt;
+    private Button btnAddExt, btnHistory;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,13 +73,14 @@ public class SearchSettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_settings_search, container, false);
-        return rootView;
+        return attachToSwipeBack(rootView);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         // TODO: Implement mContext method
         super.onViewCreated(view, savedInstanceState);
+        setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
         mPrefs = Prefs.loadPrefes(mContext);
 
         mPrefs.mHighlightBg = App.getColorFromAttr(mContext, R.attr.colorPrimary);
@@ -91,9 +93,8 @@ public class SearchSettingsFragment extends Fragment {
 
         mContainer = view.findViewById(R.id.search_container);
         mNotFound = view.findViewById(R.id.not_found);
-        toolbar = mContainer.findViewById(R.id.toolbar);
+        btnHistory = mContainer.findViewById(R.id.button_addition);
 
-        toolbar.inflateMenu(R.menu.menu_history);
         mFab = view.findViewById(R.id.fab);
         chkRegexp = view.findViewById(R.id.checkre);
         chkIgnoreCase = view.findViewById(R.id.checkignorecase);
@@ -108,12 +109,6 @@ public class SearchSettingsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         final AutoCompleteTextView searchField = rootView.findViewById(R.id.EditText01);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
 
         clearBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
@@ -272,15 +267,10 @@ public class SearchSettingsFragment extends Fragment {
         mRecentAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
         searchField.setAdapter(mRecentAdapter);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_history:
-                        searchField.showDropDown();
-                        return true;
-                }
-                return false;
+            public void onClick(View item) {
+                searchField.showDropDown();
             }
         });
     }

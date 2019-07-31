@@ -24,7 +24,7 @@ public class HelpActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         webView = findViewById(R.id.help);
-        Button issue = findViewById(R.id.button_issue);
+        Button issue = findViewById(R.id.button_addition);
         setEdgeLevel(SwipeBackLayout.EdgeLevel.MIN);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
