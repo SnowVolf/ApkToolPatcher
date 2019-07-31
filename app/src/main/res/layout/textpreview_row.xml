@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<apk.tool.patcher.ui.widget.FontTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ListIndex"
-    android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@+id/TextView01"></apk.tool.patcher.ui.widget.FontTextView>
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:includeFontPadding="false"
+        android:id="@+id/ListIndexNum"
+        android:textSize="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/source_code_pro"
+        android:background="#12A5A5A5"
+        tools:text="1299"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        tools:ignore="SmallSp" />
+    <TextView
+        android:includeFontPadding="false"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:id="@+id/ListIndex"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+id/TextView01"
+        android:fontFamily="@font/source_code_pro"
+        tools:text="Lorem ipsum dolor sit amet"/>
+</LinearLayout>

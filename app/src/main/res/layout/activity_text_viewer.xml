@@ -4,23 +4,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <!---
-    <ScrollView
-      android:id="@+id/scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-      android:fillViewport="true"
-    >
-    <apk.tool.patcher.ui.widget.FontTextView
-      android:id="@+id/textedit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top|left"
-        android:textColor="#F000"
-        android:background="#ffff"
-        />
-    </ScrollView>
-     -->
     <jp.sblo.pandora.aGrep.TextPreview
         android:id="@+id/TextPreview"
         android:layout_width="fill_parent"

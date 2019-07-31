@@ -71,7 +71,7 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
                     mPatternText = Search.escapeMetaChar(mPatternText);
                 }
 
-                setTitle(mPath + " - aGrep");
+                setTitle(mPath);
                 mTask = new TextLoadTask();
                 mTask.execute(mPath);
             }
@@ -206,7 +206,7 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
         protected void onPostExecute(Boolean result) {
             if (result) {
 
-                TextPreview.Adapter adapter = new TextPreview.Adapter(getApplicationContext(), R.layout.textpreview_row, R.id.TextPreview, mData);
+                TextPreview.Adapter adapter = new TextPreview.Adapter(TextViewer.this, R.layout.textpreview_row, R.id.TextPreview, mData);
                 mData = null;
 
                 Pattern pattern;
@@ -217,7 +217,7 @@ public class TextViewer extends BaseActivity implements OnItemLongClickListener,
                     pattern = Pattern.compile(mPatternText);
                 }
 
-                adapter.setFormat(pattern, mPrefs.mHighlightFg, mPrefs.mHighlightBg, mPrefs.mFontSize);
+                adapter.setFormat(pattern, mPrefs.mHighlightFg, mPrefs.mHighlightBg);
                 mTextPreview.setAdapter(adapter);
 
                 int height = mTextPreview.getHeight();

@@ -5,12 +5,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import apk.tool.patcher.App;
@@ -18,27 +18,25 @@ import apk.tool.patcher.R;
 
 public class TextPreview extends ListView {
 
-
     public TextPreview(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(context);
+        init();
     }
 
     public TextPreview(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     public TextPreview(Context context) {
         super(context);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         setSmoothScrollbarEnabled(true);
         setScrollingCacheEnabled(true);
         setFocusable(true);
-        setBackgroundColor(ContextCompat.getColor(context, R.color.light_colorBackground));
         setFocusableInTouchMode(true);
         setFastScrollEnabled(true);
         setDividerHeight(0);
@@ -46,7 +44,6 @@ public class TextPreview extends ListView {
 
     static class Adapter extends ArrayAdapter<CharSequence> {
 
-        private int mFontSize;
         private Pattern mPattern;
         private int mFgColor;
         private int mBgColor;
@@ -57,25 +54,24 @@ public class TextPreview extends ListView {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView view = (TextView) convertView;
-            final int padding = App.dpToPx(16);
-            view.setPadding(padding, (padding / 2), padding, (padding / 2));
+            LinearLayout view = (LinearLayout) convertView;
             if (view == null) {
-                view = (TextView) inflate(getContext(), R.layout.textpreview_row, null);
-                view.setTextSize(mFontSize);
+                view = (LinearLayout) inflate(getContext(), R.layout.textpreview_row, null);
             }
             CharSequence d = getItem(position);
 
-            view.setText(Search.highlightKeyword(d, mPattern, mFgColor, mBgColor));
+            TextView num = view.findViewById(R.id.ListIndexNum);
+            TextView text = view.findViewById(R.id.ListIndex);
+            num.setText(String.format(Locale.ENGLISH, "%04d", (position + 1)));
+            text.setText(Search.highlightKeyword(d, mPattern, mFgColor, App.getColorFromAttr(getContext(), R.attr.colorAccent)));
 
             return view;
         }
 
-        public void setFormat(Pattern pattern, int fg, int bg, int size) {
+        public void setFormat(Pattern pattern, int fg, int bg) {
             mPattern = pattern;
             mFgColor = fg;
             mBgColor = bg;
-            mFontSize = size;
         }
     }
 

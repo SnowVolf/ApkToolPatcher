@@ -146,7 +146,7 @@ public class Search extends BaseActivity implements GrepView.Callback {
 
                 if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
                     mData.removeAll(mData);
-                    mAdapter.setFormat(mPattern, mPrefs.mHighlightFg, mPrefs.mHighlightBg, mPrefs.mFontSize);
+                    mAdapter.setFormat(mPattern, mPrefs.mHighlightFg);
                     mTask = new GrepTask();
                     mTask.execute(mQuery);
                 }

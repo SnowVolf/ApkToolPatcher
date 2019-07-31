@@ -4,13 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?prefCardsBackground">
+
+    <View
+        android:id="@+id/shadowTop"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/shadowBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="39dp"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintBottom_toTopOf="@+id/ListPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/shadowTop" />
 
     <apk.tool.patcher.ui.widget.FontTextView
         android:id="@+id/ListIndex"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:paddingTop="16dp"
         android:paddingBottom="4dp"
         android:text="@+id/TextView01"
@@ -20,6 +42,8 @@
         app:layout_constraintStart_toEndOf="@+id/ListIndexNum"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
+        android:textSize="14sp"
+        android:maxLines="1"
         tools:text="Test.smali" />
 
 
@@ -37,16 +61,19 @@
         app:layout_constraintTop_toTopOf="@+id/ListPhone"
         tools:text="9" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <TextView
         android:id="@+id/ListPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/source_code_pro"
+        android:textSize="12sp"
         android:text="@+id/TextView02"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ListIndexNum"
-        app:layout_constraintTop_toBottomOf="@+id/ListIndex"
+        app:layout_constraintTop_toBottomOf="@+id/shadowBottom"
         tools:text="const/4 v0, 0x0\nonst/4 v0, 0x0\nonst/4 v0, 0x0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

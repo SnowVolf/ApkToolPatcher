@@ -45,7 +45,7 @@ public class GrepView extends ListView {
         setFocusable(true);
         setFocusableInTouchMode(true);
         setFastScrollEnabled(true);
-        setDividerHeight(2);
+        setDivider(null);
         setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -125,8 +125,6 @@ public class GrepView extends ListView {
 
         private Pattern mPattern;
         private int mFgColor;
-        private int mBgColor;
-        private int mFontSize;
 
 
         public GrepAdapter(Context context, int resource, int textViewResourceId, ArrayList<Data> objects) {
@@ -145,12 +143,11 @@ public class GrepView extends ListView {
                 view = inflate(getContext(), R.layout.list_row, null);
 
                 holder = new ViewHolder();
+                holder.shadowTop = view.findViewById(R.id.shadowTop);
+                holder.shadowBottom = view.findViewById(R.id.shadowBottom);
                 holder.Num = view.findViewById(R.id.ListIndexNum);
                 holder.Index = view.findViewById(R.id.ListIndex);
                 holder.kwic = view.findViewById(R.id.ListPhone);
-
-                holder.Index.setTextSize(mFontSize);
-                holder.kwic.setTextSize(mFontSize);
 
                 view.setTag(holder);
             }
@@ -161,13 +158,19 @@ public class GrepView extends ListView {
                 String prevName = getItem(position - 1).getFile().getName();
                 Log.e(TAG, "getView: prev=" + prevName + ", cur=" + fname);
                 if (prevName.equals(fname)) {
+                    // Если предыдущий айтем имеет такой же сорс файл, как и текущий, то
+                    // скрываем заголовок файла и границы "карточки" у текущего айтема
                     holder.Index.setVisibility(GONE);
+                    holder.shadowTop.setVisibility(GONE);
+                    holder.shadowBottom.setVisibility(GONE);
                 } else {
                     // Типа вьюха же переиспользуется.
                     // И если ты один раз задал визибилити, то оно сохранится и при
                     // скролле постепенно у всех айтемов будет скрыта та вьюха
                     // Поэтому нужно вручную обновить статус визибилити.
                     holder.Index.setVisibility(VISIBLE);
+                    holder.shadowTop.setVisibility(VISIBLE);
+                    holder.shadowBottom.setVisibility(VISIBLE);
                 }
 
                 holder.Num.setText(String.format(Locale.ENGLISH, "%04d", d.getLineNumber()));
@@ -179,15 +182,14 @@ public class GrepView extends ListView {
             return view;
         }
 
-        public void setFormat(Pattern pattern, int fgcolor, int bgcolor, int size) {
+        public void setFormat(Pattern pattern, int fgcolor) {
             mPattern = pattern;
             mFgColor = fgcolor;
-            mBgColor = bgcolor;
-            mFontSize = size;
 
         }
 
         static class ViewHolder {
+            View shadowTop, shadowBottom;
             TextView Num;
             TextView Index;
             TextView kwic;

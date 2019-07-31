@@ -10,6 +10,8 @@
                 android:endColor="#00000000"
                 android:startColor="#11000000"
                 android:type="linear" />
+            <solid
+                android:color="?android:windowBackground"/>
         </shape>
     </item>
 </layer-list>
