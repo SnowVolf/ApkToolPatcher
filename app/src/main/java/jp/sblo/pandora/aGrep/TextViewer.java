@@ -15,7 +15,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.mozilla.universalchardet.UniversalDetector;
 
@@ -131,20 +132,16 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         // テキストのコピー
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        TextView tv = (TextView) arg1;
-        ClipData clip = ClipData.newPlainText("aGrep Text Viewer", tv.getText());
+        View view = arg1;
+        TextView txt = view.findViewById(R.id.ListIndex);
+        ClipData clip = ClipData.newPlainText("aGrep Text Viewer", txt.getText());
         cm.setPrimaryClip(clip);
 
-        Toast.makeText(this, R.string.label_copied, Toast.LENGTH_LONG).show();
+        Snackbar.make(txt, R.string.label_copied, Snackbar.LENGTH_SHORT).show();
     }
 
     class TextLoadTask extends AsyncTask<String, Integer, Boolean> {
         int mOffsetForLine = -1;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
         @Override
         protected Boolean doInBackground(String... params) {

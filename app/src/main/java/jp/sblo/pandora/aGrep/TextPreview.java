@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -54,16 +53,17 @@ public class TextPreview extends ListView {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LinearLayout view = (LinearLayout) convertView;
+            View view = convertView;
             if (view == null) {
-                view = (LinearLayout) inflate(getContext(), R.layout.textpreview_row, null);
+                view =  inflate(getContext(), R.layout.textpreview_row, null);
             }
             CharSequence d = getItem(position);
 
             TextView num = view.findViewById(R.id.ListIndexNum);
             TextView text = view.findViewById(R.id.ListIndex);
             num.setText(String.format(Locale.ENGLISH, "%04d", (position + 1)));
-            text.setText(Search.highlightKeyword(d, mPattern, mFgColor, App.getColorFromAttr(getContext(), R.attr.colorAccent)));
+            text.setText(Search.highlightKeyword(d, mPattern, mFgColor,
+                    App.getColorFromAttr(getContext(), R.attr.colorAccent)));
 
             return view;
         }
