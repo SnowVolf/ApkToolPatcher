@@ -28,3 +28,4 @@
 
 -dontwarn sun.security.**
 -dontwarn sys.util.**
+-keep class org.xmlpull.v1.** { *; }

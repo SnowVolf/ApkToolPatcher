@@ -8,8 +8,8 @@ android {
         applicationId "apk.tool.patcher"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 505
-        versionName "5.0 alpha 4"
+        versionCode 510
+        versionName "5.0 beta 1"
         multiDexEnabled true
         //ndk {
         //moduleName "universalchardet"

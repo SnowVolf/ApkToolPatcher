@@ -40,6 +40,8 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
 
         setContentView(R.layout.activity_select);
+        mCaption = findViewById(R.id.content_caption);
+        recyclerView = findViewById(R.id.recycler_select_view_RecyclerView);
 
         if (savedInstanceState != null) {
             currentPath = new File(savedInstanceState.getString("current_path"));
@@ -48,8 +50,6 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         }
         if (checkPerm()) {
             files = getFilesData(currentPath);
-            mCaption = (TextView) findViewById(R.id.content_caption);
-            recyclerView = (RecyclerView) findViewById(R.id.recycler_select_view_RecyclerView);
             layoutManager = new GridLayoutManager(this, Preferences.getGridSize());
             recyclerView.setLayoutManager(layoutManager);
             adapter = new SelectAdapter(files, this);

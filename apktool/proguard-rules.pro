@@ -15,17 +15,16 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--dontnote com.google.**
--dontwarn com.google.**
--dontnote javax.**
-#-dontwarn javax.**
--dontnote org.jf.**
-#-dontwarn org.jf.**
--dontwarn **
--dontobfuscate
+-dontwarn sun.security.**
+-dontwarn sys.util.**
+#-dontobfuscate
 
+-obfuscationdictionary proguard-dictionary.txt
+-packageobfuscationdictionary proguard-dictionary.txt
+-classobfuscationdictionary proguard-dictionary.txt
+-repackageclasses 'huesos'
 -keepattributes SourceFile,LineNumberTable
--keepclassmembers class ** extends sun1.security.x509.Extension{
+-keepclassmembers class ** extends sun1.security.x509.Extension {
 <init>(...);
 }
 -keep class ** extends java.util.ListResourceBundle{
@@ -35,4 +34,6 @@
 -keep class jadx.core.clsp.ClsSet{
 <init>(...);
 }
-
+-keep class org.xmlpull.v1.** { *;}
+-dontwarn org.xmlpull.v1.**
+-keep class ru.svolf.** { *;}

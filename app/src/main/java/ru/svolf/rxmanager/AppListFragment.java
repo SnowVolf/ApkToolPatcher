@@ -57,7 +57,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_app_list, null);
+        View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         toolbar = view.findViewById(R.id.toolbar);
         listView = view.findViewById(R.id.list_view_list);
         progressBar = view.findViewById(R.id.list_view_progress_bar);
@@ -247,7 +247,6 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
             }
         }
     }
-
 
     public void setListShown(boolean shown) {
         setListShown(shown, true);

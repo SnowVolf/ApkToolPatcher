@@ -1,4 +1,5 @@
 import java.nio.file.Files
+import java.security.SecureRandom
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
@@ -32,13 +33,13 @@ allprojects {
 task generateDictionary {
     doLast {
         int total = 20000
-//        Random random = new SecureRandom()
-//        List<String> javaKeywords = Arrays.asList("do", "if", "for", "int", "new",  "long", "this",
-//                "void", "break", "catch", "class", "const", "final", "double", "import", "native",
-//                "public", "return", "static", "switch", "finally", "package", "private", "abstract",
-//                "continue", "strictfp", "transient", "implements", "instanceof", "synchronized")
-//
-//        Collections.shuffle(javaKeywords, random)
+        Random random = new SecureRandom()
+        List<String> javaKeywords = Arrays.asList("do", "if", "for", "int", "new",  "long", "this",
+                "void", "break", "catch", "class", "const", "final", "double", "import", "native",
+                "public", "return", "static", "switch", "finally", "package", "private", "abstract",
+                "continue", "strictfp", "transient", "implements", "instanceof", "synchronized")
+
+        Collections.shuffle(javaKeywords, random)
 
         List<String> emojis = IntStream.rangeClosed(0x30a1, 0x30fb)
                 .mapToObj {
@@ -63,7 +64,7 @@ task generateDictionary {
         Collections.shuffle(dictionary)
 
         StringBuilder builder = new StringBuilder()
-//        javaKeywords.forEach { s -> builder.append(s).append('\n')}
+        javaKeywords.forEach { s -> builder.append(s).append('\n')}
         dictionary.forEach { s -> builder.append(s).append('\n')}
 
         Files.write(new File("$projectDir/app/proguard-dictionary.txt").toPath(), builder.toString().getBytes("UTF-8"))
