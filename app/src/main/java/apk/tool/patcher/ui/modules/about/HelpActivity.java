@@ -2,6 +2,7 @@ package apk.tool.patcher.ui.modules.about;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -12,18 +13,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.widget.AutoResizeTextView;
 import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 public class HelpActivity extends SwipeBackActivity {
     private WebView webView;
+    private AutoResizeTextView caption;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         webView = findViewById(R.id.help);
+        caption = findViewById(R.id.caption);
+        calculateTextSize();
         Button issue = findViewById(R.id.button_addition);
         setEdgeLevel(SwipeBackLayout.EdgeLevel.MIN);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -55,6 +60,12 @@ public class HelpActivity extends SwipeBackActivity {
             }
         });
 
+    }
+
+    private void calculateTextSize() {
+        caption.setMinTextSize(24f);
+        caption.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25f);
+        caption.resizeText();
     }
 
     @Override

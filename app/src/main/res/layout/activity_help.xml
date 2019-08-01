@@ -8,27 +8,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="?colorPrimary">
+        android:background="?colorPrimary"
+        android:layout_gravity="bottom">
 
-        <TextView
+        <apk.tool.patcher.ui.widget.AutoResizeTextView
+            android:id="@+id/caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="12dp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="16dp"
-            android:text="@string/pref_userguide"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/button_addition"
             android:maxLines="1"
-            android:textSize="28sp" />
+            android:text="@string/pref_userguide" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_addition"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
-            android:textAllCaps="false"
-            android:text="@string/create_issue" />
+            android:text="@string/create_issue"
+            android:textAllCaps="false" />
 
     </RelativeLayout>
 

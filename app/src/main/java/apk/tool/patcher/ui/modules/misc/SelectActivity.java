@@ -19,13 +19,14 @@ import java.util.Comparator;
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.odex.filechooser.SelectAdapter;
+import apk.tool.patcher.ui.widget.PinchZoomItemTouchListener;
 import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.SysUtils;
 import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
-public class SelectActivity extends SwipeBackActivity implements SelectAdapter.ClickListener {
+public class SelectActivity extends SwipeBackActivity implements SelectAdapter.ClickListener, PinchZoomItemTouchListener.PinchZoomListener {
     public final static File EXTERNAL_STORAGE = Environment.getExternalStorageDirectory();
     public File currentPath;
     private File[] files;
@@ -186,4 +187,8 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         return false;
     }
 
+    @Override
+    public void onPinchZoom(int position) {
+        Toast.makeText(this, "Position = " + position, Toast.LENGTH_SHORT).show();
+    }
 }

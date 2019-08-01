@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
@@ -47,7 +46,6 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     private static final int REQUEST_STORAGE_PERMISSIONS = 13245;
 
     private AppListAdapter listAdapter;
-    private ConstraintLayout toolbar;
     private SearchView searchView;
 
     private boolean isListShown;
@@ -56,10 +54,10 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
         View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         listView = view.findViewById(R.id.list_view_list);
         progressBar = view.findViewById(R.id.list_view_progress_bar);
-        toolbar = view.findViewById(R.id.toolbar);
         searchView = view.findViewById(R.id.search_find);
         view.findViewById(R.id.btn_analyze_not_installed).setOnClickListener(this);
         return view;
@@ -67,8 +65,9 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onViewCreated() called with: view = [" + view + "], savedInstanceState = [" + savedInstanceState + "]");
         super.onViewCreated(view, savedInstanceState);
-        toolbar.setOnClickListener(new View.OnClickListener() {
+        searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (searchView.isIconified()) {
@@ -84,6 +83,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        Log.d(TAG, "onActivityCreated() called with: savedInstanceState = [" + savedInstanceState + "]");
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
 
@@ -107,11 +107,13 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        Log.d(TAG, "onQueryTextSubmit() called with: query = [" + query + "]");
         return true;
     }
 
     @Override
     public boolean onClose() {
+        Log.d(TAG, "onClose() called");
         if (!TextUtils.isEmpty(searchView.getQuery())) {
             searchView.setQuery(null, true);
         }
@@ -120,22 +122,25 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
+        Log.d(TAG, "onListItemClick() called with: listView = [" + listView + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
         AppListData appBasicData = AppListData.class.cast(view.getTag());
         AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(appBasicData.getPackageName());
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame, detailsFragment)
+                .add(R.id.content_frame, detailsFragment)
                 .addToBackStack(null)
-                .commitAllowingStateLoss();
+                .commit();
     }
 
     @Override
     public Loader<List<AppListData>> onCreateLoader(int id, Bundle args) {
+        Log.d(TAG, "onCreateLoader() called with: id = [" + id + "], args = [" + args + "]");
         return new AppListLoader(getActivity());
     }
 
     @Override
     public void onLoadFinished(Loader<List<AppListData>> loader, List<AppListData> data) {
+        Log.d(TAG, "onLoadFinished() called with: loader = [" + loader + "], data = [" + data + "]");
         listAdapter.clear();
         listAdapter.addAll(data);
 
@@ -148,12 +153,13 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public void onLoaderReset(@NonNull Loader<List<AppListData>> loader) {
+        Log.d(TAG, "onLoaderReset() called with: loader = [" + loader + "]");
         listAdapter.clear();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         switch (item.getItemId()) {
             case R.id.action_analyze_not_installed:
                 startFilePicker(true);
@@ -185,6 +191,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     @Override
     public void onClick(View v) {
+        Log.d(TAG, "onClick() called with: v = [" + v + "]");
         switch (v.getId()) {
             case R.id.btn_analyze_not_installed:
                 startFilePicker(true);
@@ -196,6 +203,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
         super.onActivityResult(requestCode, resultCode, data);
         // handle picked apk file and
         if (requestCode == ApkFilePicker.REQUEST_PICK_APK && resultCode == RESULT_OK) {
@@ -211,6 +219,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        Log.d(TAG, "onRequestPermissionsResult() called with: requestCode = [" + requestCode + "], permissions = [" + permissions + "], grantResults = [" + grantResults + "]");
         if (requestCode == REQUEST_STORAGE_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startFilePicker(false);
@@ -220,12 +229,19 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        listAdapter.notifyDataSetChanged();
+    }
+
     /**
      * Start file picker activity in order to select APK file from storage.
      *
      * @param withPermissionCheck if true, permissions are requested
      */
     private void startFilePicker(boolean withPermissionCheck) {
+        Log.d(TAG, "startFilePicker() called with: withPermissionCheck = [" + withPermissionCheck + "]");
         if (withPermissionCheck) {
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_STORAGE_PERMISSIONS);
@@ -242,14 +258,17 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     }
 
     public void setListShown(boolean shown) {
+        Log.d(TAG, "setListShown() called with: shown = [" + shown + "]");
         setListShown(shown, true);
     }
 
     public void setListShownNoAnimation(boolean shown) {
+        Log.d(TAG, "setListShownNoAnimation() called with: shown = [" + shown + "]");
         setListShown(shown, false);
     }
 
     public void setListShown(boolean shown, boolean animate) {
+        Log.d(TAG, "setListShown() called with: shown = [" + shown + "], animate = [" + animate + "]");
         if (isListShown == shown) {
             return;
         }

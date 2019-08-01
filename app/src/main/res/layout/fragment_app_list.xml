@@ -44,7 +44,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:tint="@android:color/white"
-            android:src="@drawable/ic_file_download"
+            android:src="@drawable/ic_apkeditor"
             app:useCompatPadding="true" />
 
     </RelativeLayout>
