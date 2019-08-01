@@ -20,6 +20,7 @@ import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.odex.filechooser.SelectAdapter;
 import apk.tool.patcher.ui.widget.PinchZoomItemTouchListener;
+import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.SysUtils;
 import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
@@ -47,7 +48,11 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         if (savedInstanceState != null) {
             currentPath = new File(savedInstanceState.getString("current_path"));
         } else {
-            currentPath = EXTERNAL_STORAGE;
+            if (getIntent().getStringExtra(Cs.ARG_PATH_NAME).length() != 0){
+                currentPath = new File(getIntent().getStringExtra(Cs.ARG_PATH_NAME));
+            } else {
+                currentPath = EXTERNAL_STORAGE;
+            }
         }
         if (checkPerm()) {
             files = getFilesData(currentPath);

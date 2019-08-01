@@ -395,6 +395,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View p1) {
                 final Intent intent = new Intent(mContext, SelectActivity.class);
+                intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
                 startActivityForResult(intent, 1);
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
