@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,7 @@ import static android.app.Activity.RESULT_OK;
 public class AppListFragment extends ListFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener, View.OnClickListener,
         LoaderManager.LoaderCallbacks<List<AppListData>> {
     public static final String FRAGMENT_TAG = "AppListFragment";
+    private static final String TAG = "AppListFragment";
     private static final int REQUEST_STORAGE_PERMISSIONS = 13245;
 
     private AppListAdapter listAdapter;
@@ -69,7 +71,11 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchView.performClick();
+                if (searchView.isIconified()) {
+                    searchView.setIconified(false);
+                } else {
+                    Log.e(TAG, "onClick: already expanded");
+                }
             }
         });
         searchView.setOnQueryTextListener(this);

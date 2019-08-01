@@ -43,7 +43,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
             android:tint="@android:color/white"
             android:src="@drawable/ic_file_download"
             app:useCompatPadding="true" />
