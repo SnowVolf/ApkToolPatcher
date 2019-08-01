@@ -19,7 +19,7 @@
             android:layout_margin="16dp"
             android:maxLines="1"
             android:text="@string/caption_search_results"
-            android:textSize="28sp" />
+            android:textSize="25sp" />
 
         <!--<com.google.android.material.button.MaterialButton-->
             <!--android:visibility="visible"-->

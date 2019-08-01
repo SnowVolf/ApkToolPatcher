@@ -17,7 +17,7 @@
         android:layout_marginBottom="8dp"
         android:maxLines="1"
         android:text="@string/menu_appslist"
-        android:textSize="28sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/search_find"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -9,4 +9,4 @@
     android:paddingEnd="0.0dip"
     android:maxLines="1"
     android:text="Нет"
-    android:textSize="28sp" />
+    android:textSize="25sp" />

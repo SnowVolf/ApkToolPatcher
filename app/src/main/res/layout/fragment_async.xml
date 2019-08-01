@@ -15,8 +15,8 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:text="@string/menu_settings"
-            android:textColor="?colorAccent"
-            android:textSize="32sp"
+            android:textColor="#757575"
+            android:textSize="25sp"
             android:textStyle="bold" />
     </RelativeLayout>
 

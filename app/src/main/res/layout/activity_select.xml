@@ -19,8 +19,7 @@
             android:fadingEdge="horizontal"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="25sp" />
     </RelativeLayout>
 
     <include

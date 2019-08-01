@@ -33,6 +33,7 @@ import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.filesystem.FastFs;
 import apk.tool.patcher.util.Cs;
+import apk.tool.patcher.util.SystemF;
 import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.swipeback.SwipeBackFragment;
 import ru.svolf.rxmanager.adapter.ExtendedAppAdapter;
@@ -129,6 +130,8 @@ public class AppsDetailsFragment extends SwipeBackFragment {
                 Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
+        // Hide keyboard when user tapped an app item from search screen
+        SystemF.hideKeyboard(requireActivity());
     }
 
     private void prepare() {

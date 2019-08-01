@@ -1,4 +1,4 @@
---- 5.0 beta 2 [03-08-19] ---
+--- 5.0 beta 2 [02-08-19] ---
 iOS-like app header
 Replace all recyclers & list-views with spring implementation
 FileManager: remember last selected directory

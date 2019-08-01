@@ -16,8 +16,7 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:text="@string/app_name"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="25sp" />
     </RelativeLayout>
 
 
