@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,8 +13,9 @@ import java.util.regex.Pattern;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.widget.SpringListView;
 
-public class TextPreview extends ListView {
+public class TextPreview extends SpringListView {
 
     public TextPreview(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

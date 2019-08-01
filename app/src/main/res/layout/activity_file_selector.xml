@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:singleLine="true" />
 
-    <ListView
+    <apk.tool.patcher.ui.widget.SpringListView
         android:id="@id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="0dp"

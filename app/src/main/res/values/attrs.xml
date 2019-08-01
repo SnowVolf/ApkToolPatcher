@@ -20,9 +20,11 @@
         <attr name="srv_flingBackAnimDuration" format="integer"/>
     </declare-styleable>
 
-    <declare-styleable name="ThreeButtonPreference">
-        <attr name="forumLink" format="string" />
-        <attr name="tgLink" format="string" />
-        <attr name="gitLink" format="string" />
+    <declare-styleable name="SpringListView">
+        <attr name="slv_enableSpringEffectWhenDrag" format="boolean"/>
+        <attr name="slv_enableSpringEffectWhenFling" format="boolean"/>
+        <attr name="slv_releaseBackAnimDuration" format="integer"/>
+        <attr name="slv_flingBackAnimDuration" format="integer"/>
     </declare-styleable>
+
 </resources>

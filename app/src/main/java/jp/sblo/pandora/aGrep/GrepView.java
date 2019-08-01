@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.File;
@@ -19,8 +18,9 @@ import java.util.regex.Pattern;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.widget.SpringListView;
 
-public class GrepView extends ListView {
+public class GrepView extends SpringListView {
     private static final String TAG = "GrepView";
     private Callback mCallback;
 
