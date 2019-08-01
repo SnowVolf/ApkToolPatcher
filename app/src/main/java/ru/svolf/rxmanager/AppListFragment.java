@@ -12,11 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.ListFragment;
@@ -28,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.util.Preferences;
 import ru.svolf.rxmanager.adapter.AppListAdapter;
 import ru.svolf.rxmanager.async.AppListLoader;
 import ru.svolf.rxmanager.data.AppListData;
@@ -47,6 +50,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
     private AppListAdapter listAdapter;
     private SearchView searchView;
+    private Button buttonFilter;
 
     private boolean isListShown;
     private View listView;
@@ -59,6 +63,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         listView = view.findViewById(R.id.list_view_list);
         progressBar = view.findViewById(R.id.list_view_progress_bar);
         searchView = view.findViewById(R.id.search_find);
+        buttonFilter = view.findViewById(R.id.button_addition);
         view.findViewById(R.id.btn_analyze_not_installed).setOnClickListener(this);
         return view;
     }
@@ -79,6 +84,22 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         });
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint(getString(R.string.search_q));
+
+        final PopupMenu popup = new PopupMenu(getContext(), buttonFilter);
+        popup.inflate(R.menu.main);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return onOptionsItemSelected(item);
+            }
+        });
+        //popup.getMenu().getItem(Preferences.getFilterId()).setChecked(true);
+        buttonFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup.show();
+            }
+        });
     }
 
     @Override
@@ -88,12 +109,9 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         setRetainInstance(true);
 
         if (savedInstanceState == null) {
-
             listAdapter = new AppListAdapter(getActivity());
             setListAdapter(listAdapter);
-
             setListShown(false);
-
             LoaderManager.getInstance(this).initLoader(AppListLoader.ID, null, this);
         }
     }
@@ -162,27 +180,24 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         switch (item.getItemId()) {
-            case R.id.action_analyze_not_installed:
-                startFilePicker(true);
-                break;
             case R.id.menu_show_all_apps:
-                item.setChecked(true);
+                Preferences.setFilterId(0);
                 listAdapter.filterOnAppSource(null);
                 break;
             case R.id.menu_show_google_play_apps:
-                item.setChecked(true);
+                Preferences.setFilterId(1);
                 listAdapter.filterOnAppSource(AppSource.GOOGLE_PLAY);
                 break;
             case R.id.menu_show_amazon_store_apps:
-                item.setChecked(true);
+                Preferences.setFilterId(2);
                 listAdapter.filterOnAppSource(AppSource.AMAZON_STORE);
                 break;
             case R.id.menu_show_system_pre_installed_apps:
-                item.setChecked(true);
+                Preferences.setFilterId(3);
                 listAdapter.filterOnAppSource(AppSource.SYSTEM_PREINSTALED);
                 break;
             case R.id.menu_show_unknown_source_apps:
-                item.setChecked(true);
+                Preferences.setFilterId(4);
                 listAdapter.filterOnAppSource(AppSource.UNKNOWN);
                 break;
         }

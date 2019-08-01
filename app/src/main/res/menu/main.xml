@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/magnify"
-        android:orderInCategory="1"
-        android:title="@string/caption_search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_analyze_not_installed"
-        android:orderInCategory="1"
-        android:title="Load APK from disk"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_filter"
-        android:icon="@drawable/ic_filter_list"
-        android:title="Filter"
-        app:showAsAction="ifRoom">
-        <menu>
             <group
                 android:checkableBehavior="single"
                 android:title="Filter"
@@ -43,7 +22,4 @@
                     android:id="@+id/menu_show_unknown_source_apps"
                     android:title="Unknown" />
             </group>
-        </menu>
-    </item>
-
 </menu>

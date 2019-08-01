@@ -10,6 +10,14 @@ import apk.tool.patcher.App;
 
 public class Preferences {
 
+    public static int getFilterId() {
+        return App.get().getPreferences().getInt("filter_id", 0);
+    }
+
+    public static void setFilterId(int id) {
+        App.get().getPreferences().edit().putInt("filter_id", id).apply();
+    }
+
     private static int getSavedVersionCode() {
         return App.get().getPreferences().getInt("app_version", 0);
     }
