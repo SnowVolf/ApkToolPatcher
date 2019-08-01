@@ -21,7 +21,7 @@
     </RelativeLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <apk.tool.patcher.ui.widget.SpringRecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_height="6dp"
             android:background="@drawable/shadow" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <apk.tool.patcher.ui.widget.SpringRecyclerView
             android:id="@+id/list_controls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

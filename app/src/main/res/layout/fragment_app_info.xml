@@ -38,7 +38,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_common"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_permissions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_activities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_services"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_receivers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_providers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

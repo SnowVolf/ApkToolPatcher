@@ -13,6 +13,13 @@
         <attr name="prefCardsBackground" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="SpringRecyclerView">
+        <attr name="srv_enableSpringEffectWhenDrag" format="boolean"/>
+        <attr name="srv_enableSpringEffectWhenFling" format="boolean"/>
+        <attr name="srv_releaseBackAnimDuration" format="integer"/>
+        <attr name="srv_flingBackAnimDuration" format="integer"/>
+    </declare-styleable>
+
     <declare-styleable name="ThreeButtonPreference">
         <attr name="forumLink" format="string" />
         <attr name="tgLink" format="string" />

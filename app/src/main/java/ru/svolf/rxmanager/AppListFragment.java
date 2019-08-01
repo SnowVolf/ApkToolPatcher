@@ -125,6 +125,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         Log.d(TAG, "onListItemClick() called with: listView = [" + listView + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
         AppListData appBasicData = AppListData.class.cast(view.getTag());
         AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(appBasicData.getPackageName());
+
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.content_frame, detailsFragment)

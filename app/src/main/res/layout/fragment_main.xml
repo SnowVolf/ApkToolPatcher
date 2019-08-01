@@ -45,7 +45,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_patches"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -78,7 +78,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <apk.tool.patcher.ui.widget.SpringRecyclerView
                         android:id="@+id/list_patches_advanced"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
