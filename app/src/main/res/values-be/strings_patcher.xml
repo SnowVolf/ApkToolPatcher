@@ -153,4 +153,5 @@
     <string name="caption_issues">Creating an issue</string>
     <string name="check_issue">Check</string>
     <string name="create_issue">Create an issue</string>
+    <string name="app_filter">Фильтр</string>
 </resources>

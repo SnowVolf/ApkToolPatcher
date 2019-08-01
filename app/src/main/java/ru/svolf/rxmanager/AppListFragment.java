@@ -7,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
@@ -47,9 +45,8 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     private static final int REQUEST_STORAGE_PERMISSIONS = 13245;
 
     private AppListAdapter listAdapter;
-
+    private ConstraintLayout toolbar;
     private SearchView searchView;
-    private Toolbar toolbar;
 
     private boolean isListShown;
     private View listView;
@@ -58,9 +55,10 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_app_list, container, false);
-        toolbar = view.findViewById(R.id.toolbar);
         listView = view.findViewById(R.id.list_view_list);
         progressBar = view.findViewById(R.id.list_view_progress_bar);
+        toolbar = view.findViewById(R.id.toolbar);
+        searchView = view.findViewById(R.id.search_find);
         view.findViewById(R.id.btn_analyze_not_installed).setOnClickListener(this);
         return view;
     }
@@ -68,14 +66,14 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        toolbar.inflateMenu(R.menu.main);
-        onCreateOptionsMenu(toolbar.getMenu(), null);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                return onOptionsItemSelected(item);
+            public void onClick(View view) {
+                searchView.performClick();
             }
         });
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint(getString(R.string.search_q));
     }
 
     @Override
@@ -92,17 +90,6 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
 
             LoaderManager.getInstance(this).initLoader(AppListLoader.ID, null, this);
         }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Show an action bar item for searching.
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchItem.setEnabled(true).setVisible(true);
-
-        searchView = (SearchView) searchItem.getActionView();
-        searchView.setOnQueryTextListener(this);
-        searchView.setQueryHint(getString(R.string.caption_search));
     }
 
     @Override

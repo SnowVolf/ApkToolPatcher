@@ -153,5 +153,6 @@
     <string name="caption_issues">Creating an issue</string>
     <string name="check_issue">Проверить</string>
     <string name="create_issue">Создать вопрос</string>
+    <string name="app_filter">Фильтр</string>
 
 </resources>
