@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
 import apk.tool.patcher.R;
@@ -58,7 +60,7 @@ public class SimpleAppAdapter extends RecyclerView.Adapter<SimpleAppAdapter.View
         @Override
         public void onClick(View view) {
             TextUtil.copyToClipboard(code.getText().toString());
-            Toast.makeText(code.getContext(), R.string.label_copied, Toast.LENGTH_SHORT).show();
+            Snackbar.make(code, R.string.label_copied, Snackbar.LENGTH_SHORT).show();
         }
     }
 }

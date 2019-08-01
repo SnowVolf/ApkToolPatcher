@@ -1,15 +1,10 @@
---- 5.0 beta 1 [01-08-19] ---
-- Migrate from support library & AppCompat to MaterialComponents & AndroidX
-- Huge design changes (please don't fap on this!)
+--- 5.0 beta 2 [03-08-19] ---
+iOS-like app header
+Replace all recyclers & list-views with spring implementation
+FileManager: remember last selected directory
+Some minor design changes
 
-- Added MIUI detection with showing a warning dialog
-- Added separated web help
-- Search feature has been recovered
-- New (really smooth) app manager (with search/filtering & more...)
+Fixed first-launch crash in file manager
+Fixed AppManager data losing
 
-- Removed a decompiler for a while
-- Removed analytics switcher from settings (this feature is obvious, okay?)
-
-- A lo[oooo]t of bug fixes
-
-Stay turned!
+Small optimizations
