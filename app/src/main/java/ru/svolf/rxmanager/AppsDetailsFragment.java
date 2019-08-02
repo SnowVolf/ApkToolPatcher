@@ -46,6 +46,7 @@ import ru.svolf.rxmanager.data.AppInfoItem;
 public class AppsDetailsFragment extends SwipeBackFragment {
     public static final String FRAGMENT_TAG = "apps-details-fragment";
     private String mPackageId;
+    private boolean isApkFile;
 
     // Header
     private RelativeLayout appBackground;
@@ -77,10 +78,14 @@ public class AppsDetailsFragment extends SwipeBackFragment {
     private ArrayList<AppInfoItem> providersItems = new ArrayList<>();
 
 
-    public static AppsDetailsFragment newInstance(String packageName) {
+    public static AppsDetailsFragment newInstance(String packageName, @Nullable String apk) {
         AppsDetailsFragment fragment = new AppsDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(Cs.ARG_APP_INFO, packageName);
+        if (apk != null) {
+            bundle.putString(Cs.ARG_APP_INFO, apk);
+        } else {
+            bundle.putString(Cs.ARG_APP_INFO, packageName);
+        }
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -89,6 +94,10 @@ public class AppsDetailsFragment extends SwipeBackFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        if (getArguments() != null) {
+            mPackageId = getArguments().getString(Cs.ARG_APP_INFO);
+            isApkFile = mPackageId.contains("/");
+        }
     }
 
     @Nullable
@@ -102,10 +111,15 @@ public class AppsDetailsFragment extends SwipeBackFragment {
         appBackground = view.findViewById(R.id.app_info_header);
         appIcon = appBackground.findViewById(R.id.app_icon);
         appLabel = appBackground.findViewById(R.id.app_name);
-
         buttonLaunch = appBackground.findViewById(R.id.button_launch);
         buttonExport = appBackground.findViewById(R.id.button_export);
         buttonGPlay = appBackground.findViewById(R.id.button_play);
+
+        if (isApkFile){
+            buttonLaunch.setEnabled(false);
+            buttonExport.setEnabled(false);
+            buttonGPlay.setEnabled(false);
+        }
 
         listsContainer = view.findViewById(R.id.lists_container);
 
@@ -120,13 +134,14 @@ public class AppsDetailsFragment extends SwipeBackFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (getArguments() != null) {
-            mPackageId = getArguments().getString(Cs.ARG_APP_INFO);
-        }
         if (mPackageId != null) {
             try {
                 prepare();
-                getPackageIdInfo(mPackageId);
+                if (isApkFile){
+                    getPackageArchiveInfo(mPackageId);
+                } else {
+                    getPackageIdInfo(mPackageId);
+                }
                 complete();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -148,36 +163,38 @@ public class AppsDetailsFragment extends SwipeBackFragment {
     }
 
     private void prepare() {
-        buttonLaunch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Intent intent = App.get().getPackageManager().getLaunchIntentForPackage(mPackageId);
-                if (intent != null) {
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "Cannot launch", Toast.LENGTH_LONG).show();
+        if (!isApkFile) {
+            buttonLaunch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final Intent intent = App.get().getPackageManager().getLaunchIntentForPackage(mPackageId);
+                    if (intent != null) {
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getContext(), "Cannot launch", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
 
-        buttonExport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    extractApk();
-                } else {
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE}, Cs.REQ_CODE_EXTCARD);
+            buttonExport.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        extractApk();
+                    } else {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE}, Cs.REQ_CODE_EXTCARD);
+                    }
                 }
-            }
-        });
+            });
 
-        buttonGPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextUtil.goLink(getActivity(), "https://play.google.com/store/apps/details?id=" + mPackageId);
-            }
-        });
+            buttonGPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextUtil.goLink(getActivity(), "https://play.google.com/store/apps/details?id=" + mPackageId);
+                }
+            });
+        }
 
         listCommon.setLayoutManager(new GridLayoutManager(getContext(), 2));
         listActivities.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -235,36 +252,68 @@ public class AppsDetailsFragment extends SwipeBackFragment {
         getProviders(providersInfo);
     }
 
+    private void getPackageArchiveInfo(String packageId) {
+        final PackageManager manager = getContext().getPackageManager();
+
+        final PackageInfo appInfo = manager.getPackageArchiveInfo(packageId, PackageManager.GET_META_DATA);
+        getMetaInfo(appInfo);
+
+        final PackageInfo permissionsInfo = manager.getPackageArchiveInfo(packageId, PackageManager.GET_PERMISSIONS);
+        getPermissions(permissionsInfo);
+
+        final PackageInfo activitiesInfo = manager.getPackageArchiveInfo(packageId, PackageManager.GET_ACTIVITIES);
+        getActivities(activitiesInfo);
+
+        final PackageInfo servicesInfo = manager.getPackageArchiveInfo(packageId, PackageManager.GET_SERVICES);
+        getServices(servicesInfo);
+
+        final PackageInfo receiversInfo = manager.getPackageArchiveInfo(packageId, PackageManager.GET_RECEIVERS);
+        getReceivers(receiversInfo);
+
+        final PackageInfo providersInfo = manager.getPackageArchiveInfo(packageId, PackageManager.GET_PROVIDERS);
+        getProviders(providersInfo);
+    }
+
     private void getMetaInfo(PackageInfo info) {
-        appLabel.setText(info.applicationInfo.loadLabel(getContext().getPackageManager()));
-        appIcon.setImageDrawable(info.applicationInfo.loadIcon(getContext().getPackageManager()));
+        if (info != null) {
+            appLabel.setText(info.applicationInfo.loadLabel(getContext().getPackageManager()));
+            if (!isApkFile) {
+                appIcon.setImageDrawable(info.applicationInfo.loadIcon(getContext().getPackageManager()));
+            } else {
+                info.applicationInfo.publicSourceDir = mPackageId;
+                appIcon.setImageDrawable(info.applicationInfo.loadIcon(getContext().getPackageManager()));
+            }
 
-        commonItems.add(new AppInfoItem(getString(R.string.appinfo_pkg_name)));
-        commonItems.add(new AppInfoItem(info.packageName));
+            commonItems.add(new AppInfoItem(getString(R.string.appinfo_pkg_name)));
+            commonItems.add(new AppInfoItem(info.packageName));
 
-        commonItems.add(new AppInfoItem(getString(R.string.appinfo_ver)));
-        commonItems.add(new AppInfoItem(info.versionName));
+            commonItems.add(new AppInfoItem(getString(R.string.appinfo_ver)));
+            commonItems.add(new AppInfoItem(info.versionName));
 
-        commonItems.add(new AppInfoItem(getString(R.string.appinfo_ver_code)));
-        commonItems.add(new AppInfoItem(Integer.toString(info.versionCode)));
+            commonItems.add(new AppInfoItem(getString(R.string.appinfo_ver_code)));
+            commonItems.add(new AppInfoItem(Integer.toString(info.versionCode)));
 
-        commonItems.add(new AppInfoItem("UID"));
-        commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.uid)));
+            if (!isApkFile) {
+                commonItems.add(new AppInfoItem("UID"));
+                commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.uid)));
+            }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            commonItems.add(new AppInfoItem(getString(R.string.appinfo_msdk)));
-            commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.minSdkVersion)));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                commonItems.add(new AppInfoItem(getString(R.string.appinfo_msdk)));
+                commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.minSdkVersion)));
+            }
+
+            commonItems.add(new AppInfoItem(getString(R.string.appinfo_tsdk)));
+            commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.targetSdkVersion)));
+
+            if (!isApkFile) {
+                commonItems.add(new AppInfoItem(getString(R.string.appinfo_apk_dir)));
+                commonItems.add(new AppInfoItem(info.applicationInfo.sourceDir));
+
+                commonItems.add(new AppInfoItem(getString(R.string.appinfo_pkg_data)));
+                commonItems.add(new AppInfoItem(info.applicationInfo.dataDir));
+            }
         }
-
-        commonItems.add(new AppInfoItem(getString(R.string.appinfo_tsdk)));
-        commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.targetSdkVersion)));
-
-        commonItems.add(new AppInfoItem(getString(R.string.appinfo_apk_dir)));
-        commonItems.add(new AppInfoItem(info.applicationInfo.sourceDir));
-
-        commonItems.add(new AppInfoItem(getString(R.string.appinfo_pkg_data)));
-        commonItems.add(new AppInfoItem(info.applicationInfo.dataDir));
-
     }
 
     private void getActivities(PackageInfo info) {
@@ -278,51 +327,59 @@ public class AppsDetailsFragment extends SwipeBackFragment {
     }
 
     private void getPermissions(PackageInfo info) {
-        if (info.requestedPermissions == null && info.permissions == null) {
-            permissionsItems.add(new AppInfoItem(getString(R.string.no_data)));
-        } else {
-            // Получение списка системных разрешений (те, которые в манифесте объявлены)
-            if (info.requestedPermissions != null) {
-                for (String perm : info.requestedPermissions) {
-                    permissionsItems.add(new AppInfoItem(perm));
+        if (info != null) {
+            if (info.requestedPermissions == null && info.permissions == null) {
+                permissionsItems.add(new AppInfoItem(getString(R.string.no_data)));
+            } else {
+                // Получение списка системных разрешений (те, которые в манифесте объявлены)
+                if (info.requestedPermissions != null) {
+                    for (String perm : info.requestedPermissions) {
+                        permissionsItems.add(new AppInfoItem(perm));
+                    }
                 }
-            }
-            // Получение списка разрешений (всякие C2D_MESSAGE для гугловских пушей)
-            if (info.permissions != null) {
-                for (PermissionInfo permissionInfo : info.permissions) {
-                    permissionsItems.add(new AppInfoItem(permissionInfo.name));
+                // Получение списка разрешений (всякие C2D_MESSAGE для гугловских пушей)
+                if (info.permissions != null) {
+                    for (PermissionInfo permissionInfo : info.permissions) {
+                        permissionsItems.add(new AppInfoItem(permissionInfo.name));
+                    }
                 }
             }
         }
     }
 
     private void getServices(PackageInfo info) {
-        if (info.services != null) {
-            for (ServiceInfo serviceInfo : info.services) {
-                servicesItems.add(new AppInfoItem(serviceInfo.name));
+        if (info != null) {
+            if (info.services != null) {
+                for (ServiceInfo serviceInfo : info.services) {
+                    servicesItems.add(new AppInfoItem(serviceInfo.name));
+                }
+            } else {
+                servicesItems.add(new AppInfoItem(getString(R.string.no_data)));
             }
-        } else {
-            servicesItems.add(new AppInfoItem(getString(R.string.no_data)));
         }
     }
 
     private void getReceivers(PackageInfo info) {
-        if (info.receivers != null) {
-            for (ActivityInfo activityInfo : info.receivers) {
-                receiversItems.add(new AppInfoItem(activityInfo.name));
+        if (info != null) {
+            if (info.receivers != null) {
+                for (ActivityInfo activityInfo : info.receivers) {
+                    receiversItems.add(new AppInfoItem(activityInfo.name));
+                }
+            } else {
+                receiversItems.add(new AppInfoItem(getString(R.string.no_data)));
             }
-        } else {
-            receiversItems.add(new AppInfoItem(getString(R.string.no_data)));
         }
     }
 
     private void getProviders(PackageInfo info) {
-        if (info.providers != null) {
-            for (ProviderInfo providerInfo : info.providers) {
-                providersItems.add(new AppInfoItem(providerInfo.name));
+        if (info != null) {
+            if (info.providers != null) {
+                for (ProviderInfo providerInfo : info.providers) {
+                    providersItems.add(new AppInfoItem(providerInfo.name));
+                }
+            } else {
+                providersItems.add(new AppInfoItem(getString(R.string.no_data)));
             }
-        } else {
-            providersItems.add(new AppInfoItem(getString(R.string.no_data)));
         }
     }
 

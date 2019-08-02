@@ -27,6 +27,7 @@ import androidx.loader.content.Loader;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
 import java.util.List;
 
 import apk.tool.patcher.R;
@@ -142,7 +143,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     public void onListItemClick(ListView listView, View view, int position, long id) {
         Log.d(TAG, "onListItemClick() called with: listView = [" + listView + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
         AppListData appBasicData = (AppListData) view.getTag();
-        AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(appBasicData.getPackageName());
+        AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(appBasicData.getPackageName(), null);
 
         getFragmentManager()
                 .beginTransaction()
@@ -223,9 +224,19 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         super.onActivityResult(requestCode, resultCode, data);
         // handle picked apk file and
         if (requestCode == ApkFilePicker.REQUEST_PICK_APK && resultCode == RESULT_OK) {
-            Snackbar.make(listView, "Не забудь накодить, тварь!", Snackbar.LENGTH_LONG).show();
-//            AnalyzeFragment parentFragment = (AnalyzeFragment) getParentFragment();
-//            parentFragment.itemClicked(null, ApkFilePicker.getPathFromIntentData(data, getContext()));
+            String achive = ApkFilePicker.getPathFromIntentData(data, getContext());
+            if (achive != null) {
+                AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(null, achive);
+                if (new File(achive).exists()) {
+                    getFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.content_frame, detailsFragment)
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    Snackbar.make(listView, "This file manager is not supported, please try Solid Explorer", Snackbar.LENGTH_LONG).show();
+                }
+            }
         }
     }
 
