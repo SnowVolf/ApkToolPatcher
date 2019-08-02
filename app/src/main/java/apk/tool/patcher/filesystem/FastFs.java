@@ -49,6 +49,7 @@ public class FastFs {
                                     host.requireActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            e.printStackTrace();
                                             Toast.makeText(host.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     });

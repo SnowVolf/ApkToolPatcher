@@ -1,10 +1,3 @@
---- 5.0 beta 2 [02-08-19] ---
-iOS-like app header
-Replace all recyclers & list-views with spring implementation
-FileManager: remember last selected directory
-Some minor design changes
-
-Fixed first-launch crash in file manager
-Fixed AppManager data losing
-
-Small optimizations
+--- 5.0 beta 3 [03-08-19] ---
+In App updater
+64-bit support (@TimScriptov)
