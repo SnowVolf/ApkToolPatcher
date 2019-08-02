@@ -13,12 +13,8 @@ import java.util.List;
 public class SDCard {
 
     public static boolean exist() {
-        if (Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
     }
 
     // Return like "/sdcard"

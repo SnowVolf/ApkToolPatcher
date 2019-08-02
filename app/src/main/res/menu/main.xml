@@ -8,7 +8,7 @@
                 <item
                     android:id="@+id/menu_show_all_apps"
                     android:checked="true"
-                    android:title="All apps" />
+                    android:title="@string/all_apps" />
                 <item
                     android:id="@+id/menu_show_google_play_apps"
                     android:title="Google Play" />
@@ -17,9 +17,9 @@
                     android:title="Amazon Store" />
                 <item
                     android:id="@+id/menu_show_system_pre_installed_apps"
-                    android:title="System" />
+                    android:title="@string/system_apps" />
                 <item
                     android:id="@+id/menu_show_unknown_source_apps"
-                    android:title="Unknown" />
+                    android:title="@string/unknown" />
             </group>
 </menu>

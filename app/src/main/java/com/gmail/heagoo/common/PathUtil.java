@@ -27,8 +27,8 @@ public class PathUtil {
         if (path2.endsWith("/")) {
             path2 = path2.substring(0, path2.length() - 1);
         }
-        String p1[] = path1.split("/");
-        String p2[] = path2.split("/");
+        String[] p1 = path1.split("/");
+        String[] p2 = path2.split("/");
         if (p1.length < p2.length) {
             for (int i = 0; i < p1.length; ++i) {
                 if (!p1[i].equals(p2[i])) {
@@ -49,8 +49,8 @@ public class PathUtil {
         if (referPath.endsWith("/")) {
             referPath = referPath.substring(0, referPath.length() - 1);
         }
-        String p1[] = parent.split("/");
-        String p2[] = referPath.split("/");
+        String[] p1 = parent.split("/");
+        String[] p2 = referPath.split("/");
         if (p1.length < p2.length) {
             return p2[p1.length];
         }
@@ -72,7 +72,7 @@ public class PathUtil {
 
     // Get parent folder name for a file
     public static String getParentFolder(String filePath) {
-        String names[] = filePath.split("/");
+        String[] names = filePath.split("/");
         // Maybe the file is in the root directory like "/etc"
         if (names.length < 2) {
             return "";

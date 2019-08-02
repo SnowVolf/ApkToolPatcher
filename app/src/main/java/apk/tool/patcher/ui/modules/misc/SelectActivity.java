@@ -165,7 +165,7 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             files = getFilesData(currentPath);
-            recyclerView = (RecyclerView) findViewById(R.id.recycler_select_view_RecyclerView);
+            recyclerView = findViewById(R.id.recycler_select_view_RecyclerView);
             layoutManager = new GridLayoutManager(this, Preferences.getGridSize());
             recyclerView.setLayoutManager(layoutManager);
             adapter = new SelectAdapter(files, this);

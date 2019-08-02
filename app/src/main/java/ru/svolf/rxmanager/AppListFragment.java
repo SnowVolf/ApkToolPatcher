@@ -141,7 +141,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         Log.d(TAG, "onListItemClick() called with: listView = [" + listView + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
-        AppListData appBasicData = AppListData.class.cast(view.getTag());
+        AppListData appBasicData = (AppListData) view.getTag();
         AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(appBasicData.getPackageName());
 
         getFragmentManager()
@@ -234,7 +234,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
      * reading APK file
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         Log.d(TAG, "onRequestPermissionsResult() called with: requestCode = [" + requestCode + "], permissions = [" + permissions + "], grantResults = [" + grantResults + "]");
         if (requestCode == REQUEST_STORAGE_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
