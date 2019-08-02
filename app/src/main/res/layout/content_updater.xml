@@ -7,13 +7,17 @@
     tools:context="apk.tool.patcher.ui.modules.misc.UpdaterActivity"
     tools:showIn="@layout/activity_updater">
 
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <apk.tool.patcher.ui.widget.SpringRecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/button"
         android:layout_margin="8dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <Button
         android:id="@+id/button"
@@ -21,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Update now (5.1 MB)"
+        android:text="Update now"
         android:textAllCaps="false" />
 
 </RelativeLayout>
