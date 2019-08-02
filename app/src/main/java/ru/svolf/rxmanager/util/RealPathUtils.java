@@ -5,10 +5,15 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Created by Martin Styk on 09.10.2017.
@@ -18,10 +23,8 @@ public class RealPathUtils {
     @SuppressLint("NewApi")
     public static String getPathFromUri(final Context context, final Uri uri) {
 
-        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
-
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (DocumentsContract.isDocumentUri(context, uri)) {
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
@@ -139,5 +142,20 @@ public class RealPathUtils {
      */
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+
+    public static void streamToFile(InputStream inputStream, File target){
+        try {
+            OutputStream out = new FileOutputStream(target);
+            byte[] bytes = new byte[8192];
+            int len;
+            while ((len = inputStream.read(bytes)) > 0){
+                out.write(bytes, 0, len);
+            }
+            out.close();
+            inputStream.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -28,15 +30,19 @@ import androidx.loader.content.Loader;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.filesystem.FilePickHelper;
 import apk.tool.patcher.util.Preferences;
+import ru.svolf.melissa.fragment.dialog.SweetWaitDialog;
 import ru.svolf.rxmanager.adapter.AppListAdapter;
 import ru.svolf.rxmanager.async.AppListLoader;
 import ru.svolf.rxmanager.data.AppListData;
 import ru.svolf.rxmanager.data.AppSource;
 import ru.svolf.rxmanager.util.ApkFilePicker;
+import ru.svolf.rxmanager.util.RealPathUtils;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -219,24 +225,12 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
      * Currently it is called only after APK file is selected from storage
      */
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
         super.onActivityResult(requestCode, resultCode, data);
-        // handle picked apk file and
+        // handle picked apk file uri and do work
         if (requestCode == ApkFilePicker.REQUEST_PICK_APK && resultCode == RESULT_OK) {
-            String achive = ApkFilePicker.getPathFromIntentData(data, getContext());
-            if (achive != null) {
-                AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(null, achive);
-                if (new File(achive).exists()) {
-                    getFragmentManager()
-                            .beginTransaction()
-                            .add(R.id.content_frame, detailsFragment)
-                            .addToBackStack(null)
-                            .commit();
-                } else {
-                    Snackbar.make(listView, "This file manager is not supported, please try Solid Explorer", Snackbar.LENGTH_LONG).show();
-                }
-            }
+            new ExtractionTask().execute(data);
         }
     }
 
@@ -277,7 +271,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
             }
         } else {
             try {
-                startActivityForResult(ApkFilePicker.getFilePickerIntent(), ApkFilePicker.REQUEST_PICK_APK);
+                startActivityForResult(FilePickHelper.pickFile(true), ApkFilePicker.REQUEST_PICK_APK);
             } catch (ActivityNotFoundException exception){
                 Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.no_app_to_open, Snackbar.LENGTH_LONG).show();
             }
@@ -314,6 +308,48 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
             }
             progressBar.setVisibility(View.VISIBLE);
             listView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    class ExtractionTask extends AsyncTask<Intent, File, File> {
+        private SweetWaitDialog waitDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            waitDialog = new SweetWaitDialog(getContext());
+            waitDialog.setTitle(R.string.message_wait);
+            waitDialog.show();
+        }
+
+        @Override
+        protected File doInBackground(final Intent... intents) {
+            final File archive = new File(getContext().getExternalCacheDir(), "app.apk");
+            if (!archive.exists()){
+                try {
+                    archive.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            RealPathUtils.streamToFile(FilePickHelper.onActivityResult(getContext(), intents[0])
+                            .get(0).getFileStream(), archive);
+            return archive;
+        }
+
+        @Override
+        protected void onPostExecute(File file) {
+            super.onPostExecute(file);
+            AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(null, file.getPath());
+            getFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.content_frame, detailsFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+            if (waitDialog.isShowing()){
+                waitDialog.dismiss();
+            }
         }
     }
 }
