@@ -33,6 +33,7 @@ import org.acra.annotation.ReportsCrashes;
 
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.util.LocaleHelper;
+import apk.tool.patcher.util.ReflectionBypass;
 
 
 @ReportsCrashes
@@ -169,6 +170,7 @@ public class App extends Application {
         PreferenceManager.setDefaultValues(this, R.xml.patcher_preferences, false);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         hackVmPolicy();
+        ReflectionBypass.apply();
     }
 
     @Override
