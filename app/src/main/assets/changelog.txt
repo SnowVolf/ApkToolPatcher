@@ -1,3 +1,4 @@
 --- 5.0 beta 3 [03-08-19] ---
 In App updater
 64-bit support (@TimScriptov)
+Fixed apk extraction error

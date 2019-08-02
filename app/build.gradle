@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "apk.tool.patcher"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 530
         versionName "5.0 beta 2"
         multiDexEnabled true
@@ -50,8 +50,8 @@ dependencies {
     implementation 'com.faendir:acra:4.10.0'
     implementation 'com.yandex.android:mobmetricalib:3.6.4'
 
-    implementation "com.squareup.okhttp3:okhttp:3.14.1"
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:3.14.1"
+    implementation "com.squareup.okhttp3:okhttp:3.11.0"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:3.11.0"
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     testImplementation 'junit:junit:4.12'

@@ -155,7 +155,7 @@ public class AppsDetailsFragment extends SwipeBackFragment {
                     final PackageInfo appInfo = manager.getPackageInfo(mPackageId, PackageManager.GET_META_DATA);
                     final File test = new File(appInfo.applicationInfo.sourceDir);
                     if (test.exists()) {
-                        final File doc = new File(Environment.DIRECTORY_DOCUMENTS);
+                        final File doc = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOCUMENTS);
                         if (!doc.exists()) {
                             doc.mkdirs();
                         }
