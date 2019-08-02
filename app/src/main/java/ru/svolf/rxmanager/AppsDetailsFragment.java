@@ -1,6 +1,7 @@
 package ru.svolf.rxmanager;
 
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -134,6 +137,16 @@ public class AppsDetailsFragment extends SwipeBackFragment {
         SystemF.hideKeyboard(requireActivity());
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (requestCode == Cs.REQ_CODE_EXTCARD) {
+                extractApk();
+            }
+        }
+    }
+
     private void prepare() {
         buttonLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,21 +163,11 @@ public class AppsDetailsFragment extends SwipeBackFragment {
         buttonExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final PackageManager manager = getContext().getPackageManager();
-                try {
-                    final PackageInfo appInfo = manager.getPackageInfo(mPackageId, PackageManager.GET_META_DATA);
-                    final File test = new File(appInfo.applicationInfo.sourceDir);
-                    if (test.exists()) {
-                        final File doc = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOCUMENTS);
-                        if (!doc.exists()) {
-                            doc.mkdirs();
-                        }
-                        final File apk = new File(String.format("%s/%s [%s].apk", doc,
-                                appInfo.applicationInfo.loadLabel(manager), appInfo.versionName));
-                        FastFs.copyFile(AppsDetailsFragment.this, test, apk);
-                    }
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
+                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    extractApk();
+                } else {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE}, Cs.REQ_CODE_EXTCARD);
                 }
             }
         });
@@ -189,6 +192,25 @@ public class AppsDetailsFragment extends SwipeBackFragment {
         listServices.setNestedScrollingEnabled(false);
         listReceivers.setNestedScrollingEnabled(false);
         listProviders.setNestedScrollingEnabled(false);
+    }
+
+    private void extractApk(){
+        final PackageManager manager = getContext().getPackageManager();
+        try {
+            final PackageInfo appInfo = manager.getPackageInfo(mPackageId, PackageManager.GET_META_DATA);
+            final File test = new File(appInfo.applicationInfo.sourceDir);
+            if (test.exists()) {
+                final File doc = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOCUMENTS);
+                if (!doc.exists()) {
+                    doc.mkdirs();
+                }
+                final File apk = new File(String.format("%s/%s [%s].apk", doc,
+                        appInfo.applicationInfo.loadLabel(manager), appInfo.versionName));
+                FastFs.copyFile(AppsDetailsFragment.this, test, apk);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getPackageIdInfo(String packageId) throws PackageManager.NameNotFoundException {

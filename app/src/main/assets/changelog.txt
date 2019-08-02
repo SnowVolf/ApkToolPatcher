@@ -2,3 +2,4 @@
 In App updater
 64-bit support (@TimScriptov)
 Fixed apk extraction error
+Better runtime permission handling
