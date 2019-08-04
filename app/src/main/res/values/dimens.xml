@@ -7,4 +7,8 @@
     <dimen name="fastscroller_track_height">70dp</dimen>
     <dimen name="fastscroller_track_padding">3dp</dimen>
     <dimen name="big_tab_padding_start">16dp</dimen>
+
+    <dimen name="text_size_caption">25sp</dimen>
+    <dimen name="toolbar_size">100dp</dimen>
+    <dimen name="win_padding">16dp</dimen>
 </resources>

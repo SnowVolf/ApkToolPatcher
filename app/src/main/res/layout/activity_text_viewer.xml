@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/toolbar_size"
         android:background="?colorPrimary">
 
         <TextView
@@ -16,7 +16,7 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:maxLines="1"
-            android:textSize="25sp" />
+            android:textSize="@dimen/text_size_caption" />
 
         <com.google.android.material.button.MaterialButton
             android:visibility="gone"

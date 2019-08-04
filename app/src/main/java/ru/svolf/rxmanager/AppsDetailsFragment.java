@@ -55,6 +55,7 @@ public class AppsDetailsFragment extends SwipeBackFragment {
 
     // Lists container
     private LinearLayout listsContainer;
+    private View buttonsContainer;
 
     // Recyclers
     private RecyclerView listCommon;
@@ -111,14 +112,13 @@ public class AppsDetailsFragment extends SwipeBackFragment {
         appBackground = view.findViewById(R.id.app_info_header);
         appIcon = appBackground.findViewById(R.id.app_icon);
         appLabel = appBackground.findViewById(R.id.app_name);
+        buttonsContainer = appBackground.findViewById(R.id.buttons_container);
         buttonLaunch = appBackground.findViewById(R.id.button_launch);
         buttonExport = appBackground.findViewById(R.id.button_export);
         buttonGPlay = appBackground.findViewById(R.id.button_play);
 
         if (isApkFile){
-            buttonLaunch.setEnabled(false);
-            buttonExport.setEnabled(false);
-            buttonGPlay.setEnabled(false);
+            buttonsContainer.setVisibility(View.INVISIBLE);
         }
 
         listsContainer = view.findViewById(R.id.lists_container);

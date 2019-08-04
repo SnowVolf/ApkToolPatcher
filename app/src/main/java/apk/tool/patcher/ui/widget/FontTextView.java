@@ -5,6 +5,10 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
+import androidx.core.content.res.ResourcesCompat;
+
+import apk.tool.patcher.R;
+
 public class FontTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public FontTextView(Context context) {
@@ -29,19 +33,17 @@ public class FontTextView extends androidx.appcompat.widget.AppCompatTextView {
 
         switch (style) {
             case Typeface.BOLD:
-                typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/GoogleSans-Bold.ttf");
+                typeface = ResourcesCompat.getFont(ctx, R.font.googlesans_bold);
                 break;
             case Typeface.ITALIC:
-                typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/GoogleSans-Italic.ttf");
+                typeface = ResourcesCompat.getFont(ctx, R.font.googlesans_italic);
                 break;
             case Typeface.BOLD_ITALIC:
-                typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/GoogleSans-BoldItalic.ttf");
+                typeface = ResourcesCompat.getFont(ctx, R.font.googlesans_bolditalic);
                 break;
             case Typeface.NORMAL:
-                typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/GoogleSans-Regular.ttf");
-                break;
             default:
-                typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/GoogleSans-Regular.ttf");
+                typeface = ResourcesCompat.getFont(ctx, R.font.googlesans_regular);
                 break;
         }
         setTypeface(typeface);

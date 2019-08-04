@@ -12,7 +12,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/toolbar_size"
             android:background="?colorPrimary">
 
             <TextView
@@ -23,7 +23,7 @@
                 android:layout_margin="16dp"
                 android:maxLines="1"
                 android:text="@string/caption_search"
-                android:textSize="25sp" />
+                android:textSize="@dimen/text_size_caption" />
 
             <com.google.android.material.button.MaterialButton
                 android:visibility="visible"
@@ -183,7 +183,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/toolbar_size"
             android:src="@drawable/magnify" />
 
         <apk.tool.patcher.ui.widget.FontTextView

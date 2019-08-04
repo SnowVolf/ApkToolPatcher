@@ -3,3 +3,4 @@ Initial support for external apk analysing
 64-bit support (@TimScriptov)
 Fixed apk extraction error
 Better runtime permission handling
+Reflection bypass (@badmannersteam)
