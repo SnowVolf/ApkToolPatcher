@@ -19,7 +19,7 @@
             android:layout_margin="12dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/button_addition"
+            android:layout_toStartOf="@+id/button_addition"
             android:maxLines="1"
             android:text="@string/pref_userguide" />
 

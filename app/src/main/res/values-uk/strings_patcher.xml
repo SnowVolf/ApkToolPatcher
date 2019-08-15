@@ -20,7 +20,7 @@
     <string name="patch_toast">Добавити Toast при запуску</string>
     <string name="patch_unicode2utf">Unicode в UTF</string>
     <string name="patch_services_jar">"Пропатчити 'services.jar'"</string>
-    <string name="patch_open_apktool">Відкрити ApkTool</string>
+    <string name="patch_open_apktool">Декомпилятор</string>
     <string name="patch_signature_fallback">Видалити перевірку підпису(пряме читання)</string>
     <string name="patch_native_libs">Патч нативних бібліотек</string>
     <string name="patch_maps_fix">Відремонтувати Google Maps</string>

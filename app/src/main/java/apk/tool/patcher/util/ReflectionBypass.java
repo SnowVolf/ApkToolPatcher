@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 public class ReflectionBypass {
 
     public static boolean apply() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+        if (Build.VERSION.SDK_INT < 28) {
             return true;
         }
 

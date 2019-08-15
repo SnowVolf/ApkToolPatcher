@@ -35,6 +35,10 @@ import apk.tool.patcher.api.Project;
 import apk.tool.patcher.util.LocaleHelper;
 import apk.tool.patcher.util.ReflectionBypass;
 
+import com.a4455jkjh.apktool.util.Settings;
+import java.security.Security;
+import sun1.security.provider.JavaProvider;
+
 
 @ReportsCrashes
         (mailTo = "buntar888@mail.ru, dev.dog@yandex.ru",
@@ -156,6 +160,15 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         ACRA.init(this);
+        
+        Security.addProvider(new JavaProvider());
+		/*new Thread(){
+			@Override
+			public void run() {
+				
+			}
+		}.start();*/
+		Settings.init(App.this);
 
         sBackgroundHandlerThread = new HandlerThread("app_background");
         sBackgroundHandlerThread.start();

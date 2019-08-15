@@ -23,7 +23,7 @@
     <string name="patch_toast">Add startup toast message</string>
     <string name="patch_unicode2utf">Unicode to UTF</string>
     <string name="patch_services_jar">\'services.jar\' patcher</string>
-    <string name="patch_open_apktool">Launch ApkTool</string>
+    <string name="patch_open_apktool">Decompiler</string>
 
     <!-- Premium patches -->
     <string name="patch_signature_fallback">Remove signature check (fallback strategy)</string>

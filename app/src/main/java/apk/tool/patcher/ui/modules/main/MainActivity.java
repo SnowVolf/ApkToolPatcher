@@ -129,7 +129,10 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
         wait.postDelayed(new Runnable() {
             @Override
             public void run() {
+//				if (this.codepremium2.MainFragment.contains(edoc)) {
+//					}else{
                 showAdvert();
+				//}
             }
         }, 2000);
     }

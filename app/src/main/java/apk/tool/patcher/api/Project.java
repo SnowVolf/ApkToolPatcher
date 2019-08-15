@@ -93,7 +93,7 @@ public class Project implements Parcelable {
      * @param baseDir папка проекта, которую необходимо проверить
      * @return true - если папка проекта верная
      */
-    private static boolean isValidProjectDir(String baseDir) {
+    public static boolean isValidProjectDir(String baseDir) {
         final File dir = new File(baseDir);
         final File res = new File(dir, "res/");
         final File dex = new File(dir, "smali/");

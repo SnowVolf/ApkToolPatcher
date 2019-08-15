@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   
+    <string name="click_once_more">Нажмите еще раз, чтобы выйти!</string>
+    <string name="all_files_saved">Все файлы сохранены!</string>
+
+    <string name="jks">Keystore(JKS)</string>
+    <string name="pkcs12">Keystore(PKCS12)</string>
+    <string name="bks">Keystore(BKS)</string>
+    <string name="pk8">pk8+x509.pem</string>
+
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="close_cur">Закрыть</string>
+    <string name="close_others">Закрыть другие</string>
+    <string name="close_all">Закрыть всё</string>
+
+    <string name="go_back">Вернуться в родительский каталог</string>
+    <string name="sort">Метод сортировки</string>
+    <string name="new_file">Новый файл</string>
+    <string name="new_dir">Новая папка</string>
+	<!--<string name="main_project">Установить как проект</string>-->
+	<string name="smali_snalysis">Анализ Smali</string>
+	<string name="smali_snalysis_desc">Smali Analysis Channel</string>
+
+	<!--<string name="errors">Ошибка</string>-->
+	<string name="files">ApkTool</string>
+	<!--<string name="apps">Приложения</string>-->
+	<!--<string name="apps_installed">Установленные приложения</string>
+	<string name="apps_system">Системные приложения</string>-->
+	<string name="details">Детали</string>
+
+    <string name="text">%1$s</string>
+    <string name="setting">Настройки</string>
+    <string name="exit">Выход</string>
+    <string name="save">Сохранить</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="edit_mode">Режим редактирования</string>
+    <string name="scan_mode">Режим навигации</string>
+    <string name="translate_java">Конвертировать в Java</string>
+    <string name="return_smali">Вернуться к Smali</string>
+    <string name="format">Выровнять код</string>
+    <string name="find">Поиск</string>
+    <string name="go_to_line">Перейти к строке</string>
+	<string name="save_file">Сохранить файл</string>
+	<string name="save_file_msg">Есть некоторые файлы, которые не сохранены, сохранить их?</string>
+    <string name="settings">Настройки</string>
+    <string name="decompile_all">Декомпилировать всё</string>
+    <string name="decompile_res">Декомпилировать ресурсы</string>
+    <string name="decompile_dex">Декомпилировать classes.dex</string>
+    <string name="install">Установить</string>
+    <string name="verify">Проверить подпись</string>
+    <string name="translate">Перевести</string>
+    <string name="import_framework">Импортировать как framework</string>
+    <string name="sign">Подписать</string> 
+    <string name="rename">Переименовать</string> 
+    <string name="delete">Удалить</string>
+    <string name="copy_path">Копировать путь</string> 
+    <string name="build_copy_file">Копирование ‘%1$s’...</string>
+	<string name="jaxp_not_support">"JAXP 1.5 Support is required to validate XML"</string>
+	<string name="report_error">"Please report this application to Apktool for a fix: https://github.com/iBotPeaches/Apktool/issues/1728"</string>
+	<string name="decoding_shared_library">"Расшифровка общей библиотеки \(%1$s\), pkgId: %2$d"</string>
+	<string name="unknown_skip_bytes">"Обнаружены неизвестные данные.  Пропускаю: %d byte\(s\)"</string>
+	<string name="using_apktool">"Используется Apktool %1$s on %2$s"</string>
+    <string name="build_run_title">Компиляция...</string>
+    <string name="sign_done">Подпись завершена, файл сохранен в: ‘%1$s’.</string>
+    <string name="verify_v1_success">V1 проверка подписи прошла успешно.</string>
+    <string name="verify_v1_fail">V1 проверка подписи не удалась.</string>
+    <string name="verify_v2_success">V2 проверка подписи прошла успешно.</string>
+    <string name="verify_v2_fail">V2 проверка подписи не удалась.</string>
+    <string name="decode_run_title">Декомпиляция...</string>
+    <string name="sign_run_title">Подпись...</string>
+    <string name="verify_run_title">Проверка подписи...</string>
+	<string name="light_theme">Светлая тема</string>
+	<string name="light_theme_summary">Выберите между светлой темой и темной темой для пользовательского интерфейса.</string>
+	<string name="output_directory">Выходной каталог</string>
+	<string name="set_as_output_directory">Установить как выходной каталог</string>
+	<string name="output_directory_summary">Установите выходной каталог установленных приложений.</string>
+	<string name="output_directory_not_extsts">Выходной каталог \'%1$s\' не существует и не может быть создан!</string>
+	<string name="output_directory_not_set">Вы должны сначала установить выходной каталог!</string>
+	<string name="not_directory">\'%1$s\' каталог отсутствует!</string>
+
+    <string name="application">Приложения</string>
+    <string name="application_summary">Настройте глобальные параметры приложения.</string>
+    <string name="editor">Редактор</string>
+    <string name="editor_summary">Настройки редактора.</string>
+    <string name="signature">Подпись</string>
+    <string name="signature_summary">Настройте параметры подписи.</string>
+    <string name="build_and_decode">Комп &amp; Декомп</string>
+    <string name="build_and_decode_summary">Настроить сборку&amp; Настроить декомп.</string>
+    <string name="font_size">Размер шрифта редактора</string>
+    <string name="font_size_summary">Укажите размер шрифта по умолчанию для редактора.</string>
+    <string name="font_size_title">Размер шрифта редактора:</string>
+    <string name="debug_mode">Установить apk как отлаживаемый</string>
+    <string name="debug_mode_summary">"Установите android:debuggable в \"true\" в разобраном манифесте APK"</string>
+    <string name="verbose_mode">Полный</string>
+    <string name="verbose_mode_summary">Включить подробный режим.</string>
+    <string name="copyOriginalFiles">Match original</string>
+    <string name="copyOriginalFiles_summary">Сохраняет файлы как можно ближе к оригиналу.</string>
+    <string name="mBakdeb">Write debug info</string>
+    <string name="mBakdeb_summary">"Write out debug info (.local, .param, .line, etc.)"</string>
+    <string name="custom_signature_file">Пользовательский файл подписи</string>
+    <string name="custom_signature_file_summary">Использовать пользовательский файл подписи.</string>
+    <string name="signature_file">Файл подписи</string>
+    <string name="signature_file_summary">Файл настроек (pk8 файл или файл хранилища ключей). Если это pk8 файл, тогда автоматически сгенерирует x509.pem файл с тем же именем (для примера, testkey.pk8 соответствует testkey.x509.pem).</string>
+    <string name="signature_file_missing">Файл подписи \'%1$s\' не найден, используется подпись по умолчанию!</string>
+	<string name="load_signature_file_fail">Невозможно загрузить файл подписи \'%1$s\'.</string>
+	<string name="enter_password">Введите пароль:</string>
+	<string name="about">О приложении</string>
+
+    <string name="key_type">Тип ключа:</string>
+    <string name="key_path">Путь к ключу:</string>
+    <string name="cert_path">Cert Path:</string>
+    <string name="key_alias">Alias:</string>
+    <string name="store_pass">Keystore Password:</string>
+    <string name="key_pass">Private Key Password:</string>
+
+    <string name="verify_cert_count">Количество подписей: %d。</string>
+    <string name="verify_success">Проверка пройдена</string>
+    <string name="verify_fail">Ошибка при проверке</string>
+    <string name="verify_log_cert">%1$s Уникальное отличительное имя: %2$s。</string>
+    <string name="verify_log_keySize">%1$s Key size (bits): %2$s。</string>
+    <string name="verify_log_key_algorithm">%1$s Key algorithm: %2$s。</string>
+    <string name="verify_jar">JAR signer %1$s: %2$s</string>
+    <string name="date">Vilidity Date:</string>
+    <string name="common_name">Common Name:</string>
+    <string name="organization_unit">Organization Unit@</string>
+    <string name="organization_name">Organization Name:</string>
+    <string name="locality_name">Locality Name:</string>
+    <string name="state_name">State Name:</string>
+    <string name="country">Country@</string>
+    <string name="gen_key_title">Create a key file</string>
+    <string name="gen_key_summary">Touch to create a key file.</string>
+    <string name="analysis_all_smali">Анализ всех smali</string>
+    <string name="analysis_all_smali_summary">Анализ всех smali файлов при запуске и настройке основного проекта.</string>
+    <string name="create_and_use">Создать и использовать</string>
+</resources>
