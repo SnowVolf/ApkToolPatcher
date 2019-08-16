@@ -1,14 +1,13 @@
 package com.a4455jkjh.apktool.preference;
-import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.DialogPreference;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -17,7 +16,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import apk.tool.patcher.*;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,6 +40,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 import java.util.Random;
+
+import apk.tool.patcher.App;
+import apk.tool.patcher.R;
 import sun1.security.x509.AlgorithmId;
 import sun1.security.x509.CertificateAlgorithmId;
 import sun1.security.x509.CertificateExtensions;
@@ -54,7 +59,7 @@ import sun1.security.x509.X500Name;
 import sun1.security.x509.X509CertImpl;
 import sun1.security.x509.X509CertInfo;
 
-public class GenKeystorePreference extends DialogPreference implements TextWatcher, AdapterView.OnItemSelectedListener {
+public class GenKeystorePreference extends Preference implements TextWatcher, AdapterView.OnItemSelectedListener {
 
 	private EditText alias;
     private TextView cert;
@@ -93,22 +98,32 @@ public class GenKeystorePreference extends DialogPreference implements TextWatch
 
 	public GenKeystorePreference(Context ctx, AttributeSet a) {
 		super(ctx, a);
-		setDialogLayoutResource(R.layout.genkey);
 	}
 
-	@Override
-	protected void showDialog(Bundle state) {
-		super.showDialog(state);
-		AlertDialog dialog = (AlertDialog) getDialog();
-		dialog.getWindow().
+    @Override
+    protected void onClick() {
+        super.onClick();
+        initialize();
+    }
+
+    private void initialize(){
+        View content = LayoutInflater.from(getContext()).inflate(R.layout.genkey, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getTitle());
+        builder.setView(onCreateDialogView(content));
+        onPrepareDialogBuilder(builder);
+        showDialog(builder.create());
+        builder.show();
+    }
+
+	protected void showDialog(AlertDialog dlg) {
+		dlg.getWindow().
 			setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-		create = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-		createAndUse = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+		create = dlg.getButton(DialogInterface.BUTTON_POSITIVE);
+		createAndUse = dlg.getButton(DialogInterface.BUTTON_NEUTRAL);
 	}
 
-	@Override
-	protected View onCreateDialogView() {
-		View view = super.onCreateDialogView();
+	protected View onCreateDialogView(View view) {
 		this.format = view.findViewById(R.id.format);
 		this.path = view.findViewById(R.id.path);
 		this.alias = view.findViewById(R.id.alias);
@@ -143,7 +158,7 @@ public class GenKeystorePreference extends DialogPreference implements TextWatch
             case 1:
             case 2:
                 this.cert.setText(R.string.key_alias);
-                this.password.setVisibility(0);
+                this.password.setVisibility(View.VISIBLE);
                 if (this.alias.getText().toString().startsWith("/")) {
                     this.alias.setText("");
                     return;
@@ -152,7 +167,7 @@ public class GenKeystorePreference extends DialogPreference implements TextWatch
             case 3:
                 setAlias();
                 this.cert.setText(R.string.cert_path);
-                this.password.setVisibility(8);
+                this.password.setVisibility(View.GONE);
                 this.keyPass.setText("");
                 this.storePass.setText("");
                 return;
@@ -161,26 +176,28 @@ public class GenKeystorePreference extends DialogPreference implements TextWatch
         }
     }
 
-	@Override
 	protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-		super.onPrepareDialogBuilder(builder);
-		builder.setNeutralButton(R.string.create_and_use, this);
+		builder.setNeutralButton(R.string.create_and_use, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                onClickCall(i);
+            }
+        });
 	}
 
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
+	public void onClickCall(int which) {
 		if (which == DialogInterface.BUTTON_NEGATIVE)
 			return;
 		KeyParam par = save();
 		if (par == null || which == DialogInterface.BUTTON_POSITIVE)
 			return;
-		SharedPreferences.Editor editor = getSharedPreferences().edit();
+		SharedPreferences.Editor editor = App.get().getPreferences().edit();
 		editor.putInt("key_type", par.type);
 		editor.putString("key_path", par.keyPath);
 		editor.putString("cert_or_alias", par.certOrAlias);
 		editor.putString("store_pass", par.storePass);
 		editor.putString("key_pass", par.keyPass);
-		editor.commit();
+		editor.apply();
 	}
 
 	public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -244,7 +261,7 @@ public class GenKeystorePreference extends DialogPreference implements TextWatch
         keyParam.days = Long.parseLong(this.date.getText().toString()) * 365;
         try {
             generateKey(keyParam);
-            Toast.makeText(getContext(), "创建成功", 0).show();
+            Toast.makeText(getContext(), R.string.all_files_saved, Toast.LENGTH_SHORT).show();
             return keyParam;
         } catch (Exception e) {
             StringBuilder certificateEncodingException = new StringBuilder(e.getMessage());

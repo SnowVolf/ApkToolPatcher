@@ -1,20 +1,24 @@
 package com.a4455jkjh.apktool.preference;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.preference.DialogPreference;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import apk.tool.patcher.*;
-import android.content.SharedPreferences;
 
-public class KeystorePreference extends DialogPreference implements AdapterView.OnItemSelectedListener {
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
+
+import apk.tool.patcher.App;
+import apk.tool.patcher.R;
+
+public class KeystorePreference extends Preference implements AdapterView.OnItemSelectedListener {
 	Spinner format;
 	EditText key_path;
 	TextView cert;
@@ -24,12 +28,38 @@ public class KeystorePreference extends DialogPreference implements AdapterView.
 	EditText keyPass;
 	public KeystorePreference(Context ctx, AttributeSet a) {
 		super(ctx, a);
-		setDialogLayoutResource(R.layout.keystore);
+	}
+
+	private void initDialog(){
+		View content = LayoutInflater.from(getContext()).inflate(R.layout.keystore, null);
+		onBindDialogView(content);
+		onPrepareDialogBuilder();
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+		builder.setTitle(getTitle());
+		builder.setView(content);
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialogInterface, int i) {
+				click(i);
+			}
+		});
+		builder.setNeutralButton(R.string.close_cur, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialogInterface, int i) {
+				click(i);
+			}
+		});
+		builder.setNegativeButton(android.R.string.cancel, null);
+		builder.show();
 	}
 
 	@Override
+	protected void onClick() {
+		super.onClick();
+		initDialog();
+	}
+
 	protected void onBindDialogView(View view) {
-		super.onBindDialogView(view);
 		format = view.findViewById(R.id.format);
 		key_path = view.findViewById(R.id.key_path);
 		cert = view.findViewById(R.id.cert);
@@ -40,8 +70,7 @@ public class KeystorePreference extends DialogPreference implements AdapterView.
 		format.setOnItemSelectedListener(this);
 	}
 
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
+	public void click(int which) {
 		if (which == DialogInterface.BUTTON_POSITIVE) {
 			SharedPreferences.Editor editor = getSharedPreferences().edit();
 			editor.putInt("key_type", format.getSelectedItemPosition());
@@ -49,19 +78,17 @@ public class KeystorePreference extends DialogPreference implements AdapterView.
 			editor.putString("cert_or_alias", alias.getText().toString());
 			editor.putString("store_pass", storePass.getText().toString());
 			editor.putString("key_pass", keyPass.getText().toString());
-			editor.commit();
+			editor.apply();
 		} else if (which == DialogInterface.BUTTON_NEUTRAL) {
 			SharedPreferences.Editor editor = getSharedPreferences().edit();
 			editor.putString("store_pass", "");
 			editor.putString("key_pass", "");
-			editor.commit();
+			editor.apply();
 		}
 	}
 
-	@Override
-	protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-		super.onPrepareDialogBuilder(builder);
-		SharedPreferences sp = getSharedPreferences();
+	void onPrepareDialogBuilder() {
+		SharedPreferences sp = App.get().getPreferences();
 		int type = sp.getInt("key_type", 0);
 		format.setSelection(type);
 		String keyPath = sp.getString("key_path", "");

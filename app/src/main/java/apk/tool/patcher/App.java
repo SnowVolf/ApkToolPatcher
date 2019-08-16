@@ -24,6 +24,7 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.a4455jkjh.apktool.util.Settings;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
@@ -31,12 +32,11 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
+import java.security.Security;
+
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.util.LocaleHelper;
 import apk.tool.patcher.util.ReflectionBypass;
-
-import com.a4455jkjh.apktool.util.Settings;
-import java.security.Security;
 import sun1.security.provider.JavaProvider;
 
 
@@ -181,7 +181,9 @@ public class App extends Application {
         YandexMetrica.enableActivityAutoTracking(this);
 
         PreferenceManager.setDefaultValues(this, R.xml.patcher_preferences, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preference_apktool, false);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         hackVmPolicy();
         ReflectionBypass.apply();
     }

@@ -1,17 +1,19 @@
 package com.a4455jkjh.apktool.fragment;
 
-import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import apk.tool.patcher.*;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
 
-public class PreferenceSignatureFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
+
+import apk.tool.patcher.R;
+
+public class ApkToolPreferenceFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.preference_signtuare);
+	public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+		addPreferencesFromResource(R.xml.preference_apktool);
 		init();
 	}
 
@@ -21,7 +23,7 @@ public class PreferenceSignatureFragment extends PreferenceFragment implements P
 		findPreference("keystore").setEnabled(b);
 		findPreference("gen_key").setEnabled(b);
 		findPreference("custom_signature_file").
-		setOnPreferenceChangeListener(this);
+				setOnPreferenceChangeListener(this);
 	}
 
 	@Override
@@ -32,5 +34,5 @@ public class PreferenceSignatureFragment extends PreferenceFragment implements P
 		return true;
 	}
 
-	
+
 }

@@ -16,6 +16,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.modules.settings.SettingsActivity;
+import apk.tool.patcher.util.Cs;
+
 import com.a4455jkjh.apktool.fragment.EditorFragment;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.fragment.editor.EditorPagerAdapter;
@@ -87,7 +90,7 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 		files.bind(editor);
 		this.files = files;
 	}
-	private long lastClicked = 0l;
+	private long lastClicked = 0L;
 
 	@Override
 	public void onBackPressed() {
@@ -95,7 +98,7 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 			return;
 		long curClick = System.currentTimeMillis();
 		if (curClick - lastClicked > 2000) {
-			Toast.makeText(this, R.string.click_once_more, 0).show();
+			Toast.makeText(this, R.string.click_once_more, Toast.LENGTH_SHORT).show();
 			lastClicked = curClick;
 			return;
 		}
@@ -115,7 +118,8 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 				checkExit();
 				break;
 			case R.id.settings:
-				Intent i = new Intent(this, SettingActivity.class);
+				Intent i = new Intent(this, SettingsActivity.class);
+				i.putExtra(Cs.ARG_PREF_TAB, Cs.TAB_DECOMPILER);
 				startActivity(i);
 				break;
 			default:
@@ -185,7 +189,7 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		Toast.makeText(this, "config", 0).show();
+		Toast.makeText(this, "config", Toast.LENGTH_SHORT).show();
 		changeLeft();
 	}
 

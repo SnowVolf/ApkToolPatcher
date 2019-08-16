@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.a4455jkjh.apktool.fragment.ApkToolPreferenceFragment;
+
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.about.AboutFragment;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
@@ -79,7 +81,7 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
             public void run() {
                 mTabs.setupViews(mTabIndex);
             }
-        }, end - start + 100);
+        }, end - start + 250);
     }
 
     @Override
@@ -91,7 +93,7 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
     private void setViewPager(ViewPager pager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new SettingsFragment(), getString(R.string.settings_tab_main));
-        //adapter.addFragment(new DecompilerSettingsFragment(), getString(R.string.settings_tab_decompiler));
+        adapter.addFragment(new ApkToolPreferenceFragment(), "ApkTool");
         adapter.addFragment(new AboutFragment(), getString(R.string.settings_tab_other));
 
         pager.setAdapter(adapter);
