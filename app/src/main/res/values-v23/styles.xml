@@ -76,6 +76,7 @@
 		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
 		<item name="android:windowTranslucentNavigation">false</item>
 		<item name="android:windowTranslucentStatus">false</item>
+         <item name="icon_color">@color/dark_iconColor</item>
 	</style>
     <style name="AppThemeLight1" parent="@android:style/Theme.Material.Light">
 		<item name="android:windowLightStatusBar">true</item>
@@ -88,6 +89,7 @@
 		<item name="android:windowTranslucentNavigation">false</item>
 		<item name="android:windowTranslucentStatus">false</item>
         <item name="files_back">@drawable/undo_menu</item>
+        <item name="icon_color">@color/light_iconColor</item>
 	</style>
     <color name="primary_dark_material">#ff222222</color>
     <color name="primary_dark_material_light">#ffffffff</color>

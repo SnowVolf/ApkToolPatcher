@@ -112,9 +112,6 @@
     <string name="inspector_one_dex">Project is not supported by MultiDex</string>
     <string name="no_data">No data</string>
     <string name="no_data_desc">NO..U)))</string>
-    <string name="message_apktool_not_found"><![CDATA[ApkTool not found, here is some cases:<br><br>- apktool is not installed on the device<br>- apktool GUI has been installed, but package name does not equal: <b>per.pqy.apktool</b><br>- App failed to get applications data by your system restrictions. For example: <i>(XPrivacy for Xposed/AppOpsXposed/etc.)</i><br><br>You can choose a different ways]]></string>
-    <string name="change_apktool_pkg">Change ApkTool package</string>
-    <string name="apktool_pda">ApkTool topic on 4PDA</string>
     <string name="appinfo_pkg_name">Package name</string>
     <string name="appinfo_ver">Version</string>
     <string name="appinfo_ver_code">Version code</string>

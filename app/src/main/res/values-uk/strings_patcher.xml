@@ -103,9 +103,6 @@
     <string name="pref_low_mem_sub">Може викликати фрізи при перемиканні між операціями, але допомагає на пристроях з малою кількістю ОЗУ</string>
     <string name="no_data">Нет данных</string>
     <string name="no_data_desc">НЛО прилетело и оставило эту надпись здесь</string>
-    <string name="message_apktool_not_found"><![CDATA[ApkTool не найден, вот возможные причины:<br><br>- apktool не установлен на устройстве<br>- apktool GUI установлен, но имя пакета отличается от стандартного <b>per.pqy.apktool</b><br>- Вы ограничили доступ к списку установленных приложений <i>(XPrivacy для Xposed/AppOpsXposed/etc.)</i><br><br>Вы можете выбрать несколько вариантов]]></string>
-    <string name="change_apktool_pkg">Изменить пакет ApkTool</string>
-    <string name="apktool_pda">Тема ApkTool на 4PDA</string>
     <string name="appinfo_pkg_name">Имя пакета</string>
     <string name="appinfo_ver">Версия</string>
     <string name="appinfo_ver_code">Код версии</string>

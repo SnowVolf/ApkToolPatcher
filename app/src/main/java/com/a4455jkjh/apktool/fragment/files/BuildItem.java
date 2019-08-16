@@ -4,12 +4,14 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import apk.tool.patcher.*;
+
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.task.BuildTask;
 import com.a4455jkjh.apktool.task.SignUtil;
-import com.a4455jkjh.apktool.util.Settings;
+
 import java.io.File;
+
+import apk.tool.patcher.R;
 
 public class BuildItem implements Item {
 	private final File projectDir;
@@ -24,10 +26,7 @@ public class BuildItem implements Item {
 
 	@Override
 	public void setup(ImageView icon, TextView name) {
-		if (Settings.lightTheme)
-			icon.setImageResource(R.drawable.ic_play_light);
-		else
-			icon.setImageResource(R.drawable.ic_play_dark);
+		icon.setImageResource(R.drawable.ic_play);
 		name.setText("Build");
 	}
 

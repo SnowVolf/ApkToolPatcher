@@ -10,14 +10,9 @@
 
     <dimen name="text_size_caption">25sp</dimen>
     <dimen name="toolbar_size">100dp</dimen>
-    <dimen name="win_padding">16dp</dimen>
-    
-    
-    
-    
-    
-    
-   <dimen name="one_sp">1sp</dimen>
+
+
+    <dimen name="one_sp">1sp</dimen>
 	<dimen name="design_tab_text_size">14sp</dimen>
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <dimen name="design_tab_scrollable_min_width">72dp</dimen>

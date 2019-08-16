@@ -165,7 +165,7 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 				EditorPagerAdapter.INSTANCE.getItems()
 						.get(0).getEditor().goToLine(lineNumber);
 			}
-		}, 1000);
+		}, 500);
 		empty.setVisibility(View.GONE);
 		((MainActivity)getActivity()).dismissFiles();
 	}

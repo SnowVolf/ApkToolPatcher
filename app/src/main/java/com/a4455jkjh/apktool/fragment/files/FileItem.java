@@ -1,20 +1,18 @@
 package com.a4455jkjh.apktool.fragment.files;
 
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
-import apk.tool.patcher.*;
+
+import com.a4455jkjh.apktool.fragment.FilesFragment;
+import com.a4455jkjh.apktool.lexer.LexerUtil;
 import com.a4455jkjh.apktool.util.FileUtils;
 import com.a4455jkjh.apktool.util.Settings;
+
 import java.io.File;
-import com.a4455jkjh.apktool.fragment.FilesFragment;
-import android.webkit.MimeTypeMap;
-import com.a4455jkjh.apktool.lexer.LexerUtil;
-import android.content.pm.*;
-import android.os.*;
-import android.graphics.drawable.*;
-import android.graphics.*;
-import android.content.*;
+
+import apk.tool.patcher.R;
 
 public class FileItem implements Item {
 	private final File file;
@@ -110,13 +108,13 @@ public class FileItem implements Item {
 		return PROPERTY_FILE;
 	}
 	public enum Icon {
-		FOLDER(R.drawable.folder,R.drawable.folder_dark),
+		FOLDER(R.drawable.folder,R.drawable.folder),
 		XML(R.drawable.xml,R.drawable.xml_dark),
 		YML(R.drawable.yaml,R.drawable.yaml_dark),
 		SMALI(R.drawable.smali,R.drawable.smali_dark),
 		JKS(R.drawable.jks,R.drawable.jks_dark),
 		APK(R.drawable.apk,R.drawable.apk_dark),
-		UNKNOWN(R.drawable.file,R.drawable.file_dark);
+		UNKNOWN(R.drawable.file,R.drawable.file);
 		int light;
 		int dark;
 		Icon(int light,int dark){

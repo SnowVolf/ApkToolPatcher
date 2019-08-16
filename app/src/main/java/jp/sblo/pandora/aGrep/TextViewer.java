@@ -113,36 +113,18 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
         }
         return super.onOptionsItemSelected(item);
     }
-	
-	
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+    public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
         // ビュワー呼び出し
-
-//        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_VIEW);
-//        if (mPrefs.addLineNumber) {
-////            TextPreview textPreview = (TextPreview)findViewById(R.id.TextPreview);
-//            intent.setDataAndType(Uri.parse("file://" + mPath + "?line=" + (1 + position)), "text/plain");
-//        } else {
-//            intent.setDataAndType(Uri.parse("file://" + mPath), "text/plain");
-//        }
-//        startActivity(intent);
-
         Intent launch = new Intent(TextViewer.this, MainActivity.class);
         launch.putExtra("opened_file", mPath);
         launch.putExtra("line_number", mLine);
         startActivity(launch);
-
-        return true;
     }
-	
-	
-	
 
     @Override
-    public void onItemClick(AdapterView<?> arg0, View convertView, int arg2, long arg3) {
+    public boolean onItemLongClick(AdapterView<?> arg0, View convertView, int arg2, long arg3) {
         // テキストのコピー
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         TextView txt = convertView.findViewById(R.id.ListIndex);
@@ -150,6 +132,7 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
         cm.setPrimaryClip(clip);
 
         Snackbar.make(txt, R.string.label_copied, Snackbar.LENGTH_SHORT).show();
+        return true;
     }
 	
 	

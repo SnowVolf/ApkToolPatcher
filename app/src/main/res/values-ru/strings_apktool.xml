@@ -25,9 +25,8 @@
     <string name="new_dir">Новая папка</string>
 	<!--<string name="main_project">Установить как проект</string>-->
 	<string name="smali_snalysis">Анализ Smali</string>
-	<string name="smali_snalysis_desc">Smali Analysis Channel</string>
 
-	<!--<string name="errors">Ошибка</string>-->
+    <!--<string name="errors">Ошибка</string>-->
 	<string name="files">ApkTool</string>
 	<!--<string name="apps">Приложения</string>-->
 	<!--<string name="apps_installed">Установленные приложения</string>
@@ -35,7 +34,6 @@
 	<string name="details">Детали</string>
 
     <string name="text">%1$s</string>
-    <string name="setting">Настройки</string>
     <string name="exit">Выход</string>
     <string name="save">Сохранить</string>
     <string name="undo">Undo</string>
@@ -121,8 +119,6 @@
     <string name="key_pass">Private Key Password:</string>
 
     <string name="verify_cert_count">Количество подписей: %d。</string>
-    <string name="verify_success">Проверка пройдена</string>
-    <string name="verify_fail">Ошибка при проверке</string>
     <string name="verify_log_cert">%1$s Уникальное отличительное имя: %2$s。</string>
     <string name="verify_log_keySize">%1$s Key size (bits): %2$s。</string>
     <string name="verify_log_key_algorithm">%1$s Key algorithm: %2$s。</string>

@@ -2,10 +2,10 @@ package com.a4455jkjh.apktool.menu;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import apk.tool.patcher.*;
-import com.a4455jkjh.apktool.util.Settings;
-import com.a4455jkjh.apktool.view.Editor;
+
 import com.a4455jkjh.apktool.fragment.editor.EditorPagerAdapter;
+
+import apk.tool.patcher.R;
 
 public class Menus {
 	public static void prepare(Menu menu, int idx) {
@@ -22,20 +22,14 @@ public class Menus {
 		SAVE(R.id.save){
 			@Override
 			void prepare(MenuItem item, int idx){
-				if(Settings.lightTheme)
-					item.setIcon(R.drawable.save_menu);
-				else
-					item.setIcon(R.drawable.save_dark_menu);
+				item.setIcon(R.drawable.save);
 				item.setEnabled(EditorPagerAdapter.INSTANCE.isEdited(idx));
 			}
 		},
 		UNDO(R.id.undo){
 			@Override
 			void prepare(MenuItem item, int idx){
-				if(Settings.lightTheme)
-					item.setIcon(R.drawable.undo_menu);
-				else
-					item.setIcon(R.drawable.undo_dark_menu);
+				item.setIcon(R.drawable.ic_undo);
 				item.setEnabled(EditorPagerAdapter.INSTANCE.canUndo(idx));
 			}
 			@Override
@@ -46,10 +40,7 @@ public class Menus {
 		REDO(R.id.redo){
 			@Override
 			void prepare(MenuItem item, int idx){
-				if(Settings.lightTheme)
-					item.setIcon(R.drawable.redo_menu);
-				else
-					item.setIcon(R.drawable.redo_dark_menu);
+				item.setIcon(R.drawable.ic_redo);
 				item.setEnabled(EditorPagerAdapter.INSTANCE.canRedo(idx));
 			}
 			@Override
