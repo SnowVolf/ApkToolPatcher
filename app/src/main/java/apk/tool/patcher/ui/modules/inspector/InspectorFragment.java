@@ -4,6 +4,7 @@ package apk.tool.patcher.ui.modules.inspector;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,6 +39,7 @@ import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 public class InspectorFragment extends SwipeBackFragment {
     public static final String FRAGMENT_TAG = "smali_parent_fragment";
+    private static final String TAG = "InspectorFragment";
     private String mPath;
     private int i;
 
@@ -49,6 +52,7 @@ public class InspectorFragment extends SwipeBackFragment {
 
     // TODO: Rename and change types and number of parameters
     public static InspectorFragment newInstance(Project projekt) {
+        Log.d(TAG, "newInstance() called with: projekt = [" + projekt + "]");
         InspectorFragment fragment = new InspectorFragment();
         Bundle args = new Bundle();
         args.putParcelable(Cs.ARG_PATH_NAME, projekt);
@@ -85,7 +89,7 @@ public class InspectorFragment extends SwipeBackFragment {
         }
 
         if (mPath != null && !mPath.isEmpty() && mProject.isValid()) {
-            new Inspector().execute();
+            new Inspector().execute(mPath);
         } else {
             mPager.setVisibility(View.GONE);
             mNotFound.setVisibility(View.VISIBLE);
@@ -142,6 +146,7 @@ public class InspectorFragment extends SwipeBackFragment {
          */
         @Override
         protected void onPreExecute() {
+            Log.d(TAG, "onPreExecute() called");
             mItems = new ArrayList<>();
             mNormalItems = new ArrayList<>();
             mSortedItems = new ArrayList<>();
@@ -164,9 +169,10 @@ public class InspectorFragment extends SwipeBackFragment {
          */
         @Override
         protected String doInBackground(String... strings) {
+            Log.d(TAG, "doInBackground() called with: strings = [" + Arrays.toString(strings) + "]");
             ArrayMap<Pattern, String> pat = new ArrayMap<Pattern, String>();
             pat.put(Pattern.compile("(const-string [pv]\\d+, (\".*Premium.*|\".*IsPro.*|\".*RemoveAds.*|\".*Free.*|\"pro\"|\"Pro\"|\".*Vip.*\"|\".*Paid.*\"|\".*Purchased.*\"|\".*Subscribed.*|\".*gold.*\"|\".*Ads.*|\".*Gold.*\"|\".*subscribed.*|\".*paid.*|\".*purchased.*\"|\".*premium.*\"|\".*vip.*\"))"), "a");
-            inspect(mPath, pat);
+            inspect(strings[0], pat);
             return "test";
         }
 
@@ -183,11 +189,13 @@ public class InspectorFragment extends SwipeBackFragment {
          */
         @Override
         protected void onPostExecute(String s) {
+            Log.d(TAG, "onPostExecute() called with: s = [" + s + "]");
             if (mWaitDialog != null && mWaitDialog.isShowing()) {
                 mWaitDialog.dismiss();
                 mWaitDialog = null;
             }
             if (mItems.size() != 0) {
+                Log.d(TAG, "onPostExecute: items != 0, (" + mItems.size() + ")");
                 for (InterestSmaliItem item : mItems) {
                     if (Preferences.hasExcludedPackage(item.getSmaliPath())) {
                         mSortedItems.add(item);
@@ -209,6 +217,7 @@ public class InspectorFragment extends SwipeBackFragment {
         }
 
         public void inspect(String directoryName, ArrayMap<Pattern, String> pat) {
+            Log.d(TAG, "inspect() called with: directoryName = [" + directoryName + "], pat = [" + pat + "]");
             File directory = new File(directoryName);
             byte[] bytes;
             BufferedInputStream buf;
@@ -216,9 +225,11 @@ public class InspectorFragment extends SwipeBackFragment {
             Matcher mat;
             File[] fList = directory.listFiles();
             if (fList != null) {
+                Log.d(TAG, "inspect: flist != null");
                 for (File file : fList) {
                     if (file.isFile()) {
                         if (file.getAbsolutePath().endsWith(".smali")) {
+                            Log.d(TAG, "inspect: trying to replace");
                             try {
                                 bytes = new byte[(int) file.length()];
                                 buf = new BufferedInputStream(new FileInputStream(file));
@@ -234,7 +245,7 @@ public class InspectorFragment extends SwipeBackFragment {
                                     }
                                 }
                             } catch (Exception e) {
-                                System.out.println(e.toString());
+                                Log.e(TAG, "inspect: error", e);
                             }
                         }
                     } else if (file.isDirectory()) {

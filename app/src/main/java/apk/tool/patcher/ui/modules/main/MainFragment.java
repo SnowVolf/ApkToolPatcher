@@ -76,6 +76,7 @@ import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.RegexpRepository;
 import apk.tool.patcher.util.StreamUtil;
 import apk.tool.patcher.util.TextUtil;
+import ru.svolf.dog.PortDialog;
 import ru.svolf.melissa.AdvancedItems;
 import ru.svolf.melissa.ExtendedItems;
 import ru.svolf.melissa.MenuItems;
@@ -533,7 +534,7 @@ public class MainFragment extends Fragment {
      */
     public void launchApkTool() {
         Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(Preferences.getApkToolPackage());
-        if (launchIntent != null) {
+        if (launchIntent != null && !launchIntent.getComponent().getClassName().contains("com.google.android.apps.photos")) {
             startActivity(launchIntent);
         } else {
             SweetContentDialog dialog = new SweetContentDialog(getContext());
@@ -803,7 +804,7 @@ public class MainFragment extends Fragment {
                             fragment = InspectorFragment.newInstance(getProject());
                         }
                         getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.content_frame, fragment, InspectorFragment.FRAGMENT_TAG)
+                                .add(R.id.content_frame, fragment, InspectorFragment.FRAGMENT_TAG)
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                                 .addToBackStack(null)
                                 .commit();
