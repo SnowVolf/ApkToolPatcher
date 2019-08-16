@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.a4455jkjh.apktool.util.Settings;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.modules.base.ThemeWrapper;
 
 public abstract class ThemedActivity extends FragmentActivity {
 
@@ -23,7 +24,7 @@ public abstract class ThemedActivity extends FragmentActivity {
 	}
 
 	public static void setTheme(Activity act) {
-		if (Settings.lightTheme) {
+		if (ThemeWrapper.isLightTheme()) {
 			act.setTheme(R.style.AppThemeLight1);
 		} else {
 			act.setTheme(R.style.AppTheme1);

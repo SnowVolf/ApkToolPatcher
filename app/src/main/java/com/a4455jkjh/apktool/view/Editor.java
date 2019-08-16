@@ -1,11 +1,9 @@
 package com.a4455jkjh.apktool.view;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.widget.SearchView;
-import android.widget.Toast;
-import apk.tool.patcher.*;
+
 import com.a4455jkjh.apktool.util.Settings;
 import com.myopicmobile.textwarrior.android.FreeScrollingTextField;
 import com.myopicmobile.textwarrior.android.YoyoNavigationMethod;
@@ -14,6 +12,9 @@ import com.myopicmobile.textwarrior.common.ColorSchemeLight;
 import com.myopicmobile.textwarrior.common.Document;
 import com.myopicmobile.textwarrior.common.DocumentProvider;
 import com.myopicmobile.textwarrior.common.LinearSearchStrategy;
+
+import apk.tool.patcher.R;
+import apk.tool.patcher.ui.modules.base.ThemeWrapper;
 
 public class Editor extends FreeScrollingTextField {
 	private boolean editable = true;
@@ -67,7 +68,7 @@ public class Editor extends FreeScrollingTextField {
 	}
 
 	public void resetTheme() {
-		if (Settings.lightTheme)
+		if (ThemeWrapper.isLightTheme())
 			setColorScheme(new ColorSchemeLight());
 		else
 			setColorScheme(new ColorSchemeDark());
