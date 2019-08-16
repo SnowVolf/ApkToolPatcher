@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
-
 import com.google.android.material.snackbar.Snackbar;
 
 import org.mozilla.universalchardet.UniversalDetector;
@@ -34,7 +33,26 @@ import apk.tool.patcher.R;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
-public class TextViewer extends SwipeBackActivity implements OnItemLongClickListener, OnItemClickListener {
+import android.widget.*;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import android.app.*;
+
+import android.os.*;
+import android.content.*;
+
+
+
+
+
+
+
+
+
+public class TextViewer extends SwipeBackActivity  implements OnItemLongClickListener, OnItemClickListener {
+	
     public static final String EXTRA_LINE = "line";
     public static final String EXTRA_QUERY = "query";
     public static final String EXTRA_PATH = "path";
@@ -46,12 +64,17 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
     private String mPath;
     private TextPreview mTextPreview;
 
+	
+	
+	
+
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		
         setContentView(R.layout.activity_text_viewer);
         setEdgeLevel(SwipeBackLayout.EdgeLevel.MIN);
         mPrefs = Prefs.loadPrefes(getApplicationContext());
@@ -59,6 +82,9 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
 
         mTextPreview.setOnItemLongClickListener(this);
         mTextPreview.setOnItemClickListener(this);
+		
+		
+		
 
         Intent it = getIntent();
         if (it != null) {
@@ -81,6 +107,7 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
 
         }
     }
+	
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,10 +139,15 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
         }
         return super.onOptionsItemSelected(item);
     }
+	
+	
 
     @Override
     public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
         // ビュワー呼び出し
+		
+//		File mFile = new File(mPath);
+//		this.editor.open(mFile);
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         if (mPrefs.addLineNumber) {
@@ -127,6 +159,9 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
         startActivity(intent);
         return true;
     }
+	
+	
+	
 
     @Override
     public void onItemClick(AdapterView<?> arg0, View convertView, int arg2, long arg3) {
@@ -138,6 +173,8 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
 
         Snackbar.make(txt, R.string.label_copied, Snackbar.LENGTH_SHORT).show();
     }
+	
+	
 
     class TextLoadTask extends AsyncTask<String, Integer, Boolean> {
         int mOffsetForLine = -1;
@@ -199,6 +236,8 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
             }
             return false;
         }
+		
+		
 
         @Override
         protected void onPostExecute(Boolean result) {
@@ -226,5 +265,7 @@ public class TextViewer extends SwipeBackActivity implements OnItemLongClickList
             }
         }
     }
+	
+	
 
 }

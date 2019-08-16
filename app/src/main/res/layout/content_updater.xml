@@ -15,7 +15,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/button"
+        android:layout_above="@+id/button"
         android:layout_margin="8dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

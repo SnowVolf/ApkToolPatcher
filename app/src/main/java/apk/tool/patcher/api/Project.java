@@ -93,7 +93,7 @@ public class Project implements Parcelable {
      * @param baseDir папка проекта, которую необходимо проверить
      * @return true - если папка проекта верная
      */
-    private static boolean isValidProjectDir(String baseDir) {
+    public static boolean isValidProjectDir(String baseDir) {
         final File dir = new File(baseDir);
         final File res = new File(dir, "res/");
         final File dex = new File(dir, "smali/");
@@ -218,11 +218,8 @@ public class Project implements Parcelable {
      */
     private int checkType() {
         if (sSrcPath != null) {
-            // apktool < 2.4
             File apktool = new File(getDir(), "apktool.yml");
-            // apktool 2.4+
-            File apktool2 = new File(getDir(), "apktool.json");
-            if (apktool.exists() || apktool2.exists()) {
+            if (apktool.exists()) {
                 return TYPES.APK_TOOL.ordinal();
             } else
                 return TYPES.APK_EDITOR.ordinal();
@@ -292,11 +289,6 @@ public class Project implements Parcelable {
      */
     public String meta() {
         return getPath() + "/META-INF";
-    }
-
-    @Override
-    public String toString() {
-        return getName() + " at " + getPath() + ", type = " + getType();
     }
 
     /**

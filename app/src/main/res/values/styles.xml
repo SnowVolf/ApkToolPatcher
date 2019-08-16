@@ -119,5 +119,37 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
-
+    
+    
+ <!--APKTOOL-->
+	 
+	 
+    <style name="AppTheme1" parent="@android:style/Theme.Holo">
+        <item name="color_app_background">@color/app_background</item>
+        <item name="files_back">@drawable/undo_dark_menu</item>
+	</style>
+	<style name="AppThemeLight1" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowBackground">@color/app_background_light</item>
+		<item name="android:textColor">#FFFFFFFF</item>
+        <item name="color_app_background">@color/app_background_light</item>
+        <item name="files_back">@drawable/undo_menu</item>
+	</style>
+	<style
+        name="Base.Widget.Design.TabLayout"
+        parent="android:Widget">
+        <item name="tabMaxWidth">264dp</item>
+        <item name="tabIndicatorColor">@color/accent_material_light</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?android:attr/windowBackground</item>
+        <item name="tabTextAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="tabSelectedTextColor">?android:textColorSecondary</item>
+    </style>
+    <style
+        name="Widget.Design.TabLayout"
+        parent="Base.Widget.Design.TabLayout">
+        <!--<item name="tabGravity">fill</item>
+        <item name="tabMode">fixed</item>-->
+    </style>
 </resources>

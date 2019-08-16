@@ -1,6 +1,6 @@
 package apk.tool.patcher.ui.modules.main;
 
-
+import com.a4455jkjh.apktool.MainActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -416,7 +416,10 @@ public class MainFragment extends Fragment {
                     i = 0;
                     if (mWaitDialog != null && mWaitDialog.isShowing())
                         mWaitDialog.dismiss();
+//					if (codepremium2.contains(edoc)) {
+//						}else{
                     showAdvert();
+
                 } else {
                     Toast.makeText(getActivity(), App.bindString(R.string.message_patched, msg.what), Toast.LENGTH_LONG).show();
                 }
@@ -430,26 +433,24 @@ public class MainFragment extends Fragment {
         if (data == null) return;
         String path = data.getStringExtra("path");
         Toast.makeText(mContext, path, Toast.LENGTH_SHORT).show();
-//        if (sss.contains(ssha)) {
+        if (sss.contains(ssha)) {
         mGeneralInput.setText(path);
         mProject = new Project(path);
         App.setCurrentProject(mProject);
         //TODO: Разкомментить в релизе
-//        } else {
-//            String base64 = "YWQ=";
-//            // Receiving side
-//            byte[] ggg = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
-//            try {
-//                mGeneralInput.setText(path);
-//                if (isValidProjectDir(path)) {
-//                    publicString2(getProjectDir());
-//                }
-//                String vvv = new String(ggg, "UTF-8");
-//                mGeneralInput.setText(String.format("%s%s", path, vvv));
-//            } catch (UnsupportedEncodingException ignored) {
-//
-//            }
-//        }
+        } else {
+        //    String base64 = "YWQ=";
+            // Receiving side
+        //    byte[] ggg = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
+
+                mGeneralInput.setText(path);
+
+                    publicString2(getProjectDir());
+
+           //     String vvv = new String(ggg, "UTF-8");
+          //      mGeneralInput.setText(String.format("%s%s", path, vvv));
+
+        }
     }
 
     @Override
@@ -533,32 +534,35 @@ public class MainFragment extends Fragment {
      * Если != null, можно запускать, иначе - показываем диалог ошибки
      */
     public void launchApkTool() {
-        Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(Preferences.getApkToolPackage());
-        if (launchIntent != null && !launchIntent.getComponent().getClassName().contains("com.google.android.apps.photos")) {
-            startActivity(launchIntent);
-        } else {
-            SweetContentDialog dialog = new SweetContentDialog(getContext());
-            dialog.setTitle(R.string.message_app_not_found);
-            dialog.setMessage(Compat.htmlCompat(getString(R.string.message_apktool_not_found)));
-            dialog.setPositive(R.drawable.settings_outline, getString(R.string.change_apktool_pkg), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(getContext(), SettingsActivity.class)
-                            .putExtra(Cs.ARG_PREF_TAB, Cs.TAB_DECOMPILER));
-                    getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                }
-            });
-            dialog.setNegative(R.drawable.ic_forum, getString(R.string.apktool_pda), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String url = "http://4pda.ru/forum/index.php?showtopic=482809";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                }
-            });
-            dialog.setNeutral(R.drawable.ic_cancel, getString(android.R.string.cancel), null);
-            dialog.show();
-        }
+
+		Intent intent4 = new Intent(mContext, MainActivity.class);
+        startActivity(intent4);
+//        Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(Preferences.getApkToolPackage());
+//        if (launchIntent != null) {
+//            startActivity(launchIntent);
+//        } else {
+//            SweetContentDialog dialog = new SweetContentDialog(getContext());
+//            dialog.setTitle(R.string.message_app_not_found);
+//            dialog.setMessage(Compat.htmlCompat(getString(R.string.message_apktool_not_found)));
+//            dialog.setPositive(R.drawable.settings_outline, getString(R.string.change_apktool_pkg), new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivity(new Intent(getContext(), SettingsActivity.class)
+//                            .putExtra(Cs.ARG_PREF_TAB, Cs.TAB_DECOMPILER));
+//                    getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                }
+//            });
+//            dialog.setNegative(R.drawable.ic_forum, getString(R.string.apktool_pda), new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    String url = "http://4pda.ru/forum/index.php?showtopic=482809";
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//                    startActivity(intent);
+//                }
+//            });
+//            dialog.setNeutral(R.drawable.ic_cancel, getString(android.R.string.cancel), null);
+//            dialog.show();
+//        }
     }
 
     private void restoreMaps() {
@@ -646,6 +650,9 @@ public class MainFragment extends Fragment {
         ANDROID_ID = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
         muimerp = mydeviceaddress + " htc600 " + ANDROID_ID;
 
+		// для проверки
+		//Toast.makeText(getActivity(), muimerp, Toast.LENGTH_LONG).show();
+
     }
 
     public void kcehc() throws UnsupportedEncodingException {
@@ -661,7 +668,7 @@ public class MainFragment extends Fragment {
 
     public void kcehc1() {
         edoc = "600" + ANDROID_ID + mydeviceaddress + "htc";
-        //Toast.makeText(mContext, codepremium2, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, edoc, Toast.LENGTH_SHORT).show();
         if (codepremium2.contains(edoc)) {
             mCard.setVisibility(View.VISIBLE);
             AdvancedAdapter mAdvancedAdapter = new AdvancedAdapter(allAdvancedItems.getCreatedMenuItems());

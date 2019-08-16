@@ -23,7 +23,7 @@
     <string name="patch_toast">Добавить Toast при запуске</string>
     <string name="patch_unicode2utf">Unicode в UTF</string>
     <string name="patch_services_jar">Пропатчить \'services.jar\'</string>
-    <string name="patch_open_apktool">Открыть ApkTool</string>
+    <string name="patch_open_apktool">Декомпилятор</string>
 
     <!-- Premium patches -->
     <string name="patch_signature_fallback">Убрать проверку подписи (прямое чтение)</string>

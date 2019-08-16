@@ -12,5 +12,26 @@
         <item>Копировать кусок кода</item>
         <item>Открыть во внешнем редакторе</item>
     </string-array>
+    
+    
+    
+    
+    
+    <string-array name="sort">
+        <item>Name</item>
+        <item>Name reverse</item>
+        <item>Type</item>
+        <item>Type reverse</item>
+        <item>Size</item>
+        <item>Size reverse</item>
+        <item>Time</item>
+        <item>Time reverse</item>
+    </string-array>
+    <string-array name="format">
+        <item>@string/jks</item>
+        <item>@string/pkcs12</item>
+        <item>@string/bks</item>
+        <item>@string/pk8</item>
+    </string-array>
 
 </resources>
