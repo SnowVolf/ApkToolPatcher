@@ -16,6 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
 
+import com.a4455jkjh.apktool.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.mozilla.universalchardet.UniversalDetector;
@@ -119,15 +120,20 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
     public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
         // ビュワー呼び出し
 
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        if (mPrefs.addLineNumber) {
-//            TextPreview textPreview = (TextPreview)findViewById(R.id.TextPreview);
-            intent.setDataAndType(Uri.parse("file://" + mPath + "?line=" + (1 + position)), "text/plain");
-        } else {
-            intent.setDataAndType(Uri.parse("file://" + mPath), "text/plain");
-        }
-        startActivity(intent);
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_VIEW);
+//        if (mPrefs.addLineNumber) {
+////            TextPreview textPreview = (TextPreview)findViewById(R.id.TextPreview);
+//            intent.setDataAndType(Uri.parse("file://" + mPath + "?line=" + (1 + position)), "text/plain");
+//        } else {
+//            intent.setDataAndType(Uri.parse("file://" + mPath), "text/plain");
+//        }
+//        startActivity(intent);
+
+        Intent launch = new Intent(TextViewer.this, MainActivity.class);
+        launch.putExtra("opened_file", mPath);
+        startActivity(launch);
+
         return true;
     }
 	

@@ -16,10 +16,11 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
 import com.a4455jkjh.apktool.MainActivity;
-import apk.tool.patcher.*;
 import com.a4455jkjh.apktool.fragment.editor.EditorPagerAdapter;
 import com.a4455jkjh.apktool.fragment.editor.EditorTitleAdapter;
 import com.a4455jkjh.apktool.fragment.files.ErrorTree;
@@ -27,13 +28,16 @@ import com.a4455jkjh.apktool.menu.Menus;
 import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.view.Editor;
 import com.a4455jkjh.apktool.view.EditorPager;
+
 import java.io.File;
 import java.io.IOException;
+
+import apk.tool.patcher.R;
 
 public class EditorFragment extends Fragment implements Editor.OnEditStateChangedListener,ViewPager.OnPageChangeListener,OnClickListener,MenuItem.OnActionExpandListener {
 	private EditorPager editorPager;
 	public EditorTitleAdapter open_files;
-	private TextView empty, title;;
+	private TextView empty, title;
 	private MenuItem expandedItem = null;
 	private View errors;
 
@@ -222,8 +226,8 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 			else
 				EditorPagerAdapter.INSTANCE.save(editorPager.getCurrentItem());
 			if (toast)
-				Toast.makeText(getActivity(), R.string.all_files_saved, 0).show();
-		} catch (IOException e) {
+				Toast.makeText(getActivity(), R.string.all_files_saved, Toast.LENGTH_SHORT).show();
+		} catch (IOException ignored) {
 
 		}
 	}

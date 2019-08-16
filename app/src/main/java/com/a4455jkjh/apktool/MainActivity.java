@@ -21,6 +21,8 @@ import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.fragment.editor.EditorPagerAdapter;
 import com.a4455jkjh.apktool.util.Settings;
 
+import java.io.File;
+
 public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerListener {
 	private DrawerLayout drawer;
 	private EditorFragment editor;
@@ -54,10 +56,14 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
-		Uri data = intent.getData();
-		if (data == null)
+
+		String path = intent.getStringExtra("opened_file");
+		if (path == null){
 			return;
-		editor.open(data);
+		} else {
+			editor.open(new File(path));
+		}
+
 		dismissFiles();
 	}
 
