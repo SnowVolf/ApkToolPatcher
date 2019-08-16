@@ -132,6 +132,7 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
 
         Intent launch = new Intent(TextViewer.this, MainActivity.class);
         launch.putExtra("opened_file", mPath);
+        launch.putExtra("line_number", mLine);
         startActivity(launch);
 
         return true;

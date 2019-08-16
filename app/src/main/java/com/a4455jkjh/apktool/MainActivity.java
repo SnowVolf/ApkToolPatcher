@@ -58,10 +58,12 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 		super.onNewIntent(intent);
 
 		String path = intent.getStringExtra("opened_file");
+		int line = intent.getIntExtra("line_number", 0);
+
 		if (path == null){
 			return;
 		} else {
-			editor.open(new File(path));
+			editor.open(new File(path), line);
 		}
 
 		dismissFiles();

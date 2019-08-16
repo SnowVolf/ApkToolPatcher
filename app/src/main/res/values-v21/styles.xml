@@ -10,6 +10,7 @@
 		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
 		<item name="android:windowTranslucentNavigation">false</item>
 		<item name="android:windowTranslucentStatus">false</item>
+		<item name="icon_color">@color/dark_iconColor</item>
 	</style>
     <style name="AppThemeLight" parent="@android:style/Theme.Material.Light">
         <item name="android:windowBackground">@color/app_background_light</item>
@@ -22,5 +23,6 @@
 		<item name="android:windowTranslucentStatus">false</item>
 		<item name="android:fitsSystemWindows">true</item>
         <item name="files_back">@drawable/undo_menu</item>
+		<item name="icon_color">@color/light_iconColor</item>
 	</style>
 </resources>

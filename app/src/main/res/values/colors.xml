@@ -26,7 +26,7 @@
     <color name="dark_iconColor">#f5f5f5</color>
     <color name="dark_textColor">#f5f5f5</color>
     <color name="dark_editBackground">#434343</color>
-    <color name="dark_editForeground">#292929</color>
+    <color name="dark_editForeground">#5A5A5A</color>
     <color name="dark_cardBorderColor">#505050</color>
 
     <color name="blue_colorPrimary">#222e3c</color>

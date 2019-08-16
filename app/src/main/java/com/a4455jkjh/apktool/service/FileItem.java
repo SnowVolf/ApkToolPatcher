@@ -2,9 +2,9 @@ package com.a4455jkjh.apktool.service;
 
 import android.view.View;
 import android.widget.ImageView;
+
 import com.a4455jkjh.apktool.fragment.files.ErrorTree;
-import java.io.File;
-import java.util.BitSet;
+
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -14,9 +14,9 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.Pair;
-import com.myopicmobile.textwarrior.common.DocumentProvider;
-import java.util.List;
-import com.myopicmobile.textwarrior.common.ColorScheme;
+
+import java.io.File;
+import java.util.BitSet;
 
 public class FileItem extends ErrorTree implements ANTLRErrorListener {
 	private final File file;
@@ -53,7 +53,7 @@ public class FileItem extends ErrorTree implements ANTLRErrorListener {
 // запуск текстового редактора
 	@Override
 	public void click(View view) {
-		editor.open(file);
+		editor.open(file, 0);
 	}
 
 	@Override

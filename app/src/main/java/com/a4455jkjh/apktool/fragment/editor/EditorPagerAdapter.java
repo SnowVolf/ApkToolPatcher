@@ -221,4 +221,8 @@ public class EditorPagerAdapter extends PagerAdapter {
 				return true;
 		return false;
 	}
+
+	public List<EditorPagerItem> getItems() {
+		return items;
+	}
 }

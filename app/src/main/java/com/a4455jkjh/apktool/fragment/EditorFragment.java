@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -137,7 +138,7 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 	}
 
 	public void open(File file, final int start, final int stop) {
-		open(Uri.fromFile(file));
+		open(Uri.fromFile(file), 0);
 		editorPager.postDelayed(new Runnable(){
 				@Override
 				public void run() {
@@ -147,16 +148,30 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 			}, 200);
 	}
 
-	public void open(Uri data) {
+	public void open(Uri data, final int lineNumber) {
 		ContentResolver r = getContext().getContentResolver();
+		/* Эта ебала идет с задержкой, поэтому нужно подождать */
 		int idx = EditorPagerAdapter.INSTANCE.open(r, data);
 		setCurrentItem(idx, false);
+
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				/* Обращаемся к статическому адаптеру, ибо другого пути нет
+				 * Проще весь адаптер нахуй переписать, чем сделать нормально
+				 * Выбираем строку
+				 */
+				EditorPagerAdapter.INSTANCE.getItems()
+						.get(0).getEditor().goToLine(lineNumber);
+			}
+		}, 1000);
 		empty.setVisibility(View.GONE);
 		((MainActivity)getActivity()).dismissFiles();
 	}
 
-	public void open(File file) {
-		open(Uri.fromFile(file));
+	public void open(File file, int lineNumber) {
+		open(Uri.fromFile(file), lineNumber);
 	}
 	public void setCurrentItem(int idx, boolean close) {
 		if (close && idx == editorPager.getCurrentItem()) {

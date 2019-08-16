@@ -1,6 +1,7 @@
 package com.a4455jkjh.apktool.fragment;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -54,7 +55,7 @@ public class FilesFragment extends Fragment {
 		files_pager.setAdapter(adapter);
 		if (Build.VERSION.SDK_INT < 23 ||
 			getActivity().checkSelfPermission(
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) == 0)
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
 			init(savedInstanceState);
 		else
 			requestPermissions(new String[]{
@@ -67,7 +68,7 @@ public class FilesFragment extends Fragment {
 		((MainActivity)getActivity()).init();
 	}
 	public void edit(File file) {
-		editor.open(file);
+		editor.open(file, 0);
 	}
 
 	@Override
