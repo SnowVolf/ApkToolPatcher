@@ -110,7 +110,6 @@
     <string name="message_set_folder">Установить \"%s\" как папку проекта?</string>
     <string name="caption_changelog">История изменений</string>
     <string name="great">Круто!</string>
-    <string name="details">Детали</string>
     <string name="cancel_all">Отменить всё</string>
     <string name="pref_low_mem">Режим нехватки памяти</string>
     <string name="pref_low_mem_sub">Может вызывать фризы при переключении между операциями, но помогает на устройствах с малым кол-вом ОЗУ</string>

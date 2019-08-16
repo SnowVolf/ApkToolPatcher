@@ -1,25 +1,42 @@
 package apk.tool.patcher.ui.modules.main;
 
-import android.content.*;
-import android.os.*;
-import android.support.v4.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
-import androidx.annotation.*;
-import androidx.fragment.app.*;
-import androidx.recyclerview.widget.*;
-import apk.tool.patcher.*;
-import apk.tool.patcher.api.*;
-import apk.tool.patcher.entity.*;
-import apk.tool.patcher.entity.async.*;
-import apk.tool.patcher.ui.modules.base.adapters.*;
-import apk.tool.patcher.util.*;
-import com.afollestad.async.*;
-import java.util.*;
-import ru.svolf.melissa.model.*;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Chronometer;
 
-import android.support.v4.BuildConfig;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.afollestad.async.Action;
+import com.afollestad.async.Async;
+import com.afollestad.async.OnExecutionListener;
+import com.afollestad.async.Result;
+import com.afollestad.async.Subscription;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
+
+import apk.tool.patcher.App;
+import apk.tool.patcher.BuildConfig;
+import apk.tool.patcher.R;
+import apk.tool.patcher.api.Project;
+import apk.tool.patcher.entity.OnAsyncJobListener;
+import apk.tool.patcher.entity.async.AsyncRepository;
+import apk.tool.patcher.ui.modules.base.adapters.DialogControlsAdapter;
+import apk.tool.patcher.ui.modules.base.adapters.LogAdapter;
+import apk.tool.patcher.util.Cs;
+import ru.svolf.melissa.model.ControlsItem;
+import ru.svolf.melissa.model.LogItem;
 
 /**
  * A simple {@link Fragment} subclass.

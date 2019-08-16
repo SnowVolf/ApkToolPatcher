@@ -1,11 +1,9 @@
 package apk.tool.patcher.ui.modules.main;
 
-import com.a4455jkjh.apktool.MainActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -29,6 +27,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.a4455jkjh.apktool.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.yandex.metrica.YandexMetrica;
 
@@ -72,15 +71,12 @@ import apk.tool.patcher.ui.modules.settings.SearchSettingsFragment;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
 import apk.tool.patcher.ui.widget.FontTextView;
 import apk.tool.patcher.util.Cs;
-import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.RegexpRepository;
 import apk.tool.patcher.util.StreamUtil;
 import apk.tool.patcher.util.TextUtil;
-import ru.svolf.dog.PortDialog;
 import ru.svolf.melissa.AdvancedItems;
 import ru.svolf.melissa.ExtendedItems;
 import ru.svolf.melissa.MenuItems;
-import ru.svolf.melissa.compat.Compat;
 import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 import ru.svolf.melissa.fragment.dialog.SweetInputDialog;
 import ru.svolf.melissa.fragment.dialog.SweetListDialog;

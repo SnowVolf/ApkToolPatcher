@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import org.mozilla.universalchardet.UniversalDetector;
@@ -33,26 +34,7 @@ import apk.tool.patcher.R;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
-import android.widget.*;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import android.app.*;
-
-import android.os.*;
-import android.content.*;
-
-
-
-
-
-
-
-
-
 public class TextViewer extends SwipeBackActivity  implements OnItemLongClickListener, OnItemClickListener {
-	
     public static final String EXTRA_LINE = "line";
     public static final String EXTRA_QUERY = "query";
     public static final String EXTRA_PATH = "path";
@@ -63,10 +45,6 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
     private Prefs mPrefs;
     private String mPath;
     private TextPreview mTextPreview;
-
-	
-	
-	
 
     /**
      * Called when the activity is first created.
@@ -82,9 +60,6 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
 
         mTextPreview.setOnItemLongClickListener(this);
         mTextPreview.setOnItemClickListener(this);
-		
-		
-		
 
         Intent it = getIntent();
         if (it != null) {
@@ -104,7 +79,6 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
                 mTask = new TextLoadTask();
                 mTask.execute(mPath);
             }
-
         }
     }
 	
@@ -114,7 +88,6 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_patcher, menu);
         return true;
-
     }
 
     @Override
@@ -145,9 +118,7 @@ public class TextViewer extends SwipeBackActivity  implements OnItemLongClickLis
     @Override
     public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
         // ビュワー呼び出し
-		
-//		File mFile = new File(mPath);
-//		this.editor.open(mFile);
+
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         if (mPrefs.addLineNumber) {

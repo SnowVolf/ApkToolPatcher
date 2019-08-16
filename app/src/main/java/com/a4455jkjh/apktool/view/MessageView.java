@@ -2,14 +2,21 @@ package com.a4455jkjh.apktool.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import apk.tool.patcher.*;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.content.res.ResourcesCompat;
+
 import com.a4455jkjh.apktool.util.Settings;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import apk.tool.patcher.App;
+import apk.tool.patcher.R;
 
 public class MessageView extends View implements GestureDetector.OnGestureListener {
 	private final StringBuffer text;
@@ -36,7 +43,8 @@ public class MessageView extends View implements GestureDetector.OnGestureListen
 	private static void init(Paint paint, float textSize) {
 		paint.setAntiAlias(true);
 		paint.setTextSize(textSize);
-		paint.setTypeface(Settings.typeface);
+		paint.setTypeface(ResourcesCompat.getFont(App.get(), R.font.source_code_pro));
+		paint.setColor(Color.parseColor("#757575"));
 	}
 
 	@Override

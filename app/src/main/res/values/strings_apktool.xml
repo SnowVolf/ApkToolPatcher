@@ -27,10 +27,6 @@
 
 	<!--<string name="errors">Errors</string>-->
 	<string name="files">ApkTool</string>
-	<!--<string name="apps">Applications</string>
-	<string name="apps_installed">Installed Applications</string>
-	<string name="apps_system">System Applications</string>-->
-	<string name="details">Details</string>
 
     <string name="text">%1$s</string>
     <string name="setting">Settings</string>
