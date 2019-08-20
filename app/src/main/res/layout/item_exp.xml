@@ -14,6 +14,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
         tools:backgroundTint="#607d8b"
+        android:alpha="0.75"
         tools:src="@drawable/settings_outline"
         tools:tint="#ffffff" />
 

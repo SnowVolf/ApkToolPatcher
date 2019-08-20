@@ -412,10 +412,7 @@ public class MainFragment extends Fragment {
                     i = 0;
                     if (mWaitDialog != null && mWaitDialog.isShowing())
                         mWaitDialog.dismiss();
-//					if (codepremium2.contains(edoc)) {
-//						}else{
                     showAdvert();
-
                 } else {
                     Toast.makeText(getActivity(), App.bindString(R.string.message_patched, msg.what), Toast.LENGTH_LONG).show();
                 }
@@ -435,17 +432,8 @@ public class MainFragment extends Fragment {
         App.setCurrentProject(mProject);
         //TODO: Разкомментить в релизе
         } else {
-        //    String base64 = "YWQ=";
-            // Receiving side
-        //    byte[] ggg = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
-
-                mGeneralInput.setText(path);
-
-                    publicString2(getProjectDir());
-
-           //     String vvv = new String(ggg, "UTF-8");
-          //      mGeneralInput.setText(String.format("%s%s", path, vvv));
-
+            mGeneralInput.setText(path);
+            publicString2(getProjectDir());
         }
     }
 

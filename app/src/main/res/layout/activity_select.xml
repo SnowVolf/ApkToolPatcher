@@ -20,6 +20,15 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:textSize="@dimen/text_size_caption" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recents"
+            android:textAllCaps="false"
+            android:layout_margin="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
     </RelativeLayout>
 
     <include

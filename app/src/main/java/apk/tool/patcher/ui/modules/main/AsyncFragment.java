@@ -1,6 +1,7 @@
 package apk.tool.patcher.ui.modules.main;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -37,7 +38,7 @@ import apk.tool.patcher.ui.modules.base.adapters.LogAdapter;
 import apk.tool.patcher.util.Cs;
 import ru.svolf.melissa.model.ControlsItem;
 import ru.svolf.melissa.model.LogItem;
-import android.support.v4.*;
+//import android.support.v4.*;
 //import androidx.multidex.*;
 
 /**
@@ -266,7 +267,12 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
      * @see Action
      */
     private void replaceOccurrences() {
-        updateUI("f", "ApkToolPatcher v. " + BuildConfig.VERSION_NAME);
+        try {
+            updateUI("f", "ApkToolPatcher v. " + requireContext()
+                    .getPackageManager().getPackageInfo(requireContext().getPackageName(), 0).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         updateUI("f", "Melissa Framework v. 0.7.0");
         updateUI("f", String.format(Locale.ENGLISH, "Apply %d patches = %s to %s",
                 mActionIds.length, Arrays.toString(mActionIds), mProjectDir.getPath()));
