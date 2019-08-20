@@ -63,6 +63,10 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
             mCaption.setText(currentPath.getName());
             mCaption.setSelected(true);
         }
+
+//        PinchZoomItemTouchListener listener = new PinchZoomItemTouchListener(this, this);
+//        listener.setEnabled(true);
+//        recyclerView.addOnItemTouchListener(listener);
     }
 
     @Override
@@ -195,5 +199,11 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
     @Override
     public void onPinchZoom(int position) {
         Toast.makeText(this, "Position = " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        adapter = null;
+        super.onDestroy();
     }
 }
