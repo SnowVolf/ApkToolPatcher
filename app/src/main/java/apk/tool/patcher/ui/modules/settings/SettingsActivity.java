@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.misc.OnTabSwipeListener;
+import ru.svolf.melissa.swipeback.OnTabSwipeListener;
 import apk.tool.patcher.util.Cs;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;

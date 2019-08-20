@@ -19,7 +19,7 @@ import com.a4455jkjh.apktool.fragment.ApkToolPreferenceFragment;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.about.AboutFragment;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
-import apk.tool.patcher.ui.modules.misc.OnTabSwipeListener;
+import ru.svolf.melissa.swipeback.OnTabSwipeListener;
 import apk.tool.patcher.ui.widget.BigTabsLayout;
 import apk.tool.patcher.util.Cs;
 

@@ -1,4 +1,4 @@
-package apk.tool.patcher.ui.modules.misc;
+package ru.svolf.melissa.swipeback;
 
 /**
  * Этот интерфейс нужен для общения Activity с ViewPager и фрагментами внутри нее.
