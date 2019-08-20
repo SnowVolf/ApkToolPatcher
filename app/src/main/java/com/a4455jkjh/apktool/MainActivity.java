@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
 import apk.tool.patcher.util.Cs;
+import apk.tool.patcher.util.Preferences;
 
 import com.a4455jkjh.apktool.fragment.EditorFragment;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
@@ -67,6 +68,14 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 			return;
 		} else {
 			editor.open(new File(path), line);
+		}
+
+		if (EditorPagerAdapter.INSTANCE.getItems().size() > 0) {
+			for (int i = 0; i < EditorPagerAdapter.INSTANCE.getItems().size(); i++) {
+				EditorPagerAdapter.INSTANCE.getItems()
+						.get(i).getEditor()
+						.setWordWrap(Preferences.isWordWrap());
+			}
 		}
 
 		dismissFiles();
@@ -119,7 +128,9 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 				break;
 			case R.id.settings:
 				Intent i = new Intent(this, SettingsActivity.class);
-				i.putExtra(Cs.ARG_PREF_TAB, Cs.TAB_DECOMPILER);
+				i.putExtra(Cs.ARG_PREF_TAB,
+						EditorPagerAdapter.INSTANCE.getItems().size() > 0
+								? Cs.TAB_EDITOR : Cs.TAB_DECOMPILER);
 				startActivity(i);
 				break;
 			default:
@@ -141,6 +152,13 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 		if (Settings.isFontSizeChanged) {
 			Settings.isFontSizeChanged = false;
 			EditorPagerAdapter.INSTANCE.setFontSize();
+		}
+		if (EditorPagerAdapter.INSTANCE.getItems().size() > 0) {
+			for (int i = 0; i < EditorPagerAdapter.INSTANCE.getItems().size(); i++) {
+				EditorPagerAdapter.INSTANCE.getItems()
+						.get(i).getEditor()
+						.setWordWrap(Preferences.isWordWrap());
+			}
 		}
 	}
 

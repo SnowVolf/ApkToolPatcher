@@ -10,10 +10,6 @@ import apk.tool.patcher.App;
 
 public class Preferences {
 
-    public static int getFilterId() {
-        return App.get().getPreferences().getInt("filter_id", 0);
-    }
-
     public static void setFilterId(int id) {
         App.get().getPreferences().edit().putInt("filter_id", id).apply();
     }
@@ -75,5 +71,9 @@ public class Preferences {
 
     public static boolean isLowMemoryMode() {
         return App.get().getPreferences().getBoolean("exec.low_mem", false);
+    }
+
+    public static boolean isWordWrap(){
+        return App.get().getPreferences().getBoolean("word_wrap", true);
     }
 }

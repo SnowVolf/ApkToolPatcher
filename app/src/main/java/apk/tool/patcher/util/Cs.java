@@ -10,7 +10,8 @@ public class Cs {
 
     public static final String TAB_MAIN = "0";
     public static final String TAB_DECOMPILER = "1";
-    public static final String TAB_ABOUT = "2";
+    public static final String TAB_EDITOR = "2";
+    public static final String TAB_ABOUT = "3";
 
     public static final String EXTRA_FOLDER_NAME = "foldername";
     public static final String EXTRA_HELP_TOPIC = "helptopic";

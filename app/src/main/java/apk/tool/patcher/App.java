@@ -162,12 +162,6 @@ public class App extends Application {
         ACRA.init(this);
         
         Security.addProvider(new JavaProvider());
-		/*new Thread(){
-			@Override
-			public void run() {
-				
-			}
-		}.start();*/
 		Settings.init(App.this);
 
         sBackgroundHandlerThread = new HandlerThread("app_background");
@@ -182,7 +176,7 @@ public class App extends Application {
 
         PreferenceManager.setDefaultValues(this, R.xml.patcher_preferences, false);
         PreferenceManager.setDefaultValues(this, R.xml.preference_apktool, false);
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preference_editor, false);
 
         hackVmPolicy();
         ReflectionBypass.apply();

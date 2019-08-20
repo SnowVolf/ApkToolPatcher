@@ -60,6 +60,7 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.editor_pager, container, false);
 	}
+
 	public void setEditable(boolean editable) {
 		EditorPagerAdapter.INSTANCE.setEditable(editable);
 	}
@@ -89,9 +90,11 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 		errors.setOnClickListener(this);
 		init(savedInstanceState);
 	}
+
 	public void showErrors(boolean show) {
 		errors.setVisibility(show ? View.VISIBLE : View.GONE);
 	}
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.editor, menu);
@@ -102,9 +105,11 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 	public void onPageScrolled(int p1, float p2, int p3) {
 		// TODO: Implement this method
 	}
+
 	public void focus() {
 		EditorPagerAdapter.INSTANCE.requestFocus(editorPager.getCurrentItem());
 	}
+
 	@Override
 	public void onPageSelected(int idx) {
 		EditorPagerAdapter.INSTANCE.requestFocus(idx);
@@ -173,6 +178,7 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 	public void open(File file, int lineNumber) {
 		open(Uri.fromFile(file), lineNumber);
 	}
+
 	public void setCurrentItem(int idx, boolean close) {
 		if (close && idx == editorPager.getCurrentItem()) {
 			close(idx);
@@ -204,6 +210,7 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 				}
 			});
 	}
+
 	protected void close(int idx, int mode) {
 		try {
 			EditorPagerAdapter.INSTANCE.remove(idx, mode);
@@ -216,6 +223,7 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 			onPageSelected(editorPager.getCurrentItem());
 		}
 	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -282,12 +290,14 @@ public class EditorFragment extends Fragment implements Editor.OnEditStateChange
 				go_to(idx, (SearchView)p1.getActionView());
 		return true;
 	}
+
 	public boolean collapseItem() {
 		if (expandedItem == null)
 			return false;
 		expandedItem.collapseActionView();
 		return true;
 	}
+
 	@Override
 	public boolean onMenuItemActionCollapse(MenuItem p1) {
 		expandedItem = null;

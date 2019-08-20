@@ -20,6 +20,7 @@ public class Editor extends FreeScrollingTextField {
 	private boolean editable = true;
 	private final float OneSp;
 	private OnEditStateChangedListener listener;
+
 	public Editor(Context context) {
 		super(context);
 		OneSp = context.getResources().getDimension(R.dimen.one_sp);
@@ -30,9 +31,11 @@ public class Editor extends FreeScrollingTextField {
 		OneSp = context.getResources().getDimension(R.dimen.one_sp);
 		init();
 	}
+
 	public void resetFontSize(){
 		setTextSize(Settings.fontSize);
 	}
+
 	public void goToLine(int line) {
 		if (line > _hDoc.getRowCount()) {
 			line = _hDoc.getRowCount();
@@ -77,15 +80,18 @@ public class Editor extends FreeScrollingTextField {
 	public void setTextSize(int size) {
 		super.setTextSize((int)(size * OneSp));
 	}
+
 	public void setText(CharSequence text) {
 		Document doc = new Document(this);
 		doc.setText(text);
 		DocumentProvider p = new DocumentProvider(doc);
 		setDocumentProvider(p);
 	}
+
 	public CharSequence getText() {
 		return createDocumentProvider();
 	}
+
 	@Override
 	protected void showIME(boolean show) {
 		if (!editable)
@@ -93,12 +99,15 @@ public class Editor extends FreeScrollingTextField {
 		super.showIME(show);
 		getParent().requestLayout();
 	}
+
 	public boolean canRedo() {
 		return _hDoc.canRedo();
 	}
+
 	public boolean canUndo() {
 		return _hDoc.canUndo();
 	}
+
 	public void find(SearchView searchView) {
 		SearchView.OnQueryTextListener query = new SearchView.OnQueryTextListener(){
 			int idx=0;

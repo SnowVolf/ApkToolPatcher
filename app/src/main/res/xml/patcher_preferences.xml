@@ -1,61 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
+    <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_category_custom"
         android:title="@string/pref_cat_look">
-        <ListPreference
+        <androidx.preference.ListPreference
 
             android:defaultValue="0"
             android:entries="@array/theme_names"
             android:entryValues="@array/theme_values"
             android:key="ui.theme"
             android:title="@string/pref_app_theme" />
-        <ListPreference
+        <androidx.preference.ListPreference
 
             android:entries="@array/entries_lang"
             android:entryValues="@array/values_lang"
             android:key="sys.language"
             android:title="@string/pref_sys_lang" />
-    </PreferenceCategory>
-    <PreferenceCategory
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_category_custom"
         android:title="@string/pref_cat_fm">
-        <ListPreference
-
+        <androidx.preference.ListPreference
             android:defaultValue="2"
             android:entries="@array/list_grid"
             android:entryValues="@array/list_grid"
             android:key="list_grid_size"
             android:title="@string/pref_grid_size" />
-    </PreferenceCategory>
+    </androidx.preference.PreferenceCategory>
 
-    <PreferenceCategory
+    <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_category_custom"
         android:title="@string/pref_cat_patches_setting">
-        <SwitchPreference
+        <androidx.preference.SwitchPreference
             android:defaultValue="false"
             android:key="exec.low_mem"
             android:summary="@string/pref_low_mem_sub"
             android:title="@string/pref_low_mem" />
-        <EditTextPreference
+        <androidx.preference.EditTextPreference
 
             android:defaultValue="apache|androidx|android/support/(v\\d+)/|io/reactivex|kotlin|butterknife|afollestad|mikepenz|okhttp3|okio|retrofit2|squareup/picasso|fasterxml/jackson|gson"
             android:key="patch.exc_interest"
             android:summary="@string/pref_saved_pkgs_sub"
             android:title="@string/pref_saved_pkgs" />
-        <SwitchPreference
+        <androidx.preference.SwitchPreference
             android:defaultValue="false"
             android:key="experimental"
             android:summary="@string/pref_experimental_sub"
             android:title="@string/pref_experimental" />
-        <EditTextPreference
-
+        <androidx.preference.EditTextPreference
             android:defaultValue="values|values-ru|values-uk"
             android:dependency="experimental"
             android:key="patch.exc_langs"
             android:summary="@string/pref_saved_langs_sub"
             android:title="@string/pref_saved_langs" />
-    </PreferenceCategory>
+    </androidx.preference.PreferenceCategory>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
