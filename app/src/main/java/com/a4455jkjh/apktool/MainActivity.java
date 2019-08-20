@@ -1,10 +1,10 @@
 package com.a4455jkjh.apktool;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -12,13 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.settings.SettingsActivity;
-import apk.tool.patcher.util.Cs;
-import apk.tool.patcher.util.Preferences;
 
 import com.a4455jkjh.apktool.fragment.EditorFragment;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
@@ -26,6 +23,11 @@ import com.a4455jkjh.apktool.fragment.editor.EditorPagerAdapter;
 import com.a4455jkjh.apktool.util.Settings;
 
 import java.io.File;
+
+import apk.tool.patcher.R;
+import apk.tool.patcher.ui.modules.settings.SettingsActivity;
+import apk.tool.patcher.util.Cs;
+import apk.tool.patcher.util.Preferences;
 
 public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerListener {
 	private DrawerLayout drawer;
@@ -44,12 +46,13 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 		files.setPage(idx);
 		drawer.openDrawer(Gravity.LEFT);
 	}
+
     @Override
     protected void init(Bundle savedInstanceState) {
         setContentView(R.layout.main);
 		drawer = findViewById(R.id.drawer);
 		drawer.addDrawerListener(this);
-		getActionBar().setDisplayOptions(16);
+		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		getActionBar().setCustomView(R.layout.title);
 		init(getSupportFragmentManager());
     }
@@ -69,15 +72,7 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 		} else {
 			editor.open(new File(path), line);
 		}
-
-		if (EditorPagerAdapter.INSTANCE.getItems().size() > 0) {
-			for (int i = 0; i < EditorPagerAdapter.INSTANCE.getItems().size(); i++) {
-				EditorPagerAdapter.INSTANCE.getItems()
-						.get(i).getEditor()
-						.setWordWrap(Preferences.isWordWrap());
-			}
-		}
-
+		setWordWrap();
 		dismissFiles();
 	}
 
@@ -98,6 +93,8 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 		}
 		files.bind(editor);
 		this.files = files;
+
+		setWordWrap();
 	}
 	private long lastClicked = 0L;
 
@@ -153,13 +150,7 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 			Settings.isFontSizeChanged = false;
 			EditorPagerAdapter.INSTANCE.setFontSize();
 		}
-		if (EditorPagerAdapter.INSTANCE.getItems().size() > 0) {
-			for (int i = 0; i < EditorPagerAdapter.INSTANCE.getItems().size(); i++) {
-				EditorPagerAdapter.INSTANCE.getItems()
-						.get(i).getEditor()
-						.setWordWrap(Preferences.isWordWrap());
-			}
-		}
+		setWordWrap();
 	}
 
 	@Override
@@ -238,5 +229,15 @@ public class MainActivity extends ThemedActivity implements DrawerLayout.DrawerL
 	public void onDrawerStateChanged(int p1) {
 		// TODO: Implement this method
 	}
+
+	private void setWordWrap(){
+        if (EditorPagerAdapter.INSTANCE.getItems().size() > 0) {
+            for (int i = 0; i < EditorPagerAdapter.INSTANCE.getItems().size(); i++) {
+                EditorPagerAdapter.INSTANCE.getItems()
+                        .get(i).getEditor()
+                        .setWordWrap(Preferences.isWordWrap());
+            }
+        }
+    }
 
 }
