@@ -664,7 +664,7 @@ public class MainFragment extends Fragment {
 
     public void kcehc1() {
         edoc = "600" + ANDROID_ID + mydeviceaddress + "htc";
-        Toast.makeText(mContext, edoc, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(mContext, edoc + "\n" + codepremium2, Toast.LENGTH_SHORT).show();
         if (codepremium2.contains(edoc)) {
             mCard.setVisibility(View.VISIBLE);
             AdvancedAdapter mAdvancedAdapter = new AdvancedAdapter(allAdvancedItems.getCreatedMenuItems());

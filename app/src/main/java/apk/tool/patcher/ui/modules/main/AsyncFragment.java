@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import apk.tool.patcher.App;
-import apk.tool.patcher.BuildConfig;
+
 import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.OnAsyncJobListener;
@@ -37,6 +37,8 @@ import apk.tool.patcher.ui.modules.base.adapters.LogAdapter;
 import apk.tool.patcher.util.Cs;
 import ru.svolf.melissa.model.ControlsItem;
 import ru.svolf.melissa.model.LogItem;
+import android.support.v4.*;
+//import androidx.multidex.*;
 
 /**
  * A simple {@link Fragment} subclass.
