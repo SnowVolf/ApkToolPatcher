@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout="@layout/preference_category_custom">
+	>
+	<androidx.preference.PreferenceCategory
+		android:title="@string/editor"
+		android:layout="@layout/preference_category_custom">
     <androidx.preference.EditTextPreference
         android:title="@string/font_size"
         android:key="font_size"
@@ -13,4 +16,5 @@
 		android:title="@string/word_wrap"
 		android:key="word_wrap"
 		android:defaultValue="true" />
+	</androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>
