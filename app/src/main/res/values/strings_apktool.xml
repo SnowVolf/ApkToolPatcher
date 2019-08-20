@@ -129,4 +129,5 @@
     <string name="analysis_all_smali">Analysis all smali</string>
     <string name="analysis_all_smali_summary">Analysis All smali file when launch and set main project.</string>
     <string name="create_and_use">Create and use</string>
+    <string name="word_wrap">Word wrap</string>
 </resources>

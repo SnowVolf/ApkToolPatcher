@@ -10,7 +10,7 @@
 		android:dialogTitle="@string/font_size_title"
         android:defaultValue="14" />
 	<androidx.preference.SwitchPreference
-		android:title="Перенос строк"
+		android:title="@string/word_wrap"
 		android:key="word_wrap"
 		android:defaultValue="true" />
 </androidx.preference.PreferenceScreen>

@@ -135,4 +135,5 @@
     <string name="analysis_all_smali">Анализ всех smali</string>
     <string name="analysis_all_smali_summary">Анализ всех smali файлов при запуске и настройке основного проекта.</string>
     <string name="create_and_use">Создать и использовать</string>
+    <string name="word_wrap">Перенос строк</string>
 </resources>
