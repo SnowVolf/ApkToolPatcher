@@ -88,6 +88,7 @@ import ru.svolf.melissa.model.MenuItem;
 import ru.svolf.rxmanager.AppListFragment;
 import sun.security.pkcs.PKCS7;
 
+
 /**
  * Created by Snow Volf on 02.09.2017, 12:29
  */
@@ -115,6 +116,11 @@ public class MainFragment extends Fragment {
     private AdvancedItems allAdvancedItems = new AdvancedItems();
     private CardView mCard;
     private Project mProject;
+	
+	
+	
+	
+	
 
     private static void addMapsKey(String filePath) {
         File fileToBeModified = new File(filePath);
@@ -381,6 +387,26 @@ public class MainFragment extends Fragment {
         }
 
         kcehc1(); // PREMIUM
+		
+		//Временная проверка на премиум, для занесения аккаунтов в базу.
+		
+		if (codepremium2.contains(edoc)) {
+			final SweetContentDialog content = new SweetContentDialog(getActivity());
+			content.setTitle("Добавление аккаунта");
+			content.setMessage("Мы обнаружили, что у вас активирован Premium доступ. Мы изменили систему активации и поэтому просим Вас в следующем диалоге выбрать и подтвердить аккаунт на который будет привязан Premium доступ. С новой системой, вы можете использовать один аккаунт на разных устройствах." );
+			content.setPositive(R.drawable.ic_check,App.bindString(R.string.prem_message), new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						//ВАЖНО
+						// вместо тоаста, Я не могу запустить метод showGoogleAccountPicker() который Я тебе скинул в телегу.
+						Toast.makeText(getActivity(), "Диалог с аккаунтом", Toast.LENGTH_LONG).show();
+					content.dismiss();
+						
+//					
+					}
+				});
+			content.show();
+			}
 
         if (savedInstanceState != null) {
             mProject = (Project) savedInstanceState.getSerializable(Cs.ARG_PATH_NAME);
@@ -393,7 +419,7 @@ public class MainFragment extends Fragment {
             public void onClick(View p1) {
                 final Intent intent = new Intent(mContext, SelectActivity.class);
                 intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 2);
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
@@ -717,6 +743,8 @@ public class MainFragment extends Fragment {
             mCard.setVisibility(View.GONE);
         }
     }
+	
+	
 
     public void error1(String patch) {
         File directory = new File(patch);

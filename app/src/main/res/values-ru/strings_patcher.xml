@@ -31,7 +31,10 @@
     <string name="patch_maps_fix">Исправить Google Maps</string>
     <string name="patch_odex">Патч ODEX</string>
     <string name="patch_decompiler">Декомпилятор</string>
-
+	
+	
+	<string name="prem_message">Выбрать и отправить</string>
+	
     <!-- Captions -->
     <string name="caption_search">Поиск</string>
     <string name="caption_paid">Условия покупки</string>

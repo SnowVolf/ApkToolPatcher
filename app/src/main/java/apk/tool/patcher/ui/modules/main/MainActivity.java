@@ -27,9 +27,7 @@ import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 import ru.svolf.melissa.fragment.dialog.SweetListDialog;
 
-
 public class MainActivity extends BaseActivity implements OnAsyncJobListener {
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +49,9 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
                     .commit();
         }
     }
+	
+	
+	
 
     /**
      * Представляет диалог с текстом из assets
@@ -129,10 +130,9 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
         wait.postDelayed(new Runnable() {
             @Override
             public void run() {
-//				if (this.codepremium2.MainFragment.contains(edoc)) {
-//					}else{
+
                 showAdvert();
-				//}
+			
             }
         }, 2000);
     }
