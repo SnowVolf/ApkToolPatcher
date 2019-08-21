@@ -216,7 +216,6 @@ public class MainActivity extends ThemedActivity {
 		super.finish();
 	}
 
-
 	private void showSaveDialog() {
 		DialogInterface.OnClickListener l = new DialogInterface.OnClickListener(){
 			@Override

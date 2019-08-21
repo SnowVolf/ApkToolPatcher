@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,13 +45,16 @@ public class FilesPager implements WatchDog {
 				((MainActivity)ctx).dismissFiles();
 			}
 		});
-		toolbar.setOnLongClickListener(new View.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View view) {
-				menu(view);
-				return true;
-			}
-		});
+		toolbar.getMenu().add("more")
+				.setIcon(R.drawable.settings_outline)
+				.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
+				.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+					@Override
+					public boolean onMenuItemClick(MenuItem menuItem) {
+						menu(toolbar);
+						return true;
+					}
+				});
 	}
 
 	public void init(Bundle savedInstanceState, FilesFragment frag) {

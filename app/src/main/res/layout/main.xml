@@ -3,21 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator">
+    android:id="@+id/coordinator"
+	android:elevation="2dp">
 
 	<FrameLayout
-		android:background="?attr/color_app_background"
 		android:layout_height="match_parent"
 		android:layout_width="match_parent"
 		android:id="@+id/editor"/>
 
 	<FrameLayout
-		android:background="?android:attr/windowBackground"
-		android:layout_height="400dp"
+		android:layout_height="100dp"
 		android:layout_width="match_parent"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         app:behavior_peekHeight="96dp"
-		android:id="@+id/bottomView"/>
+		android:id="@+id/bottomView"
+		android:background="@drawable/dialog_background"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
