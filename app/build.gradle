@@ -12,7 +12,7 @@ android {
         versionName "5.0 beta 4"
         // Иначе не соберется в студии
 		//иначе не соберется в AIDE :-)
-       // multiDexEnabled true
+        multiDexEnabled true
         
         //ndk {
         //moduleName "universalchardet"
@@ -54,7 +54,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-  // implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.faendir:acra:4.10.0'
     implementation 'com.yandex.android:mobmetricalib:3.6.4'

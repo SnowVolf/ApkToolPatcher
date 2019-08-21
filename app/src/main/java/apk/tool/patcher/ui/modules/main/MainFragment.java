@@ -394,7 +394,7 @@ public class MainFragment extends Fragment {
 			final SweetContentDialog content = new SweetContentDialog(getActivity());
 			content.setTitle("Добавление аккаунта");
 			content.setMessage("Мы обнаружили, что у вас активирован Premium доступ. Мы изменили систему активации и поэтому просим Вас в следующем диалоге выбрать и подтвердить аккаунт на который будет привязан Premium доступ. С новой системой, вы можете использовать один аккаунт на разных устройствах." );
-			content.setPositive(R.drawable.ic_check,App.bindString(R.string.prem_message), new View.OnClickListener() {
+			content.setPositive(R.drawable.ic_check, App.bindString(R.string.prem_message), new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
 						//ВАЖНО

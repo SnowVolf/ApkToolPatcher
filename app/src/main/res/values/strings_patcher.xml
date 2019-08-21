@@ -38,6 +38,7 @@
     <string name="caption_donate">Assistance to the project</string>
     <string name="caption_features">Base features</string>
     <string name="caption_premium_features">Premium features</string>
+    <string name="prem_message">Choose and send</string>
 
 
     <!-- Short messages -->

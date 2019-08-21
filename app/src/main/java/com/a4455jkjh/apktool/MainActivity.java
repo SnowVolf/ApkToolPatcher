@@ -8,9 +8,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -60,6 +62,7 @@ public class MainActivity extends ThemedActivity {
         bottomSheet = findViewById(R.id.bottomView);
 		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		getActionBar().setCustomView(R.layout.title);
+		adjustSheetHeight();
 		init(getSupportFragmentManager());
     }
 	public void init() {
@@ -144,6 +147,20 @@ public class MainActivity extends ThemedActivity {
             }
         });
     }
+
+	/**
+	 * Устанавливаем максимальную высоту боттом шита в 2/3 экрана
+	 */
+    private void adjustSheetHeight(){
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+		int height = displayMetrics.heightPixels;
+		//int width = displayMetrics.widthPixels;
+
+		ViewGroup.LayoutParams params = bottomSheet.getLayoutParams();
+		params.height = Math.round(height * 0.67f);
+		bottomSheet.setLayoutParams(params);
+	}
 
 
 	@Override
