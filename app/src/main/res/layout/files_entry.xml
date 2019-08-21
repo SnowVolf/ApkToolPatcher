@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:gravity="center_vertical"
 	android:orientation="horizontal"
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content">
+	android:layout_height="wrap_content"
+	android:background="@drawable/rounded_ripple">
 
 	<ImageView
 		android:id="@+id/icon"
-		android:layout_width="30.0dip"
-		android:layout_height="30.0dip"
-		android:layout_margin="2.0dip"/>
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginBottom="8dp"
+		tools:src="@drawable/folder"/>
 
-	<TextView
+	<apk.tool.patcher.ui.widget.FontTextView
 		android:textAppearance="?android:textAppearanceMedium"
 		android:id="@+id/name"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		tools:text="Folder"/>
 
 </LinearLayout>
 

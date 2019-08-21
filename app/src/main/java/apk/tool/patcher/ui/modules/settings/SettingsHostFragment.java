@@ -82,7 +82,7 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
             public void run() {
                 mTabs.setupViews(mTabIndex);
             }
-        }, end - start + 250);
+        }, end - start + 100);
     }
 
     @Override

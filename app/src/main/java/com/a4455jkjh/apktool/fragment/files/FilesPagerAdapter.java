@@ -7,17 +7,13 @@ import android.view.ViewGroup;
 import androidx.viewpager.widget.PagerAdapter;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 public class FilesPagerAdapter extends PagerAdapter {
-	private final Context context;
 	private final FilesPager files;
-	//private final ErrorsPager errors;
-	//private final ApplicationsPage apps;
 
 	public FilesPagerAdapter(Context context) {
-		this.context = context;
 		files = new FilesPager(context);
-		//errors = new ErrorsPager(context);
-		//apps = new ApplicationsPage(context);
 	}
 
 	public void save(Bundle outState) {
@@ -26,8 +22,6 @@ public class FilesPagerAdapter extends PagerAdapter {
 
 	public void init(Bundle savedInstanceState, FilesFragment frag) {
 		files.init(savedInstanceState, frag);
-		//errors.init(frag);
-		//apps.init(frag);
 	}
 	@Override
 	public int getCount() {
@@ -39,15 +33,12 @@ public class FilesPagerAdapter extends PagerAdapter {
 		return p1 == p2;
 	}
 
+	@NotNull
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		View view = null;
 		if (position == 0)
 			view = files.getView();
-		//else if (position == 1)
-			//view = apps.getView();
-//		else if (position == 1)
-//			view = errors.getView();
 		container.addView(view);
 		return view;
 	}
@@ -61,10 +52,6 @@ public class FilesPagerAdapter extends PagerAdapter {
 	public CharSequence getPageTitle(int position) {
 		if (position == 0)
 			return files.getTitle();
-		//if (position == 1)
-			//return apps.getTitle();
-//		if (position == 1)
-//			return errors.getTitle();
 		return super.getPageTitle(position);
 	}
 

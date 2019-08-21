@@ -3,18 +3,28 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	style="?bottomSheetStyle"
+	android:elevation="2dp">
 
 	<android.support.design.widget.TabLayout
 		android:id="@+id/tab"
-		android:layout_height="30dp"
+		android:layout_height="0dp"
 		android:layout_width="match_parent"/>
-
-	<View
-		android:background="@color/accent_material_light"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="1dp"/>
+		android:layout_height="16dp"
+		android:orientation="horizontal"
+		android:gravity="center">
 
+		<View
+			android:layout_width="32dp"
+			android:layout_height="4dp"
+			android:background="@drawable/corners_all"
+			android:alpha="0.7"
+			android:layout_gravity="center_horizontal|center_vertical" />
+
+	</LinearLayout>
 	<com.a4455jkjh.apktool.view.EditorPager
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
