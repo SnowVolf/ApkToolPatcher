@@ -87,6 +87,8 @@ import ru.svolf.melissa.model.ExtendedMenuItem;
 import ru.svolf.melissa.model.MenuItem;
 import ru.svolf.rxmanager.AppListFragment;
 import sun.security.pkcs.PKCS7;
+import android.accounts.*;
+import android.os.*;
 
 
 /**
@@ -98,7 +100,7 @@ public class MainFragment extends Fragment {
     public static final String FRAGMENT_TAG = "main_fragment";
     private static final String TAG = "MainFragment";
     public static String premium;
-    public static String saveToast = "text_toast", saveCode = "edoc_prem";
+    public static String saveToast = "text_toast", saveCode = "edoc_prem", acc_name1 = "account";
     public static String extXml = ".xml",
             nol = "", ssha, sss,
     // Premium
@@ -117,7 +119,9 @@ public class MainFragment extends Fragment {
     private CardView mCard;
     private Project mProject;
 	
-	
+	private static final int ACC_CHOOSE = 123;
+	String acc_name;
+	private boolean check;
 	
 	
 	
@@ -389,24 +393,26 @@ public class MainFragment extends Fragment {
         kcehc1(); // PREMIUM
 		
 		//Временная проверка на премиум, для занесения аккаунтов в базу.
-		
+		String accaunt = App.get().getPreferences().getString(acc_name1, "");
+		if (accaunt == ""){
 		if (codepremium2.contains(edoc)) {
 			final SweetContentDialog content = new SweetContentDialog(getActivity());
 			content.setTitle("Добавление аккаунта");
-			content.setMessage("Мы обнаружили, что у вас активирован Premium доступ. Мы изменили систему активации и поэтому просим Вас в следующем диалоге выбрать и подтвердить аккаунт на который будет привязан Premium доступ. С новой системой, вы можете использовать один аккаунт на разных устройствах." );
+			content.setMessage("Мы обнаружили, что у вас активирован Premium доступ. Мы постепенно меняем систему активации и поэтому просим Вас в следующем диалоге выбрать и подтвердить аккаунт на который будет привязан Premium доступ. С новой системой, вы можете использовать один аккаунт на разных устройствах." );
 			content.setPositive(R.drawable.ic_check,App.bindString(R.string.prem_message), new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						//ВАЖНО
-						// вместо тоаста, Я не могу запустить метод showGoogleAccountPicker() который Я тебе скинул в телегу.
-						Toast.makeText(getActivity(), "Диалог с аккаунтом", Toast.LENGTH_LONG).show();
-					content.dismiss();
-						
-//					
+						showGoogleAccountPicker();
+					content.dismiss();		
 					}
 				});
 			content.show();
 			}
+		}	else{
+			
+		}
+	
+	
 
         if (savedInstanceState != null) {
             mProject = (Project) savedInstanceState.getSerializable(Cs.ARG_PATH_NAME);
@@ -449,6 +455,42 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == getActivity().RESULT_OK) {
+			switch (requestCode) {
+				case ACC_CHOOSE:
+					
+					if (requestCode == ACC_CHOOSE)
+					{
+						// Receiving a result from the AccountPicker
+						if (resultCode == getActivity().RESULT_OK && data != null)
+						{
+							acc_name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+							
+							App.get().getPreferences().edit().putString(acc_name1, acc_name).apply();
+
+							final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+							emailIntent.setType("plain/text");
+							// Кому
+							emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+												 new String[]{
+													 "buntar888@mail.ru"
+												 });
+							// Зачем
+							emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+												 "Переход на аккаунт.");
+							// О чём
+							emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+												 acc_name + "\n\nНе удаляйте текст выше⬆⬆⬆");
+							
+							startActivity(Intent.createChooser(emailIntent,
+																		null));
+						}
+						
+					}
+					
+					break;
+				case 2:
         if (data == null) return;
         String path = data.getStringExtra("path");
         Toast.makeText(mContext, path, Toast.LENGTH_SHORT).show();
@@ -461,8 +503,14 @@ public class MainFragment extends Fragment {
             mGeneralInput.setText(path);
             publicString2(getProjectDir());
         }
+		break;
+		
     }
-
+  // если вернулось не ОК
+  } else {
+	  Toast.makeText(getActivity(), "Wrong result", Toast.LENGTH_SHORT).show();
+  }
+    }
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         if (mProject != null) {
@@ -476,6 +524,30 @@ public class MainFragment extends Fragment {
         super.onDestroyView();
     }
 
+	private void showGoogleAccountPicker()
+	{
+		final String[] aTypes =new String[]{"com.google","com.mgoogle",
+            "com.xiaomi", "com.viber.voip", "com.whatsapp","com.vkontakte.account","com.yandex.passport","ru.ok.android","ru.mw.account","ru.mail"};
+
+		Intent intent = null;
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			intent = AccountManager.newChooseAccountIntent(null, null, aTypes,
+														   null, null, null, null);
+		}
+		else
+		{
+			intent = AccountManager.newChooseAccountIntent(null, null,
+														   aTypes, true, null, null, null, null);
+		}
+
+		if (intent != null)
+		{
+			startActivityForResult(intent, ACC_CHOOSE);
+		}
+	}
+	
     /**
      * Коверкаем имена стрингов, если подпись не совпадает
      * <p>
