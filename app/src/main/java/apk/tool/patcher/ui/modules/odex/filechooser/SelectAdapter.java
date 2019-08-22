@@ -87,7 +87,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
     public interface ClickListener {
         void onItemClick(int position);
 
-        void onItemLongClick(int position);
+        //void onItemLongClick(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -110,14 +110,14 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
                 }
             });
 
-            view.setOnLongClickListener(new View.OnLongClickListener() {
-
-                @Override
-                public boolean onLongClick(View p1) {
-                    clickListener.onItemLongClick(getLayoutPosition());
-                    return true;
-                }
-            });
+//            view.setOnLongClickListener(new View.OnLongClickListener() {
+//
+//                @Override
+//                public boolean onLongClick(View p1) {
+//                    clickListener.onItemLongClick(getLayoutPosition());
+//                    return true;
+//                }
+//            });
         }
     }
 }

@@ -142,5 +142,6 @@
     <string name="system_apps">System</string>
     <string name="unknown">Unknown</string>
     <string name="recents">Recents</string>
+    <string name="choose_folder">Choose folder</string>
 
 </resources>
