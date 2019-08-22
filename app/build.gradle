@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "apk.tool.patcher"
@@ -44,10 +44,10 @@ android {
 dependencies {
 	compile 'com.google.code.gson:gson:2+'
 	compile 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'androidx.viewpager:viewpager:1.0.0+'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 	implementation 'androidx.interpolator:interpolator:1.0.0'
 	implementation 'androidx.fragment:fragment:1.0.0'
-	implementation 'androidx.drawerlayout:drawerlayout:1.0.0+'
+    implementation 'androidx.drawerlayout:drawerlayout:1.0.0+'
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
