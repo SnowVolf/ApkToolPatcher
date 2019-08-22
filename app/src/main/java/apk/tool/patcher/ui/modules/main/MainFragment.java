@@ -400,6 +400,8 @@ public class MainFragment extends Fragment {
 			content.setTitle("Добавление аккаунта");
 			content.setMessage("Мы обнаружили, что у вас активирован Premium доступ. Мы постепенно меняем систему активации и поэтому просим Вас в следующем диалоге выбрать и подтвердить аккаунт на который будет привязан Premium доступ. С новой системой, вы можете использовать один аккаунт на разных устройствах." );
 			content.setPositive(R.drawable.ic_check,App.bindString(R.string.prem_message), new View.OnClickListener() {
+			
+				
 					@Override
 					public void onClick(View view) {
 						showGoogleAccountPicker();
@@ -418,8 +420,8 @@ public class MainFragment extends Fragment {
             mProject = (Project) savedInstanceState.getSerializable(Cs.ARG_PATH_NAME);
             if (mProject != null)
                 mGeneralInput.setText(mProject.getPath());
-        }
-
+        
+}
         mGeneralInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View p1) {

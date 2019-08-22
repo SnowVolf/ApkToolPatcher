@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         setContentView(R.layout.activity_select);
         mCaption = findViewById(R.id.content_caption);
         recyclerView = findViewById(R.id.recycler_select_view_RecyclerView);
+        Button buttonSelect = findViewById(R.id.select_folder);
 
         if (savedInstanceState != null) {
             currentPath = new File(savedInstanceState.getString("current_path"));
@@ -67,6 +69,34 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
 //        PinchZoomItemTouchListener listener = new PinchZoomItemTouchListener(this, this);
 //        listener.setEnabled(true);
 //        recyclerView.addOnItemTouchListener(listener);
+
+        buttonSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (currentPath.isDirectory()) {
+                    if (currentPath.canWrite()) {
+                        SweetContentDialog dialog = new SweetContentDialog(SelectActivity.this);
+                        dialog.setTitle(R.string.caption_set_folder);
+                        dialog.setMessage(String.format(getString(R.string.message_set_folder), currentPath.getName()));
+                        dialog.setPositive(R.drawable.ic_check, App.bindString(android.R.string.ok), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent();
+                                intent.putExtra("path", currentPath.getPath());
+                                setResult(RESULT_OK, intent);
+                                finish();
+                            }
+                        });
+                        dialog.show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No write permission", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), currentPath.getName(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -84,37 +114,9 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
                 files = getFilesData(file);
                 ((SelectAdapter) adapter).onFilesUpdate(files);
                 mCaption.setText(currentPath.getName());
-
             } else {
                 Toast.makeText(getApplicationContext(), "No access", Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-
-    @Override
-    public void onItemLongClick(int position) {
-        final File file = files[position];
-
-        if (file.isDirectory()) {
-            if (file.canWrite()) {
-                SweetContentDialog dialog = new SweetContentDialog(this);
-                dialog.setTitle(R.string.caption_set_folder);
-                dialog.setMessage(String.format(getString(R.string.message_set_folder), file.getName()));
-                dialog.setPositive(R.drawable.ic_check, App.bindString(android.R.string.ok), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.putExtra("path", file.getPath());
-                        setResult(RESULT_OK, intent);
-                        finish();
-                    }
-                });
-                dialog.show();
-            } else {
-                Toast.makeText(getApplicationContext(), "No write permission", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(getApplicationContext(), file.getName(), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -15,10 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import androidx.fragment.app.FragmentActivity;
-import apk.tool.patcher.*;
+
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.util.Settings;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -26,10 +28,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import apk.tool.patcher.R;
+
 public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,Refreshable {
 	private final FilesFragment frag;
 	private final List<Item> items;
-	private final TextView path;
+	private final WatchDog path;
 	private static final File rootDir = Environment.getExternalStorageDirectory();
 	private BuildItem build;
 	private File curDir;
@@ -40,7 +44,7 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		}
 	};
 
-	private FilesAdapter(FilesFragment act, TextView path) {
+	private FilesAdapter(FilesFragment act, WatchDog path) {
 		this.frag = act;
 		this.path = path;
 		build = null;
@@ -111,7 +115,7 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		BuildItem build = this.build;
 		if (build != null && !build.isSubDir(dir))
 			build = null;
-		path.setText(dir.getAbsolutePath());
+		path.watchForFile(dir.getAbsolutePath());
 		items.clear();
 		for (File f:dir.listFiles(filter)) {
 			items.add(new FileItem(f));
@@ -138,6 +142,7 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 	public long getItemId(int p1) {
 		return items.get(p1).hashCode();
 	}
+
 	public boolean goBack() {
 		if (curDir.equals(rootDir))
 			return false;
@@ -187,7 +192,7 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		}
 
 	}
-	public static FilesAdapter init(FilesFragment act, ListView files, TextView path) {
+	public static FilesAdapter init(FilesFragment act, ListView files, WatchDog path) {
 		FilesAdapter adapter = new FilesAdapter(act, path);
 		files.setAdapter(adapter);
 		files.setOnItemClickListener(adapter);

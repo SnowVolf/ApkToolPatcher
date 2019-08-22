@@ -3,27 +3,32 @@ package com.a4455jkjh.apktool.fragment.files;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+
 import com.a4455jkjh.apktool.MainActivity;
-import apk.tool.patcher.*;
+import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.util.Settings;
-import java.io.File;
-import com.a4455jkjh.apktool.fragment.FilesFragment;
-import android.os.Bundle;
 
-public class FilesPager implements View.OnClickListener {
+import apk.tool.patcher.R;
+import apk.tool.patcher.util.PathF;
+
+public class FilesPager implements WatchDog {
 	private final View view;
 	private final Context ctx;
 	private final CharSequence title;
 	private ListView files;
-	private TextView path;
 	private FilesAdapter adapter;
+	private Toolbar toolbar;
+
 	public FilesPager(Context context) {
 		ctx = context;
 		LayoutInflater inflater = LayoutInflater.from(context);
@@ -31,14 +36,29 @@ public class FilesPager implements View.OnClickListener {
 			R.layout.files, null);
 		title = context.getText(R.string.files);
 		files = view.findViewById(R.id.files);
-		path = view.findViewById(R.id.path);
-		view.findViewById(R.id.back).
-			setOnClickListener(this);
-		path.setOnClickListener(this);
+		toolbar = view.findViewById(R.id.toolbar);
+		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if (adapter.goBack())
+					return;
+				((MainActivity)ctx).dismissFiles();
+			}
+		});
+		toolbar.getMenu().add("more")
+				.setIcon(R.drawable.settings_outline)
+				.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
+				.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+					@Override
+					public boolean onMenuItemClick(MenuItem menuItem) {
+						menu(toolbar);
+						return true;
+					}
+				});
 	}
 
 	public void init(Bundle savedInstanceState, FilesFragment frag) {
-		adapter = FilesAdapter.init(frag, files, path);
+		adapter = FilesAdapter.init(frag, files, this);
 		adapter.init(savedInstanceState);
 	}
 
@@ -54,69 +74,51 @@ public class FilesPager implements View.OnClickListener {
 		return view;
 	}
 
-	@Override
-	public void onClick(View p1) {
-		switch (p1.getId()) {
-			case R.id.back:
-				if (adapter.goBack())
-					return;
-				((MainActivity)ctx).dismissFiles();
-				break;
-			case R.id.path:
-				menu(p1);
-				break;
-		}
-	}
-
 	private void menu(final View view) {
-		Menu menu = PopupUtils.show(view, R.menu.dir, new PopupUtils.Callback(){
-				@Override
-				public void call(Context ctx, int pos) {
-					switch (pos) {
-						case R.id.go_back:
-							adapter.goBack();
-							break;
-						case R.id.sort:
-							sort();
-							break;
-						case R.id.new_dir:
-						case R.id.new_file:
-							adapter.createFileOrDir(pos);
-							break;
-//						case R.id.main_project:
-//							TextView path = (TextView) view;
-//							String project = path.getText().toString();
-//							Settings.setProjectPath(project, path.getContext());
-//							break;
-						case R.id.set_as_output_directory:
-							TextView path1 = (TextView) view;
-							String output = path1.getText().toString();
-							Settings.setOutputDirectory(output, path1.getContext());
-							break;
-					}
+		PopupUtils.show(view, R.menu.dir, new PopupUtils.Callback() {
+			@Override
+			public void call(Context ctx, int pos) {
+				switch (pos) {
+					case R.id.go_back:
+						adapter.goBack();
+						break;
+					case R.id.sort:
+						sort();
+						break;
+					case R.id.new_dir:
+					case R.id.new_file:
+						adapter.createFileOrDir(pos);
+						break;
+					case R.id.set_as_output_directory:
+						TextView path1 = (TextView) view;
+						String output = path1.getText().toString();
+						Settings.setOutputDirectory(output, path1.getContext());
+						break;
 				}
-			});
-//		String path = this.path.getText().toString();
-//		File json = new File(path, "apktool.json");
-//		menu.findItem(R.id.main_project);
-//			setVisible(json.exists());
+			}
+		});
 	}
-	int i;
 	protected void sort() {
-		new AlertDialog.Builder(ctx).
-			setTitle(R.string.sort).
-			setItems(R.array.sort, new DialogInterface.OnClickListener(){
+		new AlertDialog.Builder(ctx)
+				.setTitle(R.string.sort)
+				.setItems(R.array.sort, new DialogInterface.OnClickListener(){
 				@Override
 				public void onClick(DialogInterface p1, int p2) {
 					FileComparator.setDefaultAdapter(p2);
 					adapter.refresh();
-					PreferenceManager.getDefaultSharedPreferences(ctx).
-						edit().
-						putInt("defaultCompator", p2).
-						commit();
+					PreferenceManager.getDefaultSharedPreferences(ctx)
+							.edit()
+							.putInt("defaultCompator", p2)
+							.apply();
 				}
-			}).
-			setCancelable(false).
-			show();
+			})
+				.setCancelable(false)
+				.show();
 	}
+
+	@Override
+	public void watchForFile(CharSequence path) {
+		toolbar.setTitle(PathF.pointToName(path.toString()));
+	}
+
 }

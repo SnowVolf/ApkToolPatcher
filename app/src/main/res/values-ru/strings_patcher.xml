@@ -157,5 +157,6 @@
     <string name="system_apps">Системные</string>
     <string name="unknown">Неизвестные</string>
     <string name="recents">Недавние</string>
+    <string name="choose_folder">Выбрать папку</string>
 
 </resources>

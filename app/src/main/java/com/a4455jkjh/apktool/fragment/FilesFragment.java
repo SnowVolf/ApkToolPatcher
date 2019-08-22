@@ -8,13 +8,17 @@ import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
 import com.a4455jkjh.apktool.MainActivity;
-import apk.tool.patcher.*;
 import com.a4455jkjh.apktool.fragment.files.ErrorTree;
 import com.a4455jkjh.apktool.fragment.files.FilesPagerAdapter;
+
 import java.io.File;
+
+import apk.tool.patcher.R;
 
 public class FilesFragment extends Fragment {
 	private EditorFragment editor;
@@ -28,6 +32,7 @@ public class FilesFragment extends Fragment {
 	public void setRoot(ErrorTree errors) {
 		editor.setRoot(errors);
 	}
+
 	public void bind(EditorFragment editor) {
 		this.editor = editor;
 	}
@@ -35,6 +40,7 @@ public class FilesFragment extends Fragment {
 	public void focus(){
 		files_pager.requestFocus();
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.files_pager, container, false);

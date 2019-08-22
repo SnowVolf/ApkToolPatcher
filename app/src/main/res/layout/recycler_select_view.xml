@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<apk.tool.patcher.ui.widget.SpringRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recycler_select_view_RecyclerView"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clipToPadding="false"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:scrollbars="vertical" />
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <apk.tool.patcher.ui.widget.SpringRecyclerView
+        android:id="@+id/recycler_select_view_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/select_folder" />
+    <Button
+        android:id="@+id/select_folder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_folder"
+        android:textAllCaps="false"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_alignParentBottom="true"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+</RelativeLayout>
 
