@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -34,6 +35,8 @@
             android:layout_margin="8dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            app:strokeColor="?colorAccent"
+            app:strokeWidth="1dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
     </RelativeLayout>
 

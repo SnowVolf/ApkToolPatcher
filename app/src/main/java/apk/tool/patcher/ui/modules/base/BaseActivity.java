@@ -29,6 +29,11 @@ import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 
 public class BaseActivity extends AppCompatActivity {
     /**
+     * Код текущего языка
+     */
+    private String lang = null;
+
+    /**
      * Ресивер изменения темы
      */
     private final BroadcastReceiver mThemeReceiver = new BroadcastReceiver() {
@@ -41,11 +46,6 @@ public class BaseActivity extends AppCompatActivity {
             } else recreate();
         }
     };
-
-    /**
-     * Код текущего языка
-     */
-    private String lang = null;
 
     public BaseActivity() {
 

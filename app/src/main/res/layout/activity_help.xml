@@ -33,7 +33,9 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
             android:text="@string/create_issue"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            app:strokeColor="?colorAccent"
+            app:strokeWidth="1dp"/>
 
     </RelativeLayout>
 

@@ -32,7 +32,9 @@
         android:text="@string/app_filter"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/search_find"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="?colorAccent"
+        app:strokeWidth="1dp"/>
 
 
     <androidx.appcompat.widget.SearchView

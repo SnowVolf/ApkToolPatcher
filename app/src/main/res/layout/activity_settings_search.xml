@@ -35,7 +35,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="8dp"
                 android:textAllCaps="false"
-                android:text="@string/history" />
+                android:text="@string/history"
+                app:strokeColor="?colorAccent"
+                app:strokeWidth="1dp"/>
 
         </RelativeLayout>
 
