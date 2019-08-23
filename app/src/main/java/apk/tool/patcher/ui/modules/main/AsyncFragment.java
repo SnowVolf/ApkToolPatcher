@@ -1,7 +1,6 @@
 package apk.tool.patcher.ui.modules.main;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -28,7 +27,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import apk.tool.patcher.App;
-
 import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.OnAsyncJobListener;
@@ -36,6 +34,8 @@ import apk.tool.patcher.entity.async.AsyncRepository;
 import apk.tool.patcher.ui.modules.base.adapters.DialogControlsAdapter;
 import apk.tool.patcher.ui.modules.base.adapters.LogAdapter;
 import apk.tool.patcher.util.Cs;
+import apk.tool.patcher.util.TextUtil;
+import ru.svolf.melissa.Melissa;
 import ru.svolf.melissa.model.ControlsItem;
 import ru.svolf.melissa.model.LogItem;
 //import android.support.v4.*;
@@ -267,13 +267,8 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
      * @see Action
      */
     private void replaceOccurrences() {
-        try {
-            updateUI("f", "ApkToolPatcher v. " + requireContext()
-                    .getPackageManager().getPackageInfo(requireContext().getPackageName(), 0).versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        updateUI("f", "Melissa Framework v. 0.7.0");
+        updateUI("f", TextUtil.getBuildName(requireContext()));
+        updateUI("f", "Melissa Framework v. " + Melissa.VERSION_NAME);
         updateUI("f", String.format(Locale.ENGLISH, "Apply %d patches = %s to %s",
                 mActionIds.length, Arrays.toString(mActionIds), mProjectDir.getPath()));
         // Старт подготовки
