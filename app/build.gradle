@@ -12,7 +12,7 @@ android {
         versionName "5.0 beta 4"
         // Иначе не соберется в студии
 		//иначе не соберется в AIDE :-)
-      //  multiDexEnabled true
+        multiDexEnabled true
         
         //ndk {
         //moduleName "universalchardet"
@@ -42,19 +42,18 @@ android {
 
 }
 dependencies {
-	compile 'com.google.code.gson:gson:2+'
-	compile 'com.squareup.okhttp3:okhttp:3.10.0'
+	implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'androidx.viewpager:viewpager:1.0.0'
 	implementation 'androidx.interpolator:interpolator:1.0.0'
 	implementation 'androidx.fragment:fragment:1.0.0'
-    implementation 'androidx.drawerlayout:drawerlayout:1.0.0+'
+    implementation 'androidx.drawerlayout:drawerlayout:1.0.0'
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-   // implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.faendir:acra:4.10.0'
     implementation 'com.yandex.android:mobmetricalib:3.6.4'
