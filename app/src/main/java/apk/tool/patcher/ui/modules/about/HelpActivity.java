@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.widget.AutoResizeTextView;
 import apk.tool.patcher.util.TextUtil;
@@ -35,6 +36,7 @@ public class HelpActivity extends SwipeBackActivity {
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient());
+        webView.setBackgroundColor(App.getColorFromAttr(this, android.R.attr.windowBackground));
         webView.loadUrl("https://github.com/SnowVolf/ApkToolPatcherPublic/wiki");
 
         issue.setOnClickListener(new View.OnClickListener() {
