@@ -109,6 +109,7 @@ public enum GetIcon {
     }
 
     private Drawable getImageIcon(String origName) {
+        int ratio = App.dpToPx(48);
         Options options = new Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(origName, options);
@@ -124,7 +125,7 @@ public enum GetIcon {
             return null;
         }
         try {
-            return new BitmapDrawable(App.get().getResources(), ThumbnailUtils.extractThumbnail(decodeFile, 48, 48));
+            return new BitmapDrawable(App.get().getResources(), ThumbnailUtils.extractThumbnail(decodeFile, ratio, ratio));
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -151,6 +152,18 @@ public enum GetIcon {
             this.cache.clear();
         }
         this.allowThumbnails = true;
+    }
+
+    public void resolve(String filePath, ImageView holderView){
+        String fileExt = PathF.getExt(filePath);
+        FileType fileType = FileType.NORMAL;
+        if (fileExt.equals("apk")) {
+            fileType = FileType.APK;
+        } else if (this.imageExt.contains(fileExt)) {
+            fileType = FileType.IMAGE;
+        }
+
+        backgroundLoadIcon(filePath, holderView, fileType);
     }
 
     public void getIcon(boolean curDirNull, String fileName, String filePath, ImageView imageView) {

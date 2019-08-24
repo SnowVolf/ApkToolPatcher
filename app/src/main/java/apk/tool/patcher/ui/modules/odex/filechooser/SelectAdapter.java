@@ -77,8 +77,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
             p1.imageView.setImageResource(file.canRead() ? R.drawable.folder : R.drawable.folder);
         } else {
             p1.imageView.setTag(file.getPath());
-            GetIcon.getInstance().backgroundLoadIcon(file.getPath(), p1.imageView, GetIcon.FileType.APK);
-            //p1.imageView.setImageResource(R.drawable.file);
+            GetIcon.getInstance().resolve(file.getPath(), p1.imageView);
         }
     }
 
