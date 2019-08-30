@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 
 public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,Refreshable {
@@ -52,6 +54,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 		build = null;
 		items = new ArrayList<>(1024);
 	}
+
 	@Override
 	public void refresh() {
 		refresh(curDir);
@@ -112,6 +115,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 			});
 		ok.setEnabled(false);
 	}
+
 	void refresh(File dir) {
 		curDir = dir;
 		BuildItem build = this.build;
@@ -149,7 +153,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 
 	@Override
 	public int getItemCount() {
-		return 0;
+		return items.size();
 	}
 
 	public boolean goBack() {
@@ -190,8 +194,8 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 			else
 				refresh(rootDir);
 		}
-
 	}
+
 	public static FilesAdapter init(FilesFragment act, RecyclerView files, WatchDog path) {
 		FilesAdapter adapter = new FilesAdapter(act, path);
 		files.setAdapter(adapter);
@@ -202,6 +206,7 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Toast.makeText(App.get(), "" + position, Toast.LENGTH_SHORT).show();
 		items.get(position).setup(holder.icon, holder.name);
 	}
 
@@ -210,6 +215,10 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 		ImageView icon;
 		public ViewHolder(@NonNull View itemView) {
 			super(itemView);
+			if (itemView == null){
+			    itemView = frag.getLayoutInflater().
+                        inflate(R.layout.files_entry, null);
+            }
 			name = itemView.findViewById(R.id.name);
 			icon = itemView.findViewById(R.id.icon);
 
@@ -220,6 +229,4 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> 
 
 		}
 	}
-
-
 }

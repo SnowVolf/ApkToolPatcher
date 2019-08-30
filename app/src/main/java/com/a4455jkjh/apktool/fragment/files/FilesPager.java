@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.a4455jkjh.apktool.MainActivity;
@@ -27,7 +27,7 @@ public class FilesPager implements WatchDog {
 	private final Context ctx;
 	private final CharSequence title;
 	private RecyclerView files;
-	private FilesAdapter adapter;
+	private ModernFilesAdapter adapter;
 	private Toolbar toolbar;
 
 	public FilesPager(Context context) {
@@ -37,7 +37,7 @@ public class FilesPager implements WatchDog {
 			R.layout.files, null);
 		title = context.getText(R.string.files);
 		files = view.findViewById(R.id.files);
-		files.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+		files.setLayoutManager(new LinearLayoutManager(context));;
 		toolbar = view.findViewById(R.id.toolbar);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
@@ -47,20 +47,25 @@ public class FilesPager implements WatchDog {
 				((MainActivity)ctx).dismissFiles();
 			}
 		});
-		toolbar.getMenu().add("more")
-				.setIcon(R.drawable.ic_more_vert)
-				.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
-				.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-					@Override
-					public boolean onMenuItemClick(MenuItem menuItem) {
+		toolbar.inflateMenu(R.menu.menu_files_caption);
+		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				switch (item.getItemId()){
+					case R.id.more:
 						menu(toolbar);
 						return true;
-					}
-				});
+					case R.id.refresh:
+						adapter.refresh();
+						return true;
+				}
+				return false;
+			}
+		});
 	}
 
 	public void init(Bundle savedInstanceState, FilesFragment frag) {
-		adapter = FilesAdapter.init(frag, files, this);
+		adapter = ModernFilesAdapter.init(frag, files, this);
 		adapter.init(savedInstanceState);
 	}
 
@@ -100,6 +105,7 @@ public class FilesPager implements WatchDog {
 			}
 		});
 	}
+
 	protected void sort() {
 		new AlertDialog.Builder(ctx)
 				.setTitle(R.string.sort)
