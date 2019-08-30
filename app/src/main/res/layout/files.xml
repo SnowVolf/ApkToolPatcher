@@ -16,10 +16,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="1dp"/>
 
-	<ListView
+	<apk.tool.patcher.ui.widget.SpringRecyclerView
 		android:fastScrollEnabled="true"
 		android:layout_width="match_parent"
-		android:divider="@null"
 		android:layout_height="match_parent"
 		android:id="@+id/files"/>
 

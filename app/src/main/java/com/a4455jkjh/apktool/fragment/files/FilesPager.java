@@ -8,10 +8,11 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.a4455jkjh.apktool.MainActivity;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
@@ -25,7 +26,7 @@ public class FilesPager implements WatchDog {
 	private final View view;
 	private final Context ctx;
 	private final CharSequence title;
-	private ListView files;
+	private RecyclerView files;
 	private FilesAdapter adapter;
 	private Toolbar toolbar;
 
@@ -36,6 +37,7 @@ public class FilesPager implements WatchDog {
 			R.layout.files, null);
 		title = context.getText(R.string.files);
 		files = view.findViewById(R.id.files);
+		files.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
 		toolbar = view.findViewById(R.id.toolbar);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override

@@ -6,17 +6,18 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.util.Settings;
@@ -30,13 +31,14 @@ import java.util.List;
 
 import apk.tool.patcher.R;
 
-public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,Refreshable {
+public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,Refreshable {
 	private final FilesFragment frag;
 	private final List<Item> items;
 	private final WatchDog path;
 	private static final File rootDir = Environment.getExternalStorageDirectory();
 	private BuildItem build;
 	private File curDir;
+
 	private final FilenameFilter filter = new FilenameFilter(){
 		@Override
 		public boolean accept(File p1, String p2) {
@@ -128,14 +130,16 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		Collections.sort(items);
 		notifyDataSetChanged();
 	}
-	@Override
-	public int getCount() {
-		return items.size();
-	}
 
-	@Override
 	public Object getItem(int p1) {
 		return items.get(p1);
+	}
+
+	@NonNull
+	@Override
+	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.files_entry, parent, false);
+		return new FilesAdapter.ViewHolder(v);
 	}
 
 	@Override
@@ -143,22 +147,16 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		return items.get(p1).hashCode();
 	}
 
+	@Override
+	public int getItemCount() {
+		return 0;
+	}
+
 	public boolean goBack() {
 		if (curDir.equals(rootDir))
 			return false;
 		refresh(curDir.getParentFile());
 		return true;
-	}
-
-	@Override
-	public View getView(int p1, View p2, ViewGroup p3) {
-		if (p2 == null)
-			p2 = frag.getLayoutInflater().
-				inflate(R.layout.files_entry, p3, false);
-		TextView name = p2.findViewById(R.id.name);
-		ImageView icon = p2.findViewById(R.id.icon);
-		items.get(p1).setup(icon, name);
-		return p2;
 	}
 
 	@Override
@@ -175,9 +173,11 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		Item item = items.get(p3);
 		return item.longClick(p2, this);
 	}
+
 	public void save(Bundle outState) {
 		outState.putString("CUR_DIR_PATH", curDir.getAbsolutePath());
 	}
+
 	public void init(Bundle savedInstanceState) {
 		File rootDir = this.rootDir;
 		if (savedInstanceState != null) {
@@ -192,11 +192,34 @@ public class FilesAdapter extends BaseAdapter implements AdapterView.OnItemClick
 		}
 
 	}
-	public static FilesAdapter init(FilesFragment act, ListView files, WatchDog path) {
+	public static FilesAdapter init(FilesFragment act, RecyclerView files, WatchDog path) {
 		FilesAdapter adapter = new FilesAdapter(act, path);
 		files.setAdapter(adapter);
-		files.setOnItemClickListener(adapter);
-		files.setOnItemLongClickListener(adapter);
+//		files.setOnItemClickListener(adapter);
+//		files.setOnItemLongClickListener(adapter);
 		return adapter;
 	}
+
+	@Override
+	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+		items.get(position).setup(holder.icon, holder.name);
+	}
+
+	public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+		TextView name;
+		ImageView icon;
+		public ViewHolder(@NonNull View itemView) {
+			super(itemView);
+			name = itemView.findViewById(R.id.name);
+			icon = itemView.findViewById(R.id.icon);
+
+		}
+
+		@Override
+		public void onClick(View view) {
+
+		}
+	}
+
+
 }
