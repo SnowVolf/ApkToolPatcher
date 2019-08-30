@@ -48,7 +48,7 @@ public class FilesPager implements WatchDog {
 			}
 		});
 		toolbar.getMenu().add("more")
-				.setIcon(R.drawable.settings_outline)
+				.setIcon(R.drawable.ic_more_vert)
 				.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
 				.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 					@Override
