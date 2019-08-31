@@ -205,7 +205,12 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.
 
         @Override
         public void onClick(View view) {
-            refresh(new File(curDir, name.getText().toString()));
+            File check = new File(curDir, name.getText().toString());
+            if (check.isDirectory()){
+                refresh(check);
+            } else {
+                frag.edit(check);
+            }
         }
     }
 }

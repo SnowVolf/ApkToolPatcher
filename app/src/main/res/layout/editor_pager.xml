@@ -16,6 +16,7 @@
 		android:layout_height="wrap_content"
 		android:backgroundTint="@color/light_iconColor"
 		android:text="@string/no_data"
+		android:alpha="0.6"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:layout_gravity="center"
 		android:id="@+id/empty"/>

@@ -12,9 +12,10 @@
 		app:navigationIcon="@drawable/back"/>
 
 	<View
-		android:background="?android:attr/dividerVertical"
+		android:background="@drawable/pref_shadow_top"
 		android:layout_width="match_parent"
-		android:layout_height="1dp"/>
+		android:alpha="0.7"
+		android:layout_height="4dp"/>
 
 	<apk.tool.patcher.ui.widget.SpringRecyclerView
 		android:fastScrollEnabled="true"

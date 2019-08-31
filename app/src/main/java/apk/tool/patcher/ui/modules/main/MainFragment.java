@@ -1,9 +1,11 @@
 package apk.tool.patcher.ui.modules.main;
 
+import android.accounts.AccountManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -23,7 +25,6 @@ import androidx.cardview.widget.CardView;
 import androidx.collection.ArrayMap;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,8 +88,6 @@ import ru.svolf.melissa.model.ExtendedMenuItem;
 import ru.svolf.melissa.model.MenuItem;
 import ru.svolf.rxmanager.AppListFragment;
 import sun.security.pkcs.PKCS7;
-import android.accounts.*;
-import android.os.*;
 
 
 /**
@@ -810,9 +809,6 @@ public class MainFragment extends Fragment {
             mListAdvanced.setHasFixedSize(true);
             // Фикс скролла внутри NestedScrollView
             mListAdvanced.setNestedScrollingEnabled(false);
-            // Разделители пунктов
-            DividerItemDecoration divider = new DividerItemDecoration(mListAdvanced.getContext(), DividerItemDecoration.VERTICAL);
-            mListAdvanced.addItemDecoration(divider);
         } else {
             mCard.setVisibility(View.GONE);
         }
@@ -925,9 +921,6 @@ public class MainFragment extends Fragment {
         mList.setHasFixedSize(true);
         // Фикс тормозного скролла внутри NestedScrollView
         mList.setNestedScrollingEnabled(false);
-        // Разделители пунктов
-        DividerItemDecoration divider = new DividerItemDecoration(mList.getContext(), DividerItemDecoration.VERTICAL);
-        mList.addItemDecoration(divider);
     }
 
     /**
