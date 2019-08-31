@@ -48,7 +48,7 @@ public class FileItem extends ErrorTree implements ANTLRErrorListener {
 
 	@Override
 	public void setIcon(ImageView icon) {
-		com.a4455jkjh.apktool.fragment.files.FileItem.Icon.SMALI.set(icon);
+
 	}
 // запуск текстового редактора
 	@Override

@@ -155,6 +155,7 @@ public enum GetIcon {
     }
 
     public void resolve(String filePath, ImageView holderView){
+        holderView.setTag(filePath);
         String fileExt = PathF.getExt(filePath);
         FileType fileType = FileType.NORMAL;
         if (fileExt.equals("apk")) {

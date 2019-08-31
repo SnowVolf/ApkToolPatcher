@@ -9,7 +9,7 @@ public interface Item extends Comparable<Item> {
 	void setup(ImageView icon, TextView name);
 	boolean click(View view, Refreshable refresh);
 	boolean longClick(View view, Refreshable refresh);
-	void process(FilesAdapter adapter);
+	void process(ModernFilesAdapter adapter);
 	boolean edit(FilesFragment frag);
 	int getProperty();
 	int PROPERTY_FILE = 0;

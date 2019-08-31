@@ -8,15 +8,16 @@ import android.widget.TextView;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.lexer.LexerUtil;
 import com.a4455jkjh.apktool.util.FileUtils;
-import com.a4455jkjh.apktool.util.Settings;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.entity.async.GetIcon;
 
 public class FileItem implements Item {
-	private final File file;
-	String sourcePath;
+	private File file;
 
 	public FileItem(File file) {
 		this.file = file;
@@ -26,24 +27,7 @@ public class FileItem implements Item {
 	public void setup(ImageView icon, TextView name) {
 		String n = file.getName();
 		name.setText(n);
-		n = n.toLowerCase();
-		if (file.isDirectory())
-			Icon.FOLDER.set(icon);
-		else if (n.endsWith(".xml"))
-			Icon.XML.set(icon);
-		else if (n.endsWith(".yml"))
-			Icon.YML.set(icon);
-		else if (n.endsWith(".smali"))
-			Icon.SMALI.set(icon);
-		else if (isJKS(n))
-			Icon.JKS.set(icon);
-		else if (n.endsWith(".apk"))
-			
-			
-			
-			Icon.APK.set(icon);
-		else
-			Icon.UNKNOWN.set(icon);
+		set(icon);
 	}
 
 	@Override
@@ -82,7 +66,7 @@ public class FileItem implements Item {
 	}
 
 	@Override
-	public void process(FilesAdapter adapter) {
+	public void process(ModernFilesAdapter adapter) {
 		adapter.refresh(file);
 	}
 
@@ -93,11 +77,11 @@ public class FileItem implements Item {
 	}
 
 	@Override
-	public int compareTo(Item p1) {
-		if (! (p1 instanceof FileItem))
+	public int compareTo(@NotNull Item another) {
+		if (! (another instanceof FileItem))
 			return 1;
 		File f1 = file;
-		File f2 = ((FileItem)p1).file;
+		File f2 = ((FileItem) another).file;
 		if (f1.isDirectory() && f2.isFile())
 			return -1;
 		if (f2.isDirectory() && f1.isFile())
@@ -107,25 +91,12 @@ public class FileItem implements Item {
 	public int getProperty() {
 		return PROPERTY_FILE;
 	}
-	public enum Icon {
-		FOLDER(R.drawable.folder,R.drawable.folder),
-		XML(R.drawable.xml,R.drawable.xml_dark),
-		YML(R.drawable.yaml,R.drawable.yaml_dark),
-		SMALI(R.drawable.smali,R.drawable.smali_dark),
-		JKS(R.drawable.jks,R.drawable.jks_dark),
-		APK(R.drawable.apk,R.drawable.apk_dark),
-		UNKNOWN(R.drawable.file,R.drawable.file);
-		int light;
-		int dark;
-		Icon(int light,int dark){
-			this.light=light;
-			this.dark=dark;
-		}
-		public void set(ImageView image){
-			if(Settings.lightTheme)
-				image.setImageResource(light);
-			else
-				image.setImageResource(dark);
+
+	public void set(ImageView image){
+		if (file.isDirectory()){
+			image.setImageResource(R.drawable.folder);
+		} else {
+			GetIcon.getInstance().resolve(file.getPath(), image);
 		}
 	}
 }

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -28,7 +30,7 @@ import java.util.List;
 
 import apk.tool.patcher.R;
 
-public class ModernFilesAdapter extends RecyclerView.Adapter<ModernViewHolder> implements Refreshable  {
+public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.ModernViewHolder> implements Refreshable  {
     private static final String TAG = "ModernFilesAdapter";
     private final FilesFragment frag;
     private final List<Item> items;
@@ -156,7 +158,7 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernViewHolder> i
         ok.setEnabled(false);
     }
 
-    private void refresh(File dir) {
+    public void refresh(File dir) {
         curDir = dir;
         BuildItem build = this.build;
         if (build != null && !build.isSubDir(dir))
@@ -186,5 +188,24 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernViewHolder> i
 
     public void save(Bundle outState) {
         outState.putString("CUR_DIR_PATH", curDir.getAbsolutePath());
+    }
+
+    public class ModernViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView name;
+        ImageView icon;
+
+        public ModernViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.name);
+            icon = itemView.findViewById(R.id.icon);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            refresh(new File(curDir, name.getText().toString()));
+        }
     }
 }

@@ -76,7 +76,6 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
         if (file.isDirectory()) {
             p1.imageView.setImageResource(file.canRead() ? R.drawable.folder : R.drawable.folder);
         } else {
-            p1.imageView.setTag(file.getPath());
             GetIcon.getInstance().resolve(file.getPath(), p1.imageView);
         }
     }

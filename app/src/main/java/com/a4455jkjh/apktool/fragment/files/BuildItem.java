@@ -55,7 +55,7 @@ public class BuildItem implements Item {
 	}
 
 	@Override
-	public void process(FilesAdapter adapter) {
+	public void process(ModernFilesAdapter adapter) {
 	}
 
 	@Override
