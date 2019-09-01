@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BreadcrumbsView">
+        <item name="crumbsTextColor">?android:attr/textColorSecondary</item>
+        <item name="crumbsSelectedTextColor">?android:attr/textColorPrimary</item>
+        <item name="crumbsTextSize">18sp</item>
+        <item name="crumbsPadding">16dp</item>
+    </style>
+
+</resources>

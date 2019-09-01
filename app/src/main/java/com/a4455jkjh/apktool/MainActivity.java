@@ -72,13 +72,15 @@ public class MainActivity extends ThemedActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
 		super.onCreate(savedInstanceState, persistentState);
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				setWordWrap();
-			}
-		}, 1500);
+		if (getIntent() == null) {
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					setWordWrap();
+				}
+			}, 1500);
+		}
 	}
 
 	@Override
@@ -149,16 +151,16 @@ public class MainActivity extends ThemedActivity {
     }
 
 	/**
-	 * Устанавливаем максимальную высоту боттом шита в 2/3 экрана
+	 * Устанавливаем максимальную высоту боттом шита в 3/4 экрана
 	 */
     private void adjustSheetHeight(){
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-		int height = displayMetrics.heightPixels;
+		int screenHeight = displayMetrics.heightPixels;
 		//int width = displayMetrics.widthPixels;
 
 		ViewGroup.LayoutParams params = bottomSheet.getLayoutParams();
-		params.height = Math.round(height * 0.67f);
+		params.height = Math.round(screenHeight * 0.75f);
 		bottomSheet.setLayoutParams(params);
 	}
 
