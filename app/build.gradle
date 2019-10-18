@@ -40,9 +40,8 @@ android {
     }
 }
 dependencies {
-    implementation project(":library")
 
-	implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'androidx.viewpager:viewpager:1.0.0'
 	implementation 'androidx.interpolator:interpolator:1.0.0'
 	implementation 'androidx.fragment:fragment:1.0.0'

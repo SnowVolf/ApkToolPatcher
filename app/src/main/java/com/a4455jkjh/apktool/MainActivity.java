@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -34,7 +33,6 @@ import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.Preferences;
 
 public class MainActivity extends ThemedActivity {
-	private CoordinatorLayout coordinator;
 	private EditorFragment editor;
 	private FilesFragment files;
     private View bottomSheet;
@@ -58,7 +56,6 @@ public class MainActivity extends ThemedActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         setContentView(R.layout.main);
-		coordinator = findViewById(R.id.coordinator);
         bottomSheet = findViewById(R.id.bottomView);
 		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		getActionBar().setCustomView(R.layout.title);

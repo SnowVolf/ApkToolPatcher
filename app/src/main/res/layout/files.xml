@@ -11,10 +11,12 @@
 			android:layout_height="?actionBarSize"
 			app:navigationIcon="@drawable/back"/>
 
-		<moe.feng.common.view.breadcrumbs.BreadcrumbsView
-			android:id="@+id/breadcrumbs_view"
-			android:layout_width="match_parent"
-			android:layout_height="48dp" />
+		<!-- CRUMBS -->
+
+    <apk.tool.patcher.ui.widget.PathView
+        android:id="@+id/breadcrumbs_view"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
 
 	<View
 		android:background="@drawable/pref_shadow_top"
@@ -26,8 +28,7 @@
 		android:fastScrollEnabled="true"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:nestedScrollingEnabled="false"
-		android:id="@+id/files"/>
+		android:id="@+id/files" />
 
 </LinearLayout>
 

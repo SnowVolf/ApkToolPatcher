@@ -20,6 +20,7 @@ import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.util.Settings;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.ui.widget.PathView;
 import apk.tool.patcher.util.PathF;
 
 public class FilesPager implements WatchDog {
@@ -29,6 +30,7 @@ public class FilesPager implements WatchDog {
 	private RecyclerView files;
 	private ModernFilesAdapter adapter;
 	private Toolbar toolbar;
+	private PathView pathView;
 
 	public FilesPager(Context context) {
 		ctx = context;
@@ -37,7 +39,8 @@ public class FilesPager implements WatchDog {
 			R.layout.files, null);
 		title = context.getText(R.string.files);
 		files = view.findViewById(R.id.files);
-		files.setLayoutManager(new LinearLayoutManager(context));;
+		files.setLayoutManager(new LinearLayoutManager(context));
+		pathView = view.findViewById(R.id.breadcrumbs_view);
 		toolbar = view.findViewById(R.id.toolbar);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
@@ -126,7 +129,12 @@ public class FilesPager implements WatchDog {
 
 	@Override
 	public void watchForFile(CharSequence path) {
-		toolbar.setTitle(PathF.pointToName(path.toString()));
+		String currentPath = PathF.pointToName(path.toString());
+		toolbar.setTitle(currentPath);
+		// FIXME Suka blyad
+//		if (pathView.getItems().contains(currentPath)) {
+//			pathView.addItem(BreadcrumbItem.createSimpleItem(currentPath));
+//		}
 	}
 
 }

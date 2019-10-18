@@ -11,9 +11,9 @@
 		android:layout_height="wrap_content"
 		android:id="@+id/name"
 		android:layout_weight="1.0"
-		android:layout_marginLeft="10dp"
-		android:textSize="20sp"
-		android:textAppearance="?android:attr/textAppearanceLarge"/>
+		android:maxLines="2"
+		android:layout_marginStart="10dp"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
 	<ImageView
 		android:src="@android:drawable/ic_delete"
