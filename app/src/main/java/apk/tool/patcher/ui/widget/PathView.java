@@ -1,5 +1,6 @@
 package apk.tool.patcher.ui.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -122,9 +123,66 @@ public class PathView extends ViewGroup {
 
     }
 
-    @Override
-    protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
+    /* access modifiers changed from: protected */
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+        if (height == 0) {
+            height = 1073741823;
+        }
+        @SuppressLint("WrongConstant") int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(width, Integer.MIN_VALUE);
+        @SuppressLint("WrongConstant") int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, Integer.MIN_VALUE);
+        int childCount = getChildCount();
+        int maxHeight = 0;
+        for (int i = 0; i < childCount; i++) {
+            View childView = getChildAt(i);
+            if (i == 0) {
+                childView.setPadding(0, childView.getPaddingTop(), childView.getPaddingRight(), childView.getPaddingBottom());
+            }
+            measureChild(childView, childWidthMeasureSpec, childHeightMeasureSpec);
+            if ((childView instanceof TextView) && ((TextView) childView).getMeasuredHeight() > maxHeight) {
+                maxHeight = ((TextView) childView).getMeasuredHeight();
+            }
+        }
+        setMeasuredDimension(ViewGroup.getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec), maxHeight);
+    }
 
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        maxScrollX = 0;
+        int height = b - t;
+        int childCount = getChildCount();
+        int count = 0;
+        int left = 0;
+        for (int i = 0; i < childCount; i++) {
+            View childView = getChildAt(i);
+            int measuredWidth = childView.getMeasuredWidth();
+            if (childView instanceof TextView) {
+                if (count == 0) {
+                    childView.setPadding(((Number) itemVisibleOffset).intValue(),
+                            childView.getPaddingTop(), childView.getPaddingRight(),
+                            childView.getPaddingBottom());
+                    measuredWidth += childView.getPaddingLeft();
+                }
+                int count2 = count + 1;
+                childView.setTag(count);
+                count = count2;
+            }
+            childView.layout(left, 0, left + measuredWidth, height);
+            left += measuredWidth;
+            this.maxScrollX += measuredWidth;
+        }
+        this.maxScrollX -= r - l;
+        if (this.maxScrollX < 0) {
+            this.maxScrollX = 0;
+        }
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(mScroller.getCurrX(), 0);
+            invalidate();
+        }
     }
 
     private class PathItem implements Comparable<PathItem> {
