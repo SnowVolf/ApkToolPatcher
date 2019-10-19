@@ -1,6 +1,8 @@
 package apk.tool.patcher.ui.widget;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -96,8 +98,25 @@ public class PathView extends ViewGroup {
     private OnClickListener itemClickListener = new OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (isEnabled()){
+                TextView textView = (TextView) view;
+                int index = (int) textView.getTag();
+                if (pm.currentPos != index){
+                    beforePathChangedListener.onClick(view);
+                    textView.setTextColor(textView.getCurrentTextColor() | 0xFF000000);
+                    TextView tv = pm.currentText();
+                    tv.setTextColor(tv.getCurrentTextColor() & 0x60FFFFFF);
+                    pm.currentPos = index;
+                    ensureItemVisible();
+                    afterPathChangedListener.onClick(view);
+                }
+            }
         }
     };
+
+
+
+    File currentPath = pm.getCurrentFile();
 
     private void setPath(File file) {
 
@@ -112,7 +131,7 @@ public class PathView extends ViewGroup {
         public String path;
         // FIXME Inflate widget
         TextView textView;
-        ImageView arrowView = null;
+        ImageView arrowView;
         File pathFile;
         public String name;
 
@@ -134,9 +153,57 @@ public class PathView extends ViewGroup {
             return false;
         }
 
+        public ImageView getArrowView() {
+            return arrowView;
+        }
+
+        public void setArrowView(ImageView arrowView) {
+            this.arrowView = arrowView;
+        }
+
         @Override
         public int compareTo(PathItem other) {
             return -path.compareTo(other.path);
+        }
+    }
+
+
+    private void ensureItemVisible(){
+        ensureItemVisible(true);
+    }
+
+    private void ensureItemVisible(boolean animation) {
+        int index = pm.currentPos;
+
+
+    }
+
+    private final void refreshViews() {
+        removeAllViews();
+        boolean addArrow = false;
+        int size = pm.size();
+        for (int i = 0; i < size; i++) {
+            TextView textView = this.pm.get(i).textView;
+            if (addArrow) {
+                if (this.arrow.getColorFilter() == null) {
+                    this.arrow.setColorFilter(new PorterDuffColorFilter(textView.getCurrentTextColor() & 1627389951, PorterDuff.Mode.SRC_IN));
+                }
+                ImageView view = this.pm.get(i).getArrowView();
+                if (view == null) {
+                    view = new ImageView(getContext());
+                    view.setImageDrawable(this.arrow);
+                    this.pm.get(i).setArrowView(view);
+                }
+                addView(view, -2, -1);
+            } else {
+                addArrow = true;
+            }
+            if (i == pm.currentPos) {
+                textView.setTextColor(textView.getCurrentTextColor() | ((int) 4278190080L));
+            } else {
+                textView.setTextColor(1627389951 & textView.getCurrentTextColor());
+            }
+            addView(textView, -2, -2);
         }
     }
 
