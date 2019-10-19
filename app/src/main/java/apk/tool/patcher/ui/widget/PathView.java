@@ -113,8 +113,12 @@ public class PathView extends ViewGroup {
         // FIXME Inflate widget
         TextView textView;
         ImageView arrowView = null;
+        File pathFile;
+        public String name;
 
         public PathItem(String name, File pathFile, PathView parent) {
+            this.pathFile = pathFile;
+            this.name = name;
             path = pathFile.getPath();
             textView.setText(name);
             textView.setOnClickListener(parent.itemClickListener);
@@ -140,8 +144,10 @@ public class PathView extends ViewGroup {
         private TreeSet<PathItem> rootPath = new TreeSet<>();
         private ArrayList<PathItem> items = new ArrayList<>();
         public int currentPos = -1;
+        private PathView parent;
 
         public PathManager(PathView parent, File pathFile) {
+            this.parent = parent;
             Context context = parent.getContext();
             if (!parent.isInEditMode()) {
                 rootPath.add(new PathItem("Internal Storage",
@@ -165,9 +171,81 @@ public class PathView extends ViewGroup {
                     }
 
                     items.add(pathItem);
-                    //File file = pathItem.
+                    File file = pathItem.pathFile;
+                    if (!path.isEmpty()){
+                        for (String s : path.split("/")) {
+                            file = new File(file, s);
+                            items.add(new PathItem(s, file, parent));
+                        }
+                    }
+                    currentPos = items.size() - 1;
+                    break;
                 }
             }
+            if (!success) throw new RuntimeException("Failed to construct a breadcrumbs tree");
         }
+
+        private void setPath(File pathFile) {
+            String path = pathFile.getPath();
+            boolean success = false;
+            for (PathItem pathItem : rootPath) {
+                if (pathItem.isMyChild(path)){
+                    success = true;
+                    if (pathItem.path.length() == path.length()){
+                        path = "";
+                    } else if (pathItem.path.length() == 1){
+                        path = path.substring(1);
+                    } else {
+                        path =  path.substring(pathItem.path.length() + 1);
+                    }
+                }
+                if (items.get(0) == pathItem){
+                    currentPos = 0;
+                    if (!path.isEmpty()){
+                        for (String s : path.split("/")){
+                            push(s);
+                        }
+                    }
+                } else {
+                    items.clear();
+                    items.add(pathItem);
+                    File file = pathItem.pathFile;
+                    if (!path.isEmpty()){
+                        for (String s : path.split("/")) {
+                            file = new File(file, s);
+                            items.add(new PathItem(s, file, parent));
+                        }
+                    }
+                    currentPos = items.size() - 1;
+                    break;
+                }
+            }
+            if (!success) throw new RuntimeException("Failed to set path into a breadcrumbs tree");
+        }
+
+        private void push(String name) {
+            int nextPos = ++currentPos;
+            if (nextPos < items.size()){
+                if (items.get(nextPos).name.equals(name)){
+                    return;
+                }
+                do {
+                    items.remove(items.size() - 1);
+                } while (nextPos < items.size());
+            }
+            File file = new File(items.get(nextPos - 1).pathFile, name);
+            items.add(new PathItem(name, file, parent));
+        }
+
+        public boolean canPop() {
+            return currentPos > 0;
+        }
+
+        public void pop() {
+            if (currentPos <= 0) throw new IllegalStateException("Cannot pop an empty array!");
+            currentPos--;
+        }
+
+        
     }
 }
