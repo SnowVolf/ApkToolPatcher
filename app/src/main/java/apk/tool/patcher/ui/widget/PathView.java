@@ -173,9 +173,22 @@ public class PathView extends ViewGroup {
     }
 
     private void ensureItemVisible(boolean animation) {
-        int index = pm.currentPos;
-
-
+        int index = this.pm.currentPos;
+        if (index >= 0 && index < this.pm.size()) {
+            TextView textView = this.pm.get(index).textView;
+            int x = (textView.getLeft() - this.itemVisibleOffset) + textView.getPaddingLeft();
+            if (x < 0) {
+                x = 0;
+            } else if (x > this.maxScrollX) {
+                x = this.maxScrollX;
+            }
+            if (animation) {
+                this.mScroller.startScroll(getScrollX(), 0, x - getScrollX(), 0);
+                postInvalidate();
+            } else {
+                setScrollX(x);
+            }
+        }
     }
 
     private final void refreshViews() {
