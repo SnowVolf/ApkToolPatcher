@@ -143,7 +143,7 @@ public class PathView extends ViewGroup {
     private class PathManager {
         private TreeSet<PathItem> rootPath = new TreeSet<>();
         private ArrayList<PathItem> items = new ArrayList<>();
-        public int currentPos = -1;
+        int currentPos = -1;
         private PathView parent;
 
         public PathManager(PathView parent, File pathFile) {
@@ -246,6 +246,29 @@ public class PathView extends ViewGroup {
             currentPos--;
         }
 
-        
+        public File getCurrentFile(){
+            return items.get(currentPos).pathFile;
+        }
+
+        public String currentPath() {
+            return items.get(currentPos).path;
+        }
+
+        public TextView currentText() {
+            return items.get(currentPos).textView;
+        }
+
+        public PathItem getCurrent(){
+            return items.get(currentPos);
+        }
+
+        public int size(){
+            return items.size();
+        }
+
+        public PathItem get(int index){
+            return items.get(index);
+        }
+
     }
 }
