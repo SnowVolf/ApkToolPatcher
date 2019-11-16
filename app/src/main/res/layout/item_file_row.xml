@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<apk.tool.patcher.ui.widget.FontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<ru.svolf.melissa.widget.FontTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/txtRow"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"

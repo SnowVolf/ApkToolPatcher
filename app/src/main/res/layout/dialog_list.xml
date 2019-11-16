@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/title"
         style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:layout_width="wrap_content"

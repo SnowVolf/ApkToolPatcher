@@ -5,7 +5,7 @@
     android:background="?selectableItemBackground"
     android:orientation="horizontal">
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

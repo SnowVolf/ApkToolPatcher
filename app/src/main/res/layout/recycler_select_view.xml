@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <apk.tool.patcher.ui.widget.SpringRecyclerView
+    <ru.svolf.melissa.widget.SpringRecyclerView
         android:id="@+id/recycler_select_view_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

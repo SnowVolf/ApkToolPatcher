@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <apk.tool.patcher.ui.widget.BigTabsLayout
+        <ru.svolf.melissa.widget.BigTabsLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,13 +37,13 @@
             android:layout_height="150dp"
             android:src="@drawable/magnify" />
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/caption_nothing_found"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -13,7 +13,7 @@
 
 		<!-- CRUMBS -->
 
-    <apk.tool.patcher.ui.widget.PathView
+    <ru.svolf.melissa.widget.PathView
         android:id="@+id/breadcrumbs_view"
         android:layout_width="match_parent"
         android:layout_height="48dp"/>
@@ -24,7 +24,7 @@
 		android:alpha="0.7"
 		android:layout_height="4dp"/>
 
-	<apk.tool.patcher.ui.widget.SpringRecyclerView
+	<ru.svolf.melissa.widget.SpringRecyclerView
 		android:fastScrollEnabled="true"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"

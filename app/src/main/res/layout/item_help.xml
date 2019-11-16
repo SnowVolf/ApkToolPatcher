@@ -12,7 +12,7 @@
         android:background="@drawable/card_border"
         android:orientation="vertical">
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             tools:text="Caption" />
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -18,7 +18,7 @@
         tools:src="@drawable/settings_outline"
         tools:tint="#ffffff" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/list_item_content"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"

@@ -17,7 +17,7 @@
         android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/magnify" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/field_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

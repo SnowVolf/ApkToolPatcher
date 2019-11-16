@@ -28,7 +28,7 @@ import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
-import apk.tool.patcher.ui.widget.BigTabsLayout;
+import ru.svolf.melissa.widget.BigTabsLayout;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.SysUtils;

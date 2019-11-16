@@ -19,7 +19,7 @@
     Когда будешь собирать с саппортами ниже 28, поставь android:paddingStart="16dp"
     Там ебаный баг в 28-х, поэтому приходится извращаться
      -->
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@android:id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

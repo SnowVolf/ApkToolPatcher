@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.widget.AutoResizeTextView;
+import ru.svolf.melissa.widget.AutoResizeTextView;
 import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;

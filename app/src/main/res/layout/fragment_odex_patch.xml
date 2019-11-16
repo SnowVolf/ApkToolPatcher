@@ -11,7 +11,7 @@
         android:background="?colorPrimary"
         app:navigationIcon="@drawable/back">
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

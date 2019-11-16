@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -45,7 +45,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <apk.tool.patcher.ui.widget.SpringRecyclerView
+                    <ru.svolf.melissa.widget.SpringRecyclerView
                         android:id="@+id/list_patches"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -78,7 +78,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <apk.tool.patcher.ui.widget.SpringRecyclerView
+                    <ru.svolf.melissa.widget.SpringRecyclerView
                         android:id="@+id/list_patches_advanced"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -87,7 +87,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <apk.tool.patcher.ui.widget.FontTextView
+            <ru.svolf.melissa.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

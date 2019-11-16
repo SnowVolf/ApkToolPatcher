@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -154,7 +154,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <apk.tool.patcher.ui.widget.SpringRecyclerView
+                    <ru.svolf.melissa.widget.SpringRecyclerView
                         android:id="@+id/list_receivers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <apk.tool.patcher.ui.widget.FontTextView
+                    <ru.svolf.melissa.widget.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -182,7 +182,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <apk.tool.patcher.ui.widget.SpringRecyclerView
+                    <ru.svolf.melissa.widget.SpringRecyclerView
                         android:id="@+id/list_providers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

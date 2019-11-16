@@ -70,7 +70,7 @@ import apk.tool.patcher.ui.modules.misc.SelectActivity;
 import apk.tool.patcher.ui.modules.odex.OdexPatchFragment;
 import apk.tool.patcher.ui.modules.settings.SearchSettingsFragment;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
-import apk.tool.patcher.ui.widget.FontTextView;
+import ru.svolf.melissa.widget.FontTextView;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.RegexpRepository;
 import apk.tool.patcher.util.StreamUtil;

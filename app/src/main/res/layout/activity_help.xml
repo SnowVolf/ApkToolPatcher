@@ -11,7 +11,7 @@
         android:background="?colorPrimary"
         android:layout_gravity="bottom">
 
-        <apk.tool.patcher.ui.widget.AutoResizeTextView
+        <ru.svolf.melissa.widget.AutoResizeTextView
             android:id="@+id/caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

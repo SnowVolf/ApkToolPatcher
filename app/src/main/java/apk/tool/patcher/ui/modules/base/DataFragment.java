@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.widget.ContentController;
-import apk.tool.patcher.ui.widget.FunnyContent;
+import ru.svolf.melissa.widget.ContentController;
+import ru.svolf.melissa.widget.FunnyContent;
 import ru.svolf.melissa.swipeback.SwipeBackFragment;
 
 /**

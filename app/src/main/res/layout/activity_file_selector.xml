@@ -4,13 +4,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/txtDirName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:singleLine="true" />
 
-    <apk.tool.patcher.ui.widget.SpringListView
+    <ru.svolf.melissa.widget.SpringListView
         android:id="@id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="0dp"

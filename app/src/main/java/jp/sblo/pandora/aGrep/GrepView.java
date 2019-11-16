@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.widget.SpringListView;
+import ru.svolf.melissa.widget.SpringListView;
 
 public class GrepView extends SpringListView {
     private static final String TAG = "GrepView";

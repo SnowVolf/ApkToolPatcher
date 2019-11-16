@@ -21,7 +21,7 @@ import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.about.AboutFragment;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
 import ru.svolf.melissa.swipeback.OnTabSwipeListener;
-import apk.tool.patcher.ui.widget.BigTabsLayout;
+import ru.svolf.melissa.widget.BigTabsLayout;
 import apk.tool.patcher.util.Cs;
 
 public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCurrentTabClickedListener {

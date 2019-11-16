@@ -20,7 +20,7 @@ import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.util.Settings;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.widget.PathView;
+import ru.svolf.melissa.widget.PathView;
 import apk.tool.patcher.util.PathF;
 
 public class FilesPager implements WatchDog {

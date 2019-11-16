@@ -9,7 +9,7 @@
         android:layout_height="210dp"
         android:src="@drawable/pepe_top" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,7 +19,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:textSize="18sp" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

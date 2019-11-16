@@ -13,7 +13,7 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/corners_all" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/content_caption"
         style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:fadingEdgeLength="8dp"
             android:maxHeight="250dp">
 
-            <apk.tool.patcher.ui.widget.FontTextView
+            <ru.svolf.melissa.widget.FontTextView
                 android:id="@+id/content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

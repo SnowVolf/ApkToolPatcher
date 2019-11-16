@@ -1,4 +1,4 @@
-package apk.tool.patcher.ui.widget;
+package ru.svolf.melissa.widget;
 
 /*
  * DO WHAT YOU WANT TO PUBLIC LICENSE

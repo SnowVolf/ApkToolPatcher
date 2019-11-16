@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground">
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/drawer_item_title"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="fill_parent"

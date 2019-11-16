@@ -18,7 +18,7 @@
 		android:layout_centerVertical="true"
 		tools:src="@drawable/folder"/>
 
-	<apk.tool.patcher.ui.widget.FontTextView
+	<ru.svolf.melissa.widget.FontTextView
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 		android:id="@+id/name"
 		android:layout_width="match_parent"

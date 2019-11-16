@@ -18,7 +18,7 @@
         android:layout_margin="8dp"
         android:textSize="16sp" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/matches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

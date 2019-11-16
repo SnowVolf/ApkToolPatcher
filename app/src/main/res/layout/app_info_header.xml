@@ -13,7 +13,7 @@
         android:layout_marginTop="50dp"
         tools:src="@mipmap/ic_launcher" />
 
-    <apk.tool.patcher.ui.widget.FontTextView
+    <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 android:src="@drawable/ic_launch"
                 android:tint="?colorAccent" />
 
-            <apk.tool.patcher.ui.widget.FontTextView
+            <ru.svolf.melissa.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/action_launch"
@@ -71,7 +71,7 @@
                 android:src="@drawable/ic_file_download"
                 android:tint="?colorAccent" />
 
-            <apk.tool.patcher.ui.widget.FontTextView
+            <ru.svolf.melissa.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/action_export"
@@ -97,7 +97,7 @@
                 android:src="@drawable/google_play"
                 android:tint="?colorAccent" />
 
-            <apk.tool.patcher.ui.widget.FontTextView
+            <ru.svolf.melissa.widget.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/action_gp"

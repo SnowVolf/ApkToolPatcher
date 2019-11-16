@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/filename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:textColor="?text_color"
             android:textStyle="bold" />
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/detail1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

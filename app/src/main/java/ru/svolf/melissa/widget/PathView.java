@@ -1,4 +1,4 @@
-package apk.tool.patcher.ui.widget;
+package ru.svolf.melissa.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

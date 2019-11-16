@@ -20,7 +20,7 @@
         android:layout_toEndOf="@id/recycler_select_item_ImageView"
         android:orientation="vertical">
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/recycler_select_item_NameTextView"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             android:scrollHorizontally="true"
             android:singleLine="true" />
 
-        <apk.tool.patcher.ui.widget.FontTextView
+        <ru.svolf.melissa.widget.FontTextView
             android:id="@+id/recycler_select_item_DataTextView"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="wrap_content"
