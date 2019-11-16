@@ -6,7 +6,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Environment;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -25,12 +27,13 @@ import java.util.TreeSet;
 import apk.tool.patcher.R;
 
 public class PathView extends ViewGroup {
+    private static final String TAG = "PathView";
     private int maxScrollX = 0;
     private PathManager pm = new PathManager(this, new File("/"));
     Integer itemVisibleOffset = 20;
 
     // Arrow
-    private VectorDrawableCompat arrow = VectorDrawableCompat.create(getContext().getResources(), R.drawable.ic_check, getContext().getTheme());
+    private VectorDrawableCompat arrow = VectorDrawableCompat.create(getContext().getResources(), R.drawable.ic_chevron_right, getContext().getTheme());
 
     private Float touchSlopSquare;
     private Integer scaledOverflingDistance;
@@ -120,6 +123,13 @@ public class PathView extends ViewGroup {
     File currentPath = pm.getCurrentFile();
 
     private void setPath(File file) {
+        Log.d(TAG, "setPath() called with: file = [" + file + "]");
+        synchronized (this) {
+            pm = new PathManager(this, file);
+            refreshViews();
+            ensureItemVisible(false);
+            afterPathChangedListener.onClick(this);
+        }
 
     }
 
@@ -177,11 +187,90 @@ public class PathView extends ViewGroup {
         }
     }
 
+    private boolean beingDragged = false;
+    private float lastMotionX = 0f;
+    private float lastMotionY = 0f;
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (!isEnabled())
+            return true;
+            gestureDetector.onTouchEvent(ev);
+            int action = ev.getAction();
+            switch (action & MotionEvent.ACTION_MASK){
+                case MotionEvent.ACTION_DOWN:{
+                    if (!mScroller.isFinished()){
+                        mScroller.abortAnimation();
+                        beingDragged = true;
+                    }
+                    lastMotionX = ev.getX();
+                    lastMotionY = ev.getY();
+                    return false;
+                }
+                case MotionEvent.ACTION_MOVE:{
+                    if (beingDragged){
+                        return true;
+                    }
+                    float deltaX = Math.abs(lastMotionX - ev.getX());
+                    float deltaY = Math.abs(lastMotionY - ev.getY());
+                    if (deltaX * deltaX + deltaY * deltaY > touchSlopSquare) {
+                        beingDragged = true;
+                        return true;
+                    }
+                }
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL: {
+                    beingDragged = false;
+                    break;
+                }
+            }
+            return false;
+        }
+
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (!isEnabled()) {
+            return true;
+        }
+        gestureDetector.onTouchEvent(event);
+        switch (event.getAction() & MotionEvent.ACTION_MASK){
+            case MotionEvent.ACTION_DOWN:{
+                if (!mScroller.isFinished())
+                    mScroller.abortAnimation();
+                break;
+            }
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL: {
+                beingDragged = false;
+                break;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
             scrollTo(mScroller.getCurrX(), 0);
             invalidate();
+        }
+    }
+
+    public void push(String name){
+        synchronized (this) {
+            beforePathChangedListener.onClick(this);
+            pm.push(name);
+            refreshViews();
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ensureItemVisible();
+                }
+            }, 10);
+            afterPathChangedListener.onClick(this);
         }
     }
 
@@ -196,6 +285,7 @@ public class PathView extends ViewGroup {
         public PathItem(String name, File pathFile, PathView parent) {
             this.pathFile = pathFile;
             this.name = name;
+            textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.flexfilepicker_breadcrumb, parent, false);
             path = pathFile.getPath();
             textView.setText(name);
             textView.setOnClickListener(parent.itemClickListener);
@@ -265,16 +355,16 @@ public class PathView extends ViewGroup {
                     view.setImageDrawable(this.arrow);
                     this.pm.get(i).setArrowView(view);
                 }
-                addView(view, -2, -1);
+                addView(view, LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
             } else {
                 addArrow = true;
             }
             if (i == pm.currentPos) {
-                textView.setTextColor(textView.getCurrentTextColor() | ((int) 4278190080L));
+                textView.setTextColor(textView.getCurrentTextColor() | 0xFF000000);
             } else {
-                textView.setTextColor(1627389951 & textView.getCurrentTextColor());
+                textView.setTextColor(textView.getCurrentTextColor() & 0x60FFFFFF);
             }
-            addView(textView, -2, -2);
+            addView(textView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         }
     }
 
