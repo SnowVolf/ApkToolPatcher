@@ -25,12 +25,13 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 import apk.tool.patcher.R;
+import apk.tool.patcher.util.PathF;
 
 public class PathView extends ViewGroup {
     private static final String TAG = "PathView";
     private int maxScrollX = 0;
     private PathManager pm = new PathManager(this, new File("/"));
-    Integer itemVisibleOffset = 20;
+    public Integer itemVisibleOffset = 20;
 
     // Arrow
     private VectorDrawableCompat arrow = VectorDrawableCompat.create(getContext().getResources(), R.drawable.ic_chevron_right, getContext().getTheme());
@@ -38,8 +39,8 @@ public class PathView extends ViewGroup {
     private Float touchSlopSquare;
     private Integer scaledOverflingDistance;
 
-    private OnClickListener afterPathChangedListener;
-    private OnClickListener beforePathChangedListener;
+    public OnClickListener afterPathChangedListener;
+    public OnClickListener beforePathChangedListener;
 
     public PathView(Context context) {
         super(context);
@@ -120,9 +121,9 @@ public class PathView extends ViewGroup {
 
 
 
-    File currentPath = pm.getCurrentFile();
+    public File currentPath = pm.getCurrentFile();
 
-    private void setPath(File file) {
+    public void setPath(File file) {
         Log.d(TAG, "setPath() called with: file = [" + file + "]");
         synchronized (this) {
             pm = new PathManager(this, file);
@@ -274,6 +275,21 @@ public class PathView extends ViewGroup {
         }
     }
 
+    public void removeLast(){
+        synchronized (this) {
+            beforePathChangedListener.onClick(this);
+            pm.removeLast();
+            refreshViews();
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ensureItemVisible();
+                }
+            }, 10);
+            afterPathChangedListener.onClick(this);
+        }
+    }
+
     private class PathItem implements Comparable<PathItem> {
         public String path;
         // FIXME Inflate widget
@@ -413,7 +429,7 @@ public class PathView extends ViewGroup {
             if (!success) throw new RuntimeException("Failed to construct a breadcrumbs tree");
         }
 
-        private void setPath(File pathFile) {
+        public void setPath(File pathFile) {
             String path = pathFile.getPath();
             boolean success = false;
             for (PathItem pathItem : rootPath) {
@@ -454,7 +470,7 @@ public class PathView extends ViewGroup {
         private void push(String name) {
             int nextPos = ++currentPos;
             if (nextPos < items.size()){
-                if (items.get(nextPos).name.equals(name)){
+                if (items.get(nextPos).name.equals(name) || items.get(nextPos).name.equals(PathF.pointToName(Environment.getExternalStorageDirectory().getPath()))){
                     return;
                 }
                 do {
@@ -463,6 +479,10 @@ public class PathView extends ViewGroup {
             }
             File file = new File(items.get(nextPos - 1).pathFile, name);
             items.add(new PathItem(name, file, parent));
+        }
+
+        public void removeLast() {
+            items.remove(currentPos-1);
         }
 
         public boolean canPop() {

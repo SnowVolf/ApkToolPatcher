@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,9 +20,11 @@ import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.util.Settings;
 
+import java.util.HashMap;
+
 import apk.tool.patcher.R;
-import ru.svolf.melissa.widget.PathView;
 import apk.tool.patcher.util.PathF;
+import ru.svolf.melissa.widget.PathView;
 
 public class FilesPager implements WatchDog {
 	private final View view;
@@ -31,6 +34,7 @@ public class FilesPager implements WatchDog {
 	private ModernFilesAdapter adapter;
 	private Toolbar toolbar;
 	private PathView pathView;
+	private HashMap<String, Integer> positionRecord = new HashMap<String, Integer>();
 
 	public FilesPager(Context context) {
 		ctx = context;
@@ -40,14 +44,18 @@ public class FilesPager implements WatchDog {
 		title = context.getText(R.string.files);
 		files = view.findViewById(R.id.files);
 		files.setLayoutManager(new LinearLayoutManager(context));
-		pathView = view.findViewById(R.id.breadcrumbs_view);
 		toolbar = view.findViewById(R.id.toolbar);
+		pathView = view.findViewById(R.id.breadcrumbs_view);
+
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if (adapter.goBack())
+				if (adapter.goBack()){
+					pathView.removeLast();
 					return;
-				((MainActivity)ctx).dismissFiles();
+				} else {
+					((MainActivity)ctx).dismissFiles();
+				}
 			}
 		});
 		toolbar.inflateMenu(R.menu.menu_files_caption);
@@ -65,11 +73,29 @@ public class FilesPager implements WatchDog {
 				return false;
 			}
 		});
+
+		initPathView();
 	}
 
 	public void init(Bundle savedInstanceState, FilesFragment frag) {
 		adapter = ModernFilesAdapter.init(frag, files, this);
 		adapter.init(savedInstanceState);
+	}
+
+	private void initPathView(){
+		pathView.beforePathChangedListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			}
+		};
+		pathView.afterPathChangedListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+			}
+		};
+		pathView.setPath(Environment.getExternalStorageDirectory());
 	}
 
 	public void save(Bundle outState) {
@@ -132,9 +158,7 @@ public class FilesPager implements WatchDog {
 		String currentPath = PathF.pointToName(path.toString());
 		toolbar.setTitle(currentPath);
 		// FIXME Suka blyad
-//		if (pathView.getItems().contains(currentPath)) {
-//			pathView.addItem(BreadcrumbItem.createSimpleItem(currentPath));
-//		}
+		pathView.push(currentPath);
 	}
 
 }
