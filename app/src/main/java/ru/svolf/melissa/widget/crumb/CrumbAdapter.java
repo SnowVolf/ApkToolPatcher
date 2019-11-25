@@ -1,24 +1,25 @@
 package ru.svolf.melissa.widget.crumb;
 
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 
 public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> {
     private ArrayList<PathItem> paths;
     private OnItemLongClickListener itemLongClickListener;
 
-    public CrumbAdapter(ArrayList paths){
+    public CrumbAdapter(ArrayList<PathItem> paths){
         this.paths = paths;
     }
 
@@ -32,20 +33,27 @@ public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CrumbAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.flexfilepicker_breadcrumb, parent, false);
-        return new ViewHolder(v);
+        return new CrumbAdapter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final PathItem item = getItem(position);
+        PathItem item = getItem(position);
         if (item != null) {
-            holder.pathName.setText(item.getFolderName());
+            TextView textView = holder.pathName;
+            textView.setText(item.getFolderName());
+            Drawable chevron = ContextCompat.getDrawable(holder.pathName.getContext(), R.drawable.ic_chevron_right);
+
             if (!item.isLast()) {
-                holder.pathName.setCompoundDrawables(null, null, AppCompatResources.getDrawable(App.get(), R.drawable.ic_chevron_right), null);
+                textView.setTextColor(textView.getCurrentTextColor() & 0x99FAFAFA);
+                textView.setTypeface(Typeface.DEFAULT);
+                textView.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, chevron, null);
             } else {
-                holder.pathName.setCompoundDrawables(null, null, null, null);
+                textView.setTextColor(textView.getCurrentTextColor() | 0xFF000000);
+                textView.setTypeface(Typeface.DEFAULT_BOLD);
+                textView.setCompoundDrawables(null, null, null, null);
             }
         }
     }
@@ -64,7 +72,7 @@ public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            pathName = (TextView) itemView;
+            pathName = (TextView) itemView.findViewById(R.id.breadcrumb_part);
             itemView.setOnLongClickListener(this);
         }
 

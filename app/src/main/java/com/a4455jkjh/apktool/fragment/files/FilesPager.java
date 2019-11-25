@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.util.PathF;
-import ru.svolf.melissa.widget.PathView;
+import ru.svolf.melissa.widget.crumb.CrumbView;
 
 public class FilesPager implements WatchDog {
 	private final View view;
@@ -33,7 +33,7 @@ public class FilesPager implements WatchDog {
 	private RecyclerView files;
 	private ModernFilesAdapter adapter;
 	private Toolbar toolbar;
-	private PathView pathView;
+	private CrumbView pathView;
 	private HashMap<String, Integer> positionRecord = new HashMap<String, Integer>();
 
 	public FilesPager(Context context) {
@@ -51,7 +51,8 @@ public class FilesPager implements WatchDog {
 			@Override
 			public void onClick(View view) {
 				if (adapter.goBack()){
-					pathView.removeLast();
+					// Fixme
+					//pathView.sync(adapter.);
 					return;
 				} else {
 					((MainActivity)ctx).dismissFiles();
@@ -83,19 +84,8 @@ public class FilesPager implements WatchDog {
 	}
 
 	private void initPathView(){
-		pathView.beforePathChangedListener = new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
+		pathView.sync(Environment.getExternalStorageDirectory().getPath());
 
-			}
-		};
-		pathView.afterPathChangedListener = new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-			}
-		};
-		pathView.setPath(Environment.getExternalStorageDirectory());
 	}
 
 	public void save(Bundle outState) {
@@ -158,7 +148,7 @@ public class FilesPager implements WatchDog {
 		String currentPath = PathF.pointToName(path.toString());
 		toolbar.setTitle(currentPath);
 		// FIXME Suka blyad
-		pathView.push(currentPath);
+		pathView.sync(path.toString());
 	}
 
 }
