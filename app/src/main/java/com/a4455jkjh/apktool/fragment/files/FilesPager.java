@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,11 +21,13 @@ import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.util.Settings;
 
-import java.util.HashMap;
+import java.io.File;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.util.PathF;
+import ru.svolf.melissa.widget.crumb.CrumbAdapter;
 import ru.svolf.melissa.widget.crumb.CrumbView;
+import ru.svolf.melissa.widget.crumb.PathItem;
 
 public class FilesPager implements WatchDog {
 	private final View view;
@@ -34,7 +37,6 @@ public class FilesPager implements WatchDog {
 	private ModernFilesAdapter adapter;
 	private Toolbar toolbar;
 	private CrumbView pathView;
-	private HashMap<String, Integer> positionRecord = new HashMap<String, Integer>();
 
 	public FilesPager(Context context) {
 		ctx = context;
@@ -85,6 +87,12 @@ public class FilesPager implements WatchDog {
 
 	private void initPathView(){
 		pathView.sync(Environment.getExternalStorageDirectory().getPath());
+		pathView.setOnItemClickListener(new CrumbAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(PathItem pathItem, int position) {
+                Toast.makeText(ctx, pathItem.getPath(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 	}
 
@@ -149,6 +157,12 @@ public class FilesPager implements WatchDog {
 		toolbar.setTitle(currentPath);
 		// FIXME Suka blyad
 		pathView.sync(path.toString());
+        pathView.setOnItemClickListener(new CrumbAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(PathItem pathItem, int position) {
+                adapter.refresh(new File(pathItem.getPath()));
+            }
+        });
 	}
 
 }

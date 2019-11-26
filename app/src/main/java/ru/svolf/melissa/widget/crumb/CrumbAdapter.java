@@ -18,6 +18,7 @@ import apk.tool.patcher.R;
 public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> {
     private ArrayList<PathItem> paths;
     private OnItemLongClickListener itemLongClickListener;
+    private OnItemClickListener itemClickListener;
 
     public CrumbAdapter(ArrayList<PathItem> paths){
         this.paths = paths;
@@ -25,6 +26,10 @@ public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> 
 
     public void setItemLongClickListener(OnItemLongClickListener itemLongClickListener){
         this.itemLongClickListener = itemLongClickListener;
+    }
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     public PathItem getItem(int position){
@@ -63,23 +68,35 @@ public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> 
         return paths.size();
     }
 
-    public interface OnItemLongClickListener {
+    public interface OnItemClickListener {
         void onItemClick(PathItem pathItem, int position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
+    public interface OnItemLongClickListener {
+        void onItemLongClick(PathItem pathItem, int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnClickListener {
         TextView pathName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             pathName = (TextView) itemView.findViewById(R.id.breadcrumb_part);
+            itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (itemClickListener != null){
+                itemClickListener.onItemClick(getItem(getLayoutPosition()), getLayoutPosition());
+            }
         }
 
         @Override
         public boolean onLongClick(View v) {
             if (itemLongClickListener != null){
-                itemLongClickListener.onItemClick(getItem(getLayoutPosition()), getLayoutPosition());
+                itemLongClickListener.onItemLongClick(getItem(getLayoutPosition()), getLayoutPosition());
                 return true;
             } else return false;
         }
