@@ -2,6 +2,8 @@ package apk.tool.patcher.ui.modules.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 
 import androidx.annotation.StyleRes;
 
@@ -67,7 +69,13 @@ public abstract class ThemeWrapper {
     }
 
     public static int resolveNavBarColor(Context context) {
-        return App.getColorFromAttr(context, R.attr.colorPrimaryDark);
+        // До Android 8 у нас нет возможности сделать кнопки навигации черными,
+        // Поэтому делаем черной всю панель целиком
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && isLightTheme()){
+            return Color.BLACK;
+        } else {
+            return App.getColorFromAttr(context, R.attr.colorPrimaryDark);
+        }
     }
 
     /**

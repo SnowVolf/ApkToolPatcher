@@ -10,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.a4455jkjh.apktool.MainActivity;
 import com.a4455jkjh.apktool.fragment.FilesFragment;
 import com.a4455jkjh.apktool.util.PopupUtils;
 import com.a4455jkjh.apktool.util.Settings;
@@ -49,18 +47,6 @@ public class FilesPager implements WatchDog {
 		toolbar = view.findViewById(R.id.toolbar);
 		pathView = view.findViewById(R.id.breadcrumbs_view);
 
-		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (adapter.goBack()){
-					// Fixme
-					//pathView.sync(adapter.);
-					return;
-				} else {
-					((MainActivity)ctx).dismissFiles();
-				}
-			}
-		});
 		toolbar.inflateMenu(R.menu.menu_files_caption);
 		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 			@Override
@@ -87,12 +73,6 @@ public class FilesPager implements WatchDog {
 
 	private void initPathView(){
 		pathView.sync(Environment.getExternalStorageDirectory().getPath());
-		pathView.setOnItemClickListener(new CrumbAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(PathItem pathItem, int position) {
-                Toast.makeText(ctx, pathItem.getPath(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
 	}
 

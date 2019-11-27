@@ -73,6 +73,7 @@ public class FilesFragment extends Fragment {
 		editor.init();
 		((MainActivity)getActivity()).init();
 	}
+
 	public void edit(File file) {
 		editor.open(file, 0);
 	}

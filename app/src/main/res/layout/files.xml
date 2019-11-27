@@ -8,8 +8,7 @@
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="54dp"
-			app:navigationIcon="@drawable/back"/>
+			android:layout_height="54dp" />
 
 		<!-- CRUMBS -->
 	<ru.svolf.melissa.widget.crumb.CrumbView

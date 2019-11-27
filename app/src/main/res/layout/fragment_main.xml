@@ -8,7 +8,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bars"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary">
 
         <include layout="@layout/flexible_search_view" />
     </com.google.android.material.appbar.AppBarLayout>
