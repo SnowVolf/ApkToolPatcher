@@ -2,7 +2,7 @@
     android:shape="rectangle">
     <corners android:radius="8dp" />
     <solid android:color="?attr/chromeCard" />
-    <stroke
-        android:width="1px"
-        android:color="#a5a5a5" />
+<!--    <stroke-->
+<!--        android:width="1px"-->
+<!--        android:color="#a5a5a5" />-->
 </shape>
