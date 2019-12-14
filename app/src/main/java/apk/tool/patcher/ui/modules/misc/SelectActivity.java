@@ -36,6 +36,7 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
     private RecyclerView.Adapter adapter;
     private GridLayoutManager layoutManager;
     private TextView mCaption;
+    private Button buttonSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,12 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
         setContentView(R.layout.activity_select);
         mCaption = findViewById(R.id.content_caption);
         recyclerView = findViewById(R.id.recycler_select_view_RecyclerView);
-        Button buttonSelect = findViewById(R.id.select_folder);
+        buttonSelect = findViewById(R.id.select_folder);
 
         if (savedInstanceState != null) {
             currentPath = new File(savedInstanceState.getString("current_path"));
         } else {
-            if (getIntent().getStringExtra(Cs.ARG_PATH_NAME).length() != 0){
+            if (getIntent().getStringExtra(Cs.ARG_PATH_NAME).length() != 0) {
                 currentPath = new File(getIntent().getStringExtra(Cs.ARG_PATH_NAME));
             } else {
                 currentPath = EXTERNAL_STORAGE;
@@ -118,6 +119,12 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
                 Toast.makeText(getApplicationContext(), "No access", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void onRefresh(File[] files) {
+        // Чтобы не падал алгоритм коверкания стрингов (из-за того, что выбрали пустую папку)
+        buttonSelect.setEnabled(files.length != 0);
     }
 
     private File[] getFilesData(File dir) {

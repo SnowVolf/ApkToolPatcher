@@ -46,7 +46,7 @@ public class SettingsActivity extends SwipeBackActivity implements OnTabSwipeLis
 
     @Override
     public void onTabSwipe(int tabNumber) {
-        if (tabNumber == 0){
+        if (tabNumber == 0) {
             setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
         } else {
             setEdgeLevel(App.dpToPx(1));

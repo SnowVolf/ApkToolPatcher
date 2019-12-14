@@ -73,7 +73,7 @@ public class Preferences {
         return App.get().getPreferences().getBoolean("exec.low_mem", false);
     }
 
-    public static boolean isWordWrap(){
+    public static boolean isWordWrap() {
         return App.get().getPreferences().getBoolean("word_wrap", true);
     }
 }

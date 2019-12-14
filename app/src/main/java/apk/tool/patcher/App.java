@@ -160,9 +160,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         ACRA.init(this);
-        
+
         Security.addProvider(new JavaProvider());
-		Settings.init(App.this);
+        Settings.init(App.this);
 
         sBackgroundHandlerThread = new HandlerThread("app_background");
         sBackgroundHandlerThread.start();
@@ -268,7 +268,8 @@ public class App extends Application {
      * Interface providing callbacks utilized by
      */
     public static abstract class CustomAsyncCallbacks<Params, Result> {
-        public final @Nullable Params[] parameters;
+        public final @Nullable
+        Params[] parameters;
 
         public CustomAsyncCallbacks(@Nullable Params[] params) {
             parameters = params;
@@ -276,9 +277,11 @@ public class App extends Application {
 
         public abstract Result doInBackground();
 
-        public void onPostExecute(Result result) { }
+        public void onPostExecute(Result result) {
+        }
 
-        public void onPreExecute() { }
+        public void onPreExecute() {
+        }
     }
 
     /**

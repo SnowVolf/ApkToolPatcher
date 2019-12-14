@@ -34,6 +34,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
     public void onFilesUpdate(File[] f) {
         files = f;
         notifyDataSetChanged();
+        clickListener.onRefresh(f);
     }
 
     @NonNull
@@ -87,8 +88,7 @@ public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.ViewHolder
 
     public interface ClickListener {
         void onItemClick(int position);
-
-        //void onItemLongClick(int position);
+        void onRefresh(File[] files);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

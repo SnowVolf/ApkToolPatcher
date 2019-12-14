@@ -33,7 +33,6 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
     private BigTabsLayout mTabs;
 
 
-
     public static SettingsHostFragment newInstance(int startupTab) {
         SettingsHostFragment fragment = new SettingsHostFragment();
         Bundle args = new Bundle();

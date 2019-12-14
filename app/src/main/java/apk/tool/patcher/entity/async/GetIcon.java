@@ -154,7 +154,7 @@ public enum GetIcon {
         this.allowThumbnails = true;
     }
 
-    public void resolve(String filePath, ImageView holderView){
+    public void resolve(String filePath, ImageView holderView) {
         holderView.setTag(filePath);
         String fileExt = PathF.getExt(filePath);
         FileType fileType = FileType.NORMAL;

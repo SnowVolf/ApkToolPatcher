@@ -22,7 +22,6 @@ import apk.tool.patcher.util.LocaleHelper;
 import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 
 
-
 /**
  * Created by Snow Volf on 19.08.2017, 12:09
  */
@@ -74,7 +73,7 @@ public class BaseActivity extends AppCompatActivity {
         // Применение текущей темы
         ThemeWrapper.applyTheme(this);
 
-        if (ThemeWrapper.isLightTheme()){
+        if (ThemeWrapper.isLightTheme()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 View decorView = getWindow().getDecorView();
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

@@ -50,9 +50,9 @@ public abstract class ThemeWrapper {
     }
 
     @StyleRes
-    public static int getDialogTheme(){
+    public static int getDialogTheme() {
         int theme;
-        switch (Theme.values()[getThemeIndex()]){
+        switch (Theme.values()[getThemeIndex()]) {
             case LIGHT:
                 theme = R.style.Theme_MaterialComponents_Light_Dialog_Alert;
                 break;
@@ -62,8 +62,8 @@ public abstract class ThemeWrapper {
             case BLUE:
                 theme = R.style.BlueAppTheme_Dialog;
                 break;
-                default:
-                    theme = R.style.Theme_MaterialComponents_Light_Dialog_Alert;
+            default:
+                theme = R.style.Theme_MaterialComponents_Light_Dialog_Alert;
         }
         return theme;
     }
@@ -71,7 +71,7 @@ public abstract class ThemeWrapper {
     public static int resolveNavBarColor(Context context) {
         // До Android 8 у нас нет возможности сделать кнопки навигации черными,
         // Поэтому делаем черной всю панель целиком
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && isLightTheme()){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && isLightTheme()) {
             return Color.BLACK;
         } else {
             return App.getColorFromAttr(context, R.attr.colorPrimaryDark);

@@ -5,16 +5,16 @@ package apk.tool.patcher.util;
  */
 public class SystemsDetector {
 
-	public static boolean isBomzhomi(){
-		return !getSystemProperty("ro.miui.ui.version.name").isEmpty();
-	}
+    public static boolean isBomzhomi() {
+        return !getSystemProperty("ro.miui.ui.version.name").isEmpty();
+    }
 
-	private static String getSystemProperty(String name){
-		try {
-			Class props = Class.forName("android.os.SystemProperties");
-			return (String) props.getMethod("get", String.class).invoke(null, name);
-		} catch (Exception e){
-			return "";
-		}
-	}
+    private static String getSystemProperty(String name) {
+        try {
+            Class props = Class.forName("android.os.SystemProperties");
+            return (String) props.getMethod("get", String.class).invoke(null, name);
+        } catch (Exception e) {
+            return "";
+        }
+    }
 }

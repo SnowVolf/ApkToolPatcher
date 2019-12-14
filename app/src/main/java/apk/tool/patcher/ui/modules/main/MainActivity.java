@@ -49,9 +49,7 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
                     .commit();
         }
     }
-	
-	
-	
+
 
     /**
      * Представляет диалог с текстом из assets
@@ -132,7 +130,7 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
             public void run() {
 
                 showAdvert();
-			
+
             }
         }, 2000);
     }

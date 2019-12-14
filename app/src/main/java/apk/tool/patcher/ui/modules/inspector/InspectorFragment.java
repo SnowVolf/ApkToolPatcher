@@ -118,7 +118,7 @@ public class InspectorFragment extends SwipeBackFragment {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-                if (i == 0){
+                if (i == 0) {
                     setEdgeLevel(SwipeBackLayout.EdgeLevel.MED);
                 } else {
                     setEdgeLevel(App.dpToPx(1));
