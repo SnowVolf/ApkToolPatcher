@@ -1,21 +1,24 @@
 package com.a4455jkjh.apktool.task;
 
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.widget.*;
-import brut.util.*;
-import com.a4455jkjh.apktool.fragment.files.*;
-import com.a4455jkjh.apktool.view.*;
-import java.io.*;
-import java.util.logging.*;
+import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 
+import com.a4455jkjh.apktool.fragment.files.Refreshable;
+
+import java.io.File;
+import java.util.logging.Level;
+
+import apk.tool.patcher.R;
 import brut.util.Logger;
 
 public abstract class AbstractTask extends AsyncTask<File, CharSequence, Boolean> implements Logger {
 	private Context ctx;
-	private TextView message;
+	private StringBuilder message;
 	private AlertDialog dialog;
 	private final Refreshable refresh;
 
@@ -23,6 +26,7 @@ public abstract class AbstractTask extends AsyncTask<File, CharSequence, Boolean
 		this.ctx = ctx;
 		this.refresh = refresh;
 	}
+
 	@Override
 	protected Boolean doInBackground(File[] p1) {
 		boolean success = true;
@@ -31,51 +35,44 @@ public abstract class AbstractTask extends AsyncTask<File, CharSequence, Boolean
 				success = false;
 		return Boolean.valueOf(success);
 	}
+
 	@Override
 	protected void onPreExecute() {
 		Context ctx = this.ctx;
-		message = new TextView(ctx);
-		dialog = new AlertDialog.Builder(ctx).
-			setView(message).
-			setTitle(getTitle()).
-			setCancelable(false).
-			show();
+
+		message = new StringBuilder();
+
+		dialog = new AlertDialog.Builder(ctx)
+				.setMessage(message)
+				.setTitle(getTitle())
+				.setCancelable(false)
+				.show();
 	}
 
 	protected abstract int getTitle();
+
 	protected abstract boolean process(File f);
 
 	@Override
 	protected void onPostExecute(Boolean result) {
-		final CharSequence text =message.getText();
+		final CharSequence text = message;
 		dialog.dismiss();
 		if (shouldShowFinishDialog()) {
 			final Context ctx = this.ctx;
-			final TextView m = new TextView(ctx);
-			m.append(text);
 
-			
-			new AlertDialog.Builder(ctx).
-
-				setTitle("Готово").
-				setView(m).
-				setPositiveButton("Copy", new DialogInterface.OnClickListener(){
+			new AlertDialog.Builder(ctx)
+					.setTitle(R.string.message_done)
+					.setMessage(message)
+					.setPositiveButton(R.string.copy, new DialogInterface.OnClickListener(){
 					@Override
-					public void onClick(DialogInterface p1, int p2)
-					{
+					public void onClick(DialogInterface p1, int p2) {
 						ClipboardManager clipboardManager = (ClipboardManager) ctx.getSystemService(Context.CLIPBOARD_SERVICE);
 						ClipData clipData = ClipData.newPlainText("pather_log", text.toString());
 						clipboardManager.setPrimaryClip(clipData);
 						// TODO: Implement this method
 					}
-
-					private ClipboardManager getSystemService(String cLIPBOARD_SERVICE)
-					{
-						// TODO: Implement this method
-						return null;
-					}
 				}).
-				setNegativeButton("Ок", null).
+				setNegativeButton(android.R.string.ok, null).
 				show();
 		}
 		if (refresh != null)
@@ -88,8 +85,9 @@ public abstract class AbstractTask extends AsyncTask<File, CharSequence, Boolean
 
 	@Override
 	protected void onProgressUpdate(CharSequence[] values) {
-		for (CharSequence s:values)
+		for (CharSequence s : values) {
 			message.append(s);
+		}
 	}
 	private String getText(int id, Object[] args) {
 		return ctx.getResources().getString(id, args);
