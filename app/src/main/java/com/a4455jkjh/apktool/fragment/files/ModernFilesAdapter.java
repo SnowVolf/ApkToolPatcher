@@ -212,7 +212,13 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.
             if (check.isDirectory()){
                 refresh(check);
             } else {
-                frag.edit(check);
+                Item item = items.get(getAdapterPosition());
+                if (item.edit(frag))
+                    return;
+                if (item.click(view, ModernFilesAdapter.this)) {
+                    return;
+                }
+                item.process(ModernFilesAdapter.this);
             }
         }
     }

@@ -25,10 +25,10 @@ import java.io.File;
 public class FileUtils {
 	public static void open(File file, View view, final Refreshable refresh) {
 		String n = file.getName();
-		if (n.endsWith(".apk"))
+		if (n.endsWith(".apk")) {
 			openApk(file, view, refresh);
-		else
-			Toast.makeText(view.getContext(), n, 0).show();
+		} else
+			Toast.makeText(view.getContext(), n, Toast.LENGTH_SHORT).show();
 	}
 	public static void file(final File file, View view, final Refreshable refresh) {
 		PopupUtils.show(view, R.menu.file, new PopupUtils.Callback(){
@@ -125,9 +125,9 @@ public class FileUtils {
 	}
 
 	private static void translate(Context ctx, File file) {
-		Toast.makeText(ctx, "敬请期待",0).show();
+		Toast.makeText(ctx, "Not implemented",Toast.LENGTH_SHORT).show();
 	}
-	public static void installPKG(Context c, File apk) {
+	public static void installPKG(Context context, File apk) {
 		Uri data;
 		if (Build.VERSION.SDK_INT >= 24) {
 			Uri.Builder builder = new Uri.Builder();
@@ -141,6 +141,6 @@ public class FileUtils {
 		Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
 		intent.setFlags(3);
 		intent.setData(data);
-		c.startActivity(intent);
+		context.startActivity(intent);
 	}
 }
