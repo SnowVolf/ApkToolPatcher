@@ -76,6 +76,10 @@ public class FilesPager implements WatchDog {
 
 	}
 
+	public ModernFilesAdapter getAdapter() {
+		return adapter;
+	}
+
 	public void save(Bundle outState) {
 		adapter.save(outState);
 	}

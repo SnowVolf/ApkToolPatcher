@@ -23,6 +23,11 @@ public class FilesPagerAdapter extends PagerAdapter {
 	public void init(Bundle savedInstanceState, FilesFragment frag) {
 		files.init(savedInstanceState, frag);
 	}
+
+	public FilesPager getFiles() {
+		return files;
+	}
+
 	@Override
 	public int getCount() {
 		return 1;

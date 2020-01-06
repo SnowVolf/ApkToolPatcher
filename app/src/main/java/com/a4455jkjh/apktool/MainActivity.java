@@ -30,6 +30,7 @@ import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
 import apk.tool.patcher.util.Cs;
+import apk.tool.patcher.util.PathF;
 import apk.tool.patcher.util.Preferences;
 
 public class MainActivity extends ThemedActivity {
@@ -62,6 +63,7 @@ public class MainActivity extends ThemedActivity {
 		adjustSheetHeight();
 		init(getSupportFragmentManager());
     }
+
 	public void init() {
 		onNewIntent(getIntent());
 	}
@@ -91,7 +93,10 @@ public class MainActivity extends ThemedActivity {
 			return;
 		} else {
 			editor.open(new File(path), line);
+			// Синхронизтруем заголовок с хлебными крошками как и сам список файлов в нём
+			files.getAdapter().getFiles().getAdapter().refresh(new File(PathF.removeNameFromPath(path)));
 		}
+
 		setWordWrap();
 		dismissFiles();
 	}

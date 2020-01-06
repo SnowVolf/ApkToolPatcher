@@ -95,12 +95,12 @@ public abstract class AbstractTask extends AsyncTask<File, CharSequence, Boolean
 
 	@Override
 	public void info(int id, Object... args) {
-		publishProgress(String.format("I:%s\n", getText(id, args)));
+		publishProgress(String.format("[I]  :%s\n", getText(id, args)));
 	}
 
 	@Override
 	public void warning(int id, Object... args) {
-		publishProgress(String.format("W:%s\n", getText(id, args)));
+		publishProgress(String.format("[W]  %s\n", getText(id, args)));
 	}
 
 	@Override
@@ -110,13 +110,13 @@ public abstract class AbstractTask extends AsyncTask<File, CharSequence, Boolean
 
 	@Override
 	public void error(int id, Object... args) {
-		publishProgress(String.format("E:%s\n", getText(id, args)));
+		publishProgress(String.format("[E]  %s\n", getText(id, args)));
 	}
 
 	@Override
 	public void log(Level level, String format, Throwable ex) {
 		char ch = level.getName().charAt(0);
-		String fmt = "%c:%s\n";
+		String fmt = "[%c]  %s\n";
 		publishProgress(String.format(fmt, ch, format));
 		log(fmt, ch, ex);
 	}

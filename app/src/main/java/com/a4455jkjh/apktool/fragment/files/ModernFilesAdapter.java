@@ -193,7 +193,7 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.
         outState.putString("CUR_DIR_PATH", curDir.getAbsolutePath());
     }
 
-    public class ModernViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ModernViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView name;
         ImageView icon;
 
@@ -204,6 +204,7 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.
             icon = itemView.findViewById(R.id.icon);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
@@ -220,6 +221,16 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.
                 }
                 item.process(ModernFilesAdapter.this);
             }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            File check = new File(curDir, name.getText().toString());
+            if (!check.isDirectory()){
+                Item item = items.get(getAdapterPosition());
+                return item.longClick(itemView, ModernFilesAdapter.this);
+            }
+            return false;
         }
     }
 }

@@ -74,6 +74,10 @@ public class FilesFragment extends Fragment {
 		((MainActivity)getActivity()).init();
 	}
 
+	public FilesPagerAdapter getAdapter() {
+		return adapter;
+	}
+
 	public void edit(File file) {
 		editor.open(file, 0);
 	}
@@ -83,6 +87,7 @@ public class FilesFragment extends Fragment {
 		super.onSaveInstanceState(outState);
 		adapter.save(outState);
 	}
+
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		if (requestCode == 10 && grantResults[0] == 0) {
