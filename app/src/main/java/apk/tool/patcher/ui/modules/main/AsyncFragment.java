@@ -3,6 +3,7 @@ package apk.tool.patcher.ui.modules.main;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -71,6 +72,14 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
      * Флаг наличия базового параметра
      */
     private boolean mHasParam = false;
+    /**
+     * Состояние RV с логами
+     */
+    private Parcelable mLogRecyclerViewState;
+    /**
+     * Ключ сохранения данных в Bundle
+     */
+    private String RV_LOG_SATE = "RV_Log_State";
     /**
      * Массив из id наших тасков
      */
@@ -143,6 +152,13 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mLogRecyclerViewState =  mLogView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(RV_LOG_SATE, mLogRecyclerViewState);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         // Находим наши виджеты по ID
         mChronometer = view.findViewById(R.id.info);
@@ -151,6 +167,9 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
         mChronometer.setBase(SystemClock.elapsedRealtime());
 
         mLogView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if (savedInstanceState != null){
+            mLogView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(RV_LOG_SATE));
+        }
         mControlsView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mAdapter = new LogAdapter(mLogItems);
