@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +34,7 @@ public class FilesPager implements WatchDog {
 	private ModernFilesAdapter adapter;
 	private Toolbar toolbar;
 	private CrumbView pathView;
+	private String openedPath;
 
 	public FilesPager(Context context) {
 		ctx = context;
@@ -108,9 +108,7 @@ public class FilesPager implements WatchDog {
 						adapter.createFileOrDir(pos);
 						break;
 					case R.id.set_as_output_directory:
-						TextView path1 = (TextView) view;
-						String output = path1.getText().toString();
-						Settings.setOutputDirectory(output, path1.getContext());
+						Settings.setOutputDirectory(openedPath, toolbar.getContext());
 						break;
 				}
 			}
@@ -137,9 +135,9 @@ public class FilesPager implements WatchDog {
 
 	@Override
 	public void watchForFile(CharSequence path) {
+		openedPath = path.toString();
 		String currentPath = PathF.pointToName(path.toString());
 		toolbar.setTitle(currentPath);
-		// FIXME Suka blyad
 		pathView.sync(path.toString());
         pathView.setOnItemClickListener(new CrumbAdapter.OnItemClickListener() {
             @Override
