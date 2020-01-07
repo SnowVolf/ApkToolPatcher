@@ -8,16 +8,15 @@
         android:layout_height="@dimen/toolbar_size"
         android:background="?colorPrimary">
 
-        <Chronometer
+        <ru.svolf.melissa.widget.ChronometerWithPause
             android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
-            android:text="@string/menu_settings"
-            android:textColor="#757575"
-            android:textSize="@dimen/text_size_caption"
-            android:textStyle="bold" />
+            android:layout_centerInParent="true"
+            android:textColor="?colorAccent"
+            android:textSize="36sp" />
     </RelativeLayout>
 
 

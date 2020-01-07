@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Chronometer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +38,7 @@ import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.Melissa;
 import ru.svolf.melissa.model.ControlsItem;
 import ru.svolf.melissa.model.LogItem;
+import ru.svolf.melissa.widget.ChronometerWithPause;
 //import android.support.v4.*;
 //import androidx.multidex.*;
 
@@ -79,7 +79,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     /**
      * Ключ сохранения данных в Bundle
      */
-    private String RV_LOG_SATE = "RV_Log_State";
+    private String RV_LOG_STATE = "RV_Log_State";
     /**
      * Массив из id наших тасков
      */
@@ -97,7 +97,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     /**
      * Таймер выполнения тасков
      */
-    private Chronometer mChronometer;
+    private ChronometerWithPause mChronometer;
     /**
      * Контроллер
      */
@@ -155,7 +155,8 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         mLogRecyclerViewState =  mLogView.getLayoutManager().onSaveInstanceState();
-        outState.putParcelable(RV_LOG_SATE, mLogRecyclerViewState);
+        outState.putParcelable(RV_LOG_STATE, mLogRecyclerViewState);
+        mChronometer.saveInstanceState(outState);
     }
 
     @Override
@@ -164,11 +165,13 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
         mChronometer = view.findViewById(R.id.info);
         mLogView = view.findViewById(R.id.list);
         mControlsView = view.findViewById(R.id.list_controls);
-        mChronometer.setBase(SystemClock.elapsedRealtime());
 
         mLogView.setLayoutManager(new LinearLayoutManager(getContext()));
         if (savedInstanceState != null){
-            mLogView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(RV_LOG_SATE));
+            mLogView.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(RV_LOG_STATE));
+            mChronometer.restoreInstanceState(savedInstanceState);
+        } else {
+            mChronometer.setBase(SystemClock.elapsedRealtime());
         }
         mControlsView.setLayoutManager(new LinearLayoutManager(getContext()));
 
