@@ -268,8 +268,7 @@ public class App extends Application {
      * Interface providing callbacks utilized by
      */
     public static abstract class CustomAsyncCallbacks<Params, Result> {
-        public final @Nullable
-        Params[] parameters;
+        public final @Nullable Params[] parameters;
 
         public CustomAsyncCallbacks(@Nullable Params[] params) {
             parameters = params;

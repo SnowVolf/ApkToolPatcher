@@ -85,7 +85,11 @@ public class FilesFragment extends Fragment {
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		adapter.save(outState);
+		if (Build.VERSION.SDK_INT < 23 ||
+				getActivity().checkSelfPermission(
+						Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+			adapter.save(outState);
+		}
 	}
 
 	@Override
