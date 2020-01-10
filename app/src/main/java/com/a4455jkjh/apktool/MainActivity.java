@@ -169,7 +169,9 @@ public class MainActivity extends ThemedActivity {
 
 	@Override
 	public void onBackPressed() {
-		checkExit();
+		if (!files.getAdapter().getFiles().getAdapter().goBack()){
+			checkExit();
+		}
 	}
 
 	@Override
