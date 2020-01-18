@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -14,9 +15,23 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
-            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
             android:textColor="?colorAccent"
             android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_addition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/copy_log"
+            android:textAllCaps="false"
+            android:layout_margin="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:strokeColor="?colorAccent"
+            app:strokeWidth="1dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
     </RelativeLayout>
 
 

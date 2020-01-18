@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -106,6 +108,10 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
      * Адаптер
      */
     private LogAdapter mAdapter;
+    /**
+     * Кнопка слхранения лога
+     */
+    private Button mSaveLog;
 
     public AsyncFragment() {
         // Required empty public constructor
@@ -163,6 +169,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         // Находим наши виджеты по ID
         mChronometer = view.findViewById(R.id.info);
+        mSaveLog = view.findViewById(R.id.button_addition);
         mLogView = view.findViewById(R.id.list);
         mControlsView = view.findViewById(R.id.list_controls);
 
@@ -345,6 +352,25 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
                             }
                             // Остановка таймера
                             mChronometer.stop();
+
+                            mSaveLog.setEnabled(true);
+                            mSaveLog.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                   StringBuilder log = new StringBuilder();
+                                    for (LogItem logItem : mLogItems) {
+                                        log
+                                                .append("[ ")
+                                                .append(logItem.getTag())
+                                                .append(" ]")
+                                                .append(" : ")
+                                                .append(logItem.getMessage())
+                                                .append("\n");
+                                    }
+                                    TextUtil.copyToClipboard(log.toString());
+                                    Toast.makeText(v.getContext(), R.string.label_copied, Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                 } catch (Exception e) {
