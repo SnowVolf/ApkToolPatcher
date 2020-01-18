@@ -163,27 +163,31 @@ public class ModernFilesAdapter extends RecyclerView.Adapter<ModernFilesAdapter.
         BuildItem build = this.build;
         if (build != null && !build.isSubDir(dir))
             build = null;
-        path.watchForFile(dir.getAbsolutePath());
-        items.clear();
-        // Фикс, если тупой юзер перейдёт в /storage/emulated/, которая только для чтения
-        if (dir.listFiles() != null) {
-            for (File f : dir.listFiles()) {
-                items.add(new FileItem(f));
+        if (dir != null) {
+            path.watchForFile(dir.getAbsolutePath());
+            items.clear();
+            // Фикс, если тупой юзер перейдёт в /storage/emulated/, которая только для чтения
+            if (dir.listFiles() != null) {
+                for (File f : dir.listFiles()) {
+                    items.add(new FileItem(f));
 //            Log.d(TAG, "refresh: add item with path = " + f);
-                if (f.isFile() && f.getName().equals("apktool.json"))
-                    build = new BuildItem(dir);
+                    if (f.isFile() && f.getName().equals("apktool.json"))
+                        build = new BuildItem(dir);
+                }
+                if (build != null)
+                    items.add(build);
+                this.build = build;
+                Collections.sort(items);
             }
-            if (build != null)
-                items.add(build);
-            this.build = build;
-            Collections.sort(items);
         }
         Log.d(TAG, "refresh: total items in dir = " + items.size());
         notifyDataSetChanged();
     }
 
     public boolean goBack() {
-        if (curDir.equals(rootDir))
+        if (curDir == null){
+            return false;
+        } else if (curDir.equals(rootDir))
             return false;
         refresh(curDir.getParentFile());
         return true;
