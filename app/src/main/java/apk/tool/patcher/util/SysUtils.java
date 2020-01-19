@@ -1,20 +1,17 @@
 package apk.tool.patcher.util;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -110,20 +107,8 @@ public class SysUtils {
             Log.i("atomofiron", "[DEBUG] " + log);
     }
 
-    public static void Loge(String log) {
-        Log.e("atomofiron", "[ERROR] " + log);
-    }
-
     public static void Toast(Context context, String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void Snack(FloatingActionButton fab, String msg) {
-        Snackbar.make(fab, msg, Snackbar.LENGTH_LONG).show();
-    }
-
-    public static void Snack(FloatingActionButton fab, String msg, String action, View.OnClickListener listener) {
-        Snackbar.make(fab, msg, Snackbar.LENGTH_LONG).setAction(action, listener).show();
     }
 
     public static int max(int x, int y) {
@@ -134,107 +119,8 @@ public class SysUtils {
         return x < y ? x : y;
     }
 
-    public static String getSelfToolsPath(Context c) {
-        return c.getApplicationInfo().dataDir + "/files/tools";
-    }
-
-    public static String getFormat(String path) {
-        return getLastPart(path, '.');
-    }
-
-    public static String getLastPart(String path, char symbol) {
-        int index = path.lastIndexOf(symbol);
-        if (index == -1)
-            return path;
-
-        return path.substring((++index));
-    }
-
-    public static String getParentPath(String path) {
-        int index = path.lastIndexOf('/');
-        if (index == -1)
-            index = path.lastIndexOf('\\');
-        if (index == -1)
-            return "/";
-
-        return path.substring(0, index);
-    }
-
-    public static String getFileTitle(String path) {
-        String name = getLastPart(path, '/');
-        int index = name.lastIndexOf('.');
-        if (index == -1)
-            return name;
-
-        return name.substring(0, index);
-    }
-
-    public static String getFullFileName(String path) {
-        return getLastPart(path, '/');
-    }
-
-    public static String getWithoutFormat(String path) {
-        int index = path.lastIndexOf('.');
-        if (index == -1)
-            return path;
-
-        return path.substring(0, index);
-    }
-
     public static Boolean granted(Context context, String permission) {
         return (context.checkCallingOrSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
-    }
-
-    public static boolean needDir(File dir) {
-        return (dir.exists() && (dir.isDirectory() || dir.isFile() && dir.delete() && dir.mkdirs()) || !dir.exists() && dir.mkdirs());
-    }
-
-    public static boolean needDir(String path) {
-        return needDir(new File(path));
-    }
-
-    public static boolean needDelete(File file) {
-        return (file.exists() && file.delete() || !file.exists());
-    }
-
-    public static SharedPreferences SP(Context co) {
-        return PreferenceManager.getDefaultSharedPreferences(co);
-    }
-
-    public static String getDataPath(Context co) {
-        return co.getApplicationInfo().dataDir;
-    }
-
-    public static String getFilesPath(Context co) {
-        return co.getFilesDir().getAbsolutePath();
-    }
-
-    public static String getToolsPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/tools";
-    }
-
-    public static String getLdPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/ld";
-    }
-
-    public static String getBinPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/tools/bin";
-    }
-
-    public static String getJarsPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/tools/jars";
-    }
-
-    public static String getLibPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/tools/lib";
-    }
-
-    public static String getScriptsPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/tools/scripts";
-    }
-
-    public static String getTmpPath(Context co) {
-        return co.getFilesDir().getAbsolutePath() + "/tools/tmp";
     }
 
     public static String getPath(SharedPreferences sp, String what) {
@@ -265,12 +151,12 @@ public class SysUtils {
         return ((EditText) view.findViewById(id)).getText().toString();
     }
 
-    public static int getApiLavel(SharedPreferences sp) {
-        return Integer.parseInt(sp.getString(SysUtils.PREFS_API_LEVEL, "25"));
-    }
-
     public static void openFile(Context context, String path) {
-        context.startActivity(new Intent(Intent.ACTION_VIEW).setDataAndType(Uri.fromFile(new File(path)), "text/plain"));
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW).setDataAndType(Uri.fromFile(new File(path)), "text/plain"));
+        } catch (ActivityNotFoundException ignored) {
+
+        }
     }
 
     //methods for fastscroller

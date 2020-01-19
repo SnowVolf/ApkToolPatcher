@@ -340,7 +340,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
                             for (Action<?> action : result) {
                                 Object anotherResult = action.getResult();
                                 //NotificationHelper.show(action, Integer.parseInt(anotherResult.toString()));
-                                Log.i("ApkToolPatcher", String.format("Exec action '%s'; returned: %s",
+                                Log.i(TAG, String.format("Exec action '%s'; returned: %s",
                                         action.id(), anotherResult));
                             }
                             if (mListener != null) {
