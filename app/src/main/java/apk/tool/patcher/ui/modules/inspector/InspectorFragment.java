@@ -28,6 +28,7 @@ import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.ui.modules.base.adapters.ViewPagerAdapter;
+import apk.tool.patcher.ui.modules.misc.EasterEggFragment;
 import ru.svolf.melissa.widget.BigTabsLayout;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.Preferences;
@@ -112,8 +113,8 @@ public class InspectorFragment extends SwipeBackFragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(VisibleFragment.newInstance(mNormalItems), App.bindString(R.string.tab_visible, mNormalItems.size()));
         adapter.addFragment(HiddenFragment.newInstance(mSortedItems), App.bindString(R.string.tab_hidden, mSortedItems.size()));
-        adapter.addFragment(AnalyticsFragment.newInstance(mProject), getString(R.string.tab_extract_analytics));
-
+        adapter.addFragment(AnalyticsFragment.newInstance(mProject), App.bindString(R.string.tab_extract_analytics));
+        adapter.addFragment(new EasterEggFragment(), "");
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
