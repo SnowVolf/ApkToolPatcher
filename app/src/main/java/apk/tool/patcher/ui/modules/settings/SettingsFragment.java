@@ -23,8 +23,8 @@ public class SettingsFragment extends BaseSettingsFragment implements SharedPref
         setPreferencesFromResource(R.xml.patcher_preferences, rootKey);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
-        setCurrentValue((ListPreference) findPreference("sys.language"));
-        setCurrentValue((ListPreference) findPreference("ui.theme"));
+        setCurrentValue(findPreference("sys.language"));
+        setCurrentValue(findPreference("ui.theme"));
     }
 
     @Override
@@ -41,11 +41,11 @@ public class SettingsFragment extends BaseSettingsFragment implements SharedPref
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
             case "sys.language": {
-                setCurrentValue((ListPreference) findPreference(key));
+                setCurrentValue(findPreference(key));
                 break;
             }
             case "ui.theme": {
-                setCurrentValue((ListPreference) findPreference(key));
+                setCurrentValue(findPreference(key));
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("org.openintents.action.REFRESH_THEME"));
                 break;
             }

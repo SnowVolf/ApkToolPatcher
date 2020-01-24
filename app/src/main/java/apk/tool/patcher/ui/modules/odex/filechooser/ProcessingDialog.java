@@ -44,21 +44,18 @@ public class ProcessingDialog extends Dialog {
     protected void processCompleted(final String errMsg) {
         Activity activity = activityRef.get();
         if (activity != null) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // Call back to the task which is mainly for UI change
-                    processor.afterProcess();
+            activity.runOnUiThread(() -> {
+                // Call back to the task which is mainly for UI change
+                processor.afterProcess();
 
-                    if (errMsg != null) {
-                        showTip("Failed: " + errMsg);
-                    } else {
-                        showTip(successTipResId);
-                    }
+                if (errMsg != null) {
+                    showTip("Failed: " + errMsg);
+                } else {
+                    showTip(successTipResId);
+                }
 
-                    if (ProcessingDialog.this.isShowing()) {
-                        dismissWithoutThrow();
-                    }
+                if (ProcessingDialog.this.isShowing()) {
+                    dismissWithoutThrow();
                 }
             });
         }

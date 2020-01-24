@@ -1,5 +1,6 @@
 package apk.tool.patcher.ui.modules.settings;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -110,169 +111,133 @@ public class SearchSettingsFragment extends SwipeBackFragment {
         super.onActivityCreated(savedInstanceState);
         final AutoCompleteTextView searchField = rootView.findViewById(R.id.EditText01);
 
-        clearBtn.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                searchField.setText("");
-                searchField.requestFocus();
-            }
+        clearBtn.setOnClickListener(view -> {
+            searchField.setText("");
+            searchField.requestFocus();
         });
 
         chkRegexp.setChecked(mPrefs.mRegularExrpression);
         chkIgnoreCase.setChecked(mPrefs.mIgnoreCase);
-        chkRegexp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPrefs.mRegularExrpression = chkRegexp.isChecked();
-                mPrefs.savePrefs(mContext);
-            }
+        chkRegexp.setOnClickListener(view -> {
+            mPrefs.mRegularExrpression = chkRegexp.isChecked();
+            mPrefs.savePrefs(mContext);
         });
-        chkIgnoreCase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPrefs.mIgnoreCase = chkIgnoreCase.isChecked();
-                mPrefs.savePrefs(mContext);
-            }
+        chkIgnoreCase.setOnClickListener(view -> {
+            mPrefs.mIgnoreCase = chkIgnoreCase.isChecked();
+            mPrefs.savePrefs(mContext);
         });
 
-        mFab.setOnClickListener(new View.OnClickListener() {
+        mFab.setOnClickListener(p1 -> {
+            // TODO: Implement mContext method
 
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement mContext method
+            mPrefs.mDirList = new ArrayList<>();
+            mPrefs.savePrefs(mContext);
 
-                mPrefs.mDirList = new ArrayList<CheckedString>();
-                mPrefs.savePrefs(mContext);
-
-                if (mPath != null && mPath.length() > 0) {
-                    // 二重チェック
-                    for (CheckedString t : mPrefs.mDirList) {
-                        if (t.string.equalsIgnoreCase(mPath)) {
-                            return;
-                        }
+            if (mPath != null && mPath.length() > 0) {
+                // 二重チェック
+                for (CheckedString t : mPrefs.mDirList) {
+                    if (t.string.equalsIgnoreCase(mPath)) {
+                        return;
                     }
-                    mPrefs.mDirList.add(new CheckedString(mPath));
-
-                    mPrefs.savePrefs(mContext);
-
-                    String text = searchField.getText().toString();
-                    Intent it = new Intent(mContext, Search.class);
-                    it.setAction(Intent.ACTION_SEARCH);
-                    it.putExtra(SearchManager.QUERY, text);
-                    startActivity(it);
                 }
+                mPrefs.mDirList.add(new CheckedString(mPath));
 
+                mPrefs.savePrefs(mContext);
+
+                String text = searchField.getText().toString();
+                Intent it = new Intent(mContext, Search.class);
+                it.setAction(Intent.ACTION_SEARCH);
+                it.putExtra(SearchManager.QUERY, text);
+                startActivity(it);
             }
+
         });
 
-        mExtListener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                final String strText = (String) ((TextView) view).getText();
-                final CheckedString strItem = (CheckedString) view.getTag();
-                // Show Dialog
-                new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.label_remove_item_title)
-                        .setMessage(getString(R.string.label_remove_item, strText))
-                        .setPositiveButton(R.string.label_OK, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                mPrefs.mExtList.remove(strItem);
-                                refreshExtList();
-                                mPrefs.savePrefs(mContext);
-                            }
-                        })
-                        .setNegativeButton(R.string.label_CANCEL, null)
-                        .setCancelable(true)
-                        .show();
-                return true;
-            }
+        mExtListener = view -> {
+            final String strText = (String) ((TextView) view).getText();
+            final CheckedString strItem = (CheckedString) view.getTag();
+            // Show Dialog
+            new AlertDialog.Builder(mContext)
+                    .setTitle(R.string.label_remove_item_title)
+                    .setMessage(getString(R.string.label_remove_item, strText))
+                    .setPositiveButton(R.string.label_OK, (dialog, whichButton) -> {
+                        mPrefs.mExtList.remove(strItem);
+                        refreshExtList();
+                        mPrefs.savePrefs(mContext);
+                    })
+                    .setNegativeButton(R.string.label_CANCEL, null)
+                    .setCancelable(true)
+                    .show();
+            return true;
         };
 //
-        mCheckListener = new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                final CheckedString strItem = (CheckedString) buttonView.getTag();
-                strItem.checked = isChecked;
-                mPrefs.savePrefs(mContext);
-            }
+        mCheckListener = (buttonView, isChecked) -> {
+            final CheckedString strItem = (CheckedString) buttonView.getTag();
+            strItem.checked = isChecked;
+            mPrefs.savePrefs(mContext);
         };
 //
         //refreshDirList();
         refreshExtList();
 
-        btnAddExt.setOnClickListener(new View.OnClickListener() {
+        btnAddExt.setOnClickListener(view -> {
+            // Create EditText
+            final EditText edtInput = new EditText(mContext);
+            edtInput.setSingleLine();
+            // Show Dialog
+            new AlertDialog.Builder(mContext)
+                    .setTitle(R.string.label_addext)
+                    .setView(edtInput)
+                    .setPositiveButton(R.string.label_OK, (dialog, whichButton) -> {
+                        /* OKボタンをクリックした時の処理 */
 
-            @Override
-            public void onClick(View view) {
-                // Create EditText
-                final EditText edtInput = new EditText(mContext);
-                edtInput.setSingleLine();
-                // Show Dialog
-                new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.label_addext)
-                        .setView(edtInput)
-                        .setPositiveButton(R.string.label_OK, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                /* OKボタンをクリックした時の処理 */
-
-                                String ext = edtInput.getText().toString();
-                                if (ext.length() > 0) {
-                                    // 二重チェック
-                                    for (CheckedString t : mPrefs.mExtList) {
-                                        if (t.string.equalsIgnoreCase(ext)) {
-                                            return;
-                                        }
-                                    }
-                                    mPrefs.mExtList.add(new CheckedString(ext));
-                                    refreshExtList();
-                                    mPrefs.savePrefs(mContext);
+                        String ext = edtInput.getText().toString();
+                        if (ext.length() > 0) {
+                            // 二重チェック
+                            for (CheckedString t : mPrefs.mExtList) {
+                                if (t.string.equalsIgnoreCase(ext)) {
+                                    return;
                                 }
                             }
-                        })
-                        .setNeutralButton(R.string.label_no_extension, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                /* 拡張子無しボタンをクリックした時の処理 */
+                            mPrefs.mExtList.add(new CheckedString(ext));
+                            refreshExtList();
+                            mPrefs.savePrefs(mContext);
+                        }
+                    })
+                    .setNeutralButton(R.string.label_no_extension, (dialog, whichButton) -> {
+                        /* 拡張子無しボタンをクリックした時の処理 */
 
-                                String ext = "*";
-                                // 二重チェック
-                                for (CheckedString t : mPrefs.mExtList) {
-                                    if (t.string.equalsIgnoreCase(ext)) {
-                                        return;
-                                    }
-                                }
-                                mPrefs.mExtList.add(new CheckedString(ext));
-                                refreshExtList();
-                                mPrefs.savePrefs(mContext);
+                        String ext = "*";
+                        // 二重チェック
+                        for (CheckedString t : mPrefs.mExtList) {
+                            if (t.string.equalsIgnoreCase(ext)) {
+                                return;
                             }
-                        })
-                        .setNegativeButton(R.string.label_CANCEL, null)
-                        .setCancelable(true)
-                        .show();
-            }
+                        }
+                        mPrefs.mExtList.add(new CheckedString(ext));
+                        refreshExtList();
+                        mPrefs.savePrefs(mContext);
+                    })
+                    .setNegativeButton(R.string.label_CANCEL, null)
+                    .setCancelable(true)
+                    .show();
         });
 
-        searchField.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
-                    String text = searchField.getEditableText().toString();
-                    Intent it = new Intent(mContext, Search.class);
-                    it.setAction(Intent.ACTION_SEARCH);
-                    it.putExtra(SearchManager.QUERY, text);
-                    startActivity(it);
-                    return true;
-                }
-                return false;
+        searchField.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
+                String text = searchField.getEditableText().toString();
+                Intent it = new Intent(mContext, Search.class);
+                it.setAction(Intent.ACTION_SEARCH);
+                it.putExtra(SearchManager.QUERY, text);
+                startActivity(it);
+                return true;
             }
+            return false;
         });
-        mRecentAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+        mRecentAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
         searchField.setAdapter(mRecentAdapter);
 
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View item) {
-                searchField.showDropDown();
-            }
-        });
+        btnHistory.setOnClickListener(item -> searchField.showDropDown());
     }
 
     @Override
@@ -285,6 +250,7 @@ public class SearchSettingsFragment extends SwipeBackFragment {
         mRecentAdapter.notifyDataSetChanged();
     }
 
+    @SuppressLint("RestrictedApi")
     private void setPath() {
         File test = new File(mPath);
         if (!test.exists()) {
@@ -299,12 +265,7 @@ public class SearchSettingsFragment extends SwipeBackFragment {
                      View.OnLongClickListener listener,
                      CompoundButton.OnCheckedChangeListener checkedChangeListener) {
         view.removeAllViews();
-        Collections.sort(list, new Comparator<CheckedString>() {
-            @Override
-            public int compare(CheckedString object1, CheckedString object2) {
-                return object1.string.compareToIgnoreCase(object2.string);
-            }
-        });
+        Collections.sort(list, (object1, object2) -> object1.string.compareToIgnoreCase(object2.string));
         for (CheckedString s : list) {
             Chip v = (Chip) View.inflate(mContext, R.layout.list_dir, null);
             if (s.equals("*")) {
@@ -325,7 +286,7 @@ public class SearchSettingsFragment extends SwipeBackFragment {
         rootView = null;
         mPrefs.mDirList.remove(mPath);
         mPrefs.savePrefs(mContext);
-        mRecentAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+        mRecentAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<>());
         super.onDestroyView();
     }
 

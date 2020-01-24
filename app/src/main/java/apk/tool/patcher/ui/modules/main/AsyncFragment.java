@@ -21,8 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.async.Action;
 import com.afollestad.async.Async;
 import com.afollestad.async.OnExecutionListener;
-import com.afollestad.async.Result;
-import com.afollestad.async.Subscription;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -186,28 +184,17 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
         mLogView.setAdapter(mAdapter);
 
         ArrayList<ControlsItem> controlsItems = new ArrayList<>();
-        controlsItems.add(new ControlsItem(R.drawable.ic_cancel, App.bindString(R.string.cancel_all), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Завершаем все таски
-                Async.cancelAll();
-                Handler wait = new Handler();
-                wait.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Эмитируем нажатие кнопки "НАЗАД", чтоб вернуться на предыдущий экран
-                        getActivity().onBackPressed();
-                    }
-                }, 500);
-            }
+        controlsItems.add(new ControlsItem(R.drawable.ic_cancel, App.bindString(R.string.cancel_all), v -> {
+            // Завершаем все таски
+            Async.cancelAll();
+            Handler wait = new Handler();
+            wait.postDelayed(() -> {
+                // Эмитируем нажатие кнопки "НАЗАД", чтоб вернуться на предыдущий экран
+                getActivity().onBackPressed();
+            }, 500);
         }));
         DialogControlsAdapter controlsAdapter = new DialogControlsAdapter(controlsItems);
-        controlsAdapter.setItemClickListener(new DialogControlsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(ControlsItem menuItem, int position) {
-                menuItem.getAction().onClick(null);
-            }
-        });
+        controlsAdapter.setItemClickListener((menuItem, position) -> menuItem.getAction().onClick(null));
         mControlsView.setAdapter(controlsAdapter);
     }
 
@@ -266,13 +253,10 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     private void updateUI(Action action, int progress) {
         mLogItems.add(new LogItem("i", String.format(Locale.ENGLISH, "%s: %d matches replaced", action.id(), progress)));
         // Т.к. таск выполняется не в UI потоке, нам нужно прокинуть событие в UI
-        mLogView.post(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.notifyDataSetChanged();
-                if (mAdapter.getItemCount() > 5) {
-                    mLogView.scrollToPosition(mAdapter.getItemCount() - 1);
-                }
+        mLogView.post(() -> {
+            mAdapter.notifyDataSetChanged();
+            if (mAdapter.getItemCount() > 5) {
+                mLogView.scrollToPosition(mAdapter.getItemCount() - 1);
             }
         });
     }
@@ -285,13 +269,10 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     private void updateUI(String tag, String message) {
         mLogItems.add(new LogItem(tag, message));
         // Т.к. таск выполняется не в UI потоке, нам нужно прокинуть событие в UI
-        mLogView.post(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.notifyDataSetChanged();
-                if (mAdapter.getItemCount() > 5) {
-                    mLogView.scrollToPosition(mAdapter.getItemCount() - 1);
-                }
+        mLogView.post(() -> {
+            mAdapter.notifyDataSetChanged();
+            if (mAdapter.getItemCount() > 5) {
+                mLogView.scrollToPosition(mAdapter.getItemCount() - 1);
             }
         });
     }
@@ -327,56 +308,47 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
         // Нужен для того, чтобы запускать выполнение тасков не сразу, а когда все приготовления
         // будут сделаны
         Handler wait = new Handler();
-        wait.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Теперь можно запускать таймер
-                mChronometer.start();
-                try {
-                    Async.series(workerActions).subscribe(new Subscription() {
-                        @Override
-                        public void result(@NonNull Result result) {
-                            // Ловим результат для каджого таска
-                            for (Action<?> action : result) {
-                                Object anotherResult = action.getResult();
-                                //NotificationHelper.show(action, Integer.parseInt(anotherResult.toString()));
-                                Log.i(TAG, String.format("Exec action '%s'; returned: %s",
-                                        action.id(), anotherResult));
-                            }
-                            if (mListener != null) {
-                                // Сигнал активити, что работа завершена, и можно показать
-                                // диалог доната
+        wait.postDelayed(() -> {
+            // Теперь можно запускать таймер
+            mChronometer.start();
+            try {
+                Async.series(workerActions).subscribe(result -> {
+                    // Ловим результат для каджого таска
+                    for (Action<?> action : result) {
+                        Object anotherResult = action.getResult();
+                        //NotificationHelper.show(action, Integer.parseInt(anotherResult.toString()));
+                        Log.i(TAG, String.format("Exec action '%s'; returned: %s",
+                                action.id(), anotherResult));
+                    }
+                    if (mListener != null) {
+                        // Сигнал активити, что работа завершена, и можно показать
+                        // диалог доната
 //								if (this.codepremium2.MainFragment.contains(edoc)) {
 //					}else{
-                                mListener.onJobFinished();
-                            }
-                            // Остановка таймера
-                            mChronometer.stop();
-
-                            mSaveLog.setEnabled(true);
-                            mSaveLog.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                   StringBuilder log = new StringBuilder();
-                                    for (LogItem logItem : mLogItems) {
-                                        log
-                                                .append("[ ")
-                                                .append(logItem.getTag())
-                                                .append(" ]")
-                                                .append(" : ")
-                                                .append(logItem.getMessage())
-                                                .append("\n");
-                                    }
-                                    TextUtil.copyToClipboard(log.toString());
-                                    Toast.makeText(v.getContext(), R.string.label_copied, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
-                } catch (Exception e) {
-                    if (mListener != null) {
-                        mListener.onError(e);
+                        mListener.onJobFinished();
                     }
+                    // Остановка таймера
+                    mChronometer.stop();
+
+                    mSaveLog.setEnabled(true);
+                    mSaveLog.setOnClickListener(v -> {
+                       StringBuilder log = new StringBuilder();
+                        for (LogItem logItem : mLogItems) {
+                            log
+                                    .append("[ ")
+                                    .append(logItem.getTag())
+                                    .append(" ]")
+                                    .append(" : ")
+                                    .append(logItem.getMessage())
+                                    .append("\n");
+                        }
+                        TextUtil.copyToClipboard(log.toString());
+                        Toast.makeText(v.getContext(), R.string.label_copied, Toast.LENGTH_SHORT).show();
+                    });
+                });
+            } catch (Exception e) {
+                if (mListener != null) {
+                    mListener.onError(e);
                 }
             }
         }, (end - start) + 2000);

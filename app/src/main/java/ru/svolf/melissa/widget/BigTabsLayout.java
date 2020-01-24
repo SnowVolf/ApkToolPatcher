@@ -93,12 +93,7 @@ public class BigTabsLayout extends HorizontalScrollView implements ViewPager.OnA
                 textView.setAlpha(UNCHECKED_ALPHA);
             }
             final int finalI = i;
-            textView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setupViews(finalI);
-                }
-            });
+            textView.setOnClickListener(view -> setupViews(finalI));
         }
         updateAlpha(mPager.getCurrentItem(), 0.0f);
         requestLayout();

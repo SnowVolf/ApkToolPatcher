@@ -322,19 +322,9 @@ public class SpringListView extends ListView {
             }
         };
 
-        releaseBackAnimInterpolator = new Interpolator() {
-            @Override
-            public float getInterpolation(float v) {
-                return (float) Math.cos(Math.PI * v / 2);
-            }
-        };
+        releaseBackAnimInterpolator = v -> (float) Math.cos(Math.PI * v / 2);
 
-        flingBackAnimInterpolator = new Interpolator() {
-            @Override
-            public float getInterpolation(float v) {
-                return (float) Math.sin(Math.PI * v);
-            }
-        };
+        flingBackAnimInterpolator = v -> (float) Math.sin(Math.PI * v);
     }
 
     private void startReleaseAnimation() {

@@ -1,9 +1,7 @@
 package apk.tool.patcher.ui.modules.about;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -14,10 +12,10 @@ import androidx.appcompat.app.AlertDialog;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import ru.svolf.melissa.widget.AutoResizeTextView;
 import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
+import ru.svolf.melissa.widget.AutoResizeTextView;
 
 public class HelpActivity extends SwipeBackActivity {
     private WebView webView;
@@ -39,28 +37,12 @@ public class HelpActivity extends SwipeBackActivity {
         webView.setBackgroundColor(App.getColorFromAttr(this, android.R.attr.windowBackground));
         webView.loadUrl("https://github.com/SnowVolf/ApkToolPatcherPublic/wiki");
 
-        issue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(HelpActivity.this)
-                        .setTitle(R.string.caption_issues)
-                        .setMessage(R.string.help_warning)
-                        .setPositiveButton(R.string.check_issue, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues");
-                            }
-                        })
-                        .setNegativeButton(R.string.create_issue, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues/new/choose");
-                            }
-                        })
-                        .show();
-
-            }
-        });
+        issue.setOnClickListener(view -> new AlertDialog.Builder(HelpActivity.this)
+                .setTitle(R.string.caption_issues)
+                .setMessage(R.string.help_warning)
+                .setPositiveButton(R.string.check_issue, (dialogInterface, i) -> TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues"))
+                .setNegativeButton(R.string.create_issue, (dialogInterface, i) -> TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues/new/choose"))
+                .show());
 
     }
 

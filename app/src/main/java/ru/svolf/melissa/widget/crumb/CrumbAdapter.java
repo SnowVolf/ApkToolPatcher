@@ -81,7 +81,7 @@ public class CrumbAdapter extends RecyclerView.Adapter<CrumbAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            pathName = (TextView) itemView.findViewById(R.id.breadcrumb_part);
+            pathName = itemView.findViewById(R.id.breadcrumb_part);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }

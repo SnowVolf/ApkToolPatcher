@@ -4,8 +4,6 @@ package apk.tool.patcher.ui.modules.main;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -73,24 +71,21 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
         dialog.setTitle(title);
         dialog.setMessage(sb);
         dialog.setCancelable(false);
-        dialog.setPositive(R.drawable.ic_lucky, context.getString(R.string.great), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Preferences.saveVersionCode();
-                dialog.dismiss();
-                if (SystemsDetector.isBomzhomi()) {
-                    // Create the fragment only when the activity is created for the first time.
-                    // ie. not after orientation changes
-                    Fragment fragment = getSupportFragmentManager().findFragmentByTag(XiaomiGovnoFragment.FRAGMENT_TAG);
-                    if (fragment == null) {
-                        fragment = new XiaomiGovnoFragment();
-                    }
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, fragment, XiaomiGovnoFragment.FRAGMENT_TAG)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(null)
-                            .commit();
+        dialog.setPositive(R.drawable.ic_lucky, context.getString(R.string.great), v -> {
+            Preferences.saveVersionCode();
+            dialog.dismiss();
+            if (SystemsDetector.isBomzhomi()) {
+                // Create the fragment only when the activity is created for the first time.
+                // ie. not after orientation changes
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(XiaomiGovnoFragment.FRAGMENT_TAG);
+                if (fragment == null) {
+                    fragment = new XiaomiGovnoFragment();
                 }
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, fragment, XiaomiGovnoFragment.FRAGMENT_TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         dialog.show();
@@ -99,25 +94,19 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
     @Override
     public void onError(final Exception e) {
         Handler wait = new Handler();
-        wait.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                final SweetContentDialog dialog = new SweetContentDialog(MainActivity.this);
-                dialog.setTitle(e.getClass().getSimpleName());
-                dialog.setMessage(e.getMessage());
-                dialog.setPositive(R.drawable.expand, getString(R.string.details), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        StringBuilder sb = new StringBuilder();
-                        sb.append(e.getMessage()).append("\n\n=== === ===\n\n");
-                        for (StackTraceElement traceElement : e.getStackTrace()) {
-                            sb.append(traceElement).append("\n");
-                        }
-                        dialog.setMessage(sb);
-                    }
-                });
-                dialog.show();
-            }
+        wait.postDelayed(() -> {
+            final SweetContentDialog dialog = new SweetContentDialog(MainActivity.this);
+            dialog.setTitle(e.getClass().getSimpleName());
+            dialog.setMessage(e.getMessage());
+            dialog.setPositive(R.drawable.expand, getString(R.string.details), v -> {
+                StringBuilder sb = new StringBuilder();
+                sb.append(e.getMessage()).append("\n\n=== === ===\n\n");
+                for (StackTraceElement traceElement : e.getStackTrace()) {
+                    sb.append(traceElement).append("\n");
+                }
+                dialog.setMessage(sb);
+            });
+            dialog.show();
         }, 1000);
 
     }
@@ -125,14 +114,7 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
     @Override
     public void onJobFinished() {
         Handler wait = new Handler();
-        wait.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                showAdvert();
-
-            }
-        }, 2000);
+        wait.postDelayed(this::showAdvert, 2000);
     }
 
     /**
@@ -143,25 +125,22 @@ public class MainActivity extends BaseActivity implements OnAsyncJobListener {
         final SweetListDialog dialog = new SweetListDialog(this);
         dialog.setTitle(App.bindString(R.string.caption_donate));
         dialog.setItems(R.array.donate_services);
-        dialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        TextUtil.copyToClipboard("+79042585040");
-                        Toast.makeText(MainActivity.this, R.string.donate_addr_copied, Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        TextUtil.goLink(MainActivity.this, "https://money.yandex.ru/to/410013858440166");
-                        break;
-                    case 2:
-                        TextUtil.goLink(MainActivity.this, "https://paypal.me/htc600");
-                        break;
-                    case 3:
-                        TextUtil.goLink(MainActivity.this, "https://t.me/VolfsChannel");
-                    default:
-                        break;
-                }
+        dialog.setOnItemClickListener((parent, view, position, id) -> {
+            switch (position) {
+                case 0:
+                    TextUtil.copyToClipboard("+79042585040");
+                    Toast.makeText(MainActivity.this, R.string.donate_addr_copied, Toast.LENGTH_SHORT).show();
+                    break;
+                case 1:
+                    TextUtil.goLink(MainActivity.this, "https://money.yandex.ru/to/410013858440166");
+                    break;
+                case 2:
+                    TextUtil.goLink(MainActivity.this, "https://paypal.me/htc600");
+                    break;
+                case 3:
+                    TextUtil.goLink(MainActivity.this, "https://t.me/VolfsChannel");
+                default:
+                    break;
             }
         });
         dialog.show();

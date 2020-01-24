@@ -110,16 +110,13 @@ public class SweetContentDialog extends BottomSheetDialog {
         super.show();
         if (mControls.size() > 0) {
             final DialogControlsAdapter adapter = new DialogControlsAdapter(mControls);
-            adapter.setItemClickListener(new DialogControlsAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(ControlsItem menuItem, int position) {
-                    if (menuItem.getAction() != null) {
-                        menuItem.getAction().onClick(null);
-                        if (mDismissOnTouch)
-                            dismiss();
-                    } else {
+            adapter.setItemClickListener((menuItem, position) -> {
+                if (menuItem.getAction() != null) {
+                    menuItem.getAction().onClick(null);
+                    if (mDismissOnTouch)
                         dismiss();
-                    }
+                } else {
+                    dismiss();
                 }
             });
             mControllerView.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -22,9 +22,6 @@ public abstract class ThemeWrapper {
     public static void applyTheme(Activity ctx) {
         int theme;
         switch (Theme.values()[getThemeIndex()]) {
-            case LIGHT:
-                theme = R.style.AppTheme;
-                break;
             case DARK:
                 theme = R.style.AppTheme_Dark;
                 break;
@@ -53,9 +50,6 @@ public abstract class ThemeWrapper {
     public static int getDialogTheme() {
         int theme;
         switch (Theme.values()[getThemeIndex()]) {
-            case LIGHT:
-                theme = R.style.Theme_MaterialComponents_Light_Dialog_Alert;
-                break;
             case DARK:
                 theme = R.style.DarkAppTheme_Dialog;
                 break;

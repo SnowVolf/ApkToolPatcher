@@ -76,12 +76,7 @@ public class SettingsHostFragment extends Fragment implements BigTabsLayout.OnCu
         long end = System.currentTimeMillis();
         // Скроллим нужный таб  в зависимости от интента
         Handler wait = new Handler();
-        wait.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mTabs.setupViews(mTabIndex);
-            }
-        }, end - start + 100);
+        wait.postDelayed(() -> mTabs.setupViews(mTabIndex), end - start + 100);
     }
 
     @Override

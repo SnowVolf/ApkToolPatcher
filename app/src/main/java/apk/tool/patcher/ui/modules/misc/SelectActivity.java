@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +19,13 @@ import java.util.Comparator;
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.odex.filechooser.SelectAdapter;
-import ru.svolf.melissa.widget.PinchZoomItemTouchListener;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.Preferences;
 import apk.tool.patcher.util.SysUtils;
 import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
+import ru.svolf.melissa.widget.PinchZoomItemTouchListener;
 
 public class SelectActivity extends SwipeBackActivity implements SelectAdapter.ClickListener, PinchZoomItemTouchListener.PinchZoomListener {
     public final static File EXTERNAL_STORAGE = Environment.getExternalStorageDirectory();
@@ -71,31 +70,25 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
 //        listener.setEnabled(true);
 //        recyclerView.addOnItemTouchListener(listener);
 
-        buttonSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        buttonSelect.setOnClickListener(view -> {
 
-                if (currentPath.isDirectory()) {
-                    if (currentPath.canWrite()) {
-                        SweetContentDialog dialog = new SweetContentDialog(SelectActivity.this);
-                        dialog.setTitle(R.string.caption_set_folder);
-                        dialog.setMessage(String.format(getString(R.string.message_set_folder), currentPath.getName()));
-                        dialog.setPositive(R.drawable.ic_check, App.bindString(android.R.string.ok), new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent();
-                                intent.putExtra("path", currentPath.getPath());
-                                setResult(RESULT_OK, intent);
-                                finish();
-                            }
-                        });
-                        dialog.show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "No write permission", Toast.LENGTH_SHORT).show();
-                    }
+            if (currentPath.isDirectory()) {
+                if (currentPath.canWrite()) {
+                    SweetContentDialog dialog = new SweetContentDialog(SelectActivity.this);
+                    dialog.setTitle(R.string.caption_set_folder);
+                    dialog.setMessage(String.format(getString(R.string.message_set_folder), currentPath.getName()));
+                    dialog.setPositive(R.drawable.ic_check, App.bindString(android.R.string.ok), v -> {
+                        Intent intent = new Intent();
+                        intent.putExtra("path", currentPath.getPath());
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    });
+                    dialog.show();
                 } else {
-                    Toast.makeText(getApplicationContext(), currentPath.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No write permission", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), currentPath.getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }

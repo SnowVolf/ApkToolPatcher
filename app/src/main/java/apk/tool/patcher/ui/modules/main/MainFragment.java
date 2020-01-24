@@ -1,6 +1,7 @@
 package apk.tool.patcher.ui.modules.main;
 
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -70,7 +70,6 @@ import apk.tool.patcher.ui.modules.misc.SelectActivity;
 import apk.tool.patcher.ui.modules.odex.OdexPatchFragment;
 import apk.tool.patcher.ui.modules.settings.SearchSettingsFragment;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
-import ru.svolf.melissa.widget.FontTextView;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.RegexpRepository;
 import apk.tool.patcher.util.StreamUtil;
@@ -83,9 +82,8 @@ import ru.svolf.melissa.fragment.dialog.SweetInputDialog;
 import ru.svolf.melissa.fragment.dialog.SweetListDialog;
 import ru.svolf.melissa.fragment.dialog.SweetViewDialog;
 import ru.svolf.melissa.fragment.dialog.SweetWaitDialog;
-import ru.svolf.melissa.model.AdvancedItem;
 import ru.svolf.melissa.model.ExtendedMenuItem;
-import ru.svolf.melissa.model.MenuItem;
+import ru.svolf.melissa.widget.FontTextView;
 import ru.svolf.rxmanager.AppListFragment;
 import sun.security.pkcs.PKCS7;
 
@@ -222,154 +220,145 @@ public class MainFragment extends Fragment {
         ImageButton menu = view.findViewById(R.id.search_menu);
         ImageButton search = view.findViewById(R.id.search_find);
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create the fragment only when the activity is created for the first time.
-                // ie. not after orientation changes
-                //Snackbar.make(mCard, "This feature has been disabled until next alpha :(", Snackbar.LENGTH_LONG).show();
-                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(SearchSettingsFragment.FRAGMENT_TAG);
-                if (fragment == null) {
-                    fragment = new SearchSettingsFragment();
-                }
-                Bundle args = new Bundle();
-                args.putString(Cs.ARG_PATH_NAME, getProjectDir());
-                fragment.setArguments(args);
-
-                // Запускаем транзакцию
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_frame, fragment, SearchSettingsFragment.FRAGMENT_TAG)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
+        search.setOnClickListener(v -> {
+            // Create the fragment only when the activity is created for the first time.
+            // ie. not after orientation changes
+            //Snackbar.make(mCard, "This feature has been disabled until next alpha :(", Snackbar.LENGTH_LONG).show();
+            Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(SearchSettingsFragment.FRAGMENT_TAG);
+            if (fragment == null) {
+                fragment = new SearchSettingsFragment();
             }
+            Bundle args = new Bundle();
+            args.putString(Cs.ARG_PATH_NAME, getProjectDir());
+            fragment.setArguments(args);
+
+            // Запускаем транзакцию
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment, SearchSettingsFragment.FRAGMENT_TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
         });
         // Добавляем иконку меню
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Инфлейтим диалог с контейнером
-                final SweetViewDialog dialog = new SweetViewDialog(mContext);
-                // Инициализируем пункты меню
-                List<ExtendedMenuItem> extendedMenuItems = new ArrayList<>();
-                // Добавляем пункты
-                extendedMenuItems.add(new ExtendedMenuItem(
-                        R.drawable.settings_outline,
-                        "#607d8b",
-                        App.bindString(R.string.menu_settings),
-                        ExtendedItems.SETTINGS)
-                );
-                extendedMenuItems.add(new ExtendedMenuItem(
-                        R.drawable.ic_apkeditor,
-                        "#ffb600",
-                        App.bindString(R.string.menu_components),
-                        ExtendedItems.PLUGIN)
-                );
-                extendedMenuItems.add(new ExtendedMenuItem(
-                        R.drawable.apps_list,
-                        "#f57c00",
-                        App.bindString(R.string.menu_appslist),
-                        ExtendedItems.APPS_LIST)
-                );
-                extendedMenuItems.add(new ExtendedMenuItem(
-                        R.drawable.verified,
-                        "#00c853",
-                        App.bindString(R.string.menu_buy_premium),
-                        ExtendedItems.PREMIUM)
-                );
-                extendedMenuItems.add(new ExtendedMenuItem(
-                        R.drawable.ic_help_outline,
-                        "#3949ab",
-                        App.bindString(R.string.pref_userguide),
-                        ExtendedItems.HELP)
-                );
-                extendedMenuItems.add(new ExtendedMenuItem(
-                        R.drawable.ic_info,
-                        "#448aff",
-                        App.bindString(R.string.menu_about),
-                        ExtendedItems.ABOUT)
-                );
+        menu.setOnClickListener(v -> {
+            // Инфлейтим диалог с контейнером
+            final SweetViewDialog dialog = new SweetViewDialog(mContext);
+            // Инициализируем пункты меню
+            List<ExtendedMenuItem> extendedMenuItems = new ArrayList<>();
+            // Добавляем пункты
+            extendedMenuItems.add(new ExtendedMenuItem(
+                    R.drawable.settings_outline,
+                    "#607d8b",
+                    App.bindString(R.string.menu_settings),
+                    ExtendedItems.SETTINGS)
+            );
+            extendedMenuItems.add(new ExtendedMenuItem(
+                    R.drawable.ic_apkeditor,
+                    "#ffb600",
+                    App.bindString(R.string.menu_components),
+                    ExtendedItems.PLUGIN)
+            );
+            extendedMenuItems.add(new ExtendedMenuItem(
+                    R.drawable.apps_list,
+                    "#f57c00",
+                    App.bindString(R.string.menu_appslist),
+                    ExtendedItems.APPS_LIST)
+            );
+            extendedMenuItems.add(new ExtendedMenuItem(
+                    R.drawable.verified,
+                    "#00c853",
+                    App.bindString(R.string.menu_buy_premium),
+                    ExtendedItems.PREMIUM)
+            );
+            extendedMenuItems.add(new ExtendedMenuItem(
+                    R.drawable.ic_help_outline,
+                    "#3949ab",
+                    App.bindString(R.string.pref_userguide),
+                    ExtendedItems.HELP)
+            );
+            extendedMenuItems.add(new ExtendedMenuItem(
+                    R.drawable.ic_info,
+                    "#448aff",
+                    App.bindString(R.string.menu_about),
+                    ExtendedItems.ABOUT)
+            );
 
-                // Инициализация адаптера из пунктов
-                ExtendedMenuAdapter adapter = new ExtendedMenuAdapter(extendedMenuItems);
-                // Слушатели нажатий
-                adapter.setItemClickListener(new ExtendedMenuAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(ExtendedMenuItem item, int position) {
-                        int id = item.getAction();
-                        switch (id) {
-                            case ExtendedItems.SETTINGS: {
-                                YandexMetrica.reportEvent("Settings screen clicked");
-                                Intent intent1 = new Intent(mContext, SettingsActivity.class);
-                                startActivity(intent1);
-                                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                                break;
-                            }
-                            case ExtendedItems.PLUGIN:
-                                YandexMetrica.reportEvent("Plugin screen clicked");
-                                try {
-                                    mContext.startActivity(mContext.getPackageManager().getLaunchIntentForPackage("htc.patch.lib"));
-                                } catch (Exception err) {
-                                    Toast.makeText(getActivity(), R.string.message_app_not_found, Toast.LENGTH_LONG).show();
-                                    TextUtil.goLink(getActivity(), "http://4pda.ru/forum/index.php?showtopic=461675&view=findpost&p=68457132");
-                                }
-                                break;
-                            case ExtendedItems.ABOUT: {
-                                YandexMetrica.reportEvent("About screen clicked");
-                                Intent intent1 = new Intent(mContext, SettingsActivity.class);
-                                intent1.putExtra(Cs.ARG_PREF_TAB, Cs.TAB_ABOUT);
-                                startActivity(intent1);
-                                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                                break;
-                            }
-                            case ExtendedItems.APPS_LIST: {
-                                YandexMetrica.reportEvent("Apps List screen clicked");
-                                // Create the fragment only when the activity is created for the first time.
-                                // ie. not after orientation changes
-                                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(AppListFragment.FRAGMENT_TAG);
-                                if (fragment == null) {
-                                    fragment = new AppListFragment();
-                                }
-                                // Запускаем транзакцию
-                                getActivity().getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.content_frame, fragment, AppListFragment.FRAGMENT_TAG)
-                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                        .addToBackStack(null)
-                                        .commit();
-                                break;
-                            }
-                            case ExtendedItems.PREMIUM:
-                                YandexMetrica.reportEvent("Activation dialog showed");
-                                achk();//PREMIUM ACTIVATION DIALOG
-                                break;
-                            case ExtendedItems.HELP:
-                                YandexMetrica.reportEvent("Help showed");
-                                startActivity(new Intent(getActivity(), HelpActivity.class));
-                                break;
-                            default:
-                                break;
-                        }
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
+            // Инициализация адаптера из пунктов
+            ExtendedMenuAdapter adapter = new ExtendedMenuAdapter(extendedMenuItems);
+            // Слушатели нажатий
+            adapter.setItemClickListener((item, position) -> {
+                int id = item.getAction();
+                switch (id) {
+                    case ExtendedItems.SETTINGS: {
+                        YandexMetrica.reportEvent("Settings screen clicked");
+                        Intent intent1 = new Intent(mContext, SettingsActivity.class);
+                        startActivity(intent1);
+                        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        break;
                     }
-                });
+                    case ExtendedItems.PLUGIN:
+                        YandexMetrica.reportEvent("Plugin screen clicked");
+                        try {
+                            mContext.startActivity(mContext.getPackageManager().getLaunchIntentForPackage("htc.patch.lib"));
+                        } catch (Exception err) {
+                            Toast.makeText(getActivity(), R.string.message_app_not_found, Toast.LENGTH_LONG).show();
+                            TextUtil.goLink(getActivity(), "http://4pda.ru/forum/index.php?showtopic=461675&view=findpost&p=68457132");
+                        }
+                        break;
+                    case ExtendedItems.ABOUT: {
+                        YandexMetrica.reportEvent("About screen clicked");
+                        Intent intent1 = new Intent(mContext, SettingsActivity.class);
+                        intent1.putExtra(Cs.ARG_PREF_TAB, Cs.TAB_ABOUT);
+                        startActivity(intent1);
+                        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        break;
+                    }
+                    case ExtendedItems.APPS_LIST: {
+                        YandexMetrica.reportEvent("Apps List screen clicked");
+                        // Create the fragment only when the activity is created for the first time.
+                        // ie. not after orientation changes
+                        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(AppListFragment.FRAGMENT_TAG);
+                        if (fragment == null) {
+                            fragment = new AppListFragment();
+                        }
+                        // Запускаем транзакцию
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.content_frame, fragment, AppListFragment.FRAGMENT_TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    }
+                    case ExtendedItems.PREMIUM:
+                        YandexMetrica.reportEvent("Activation dialog showed");
+                        achk();//PREMIUM ACTIVATION DIALOG
+                        break;
+                    case ExtendedItems.HELP:
+                        YandexMetrica.reportEvent("Help showed");
+                        startActivity(new Intent(getActivity(), HelpActivity.class));
+                        break;
+                    default:
+                        break;
+                }
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            });
 
-                // Инфлейтим контент
-                View content = LayoutInflater.from(getContext()).inflate(R.layout.dialog_exp_items, null);
-                // Находим наш сптсок
-                RecyclerView recyclerView = content.findViewById(R.id.list);
-                // Присваиваем лайаут менеджер
-                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-                // Устанавливаем адаптер
-                recyclerView.setAdapter(adapter);
-                //
-                recyclerView.setHasFixedSize(true);
+            // Инфлейтим контент
+            View content = LayoutInflater.from(getContext()).inflate(R.layout.dialog_exp_items, null);
+            // Находим наш сптсок
+            RecyclerView recyclerView = content.findViewById(R.id.list);
+            // Присваиваем лайаут менеджер
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+            // Устанавливаем адаптер
+            recyclerView.setAdapter(adapter);
+            //
+            recyclerView.setHasFixedSize(true);
 
-                dialog.setTitle(getString(R.string.caption_main_menu));
-                dialog.setView(recyclerView);
-                dialog.show();
-            }
+            dialog.setTitle(getString(R.string.caption_main_menu));
+            dialog.setView(recyclerView);
+            dialog.show();
         });
 //
         mGeneralInput = view.findViewById(R.id.field_input);
@@ -390,20 +379,15 @@ public class MainFragment extends Fragment {
         kcehc1(); // PREMIUM
 
         //Временная проверка на премиум, для занесения аккаунтов в базу.
-        String accaunt = App.get().getPreferences().getString(acc_name1, "");
-        if (accaunt == "") {
+        String account = App.get().getPreferences().getString(acc_name1, "");
+        if (account.equals("")) {
             if (codepremium2.contains(edoc)) {
                 final SweetContentDialog content = new SweetContentDialog(getActivity());
                 content.setTitle("Добавление аккаунта");
                 content.setMessage("Мы обнаружили, что у вас активирован Premium доступ. Мы постепенно меняем систему активации и поэтому просим Вас в следующем диалоге выбрать и подтвердить аккаунт на который будет привязан Premium доступ. С новой системой, вы можете использовать один аккаунт на разных устройствах.");
-                content.setPositive(R.drawable.ic_check, App.bindString(R.string.prem_message), new View.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        showGoogleAccountPicker();
-                        content.dismiss();
-                    }
+                content.setPositive(R.drawable.ic_check, App.bindString(R.string.prem_message), view1 -> {
+                    showGoogleAccountPicker();
+                    content.dismiss();
                 });
                 content.show();
             }
@@ -418,18 +402,20 @@ public class MainFragment extends Fragment {
                 mGeneralInput.setText(mProject.getPath());
 
         }
-        mGeneralInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                final Intent intent = new Intent(mContext, SelectActivity.class);
-                intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
-                startActivityForResult(intent, 2);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
+        mGeneralInput.setOnClickListener(p1 -> {
+            final Intent intent = new Intent(mContext, SelectActivity.class);
+            intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
+            startActivityForResult(intent, 2);
+            getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
         // Куда же ты полез, парень? Это статья...
-        byte[] sbs = android.util.Base64.decode("0JrRg9C00LAg0LbQtSDRgtGLINC/0L7Qu9C10LcsINC/0LDRgNC10L3RjD8hINCt0YLQviDRgdGC0LDRgtGM0Y8uLi4=", Base64.DEFAULT);
+        byte[] sbs = android.util.Base64.decode(
+                "0J" + "rR" + "g9" + "C0" + "0L" + "Ag" + "0L" + "b" + "Qt" + "SD" + "Rg" + "tG" +
+                        "LI" + "NC" + "/0" + "L7" + "Qu" + "9C" + "10" + "Lc" + "sI" + "NC" + "/0" +
+                        "LD" + "Rg" + "NC" + "10" + "L3" + "Rj" + "D8" + "hI" + "NC" + "t0" + "YL" +
+                        "Qv" + "iD" + "Rg" + "dG" + "C0" + "LD" + "Rg" + "tG" + "M0" + "Y8" + "uL" + "i4="
+                , Base64.DEFAULT);
         // Щютка
         if (isPremium) {
             Snackbar.make(mList, new String(sbs), Snackbar.LENGTH_INDEFINITE).show();
@@ -453,7 +439,8 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == getActivity().RESULT_OK) {
+        getActivity();
+        if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case ACC_CHOOSE:
 
@@ -546,12 +533,10 @@ public class MainFragment extends Fragment {
      * ЗАМЕНА ТОЛЬКО В XML
      */
     public void publicString2(final String guf) {
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                ArrayMap<Pattern, String> pat1 = new ArrayMap<Pattern, String>();
-                pat1.put(Pattern.compile("<string name=\"(.*)\">(.*)</string>"), "<string name=\"$1\">fuck$2fuck</string>");
-                publicString(guf + "/res", pat1);
-            }
+        Thread t = new Thread(() -> {
+            ArrayMap<Pattern, String> pat1 = new ArrayMap<>();
+            pat1.put(Pattern.compile("<string name=\"(.*)\">(.*)</string>"), "<string name=\"$1\">fuck$2fuck</string>");
+            publicString(guf + "/res", pat1);
         });
         t.start();
 
@@ -661,13 +646,10 @@ public class MainFragment extends Fragment {
         final SweetInputDialog dialog = new SweetInputDialog(mContext);
         dialog.setPrefTitle(App.bindString(R.string.specify_toast));
         dialog.setInputString(savedText);
-        dialog.setPositive(App.bindString(R.string.btn_toast), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                App.get().getPreferences().edit().putString(saveToast, dialog.getInputString()).apply();
-                startTaskBy(dialog.getInputString(), "startup-toast");
-                dialog.dismiss();
-            }
+        dialog.setPositive(App.bindString(R.string.btn_toast), view -> {
+            App.get().getPreferences().edit().putString(saveToast, dialog.getInputString()).apply();
+            startTaskBy(dialog.getInputString(), "startup-toast");
+            dialog.dismiss();
         });
         dialog.show();
     }
@@ -694,26 +676,22 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 mWaitDialog = new SweetWaitDialog(getActivity());
 
-                App.runInBackground(new Runnable() {
-                    public void run() {
-                        try {
-                            ArrayMap<Pattern, String> pat = new ArrayMap<Pattern, String>();
-                            pat.put(Pattern.compile("invoke-static (.+);->compareSignatures(.+)\n\n {4}move-result ([pv]\\d+)"), "const/4 $3, 0x0\n   #htc600  compareSignatures");
-                            pat.put(Pattern.compile("\\.method public static isEqual\\(\\[B\\[B\\)Z\n\\.(locals|registers) (\\d+)\n\\.param(.+)\n\\.param(.+)\n\n    const/4 ([pv]\\d+), 0x0"), ".method public static isEqual([B[B)Z\n.$1 $2\n.param$3\n.param$4\n\nconst/4 $5, 0x1\n    #htc600  isEqual");
-                            pat.put(Pattern.compile(".+;->engineVerify(\\(\\[B\\)Z|\\(\\[BII\\)Z)\n\n {4}move-result ([pv]\\d+)"), "const/4 $2, 0x1\n   #htc600 engineVerify ");
-                            pat.put(Pattern.compile("iget ([pv]\\d+), ([pv]\\d+), Landroid/content/pm/PackageInfoLite;->versionCode:I\n\n    iget ([pv]\\d+), ([pv]\\d+), Landroid/content/pm/PackageParser\\$Package;->mVersionCode:I\n\n    if-ge ([pv]\\d+), ([pv]\\d+), :cond_(.*)"), "goto :cond_$7   #htc600  goto");
-                            AdsPatcher.get().RemoveAds1(mProgressHandler, i, getProjectDir(), pat);
+                App.runInBackground(() -> {
+                    try {
+                        ArrayMap<Pattern, String> pat = new ArrayMap<Pattern, String>();
+                        pat.put(Pattern.compile("invoke-static (.+);->compareSignatures(.+)\n\n {4}move-result ([pv]\\d+)"), "const/4 $3, 0x0\n   #htc600  compareSignatures");
+                        pat.put(Pattern.compile("\\.method public static isEqual\\(\\[B\\[B\\)Z\n\\.(locals|registers) (\\d+)\n\\.param(.+)\n\\.param(.+)\n\n    const/4 ([pv]\\d+), 0x0"), ".method public static isEqual([B[B)Z\n.$1 $2\n.param$3\n.param$4\n\nconst/4 $5, 0x1\n    #htc600  isEqual");
+                        pat.put(Pattern.compile(".+;->engineVerify(\\(\\[B\\)Z|\\(\\[BII\\)Z)\n\n {4}move-result ([pv]\\d+)"), "const/4 $2, 0x1\n   #htc600 engineVerify ");
+                        pat.put(Pattern.compile("iget ([pv]\\d+), ([pv]\\d+), Landroid/content/pm/PackageInfoLite;->versionCode:I\n\n    iget ([pv]\\d+), ([pv]\\d+), Landroid/content/pm/PackageParser\\$Package;->mVersionCode:I\n\n    if-ge ([pv]\\d+), ([pv]\\d+), :cond_(.*)"), "goto :cond_$7   #htc600  goto");
+                        AdsPatcher.get().RemoveAds1(mProgressHandler, i, getProjectDir(), pat);
+                        int d = -1;
+                        mProgressHandler.sendEmptyMessage(d);
+                    } catch (Exception err) {
+                        getActivity().runOnUiThread(() -> {
                             int d = -1;
                             mProgressHandler.sendEmptyMessage(d);
-                        } catch (Exception err) {
-                            getActivity().runOnUiThread(new Runnable() {
-                                public void run() {
-                                    int d = -1;
-                                    mProgressHandler.sendEmptyMessage(d);
-                                    Toast.makeText(mContext, R.string.message_incorrect_dir, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
+                            Toast.makeText(mContext, R.string.message_incorrect_dir, Toast.LENGTH_SHORT).show();
+                        });
                     }
                 });
             }
@@ -749,52 +727,49 @@ public class MainFragment extends Fragment {
         if (codepremium2.contains(edoc)) {
             mCard.setVisibility(View.VISIBLE);
             AdvancedAdapter mAdvancedAdapter = new AdvancedAdapter(allAdvancedItems.getCreatedMenuItems());
-            mAdvancedAdapter.setItemClickListener(new AdvancedAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdvancedItem menuItem, int position) {
-                    switch (menuItem.getAction()) {
-                        case AdvancedItems.INBUILT_DECOMPILER: {
-                            Intent intent = new Intent(getActivity(),
-                                    MainActivity.class);
-                            startActivity(intent);
-                            break;
+            mAdvancedAdapter.setItemClickListener((menuItem, position) -> {
+                switch (menuItem.getAction()) {
+                    case AdvancedItems.INBUILT_DECOMPILER: {
+                        Intent intent = new Intent(getActivity(),
+                                MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case AdvancedItems.NATIVE_LIBS: {
+                        if (getProject() != null) {
+                            startTaskBy(getProject().lib(), "native-patcher");
+                        } else {
+                            Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG).show();
                         }
-                        case AdvancedItems.NATIVE_LIBS: {
-                            if (getProject() != null) {
-                                startTaskBy(getProject().lib(), "native-patcher");
-                            } else {
-                                Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG).show();
-                            }
-                            break;
+                        break;
+                    }
+                    case AdvancedItems.ODEX_PATCH: {
+                        // Create the fragment only when the activity is created for the first time.
+                        // ie. not after orientation changes
+                        Fragment fragment = getActivity()
+                                .getSupportFragmentManager()
+                                .findFragmentByTag(OdexPatchFragment.FRAGMENT_TAG);
+                        if (fragment == null) {
+                            fragment = new OdexPatchFragment();
                         }
-                        case AdvancedItems.ODEX_PATCH: {
-                            // Create the fragment only when the activity is created for the first time.
-                            // ie. not after orientation changes
-                            Fragment fragment = getActivity()
-                                    .getSupportFragmentManager()
-                                    .findFragmentByTag(OdexPatchFragment.FRAGMENT_TAG);
-                            if (fragment == null) {
-                                fragment = new OdexPatchFragment();
-                            }
-                            getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.content_frame, fragment, OdexPatchFragment.FRAGMENT_TAG)
-                                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                    .addToBackStack(null)
-                                    .commit();
-                            break;
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.content_frame, fragment, OdexPatchFragment.FRAGMENT_TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    }
+                    case AdvancedItems.GOOGLE_MAPS_FIX: {
+                        if (getProject() != null) {
+                            restoreMaps();
+                        } else {
+                            Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG).show();
                         }
-                        case AdvancedItems.GOOGLE_MAPS_FIX: {
-                            if (getProject() != null) {
-                                restoreMaps();
-                            } else {
-                                Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG).show();
-                            }
-                            break;
-                        }
-                        case AdvancedItems.SIGNATURE_FALLBACK: {
-                            startTask("signature-fallback");
-                            break;
-                        }
+                        break;
+                    }
+                    case AdvancedItems.SIGNATURE_FALLBACK: {
+                        startTask("signature-fallback");
+                        break;
                     }
                 }
             });
@@ -833,74 +808,71 @@ public class MainFragment extends Fragment {
         // RecyclerView не имеет метода обработки кликов меню.
         // Разработчик должен реализовывать его сам.
         // В этот раз я сделал это за тебя
-        mAdapter.setItemClickListener(new MenuAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(MenuItem menuItem, int position) {
-                switch (menuItem.getAction()) {
-                    case MenuItems.SERVICES_JAR:
-                        servicesJar();
-                        break;
-                    case MenuItems.MOD_GUARD:
-                        startTask("obfuscation");
-                        break;
-                    case MenuItems.UNICODE2UTF:
-                        startTask("unicode-to-utf");
-                        break;
-                    case MenuItems.NO_ROOT:
-                        startTask("no-root");
-                        break;
-                    case MenuItems.PLAY_SERVICES:
-                        startTask("play-services");
-                        break;
-                    case MenuItems.DELETE_LOCALES:
-                        startTask("remove-locales");
-                        break;
-                    case MenuItems.TRANSLATE:
-                        startTask("convert-dictionary");
-                        break;
-                    case MenuItems.ID_DECODER:
-                        startTask("decode-res-id");
-                        break;
-                    case MenuItems.UPDATE:
-                        startTask("disable-update");
-                        break;
-                    case MenuItems.ANALYTICS:
-                        startTask("remove-analytics");
-                        break;
-                    case MenuItems.SIGNATURE:
-                        startTask("signature");
-                        break;
-                    case MenuItems.REMOVE_ADS_ACTIVITIES:
-                        startTask("remove-ads-activities");
-                        break;
-                    case MenuItems.EXT_DECOMPILER:
-                        launchApkTool();
-                        break;
-                    case MenuItems.INTEREST_SMALI:
-                        // Create the fragment only when the activity is created for the first time.
-                        // ie. not after orientation changes
+        mAdapter.setItemClickListener((menuItem, position) -> {
+            switch (menuItem.getAction()) {
+                case MenuItems.SERVICES_JAR:
+                    servicesJar();
+                    break;
+                case MenuItems.MOD_GUARD:
+                    startTask("obfuscation");
+                    break;
+                case MenuItems.UNICODE2UTF:
+                    startTask("unicode-to-utf");
+                    break;
+                case MenuItems.NO_ROOT:
+                    startTask("no-root");
+                    break;
+                case MenuItems.PLAY_SERVICES:
+                    startTask("play-services");
+                    break;
+                case MenuItems.DELETE_LOCALES:
+                    startTask("remove-locales");
+                    break;
+                case MenuItems.TRANSLATE:
+                    startTask("convert-dictionary");
+                    break;
+                case MenuItems.ID_DECODER:
+                    startTask("decode-res-id");
+                    break;
+                case MenuItems.UPDATE:
+                    startTask("disable-update");
+                    break;
+                case MenuItems.ANALYTICS:
+                    startTask("remove-analytics");
+                    break;
+                case MenuItems.SIGNATURE:
+                    startTask("signature");
+                    break;
+                case MenuItems.REMOVE_ADS_ACTIVITIES:
+                    startTask("remove-ads-activities");
+                    break;
+                case MenuItems.EXT_DECOMPILER:
+                    launchApkTool();
+                    break;
+                case MenuItems.INTEREST_SMALI:
+                    // Create the fragment only when the activity is created for the first time.
+                    // ie. not after orientation changes
 
-                        Fragment fragment = getActivity().getSupportFragmentManager()
-                                .findFragmentByTag(InspectorFragment.FRAGMENT_TAG);
-                        if (fragment == null) {
-                            fragment = InspectorFragment.newInstance(getProject());
-                        }
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .add(R.id.content_frame, fragment, InspectorFragment.FRAGMENT_TAG)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case MenuItems.REMOVE_ADS:
-                        startTask("remove-ads");
-                        break;
-                    case MenuItems.TOAST:
-                        prepareToast();
-                        break;
-                    default:
-                        Toast.makeText(App.get(), menuItem.getTitle() + " " + menuItem.getAction(), Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                    Fragment fragment = getActivity().getSupportFragmentManager()
+                            .findFragmentByTag(InspectorFragment.FRAGMENT_TAG);
+                    if (fragment == null) {
+                        fragment = InspectorFragment.newInstance(getProject());
+                    }
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .add(R.id.content_frame, fragment, InspectorFragment.FRAGMENT_TAG)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(null)
+                            .commit();
+                    break;
+                case MenuItems.REMOVE_ADS:
+                    startTask("remove-ads");
+                    break;
+                case MenuItems.TOAST:
+                    prepareToast();
+                    break;
+                default:
+                    Toast.makeText(App.get(), menuItem.getTitle() + " " + menuItem.getAction(), Toast.LENGTH_SHORT).show();
+                    break;
             }
         });
         // Присваиваем тип layout (list или grid)
@@ -924,25 +896,22 @@ public class MainFragment extends Fragment {
         final SweetListDialog dialog = new SweetListDialog(mContext);
         dialog.setTitle(App.bindString(R.string.caption_donate));
         dialog.setItems(R.array.donate_services);
-        dialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        TextUtil.copyToClipboard("+79042585040");
-                        Toast.makeText(mContext, R.string.donate_addr_copied, Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        TextUtil.goLink(getActivity(), "https://money.yandex.ru/to/410013858440166");
-                        break;
-                    case 2:
-                        TextUtil.goLink(getActivity(), "https://paypal.me/htc600");
-                        break;
-                    case 3:
-                        TextUtil.goLink(getActivity(), "https://t.me/VolfsChannel");
-                    default:
-                        break;
-                }
+        dialog.setOnItemClickListener((parent, view, position, id) -> {
+            switch (position) {
+                case 0:
+                    TextUtil.copyToClipboard("+79042585040");
+                    Toast.makeText(mContext, R.string.donate_addr_copied, Toast.LENGTH_SHORT).show();
+                    break;
+                case 1:
+                    TextUtil.goLink(getActivity(), "https://money.yandex.ru/to/410013858440166");
+                    break;
+                case 2:
+                    TextUtil.goLink(getActivity(), "https://paypal.me/htc600");
+                    break;
+                case 3:
+                    TextUtil.goLink(getActivity(), "https://t.me/VolfsChannel");
+                default:
+                    break;
             }
         });
         dialog.show();
@@ -953,39 +922,27 @@ public class MainFragment extends Fragment {
         alert.setDismissOnTouch(true);
         alert.setTitle(App.bindString(R.string.caption_paid));
         alert.setMessage(App.bindString(R.string.explain_donate));
-        alert.setPositive(R.drawable.ic_check, App.bindString(R.string.btn_check_code), new View.OnClickListener() {
-            public void onClick(View view) {
-                final SweetInputDialog checker = new SweetInputDialog(getActivity());
-                checker.setPrefTitle(App.bindString(R.string.btn_check));
-                checker.setInputString(App.get().getPreferences().getString(saveCode, ""));
-                checker.setPositive(App.bindString(R.string.btn_check_code), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View p1) {
-                        App.get().getPreferences().edit().putString(saveCode, checker.getInputString()).apply();
-                        try {
-                            kcehc();
-                            checker.dismiss();
-                        } catch (UnsupportedEncodingException ignored) {
-                        }
-                    }
-                });
-                checker.show();
-            }
-        });
-        alert.setNegative(R.drawable.ic_send, App.bindString(R.string.btn_send_secret), new View.OnClickListener() {
-            public void onClick(View view) {
+        alert.setPositive(R.drawable.ic_check, App.bindString(R.string.btn_check_code), view -> {
+            final SweetInputDialog checker = new SweetInputDialog(getActivity());
+            checker.setPrefTitle(App.bindString(R.string.btn_check));
+            checker.setInputString(App.get().getPreferences().getString(saveCode, ""));
+            checker.setPositive(App.bindString(R.string.btn_check_code), p1 -> {
+                App.get().getPreferences().edit().putString(saveCode, checker.getInputString()).apply();
                 try {
-                    LogicalCore.mailedoc(getActivity(), muimerp, secret);
+                    kcehc();
+                    checker.dismiss();
                 } catch (UnsupportedEncodingException ignored) {
                 }
+            });
+            checker.show();
+        });
+        alert.setNegative(R.drawable.ic_send, App.bindString(R.string.btn_send_secret), view -> {
+            try {
+                LogicalCore.mailedoc(getActivity(), muimerp, secret);
+            } catch (UnsupportedEncodingException ignored) {
             }
         });
-        alert.setNeutral(R.drawable.ic_receipt, App.bindString(R.string.menu_donate), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAdvert();
-            }
-        });
+        alert.setNeutral(R.drawable.ic_receipt, App.bindString(R.string.menu_donate), v -> showAdvert());
         alert.show();
     }
 
@@ -1016,24 +973,15 @@ public class MainFragment extends Fragment {
      * Он присваивается в {@code baseParam}, и может быть строкой или {@code null}
      */
     private void startTaskBy(@Nullable CharSequence baseParam, @NonNull String... ids) {
+        View.OnClickListener onClickListener = view -> startActivity(new Intent(getContext(), HelpActivity.class));
         if (getProject() == null) {
             Snackbar.make(mCard, R.string.message_specify_project_dir, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.pref_userguide, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(new Intent(getContext(), HelpActivity.class));
-                        }
-                    })
+                    .setAction(R.string.pref_userguide, onClickListener)
                     .show();
         } else if (!getProject().isValid()) {
             Snackbar.make(mCard, R.string.message_incorrect_dir,
                     Snackbar.LENGTH_LONG)
-                    .setAction(R.string.pref_userguide, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(new Intent(getContext(), HelpActivity.class));
-                        }
-                    })
+                    .setAction(R.string.pref_userguide, onClickListener)
                     .show();
         } else {
             getActivity().getSupportFragmentManager()

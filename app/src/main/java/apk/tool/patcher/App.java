@@ -49,6 +49,7 @@ public class App extends Application {
     private static Project sCurrentProject;
     private SharedPreferences preferences;
 
+
     public Uri extCardUri;
 
     private static Handler mApplicationHandler = new Handler();
