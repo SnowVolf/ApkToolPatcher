@@ -29,8 +29,10 @@ import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
 import org.acra.ACRA;
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
+import org.acra.annotation.AcraCore;
+import org.acra.annotation.AcraMailSender;
+import org.acra.annotation.AcraToast;
+import org.acra.data.StringFormat;
 
 import java.security.Security;
 
@@ -39,16 +41,13 @@ import apk.tool.patcher.util.LocaleHelper;
 import apk.tool.patcher.util.ReflectionBypass;
 import sun1.security.provider.JavaProvider;
 
-
-@ReportsCrashes
-        (mailTo = "buntar888@mail.ru, dev.dog@yandex.ru",
-                mode = ReportingInteractionMode.TOAST,
-                resToastText = R.string.crash_toast_text)
+@AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
+@AcraMailSender(mailTo = "buntar888@mail.ru, dev.dog@yandex.ru", reportFileName = "ApkToolPatcher " + BuildConfig.VERSION_NAME + ".log")
+@AcraToast(resText =  R.string.crash_toast_text)
 public class App extends Application {
     private static App instance;
     private static Project sCurrentProject;
     private SharedPreferences preferences;
-
 
     public Uri extCardUri;
 
