@@ -378,7 +378,7 @@ public class SwipeBackLayout extends FrameLayout {
 
                 if (mPreFragment == null) {
                     if (mFragment != null) {
-                        List<Fragment> fragmentList = mFragment.getFragmentManager().getFragments();
+                        List<Fragment> fragmentList = mFragment.getParentFragmentManager().getFragments();
                         if (fragmentList != null && fragmentList.size() > 1) {
                             int index = fragmentList.indexOf(mFragment);
                             for (int i = index - 1; i >= 0; i--) {
@@ -436,7 +436,7 @@ public class SwipeBackLayout extends FrameLayout {
                     }
                     if (!mFragment.isDetached()) {
                         mFragment.mLocking = true;
-                        mFragment.getFragmentManager().popBackStackImmediate();
+                        mFragment.getParentFragmentManager().popBackStackImmediate();
                         mFragment.mLocking = false;
                     }
                     if (mPreFragment instanceof SwipeBackFragment) {

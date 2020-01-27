@@ -33,7 +33,7 @@ public class SwipeBackFragment extends Fragment {
         if (savedInstanceState != null) {
             boolean isSupportHidden = savedInstanceState.getBoolean(SWIPEBACKFRAGMENT_STATE_SAVE_IS_HIDDEN);
 
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             if (isSupportHidden) {
                 ft.hide(this);
             } else {

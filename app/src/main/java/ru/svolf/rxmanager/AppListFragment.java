@@ -151,7 +151,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         AppListData appBasicData = (AppListData) view.getTag();
         AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(appBasicData.getPackageName(), null);
 
-        getFragmentManager()
+        getParentFragmentManager()
                 .beginTransaction()
                 .add(R.id.content_frame, detailsFragment)
                 .addToBackStack(null)
@@ -341,7 +341,7 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
         protected void onPostExecute(File file) {
             super.onPostExecute(file);
             AppsDetailsFragment detailsFragment = AppsDetailsFragment.newInstance(null, file.getPath());
-            getFragmentManager()
+            getParentFragmentManager()
                     .beginTransaction()
                     .add(R.id.content_frame, detailsFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
