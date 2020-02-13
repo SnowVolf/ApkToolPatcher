@@ -5,15 +5,17 @@ import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
-import brut.androlib.ApkOptions;
-import apk.tool.patcher.App;
-import apk.tool.patcher.*;
+
 import com.a4455jkjh.apktool.fragment.files.FileComparator;
 import com.a4455jkjh.apktool.lexer.Packages;
 import com.a4455jkjh.apktool.service.NotificationManager;
 import com.a4455jkjh.apktool.service.Project;
+
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,7 +26,10 @@ import java.security.PrivateKey;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import org.apache.commons.io.IOUtils;
+
+import apk.tool.patcher.App;
+import apk.tool.patcher.R;
+import brut.androlib.ApkOptions;
 import sun1.security.pkcs.PKCS8Key;
 
 public class Settings {
@@ -142,13 +147,10 @@ public class Settings {
 		framework_out.close();
 		framework_dir = dir.getAbsolutePath();
 	}
-int i;
+
 	private static void copy_aapt(AssetManager assets, File outDir) throws IOException {
 		String arch;
-		if (Build.VERSION.SDK_INT < 21)
-			arch = Build.CPU_ABI;
-		else
-			arch = Build.SUPPORTED_32_BIT_ABIS[0];
+		arch = Build.SUPPORTED_32_BIT_ABIS[0];
 		if (arch.startsWith("arm"))
 			arch = "arm";
 		else if (arch.startsWith("x86"))
@@ -162,6 +164,7 @@ int i;
 		aapt.setExecutable(true);
 		Settings.aapt = aapt.getAbsolutePath();
 	}
+
 	private static void loadApkOptions(SharedPreferences sp) {
 		ApkOptions o = ApkOptions.INSTANCE;
 		mBakDeb = sp.getBoolean("mBakDeb", true);
@@ -174,11 +177,12 @@ int i;
 			output_directory = null;
 		Settings.output_directory = output_directory;
 	}
+
 	public static void setOutputDirectory(String output_directory, Context ctx) {
 		Settings.output_directory = output_directory;
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
 		SharedPreferences.Editor e = sp.edit();
 		e.putString("output_directory", output_directory);
-		e.commit();
+		e.apply();
 	}
 }

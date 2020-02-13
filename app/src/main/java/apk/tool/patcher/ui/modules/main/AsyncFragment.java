@@ -334,13 +334,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
                     mSaveLog.setOnClickListener(v -> {
                        StringBuilder log = new StringBuilder();
                         for (LogItem logItem : mLogItems) {
-                            log
-                                    .append("[ ")
-                                    .append(logItem.getTag())
-                                    .append(" ]")
-                                    .append(" : ")
-                                    .append(logItem.getMessage())
-                                    .append("\n");
+                            log.append("[ ").append(logItem.getTag()).append(" ]").append(" : ").append(logItem.getMessage()).append("\n");
                         }
                         TextUtil.copyToClipboard(log.toString());
                         Toast.makeText(v.getContext(), R.string.label_copied, Toast.LENGTH_SHORT).show();

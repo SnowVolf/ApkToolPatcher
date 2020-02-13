@@ -8,11 +8,11 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
 import apk.tool.patcher.util.TextUtil;
+import ru.svolf.melissa.fragment.dialog.SweetContentDialog;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;
 import ru.svolf.melissa.widget.AutoResizeTextView;
@@ -37,12 +37,16 @@ public class HelpActivity extends SwipeBackActivity {
         webView.setBackgroundColor(App.getColorFromAttr(this, android.R.attr.windowBackground));
         webView.loadUrl("https://github.com/SnowVolf/ApkToolPatcherPublic/wiki");
 
-        issue.setOnClickListener(view -> new AlertDialog.Builder(HelpActivity.this)
-                .setTitle(R.string.caption_issues)
-                .setMessage(R.string.help_warning)
-                .setPositiveButton(R.string.check_issue, (dialogInterface, i) -> TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues"))
-                .setNegativeButton(R.string.create_issue, (dialogInterface, i) -> TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues/new/choose"))
-                .show());
+        issue.setOnClickListener(view -> {
+            SweetContentDialog builder = new SweetContentDialog(HelpActivity.this);
+            builder.setTitle(R.string.caption_issues);
+            builder.setMessage(R.string.help_warning);
+            builder.setPositive(R.drawable.ic_check, getString(R.string.check_issue),
+                    (view1) -> TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues"));
+            builder.setNegative(R.drawable.ic_help_outline, getString(R.string.create_issue),
+                    (view1) -> TextUtil.goLink(HelpActivity.this, "https://github.com/SnowVolf/ApkToolPatcherPublic/issues/new/choose"));
+            builder.show();
+        });
 
     }
 
