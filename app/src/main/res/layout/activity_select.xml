@@ -37,7 +37,7 @@
             android:layout_alignParentBottom="true"
             app:strokeColor="?colorAccent"
             app:strokeWidth="1dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            style="@style/MixedButton"/>
     </RelativeLayout>
 
     <include

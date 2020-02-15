@@ -2,8 +2,12 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/light_colorPrimary</item>
+        <item name="android:textColor">?text_color</item>
         <item name="colorPrimaryDark">@color/light_colorAccent</item>
         <item name="colorAccent">@color/light_colorAccent</item>
+        <item name="colorSecondary">?colorAccent</item>
+        <item name="colorSecondaryVariant">?colorAccent</item>
+        <item name="colorOnSecondary">?android:textColorPrimaryInverse</item>
         <item name="android:windowBackground">@color/light_colorBackground</item>
         <item name="icon_color">@color/light_iconColor</item>
         <item name="text_color">@color/light_textColor</item>
@@ -22,8 +26,11 @@
 
     <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/dark_colorPrimary</item>
+        <item name="colorOnPrimary">?text_color</item>
         <item name="colorPrimaryDark">@color/dark_colorPrimaryDark</item>
         <item name="colorAccent">@color/dark_colorAccent</item>
+        <item name="colorSecondary">?colorAccent</item>
+        <item name="colorOnSecondary">?android:textColorPrimaryInverse</item>
         <item name="android:windowBackground">@color/dark_colorBackground</item>
         <item name="icon_color">@color/dark_iconColor</item>
         <item name="text_color">@color/dark_textColor</item>
@@ -42,8 +49,11 @@
 
     <style name="AppTheme.Blue" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/blue_colorPrimary</item>
+        <item name="colorOnPrimary">?text_color</item>
         <item name="colorPrimaryDark">@color/blue_colorPrimaryDark</item>
         <item name="colorAccent">@color/blue_colorAccent</item>
+        <item name="colorSecondary">?colorAccent</item>
+        <item name="colorOnSecondary">?android:textColorPrimaryInverse</item>
         <item name="android:windowBackground">@color/blue_colorBackground</item>
         <item name="icon_color">@color/blue_iconColor</item>
         <item name="text_color">@color/blue_textColor</item>
@@ -58,6 +68,10 @@
         <item name="prefCardsBackground">@color/blue_cardView</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="MixedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">?colorAccent</item>
     </style>
 
     <style name="CardStyle.Light" parent="CardView.Light">
@@ -149,8 +163,6 @@
     </style>
     <style
         name="Widget.Design.TabLayout"
-        parent="Base.Widget.Design.TabLayout">
-        <!--<item name="tabGravity">fill</item>
-        <item name="tabMode">fixed</item>-->
-    </style>
+        parent="Base.Widget.Design.TabLayout"/>
+
 </resources>
