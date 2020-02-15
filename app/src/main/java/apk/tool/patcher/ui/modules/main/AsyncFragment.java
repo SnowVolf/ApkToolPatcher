@@ -39,8 +39,6 @@ import ru.svolf.melissa.Melissa;
 import ru.svolf.melissa.model.ControlsItem;
 import ru.svolf.melissa.model.LogItem;
 import ru.svolf.melissa.widget.ChronometerWithPause;
-//import android.support.v4.*;
-//import androidx.multidex.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -189,7 +187,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
             Async.cancelAll();
             Handler wait = new Handler();
             wait.postDelayed(() -> {
-                // Эмитируем нажатие кнопки "НАЗАД", чтоб вернуться на предыдущий экран
+                // Имитируем нажатие кнопки "НАЗАД", чтоб вернуться на предыдущий экран
                 getActivity().onBackPressed();
             }, 500);
         }));
@@ -221,7 +219,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof OnAsyncJobListener) {
             mListener = (OnAsyncJobListener) context;
@@ -334,7 +332,7 @@ public class AsyncFragment extends Fragment implements OnExecutionListener {
                     mSaveLog.setOnClickListener(v -> {
                        StringBuilder log = new StringBuilder();
                         for (LogItem logItem : mLogItems) {
-                            log.append("[ ").append(logItem.getTag()).append(" ]").append(" : ").append(logItem.getMessage()).append("\n");
+                            log.append("[ ").append(logItem.getTag().toUpperCase()).append(" ] : ").append(logItem.getMessage()).append("\n");
                         }
                         TextUtil.copyToClipboard(log.toString());
                         Toast.makeText(v.getContext(), R.string.label_copied, Toast.LENGTH_SHORT).show();
