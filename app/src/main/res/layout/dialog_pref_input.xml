@@ -19,7 +19,7 @@
             android:layout_margin="16dp"
             android:textAllCaps="false"
             android:layout_gravity="end"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/MixedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Test"/>

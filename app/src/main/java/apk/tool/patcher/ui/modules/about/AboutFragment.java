@@ -7,6 +7,7 @@ import androidx.preference.Preference;
 
 import apk.tool.patcher.R;
 import apk.tool.patcher.ui.modules.base.BaseSettingsFragment;
+import apk.tool.patcher.ui.modules.misc.UpdateDialogFragment;
 import apk.tool.patcher.util.TextUtil;
 
 /**
@@ -20,6 +21,11 @@ public class AboutFragment extends BaseSettingsFragment {
         setPreferencesFromResource(R.xml.patcher_about, rootKey);
         Preference version = findPreference("app_ver");
         version.setTitle(TextUtil.getBuildName(getContext()));
+        version.setOnPreferenceClickListener(preference -> {
+            UpdateDialogFragment updateDialogFragment = UpdateDialogFragment.newInstance(UpdateDialogFragment.JSON_LINK);
+            updateDialogFragment.show(getActivity().getSupportFragmentManager(), "UDF");
+            return true;
+        });
     }
 
 }

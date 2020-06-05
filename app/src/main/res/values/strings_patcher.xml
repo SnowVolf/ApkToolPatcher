@@ -144,5 +144,12 @@
     <string name="recents">Recents</string>
     <string name="choose_folder">Choose folder</string>
     <string name="copy_log">Copy LOG</string>
+    <string name="message_no_updates">You have already installed the latest version</string>
+    <string name="update_important">Important</string>
+    <string name="update_added">Added</string>
+    <string name="update_fixed">Fixed</string>
+    <string name="update_changed">Changed</string>
+    <string name="updater_notification_title">ApkToolPatcher update</string>
+    <string name="updater_notification_content_VerName">New version: %s</string>
 
 </resources>

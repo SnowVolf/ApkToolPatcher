@@ -28,16 +28,14 @@
             <com.google.android.material.button.MaterialButton
                 android:visibility="visible"
                 android:id="@+id/button_addition"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/MixedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="8dp"
                 android:textAllCaps="false"
-                android:text="@string/history"
-                app:strokeColor="?colorAccent"
-                app:strokeWidth="1dp"/>
+                android:text="@string/history" />
 
         </RelativeLayout>
 
@@ -57,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/ButtonClear"
                     android:hint="@string/search_q"
+                    style="@style/Widget.Design.TextInputLayout"
                     android:maxLines="2">
 
                     <AutoCompleteTextView

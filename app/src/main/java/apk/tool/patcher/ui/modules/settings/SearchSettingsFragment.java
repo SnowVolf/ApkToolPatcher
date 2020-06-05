@@ -3,14 +3,11 @@ package apk.tool.patcher.ui.modules.settings;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -25,8 +22,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -35,7 +30,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import apk.tool.patcher.App;
@@ -49,6 +43,7 @@ import ru.svolf.melissa.swipeback.SwipeBackLayout;
 
 public class SearchSettingsFragment extends SwipeBackFragment {
     public static final String FRAGMENT_TAG = "search_settings_fragment";
+    
     public LinearLayout mContainer, mNotFound;
     private ChipGroup mExtListView;
     private View rootView;
@@ -234,7 +229,7 @@ public class SearchSettingsFragment extends SwipeBackFragment {
             }
             return false;
         });
-        mRecentAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+        mRecentAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_dropdown_item_1line, new ArrayList<>());
         searchField.setAdapter(mRecentAdapter);
 
         btnHistory.setOnClickListener(item -> searchField.showDropDown());

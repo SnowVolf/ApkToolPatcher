@@ -135,5 +135,12 @@
     <string name="prem_message">Выбрать и отправить</string>
     <string name="choose_folder">Выбрать папку</string>
     <string name="copy_log">Копировать LOG</string>
+    <string name="message_no_updates">У вас уже установлена новейшая версия</string>
+    <string name="update_important">Важно</string>
+    <string name="update_added">Добавлено</string>
+    <string name="update_fixed">Исравлено</string>
+    <string name="update_changed">Изменено</string>
+    <string name="updater_notification_title">Обновление ApkToolPatcher</string>
+    <string name="updater_notification_content_VerName">Новая версия - %s</string>
 
 </resources>

@@ -5,9 +5,7 @@
         android:title="@string/settings_tab_main">
         <androidx.preference.Preference
             android:key="app_ver"
-            android:summary="Copyright (c) 2018 Alexei Samsonov">
-            <intent android:action="apk.tool.patcher.action.SHOW_UPDATE" />
-        </androidx.preference.Preference>
+            android:summary="Copyright (c) 2018 Alexei Samsonov"/>
         <androidx.preference.Preference
             android:key="4pda_disc"
             android:summary="@string/pref_4pda_disc_sub"

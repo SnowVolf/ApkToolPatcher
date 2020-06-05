@@ -12,7 +12,7 @@ ext {
             cardview: 'androidx.cardview:cardview:1.0.0',
             material: 'com.google.android.material:material:1.1.0',
             dex: 'androidx.multidex:multidex:2.0.1',
-            worker: "androidx.work:work-runtime:$work_version",
+//            worker: "androidx.work:work-runtime:2.3.4",
             lifecycle: 'androidx.lifecycle:lifecycle-extensions:2.2.0',
             constraint: 'androidx.constraintlayout:constraintlayout:1.1.3'
     ]

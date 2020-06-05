@@ -1,7 +1,6 @@
 -dontwarn sun.security.**
 -dontwarn sys.util.**
 -dontwarn **
--dontobfuscate
 
 -obfuscationdictionary proguard-dictionary.txt
 -packageobfuscationdictionary proguard-dictionary.txt
@@ -11,6 +10,7 @@
 
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute flex
+-repackageclasses "org"
 
 -keepclassmembers class ** extends sun1.security.x509.Extension{
 <init>(...);

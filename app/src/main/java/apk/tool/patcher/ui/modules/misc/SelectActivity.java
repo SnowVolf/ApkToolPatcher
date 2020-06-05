@@ -81,6 +81,7 @@ public class SelectActivity extends SwipeBackActivity implements SelectAdapter.C
                         Intent intent = new Intent();
                         intent.putExtra("path", currentPath.getPath());
                         setResult(RESULT_OK, intent);
+                        dialog.dismiss();
                         finish();
                     });
                     dialog.show();

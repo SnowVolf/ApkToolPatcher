@@ -29,9 +29,7 @@
             android:layout_margin="8dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            app:strokeColor="?colorAccent"
-            app:strokeWidth="1dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            style="@style/MixedButton"/>
     </RelativeLayout>
 
 

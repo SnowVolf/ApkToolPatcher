@@ -113,10 +113,11 @@ public class ExFile extends File {
         }
         try {
             Uri uri1;
+            String documentId = treeDocumentId + extCardSettingsName.substring(docIdToPath.length());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                uri1 = DocumentsContract.buildDocumentUriUsingTree(uri, treeDocumentId + extCardSettingsName.substring(docIdToPath.length()));
+                uri1 = DocumentsContract.buildDocumentUriUsingTree(uri, documentId);
             } else {
-                uri1 = DocumentsContractCompat.buildDocumentUriUsingTree(uri, treeDocumentId + extCardSettingsName.substring(docIdToPath.length()));
+                uri1 = DocumentsContractCompat.buildDocumentUriUsingTree(uri, documentId);
             }
             ParcelFileDescriptor fileDescriptor = App.get().getContentResolver().openFileDescriptor(uri1, "rw");
             if (fileDescriptor != null) fileDescriptor.close();

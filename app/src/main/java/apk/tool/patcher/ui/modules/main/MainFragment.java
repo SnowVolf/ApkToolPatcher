@@ -72,6 +72,7 @@ import apk.tool.patcher.ui.modules.settings.SearchSettingsFragment;
 import apk.tool.patcher.ui.modules.settings.SettingsActivity;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.RegexpRepository;
+import apk.tool.patcher.util.SimpleUpdateChecker;
 import apk.tool.patcher.util.StreamUtil;
 import apk.tool.patcher.util.TextUtil;
 import ru.svolf.melissa.AdvancedItems;
@@ -434,7 +435,17 @@ public class MainFragment extends Fragment {
                 }
             }
         };
+
         initRecycler();
+        initUpdater();
+    }
+
+    /**
+     * Проверка новой версии приложения
+     */
+    private void initUpdater() {
+        SimpleUpdateChecker checker = new SimpleUpdateChecker();
+        checker.checkFromGitHub(getContext());
     }
 
     @Override
@@ -484,7 +495,8 @@ public class MainFragment extends Fragment {
                         //TODO: Разкомментить в релизе
                     } else {
                         mGeneralInput.setText(path);
-                        publicString2(getProjectDir());
+                        //FIXME Разкоменть, когда будешь выкладывать на 4пидора со своей подписью
+                        //publicString2(getProjectDir());
                     }
                     break;
 
@@ -553,37 +565,39 @@ public class MainFragment extends Fragment {
         String suka = "";
         boolean saveFile = false;
         File[] fList = directory.listFiles();
-        for (File file : fList) {
-            if (file.isFile()) {
-                if (file.getAbsolutePath().endsWith(extXml)) {
-                    try {
-                        bytes = new byte[(int) file.length()];
-                        buf = new BufferedInputStream(new FileInputStream(file));
-                        buf.read(bytes, 0, bytes.length);
-                        buf.close();
-                        content = new String(bytes);
-                        for (ArrayMap.Entry<Pattern, String> mEntry : pat.entrySet()) {
-                            mat = mEntry.getKey().matcher(content);
-                            if (mat.find()) {
-                                content = mat.replaceAll(mEntry.getValue());
-                                saveFile = true;
+        if (fList != null) {
+            for (File file : fList) {
+                if (file.isFile()) {
+                    if (file.getAbsolutePath().endsWith(extXml)) {
+                        try {
+                            bytes = new byte[(int) file.length()];
+                            buf = new BufferedInputStream(new FileInputStream(file));
+                            buf.read(bytes, 0, bytes.length);
+                            buf.close();
+                            content = new String(bytes);
+                            for (ArrayMap.Entry<Pattern, String> mEntry : pat.entrySet()) {
+                                mat = mEntry.getKey().matcher(content);
+                                if (mat.find()) {
+                                    content = mat.replaceAll(mEntry.getValue());
+                                    saveFile = true;
+                                }
                             }
+                            if (saveFile) {
+                                Out = new FileOutputStream(file);
+                                OutWriter = new OutputStreamWriter(Out);
+                                OutWriter.append(content);
+                                OutWriter.close();
+                                Out.flush();
+                                Out.close();
+                                saveFile = false;
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.toString());
                         }
-                        if (saveFile) {
-                            Out = new FileOutputStream(file);
-                            OutWriter = new OutputStreamWriter(Out);
-                            OutWriter.append(content);
-                            OutWriter.close();
-                            Out.flush();
-                            Out.close();
-                            saveFile = false;
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e.toString());
                     }
+                } else if (file.isDirectory()) {
+                    publicString(file.getAbsolutePath(), pat);
                 }
-            } else if (file.isDirectory()) {
-                publicString(file.getAbsolutePath(), pat);
             }
         }
     }

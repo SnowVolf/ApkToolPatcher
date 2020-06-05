@@ -60,9 +60,6 @@
 					android:mimeType="text/*"/>
 			</intent-filter>
 		</activity>
-		<activity
-			android:name="com.a4455jkjh.apktool.SettingActivity"
-			android:label="@string/settings"/>
 		<service
 			android:name="com.a4455jkjh.apktool.service.SmaliAnalysisService"
 			android:process=":analysis"
@@ -72,25 +69,7 @@
 			android:exported="false"
 			android:authorities="com.a4455jkjh.fileprovider"
 			android:grantUriPermissions="true"/>     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         <activity android:name=".ui.modules.base.BaseActivity" />
         <activity android:name=".ui.modules.settings.SettingsActivity" />
         <activity android:name=".ui.modules.misc.SelectActivity" />
@@ -141,14 +120,6 @@
             android:name="jp.sblo.pandora.aGrep.ColorPickerActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/label_option" />
-        <activity
-            android:name=".ui.modules.misc.UpdaterActivity"
-            android:label="@string/title_activity_updater">
-            <intent-filter>
-                <action android:name="apk.tool.patcher.action.SHOW_UPDATE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
         <activity android:name=".filesystem.ExFileInfo"/>
         <activity android:name=".filesystem.ExternalCard"/>
     </application>

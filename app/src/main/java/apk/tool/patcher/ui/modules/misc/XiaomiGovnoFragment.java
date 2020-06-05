@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,10 +29,17 @@ public class XiaomiGovnoFragment extends SwipeBackFragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button btnExit = view.findViewById(R.id.exit);
+        btnExit.setOnClickListener(v -> getActivity().onBackPressed());
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(XiaomiGovnoViewModel.class);
-        // TODO: Use the ViewModel
+        // TODO: Use the ViewModel}
     }
 
 }

@@ -79,34 +79,14 @@ public class AppListFragment extends ListFragment implements SearchView.OnQueryT
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated() called with: view = [" + view + "], savedInstanceState = [" + savedInstanceState + "]");
         super.onViewCreated(view, savedInstanceState);
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (searchView.isIconified()) {
-                    searchView.setIconified(false);
-                } else {
-                    Log.e(TAG, "onClick: already expanded");
-                }
-            }
-        });
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint(getString(R.string.search_q));
 
         final PopupMenu popup = new PopupMenu(getContext(), buttonFilter);
         popup.inflate(R.menu.main);
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                return onOptionsItemSelected(item);
-            }
-        });
+        popup.setOnMenuItemClickListener(item -> onOptionsItemSelected(item));
         //popup.getMenu().getItem(Preferences.getFilterId()).setChecked(true);
-        buttonFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popup.show();
-            }
-        });
+        buttonFilter.setOnClickListener(view1 -> popup.show());
     }
 
     @Override

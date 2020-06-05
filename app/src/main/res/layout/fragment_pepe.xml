@@ -25,4 +25,11 @@
         android:layout_margin="16dp"
         android:text="@string/vendor_warn" />
 
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/ok"
+        style="@style/MixedButton"/>
+
 </LinearLayout>

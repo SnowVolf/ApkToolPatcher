@@ -62,6 +62,22 @@ public abstract class ThemeWrapper {
         return theme;
     }
 
+    @StyleRes
+    public static int getBottomDialogTheme() {
+        int theme;
+        switch (Theme.values()[getThemeIndex()]) {
+            case DARK:
+                theme = R.style.AppBottomSheetDialogTheme_Dark;
+                break;
+            case BLUE:
+                theme = R.style.AppBottomSheetDialogTheme_Dark;
+                break;
+            default:
+                theme = R.style.AppBottomSheetDialogTheme;
+        }
+        return theme;
+    }
+
     public static int resolveNavBarColor(Context context) {
         // До Android 8 у нас нет возможности сделать кнопки навигации черными,
         // Поэтому делаем черной всю панель целиком
