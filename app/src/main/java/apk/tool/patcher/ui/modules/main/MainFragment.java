@@ -2,12 +2,15 @@ package apk.tool.patcher.ui.modules.main;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.AppOpsManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Base64;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.collection.ArrayMap;
 import androidx.fragment.app.Fragment;
@@ -57,6 +61,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import apk.tool.patcher.App;
+import apk.tool.patcher.BuildConfig;
 import apk.tool.patcher.R;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.AdsPatcher;
@@ -222,6 +227,7 @@ public class MainFragment extends Fragment {
         ImageButton search = view.findViewById(R.id.search_find);
 
         search.setOnClickListener(v -> {
+
             // Create the fragment only when the activity is created for the first time.
             // ie. not after orientation changes
             //Snackbar.make(mCard, "This feature has been disabled until next alpha :(", Snackbar.LENGTH_LONG).show();
@@ -401,12 +407,26 @@ public class MainFragment extends Fragment {
             mProject = (Project) savedInstanceState.getSerializable(Cs.ARG_PATH_NAME);
             if (mProject != null)
                 mGeneralInput.setText(mProject.getPath());
-
         }
+
         mGeneralInput.setOnClickListener(p1 -> {
-            final Intent intent = new Intent(mContext, SelectActivity.class);
-            intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
-            startActivityForResult(intent, 2);
+            // Since android R, we need to ask the user to grant special scoped-storage permission first,
+            // instead of showing files fragment directly
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q && !Environment.isExternalStorageManager()){
+                SweetContentDialog permissionDialog = new SweetContentDialog(getContext());
+                permissionDialog.setTitle("Android 11 R changes");
+                permissionDialog.setMessage("Android 11 introduce a new file-management way called \"Scoped Storage\". You need to grant a special permission!");
+                permissionDialog.setPositive(R.drawable.ic_check, "Ok", view1 -> {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
+                    startActivity(intent);
+                    permissionDialog.dismiss();
+                });
+                permissionDialog.show();
+            } else {
+                final Intent intent = new Intent(mContext, SelectActivity.class);
+                intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
+                startActivityForResult(intent, 2);
+            }
             getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
@@ -970,6 +990,20 @@ public class MainFragment extends Fragment {
 
     private String getProjectDir() {
         return getProject() != null ? getProject().getPath() : "";
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private boolean hasAllFilesAccess(){
+        AppOpsManager manager = (AppOpsManager) getActivity().getSystemService(Context.APP_OPS_SERVICE);
+
+        boolean permission = false;
+
+        if (manager.unsafeCheckOpNoThrow("android:manage_external_storage", android.os.Process.myUid(),
+                BuildConfig.APPLICATION_ID) == AppOpsManager.MODE_ALLOWED){
+            permission = true;
+        }
+
+        return permission;
     }
 
     /**
