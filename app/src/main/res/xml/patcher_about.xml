@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_category_custom"
         android:title="@string/settings_tab_main">
         <androidx.preference.Preference
             android:key="app_ver"
-            android:summary="Copyright (c) 2018-2020 Alexei Samsonov"/>
+            android:summary="Copyright (c) 2018-2022 Alexei Samsonov"
+            app:iconSpaceReserved="false"/>
         <androidx.preference.Preference
             android:key="4pda_disc"
             android:summary="@string/pref_4pda_disc_sub"
-            android:title="@string/pref_4pda_disc">
+            android:title="@string/pref_4pda_disc"
+            app:iconSpaceReserved="false">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://4pda.ru/forum/index.php?showtopic=882654" />
         </androidx.preference.Preference>
         <androidx.preference.Preference
             android:key="app_manual"
-            android:title="@string/pref_userguide">
+            android:title="@string/pref_userguide"
+            app:iconSpaceReserved="false">
             <intent android:action="apk.tool.patcher.action.SHOW_HELP" />
         </androidx.preference.Preference>
     </androidx.preference.PreferenceCategory>
@@ -27,7 +31,8 @@
         <androidx.preference.Preference
             android:key="send_email_lead"
             android:summary="Lead Developer (russian only)"
-            android:title="@string/pref_contact_mail">
+            android:title="@string/pref_contact_mail"
+            app:iconSpaceReserved="false">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="mailto:buntar888@mail.ru?subject=ApkToolPatcher" />
@@ -35,7 +40,8 @@
         <androidx.preference.Preference
             android:key="send_email_second"
             android:summary="Secondary Developer (english and russian)"
-            android:title="@string/pref_contact_mail">
+            android:title="@string/pref_contact_mail"
+            app:iconSpaceReserved="false">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="mailto:dev.dog@yandex.ru?subject=ApkToolPatcher" />

@@ -9,7 +9,6 @@ apply from: 'dependencies.gradle'
 buildscript {
 //    ext.objectboxVersion = '2.5.1'
     repositories {
-        jcenter()
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }

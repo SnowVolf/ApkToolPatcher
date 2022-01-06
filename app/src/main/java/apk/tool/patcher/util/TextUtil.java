@@ -11,7 +11,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.Log;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 import apk.tool.patcher.App;
+import apk.tool.patcher.BuildConfig;
 import apk.tool.patcher.R;
 
 public class TextUtil {
@@ -24,13 +28,7 @@ public class TextUtil {
 
     public static String getBuildName(Context context) {
         String programBuild = context.getString(R.string.app_name);
-        try {
-            String pkg = context.getPackageName();
-            PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(pkg, PackageManager.GET_META_DATA);
-            programBuild += " v." + pkgInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e1) {
-            e1.printStackTrace();
-        }
+        programBuild += " v." + BuildConfig.VERSION_NAME;
         return programBuild;
     }
 
@@ -51,5 +49,9 @@ public class TextUtil {
     public static void shareText(Context context, String string) {
         final Intent intent = new Intent(Intent.ACTION_SEND);
         context.startActivity(Intent.createChooser(intent, null));
+    }
+
+    public static String getCopyrightString(){
+        return String.format(Locale.ENGLISH,"Copyright (c) 2018-%d Alexei Samsonov", Calendar.getInstance().get(Calendar.YEAR));
     }
 }

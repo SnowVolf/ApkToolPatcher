@@ -20,12 +20,15 @@ public class AboutFragment extends BaseSettingsFragment {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.patcher_about, rootKey);
         Preference version = findPreference("app_ver");
-        version.setTitle(TextUtil.getBuildName(getContext()));
-        version.setOnPreferenceClickListener(preference -> {
-            UpdateDialogFragment updateDialogFragment = UpdateDialogFragment.newInstance(UpdateDialogFragment.JSON_LINK);
-            updateDialogFragment.show(getActivity().getSupportFragmentManager(), "UDF");
-            return true;
-        });
+        if (version != null) {
+            version.setTitle(TextUtil.getBuildName(requireContext()));
+            version.setSummary(TextUtil.getCopyrightString());
+            version.setOnPreferenceClickListener(preference -> {
+                UpdateDialogFragment updateDialogFragment = UpdateDialogFragment.newInstance(UpdateDialogFragment.JSON_LINK);
+                updateDialogFragment.show(getActivity().getSupportFragmentManager(), "UDF");
+                return true;
+            });
+        }
     }
 
 }

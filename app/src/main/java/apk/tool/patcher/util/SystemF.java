@@ -12,7 +12,10 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.time.Year;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -66,7 +69,7 @@ public class SystemF {
         MemoryInfo memoryInfo = new MemoryInfo();
         ((ActivityManager) App.get().getSystemService(Context.ACTIVITY_SERVICE)).getMemoryInfo(memoryInfo);
         freeMem = memoryInfo.totalMem - memoryInfo.threshold;
-        return (freeMem < 0x4000000L) ? 0x4000000L : freeMem;
+        return Math.max(freeMem, 0x4000000L);
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -129,10 +132,16 @@ public class SystemF {
     }
 
     public static long toKBs(long sizeInBytes) {
+        if (sizeInBytes == 0){
+            return 0;
+        }
         return sizeInBytes / 1024;
     }
 
     public static long toMBs(long sizeInBytes) {
+        if (sizeInBytes == 0){
+            return 0;
+        }
         return toKBs(sizeInBytes) / 1024;
     }
 
@@ -146,4 +155,5 @@ public class SystemF {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 }

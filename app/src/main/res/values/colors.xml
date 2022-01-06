@@ -40,12 +40,8 @@
     <color name="blue_editBackground">#222e3c</color>
     <color name="blue_editForeground">#456a93</color>
     <color name="blue_cardBorderColor">#364e54</color>
-    
-    
-    
-    
-    
-    
+
+
    <color name="primary_dark_material">#ff03a9f4</color>
     <color name="primary_dark_material_light">#ff29b6f6</color>
     <color name="primary_material">#ff222222</color>
