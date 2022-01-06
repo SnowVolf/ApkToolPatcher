@@ -13,14 +13,11 @@ buildscript {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven {
-            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
-        }
+
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-        classpath "io.realm:realm-gradle-plugin:7.0.0-beta-SNAPSHOT"
+        classpath 'com.android.tools.build:gradle:7.0.4'
 //        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -29,13 +26,9 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven {
-            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
-        }
     }
 }
 
