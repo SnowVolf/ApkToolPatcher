@@ -151,5 +151,7 @@
     <string name="update_changed">Changed</string>
     <string name="updater_notification_title">ApkToolPatcher update</string>
     <string name="updater_notification_content_VerName">New version: %s</string>
+    <string name="scoped_storage_title">Storage updates in Android 11</string>
+    <string name="android_11_scoped_text">Android 11 (API level 30) further enhances the platform, giving better protection to app and user data on external storage. This release introduces several enhancements, such as raw file path access, batch edit operations for media, and an updated UI for the Storage Access Framework.\nThe release also offers improvements to scoped storage, which makes it easier for developers to fulfill their storage use cases after they migrate to using this storage model.</string>
 
 </resources>

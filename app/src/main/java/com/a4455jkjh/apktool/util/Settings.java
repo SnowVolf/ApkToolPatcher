@@ -52,7 +52,7 @@ public class Settings {
 		fontSize = 14;
 		NotificationManager nm = new NotificationManager(application);
 		project = new Project(nm, ContextCompat.getNoBackupFilesDir(application));
-		typeface = ResourcesCompat.getFont(application, R.font.monospace);
+		typeface = ResourcesCompat.getFont(application, R.font.source_code_pro);
 		copyFiles(application.getAssets(), application.getFilesDir());
 		loadSettings(application);
 		ApkOptions o = ApkOptions.INSTANCE;

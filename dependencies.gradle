@@ -6,7 +6,6 @@ ext {
             vp: 'androidx.viewpager:viewpager:1.0.0',
             interpolator: 'androidx.interpolator:interpolator:1.0.0',
             fragment: 'androidx.fragment:fragment:1.2.1',
-            //drawer: 'androidx.drawerlayout:drawerlayout:1.0.0'
             preference: 'androidx.preference:preference:1.1.0',
             core: 'androidx.appcompat:appcompat:1.1.0',
             cardview: 'androidx.cardview:cardview:1.0.0',
@@ -40,6 +39,7 @@ ext {
 
     misc = [
             guava: "com.google.guava:guava:28.2-android",
-            metrica: 'com.yandex.android:mobmetricalib:3.8.0'
+            metrica: 'com.yandex.android:mobmetricalib:3.8.0',
+            civ: 'com.makeramen:roundedimageview:2.3.0'
     ]
 }

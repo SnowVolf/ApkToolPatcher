@@ -414,7 +414,7 @@ public class MainFragment extends Fragment {
             // instead of showing files fragment directly
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q && !Environment.isExternalStorageManager()){
                 SweetContentDialog permissionDialog = new SweetContentDialog(getContext());
-                permissionDialog.setTitle("Android 11 R changes");
+                permissionDialog.setTitle("");
                 permissionDialog.setMessage("Android 11 introduce a new file-management way called \"Scoped Storage\". You need to grant a special permission!");
                 permissionDialog.setPositive(R.drawable.ic_check, "Ok", view1 -> {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
@@ -546,13 +546,8 @@ public class MainFragment extends Fragment {
 
         Intent intent = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            intent = AccountManager.newChooseAccountIntent(null, null, aTypes,
-                    null, null, null, null);
-        } else {
-            intent = AccountManager.newChooseAccountIntent(null, null,
-                    aTypes, true, null, null, null, null);
-        }
+        intent = AccountManager.newChooseAccountIntent(null, null, aTypes,
+                null, null, null, null);
 
         if (intent != null) {
             startActivityForResult(intent, ACC_CHOOSE);
