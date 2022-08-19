@@ -63,6 +63,7 @@ import java.util.zip.ZipFile;
 import apk.tool.patcher.App;
 import apk.tool.patcher.BuildConfig;
 import apk.tool.patcher.R;
+import apk.tool.patcher.ScopedStorageFragment;
 import apk.tool.patcher.api.Project;
 import apk.tool.patcher.entity.AdsPatcher;
 import apk.tool.patcher.entity.LogicalCore;
@@ -413,15 +414,11 @@ public class MainFragment extends Fragment {
             // Since android R, we need to ask the user to grant special scoped-storage permission first,
             // instead of showing files fragment directly
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q && !Environment.isExternalStorageManager()){
-                SweetContentDialog permissionDialog = new SweetContentDialog(getContext());
-                permissionDialog.setTitle("");
-                permissionDialog.setMessage("Android 11 introduce a new file-management way called \"Scoped Storage\". You need to grant a special permission!");
-                permissionDialog.setPositive(R.drawable.ic_check, "Ok", view1 -> {
-                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
-                    startActivity(intent);
-                    permissionDialog.dismiss();
-                });
-                permissionDialog.show();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, new ScopedStorageFragment())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
             } else {
                 final Intent intent = new Intent(mContext, SelectActivity.class);
                 intent.putExtra(Cs.ARG_PATH_NAME, mGeneralInput.getText().toString());
