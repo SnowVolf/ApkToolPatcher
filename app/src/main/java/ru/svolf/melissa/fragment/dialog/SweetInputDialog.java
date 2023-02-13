@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.ThemeWrapper;
+import apk.tool.patcher.ui.base.ThemeWrapper;
 
 /**
  * Created by Snow Volf on 20.08.2017, 12:54

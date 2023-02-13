@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <View
-        android:layout_width="22dp"
-        android:layout_height="5dp"
+        android:layout_width="36dp"
+        android:layout_height="6dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/corners_all" />
 

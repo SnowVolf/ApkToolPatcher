@@ -19,8 +19,8 @@ import java.io.File;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.about.HelpActivity;
-import apk.tool.patcher.ui.modules.base.BaseActivity;
+import apk.tool.patcher.ui.about.HelpActivity;
+import apk.tool.patcher.ui.base.BaseActivity;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.PathF;
 

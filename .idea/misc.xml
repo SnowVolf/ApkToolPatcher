@@ -3,13 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable-anydpi-v21/giftcard.xml" value="0.258" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.258" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/bottom_view_background.xml" value="0.258" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/card_border.xml" value="0.258" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/corners_12dp.xml" value="0.19" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/corners_all.xml" value="0.19" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/dialog_background.xml" value="0.258" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/drawable/dialog_insets.xml" value="0.258" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/activity_external_card.xml" value="0.2564814814814815" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/activity_file_selector.xml" value="0.2564814814814815" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/activity_main_patcher.xml" value="0.2564814814814815" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/activity_patcher_settings.xml" value="0.2564814814814815" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/activity_search_result.xml" value="0.2564814814814815" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/dialog_list.xml" value="0.1796875" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/dialog_simple_content.xml" value="0.67" />
+        <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/dialog_view.xml" value="0.3536458333333333" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/fragment_scoped_storage.xml" value="0.33" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/preference_category_custom.xml" value="0.3619791666666667" />
         <entry key="..\:/UserData/SVolf/Documents/GitHub/ApkToolPatcher/app/src/main/res/layout/textpreview_row.xml" value="0.33" />

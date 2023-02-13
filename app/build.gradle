@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "apk.tool.patcher"
+        namespace "apk.tool.patcher"
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 5718
         versionName "5.0 RC 2"
         // Иначе не соберется в студии
@@ -48,16 +48,16 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation jetpack.vp
-    implementation jetpack.interpolator
+
     implementation jetpack.fragment
     implementation jetpack.preference
     implementation jetpack.core
     implementation jetpack.cardview
     implementation jetpack.material
     implementation jetpack.dex
-//    implementation jetpack.worker
-    implementation jetpack.lifecycle
     implementation jetpack.constraint
+    implementation jetpack.lifecycle
+    implementation jetpack.lifecycle2
 
     implementation reactive.rxjava
     implementation reactive.rxandroid

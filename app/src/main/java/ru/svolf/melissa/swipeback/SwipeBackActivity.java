@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 
-import apk.tool.patcher.ui.modules.base.BaseActivity;
+import apk.tool.patcher.ui.base.BaseActivity;
 
 
 /**

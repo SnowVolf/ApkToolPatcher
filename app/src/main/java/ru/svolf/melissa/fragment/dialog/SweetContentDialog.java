@@ -20,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.adapters.DialogControlsAdapter;
+import apk.tool.patcher.ui.base.adapters.DialogControlsAdapter;
 import ru.svolf.melissa.model.ControlsItem;
 
 /**

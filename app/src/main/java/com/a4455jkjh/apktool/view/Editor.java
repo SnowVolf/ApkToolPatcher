@@ -14,7 +14,7 @@ import com.myopicmobile.textwarrior.common.DocumentProvider;
 import com.myopicmobile.textwarrior.common.LinearSearchStrategy;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.ThemeWrapper;
+import apk.tool.patcher.ui.base.ThemeWrapper;
 
 public class Editor extends FreeScrollingTextField {
 	private boolean editable = true;

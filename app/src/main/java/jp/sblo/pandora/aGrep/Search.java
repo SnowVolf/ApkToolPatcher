@@ -31,7 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.main.MainActivity;
+import apk.tool.patcher.ui.main.MainActivity;
 import ru.svolf.melissa.fragment.dialog.SweetWaitDialog;
 import ru.svolf.melissa.swipeback.SwipeBackActivity;
 import ru.svolf.melissa.swipeback.SwipeBackLayout;

@@ -17,7 +17,7 @@
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         app:behavior_peekHeight="96dp"
 		android:id="@+id/bottomView"
-		android:background="@drawable/dialog_background"/>
+		android:background="@drawable/dialog_insets"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

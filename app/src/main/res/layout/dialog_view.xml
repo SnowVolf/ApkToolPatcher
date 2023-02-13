@@ -3,6 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <View
+        android:layout_width="36dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/corners_all" />
 
     <ru.svolf.melissa.widget.FontTextView
         android:id="@+id/content_caption"

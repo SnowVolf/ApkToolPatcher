@@ -21,7 +21,7 @@ import java.util.Locale;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.main.MainActivity;
+import apk.tool.patcher.ui.main.MainActivity;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.PathF;
 import apk.tool.patcher.util.SystemF;

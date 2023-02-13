@@ -6,8 +6,8 @@ package ru.svolf.melissa.swipeback;
  * от этого, изменяем чувствительность SwipeBack у Activity, чтоб при свайпах между вкладками
  * она случайно не закрылась.
  *
- * @see apk.tool.patcher.ui.modules.settings.SettingsHostFragment
- * @see apk.tool.patcher.ui.modules.settings.SettingsActivity
+ * @see apk.tool.patcher.ui.settings.SettingsHostFragment
+ * @see apk.tool.patcher.ui.settings.SettingsActivity
  */
 public interface OnTabSwipeListener {
     /**

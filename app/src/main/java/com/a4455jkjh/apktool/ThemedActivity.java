@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.a4455jkjh.apktool.util.Settings;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.ThemeWrapper;
+import apk.tool.patcher.ui.base.ThemeWrapper;
 
 public abstract class ThemedActivity extends FragmentActivity {
 

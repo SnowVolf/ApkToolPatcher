@@ -15,7 +15,7 @@
             app:iconSpaceReserved="false">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="http://4pda.ru/forum/index.php?showtopic=882654" />
+                android:data="http://4pda.to/forum/index.php?showtopic=882654" />
         </androidx.preference.Preference>
         <androidx.preference.Preference
             android:key="app_manual"

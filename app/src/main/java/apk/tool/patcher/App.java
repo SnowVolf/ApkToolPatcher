@@ -8,7 +8,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.StrictMode;
@@ -29,9 +28,9 @@ import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
 import org.acra.ACRA;
-import org.acra.annotation.AcraCore;
-import org.acra.annotation.AcraMailSender;
-import org.acra.annotation.AcraToast;
+import org.acra.ReportField;
+import org.acra.config.CoreConfigurationBuilder;
+import org.acra.config.MailSenderConfigurationBuilder;
 import org.acra.data.StringFormat;
 
 import java.security.Security;
@@ -41,9 +40,6 @@ import apk.tool.patcher.util.LocaleHelper;
 import apk.tool.patcher.util.ReflectionBypass;
 import sun1.security.provider.JavaProvider;
 
-@AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
-@AcraMailSender(mailTo = "buntar888@mail.ru, dev.dog@yandex.ru", reportFileName = "ApkToolPatcher " + BuildConfig.VERSION_NAME + ".log")
-@AcraToast(resText =  R.string.crash_toast_text)
 public class App extends Application {
     private static App instance;
     private static Project sCurrentProject;
@@ -159,7 +155,12 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ACRA.init(this);
+        ACRA.init(this, new CoreConfigurationBuilder()
+                .withBuildConfigClass(BuildConfig.class)
+                .withReportFormat(StringFormat.KEY_VALUE_LIST)
+                .withPluginConfigurations(new MailSenderConfigurationBuilder().withEnabled(true).withMailTo("buntar888@mail.ru, dev.dog@yandex.ru") .withSubject("ApkToolPatcher Crash Report").withReportAsFile(false).build())
+                .withReportContent(ReportField.APP_VERSION_NAME, ReportField.APP_VERSION_CODE, ReportField.BRAND, ReportField.PHONE_MODEL, ReportField.ANDROID_VERSION, ReportField.STACK_TRACE, ReportField.LOGCAT)
+        );
 
         Security.addProvider(new JavaProvider());
         Settings.init(App.this);
@@ -218,10 +219,8 @@ public class App extends Application {
      * @see android.os.FileUriExposedException
      */
     private void hackVmPolicy() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            StrictMode.setVmPolicy(builder.build());
-        }
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
     }
 
     /**

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="apk.tool.patcher.ui.modules.inspector.VisibleFragment">
+    tools:context=".ui.inspector.VisibleFragment">
 
     <ru.svolf.melissa.widget.SpringRecyclerView
         android:id="@+id/list_places"

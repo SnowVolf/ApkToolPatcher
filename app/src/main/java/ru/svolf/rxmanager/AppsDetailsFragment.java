@@ -298,10 +298,8 @@ public class AppsDetailsFragment extends SwipeBackFragment {
                 commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.uid)));
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                commonItems.add(new AppInfoItem(getString(R.string.appinfo_msdk)));
-                commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.minSdkVersion)));
-            }
+            commonItems.add(new AppInfoItem(getString(R.string.appinfo_msdk)));
+            commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.minSdkVersion)));
 
             commonItems.add(new AppInfoItem(getString(R.string.appinfo_tsdk)));
             commonItems.add(new AppInfoItem(Integer.toString(info.applicationInfo.targetSdkVersion)));

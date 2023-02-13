@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/light_colorPrimary</item>
         <item name="colorOnPrimary">?text_color</item>
         <item name="colorPrimaryDark">@color/light_colorPrimaryDark</item>
@@ -23,7 +23,7 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme.Dark" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/dark_colorPrimary</item>
         <item name="colorOnPrimary">?text_color</item>
         <item name="colorPrimaryDark">@color/dark_colorPrimaryDark</item>
@@ -48,7 +48,7 @@
         <item name="materialButtonStyle">@style/MixedButton</item>
     </style>
 
-    <style name="AppTheme.Blue" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme.Blue" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/blue_colorPrimary</item>
         <item name="colorOnPrimary">?text_color</item>
         <item name="colorPrimaryDark">@color/blue_colorPrimaryDark</item>
@@ -144,7 +144,7 @@
     </style>
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/dialog_background</item>
+        <item name="android:background">@drawable/dialog_insets</item>
         <item name="behavior_hideable">true</item>
         <item name="behavior_skipCollapsed">false</item>
     </style>

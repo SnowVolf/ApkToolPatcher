@@ -28,7 +28,7 @@ import java.io.File;
 
 import apk.tool.patcher.App;
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.settings.SettingsActivity;
+import apk.tool.patcher.ui.settings.SettingsActivity;
 import apk.tool.patcher.util.Cs;
 import apk.tool.patcher.util.PathF;
 import apk.tool.patcher.util.Preferences;

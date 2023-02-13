@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import apk.tool.patcher.R;
-import apk.tool.patcher.ui.modules.base.BaseActivity;
+import apk.tool.patcher.ui.base.BaseActivity;
 import apk.tool.patcher.util.Cs;
 
 public class ExFileInfo extends BaseActivity {
